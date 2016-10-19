@@ -8,8 +8,14 @@
 
 #include <iostream>
 #include "Utils.hpp"
+#include "Goalkeeper.hpp"
+
 
 int main(int argc, const char * argv[]) {
+    
+    Goalkeeper jp("jp", Date(6, 9, 1985), 178);
+    
+    cout << jp.getPosition() << endl;
     
     return 0;
 }

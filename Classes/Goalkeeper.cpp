@@ -20,3 +20,8 @@ Position Goalkeeper::getPosition() const {
     return GoalkeeperPos;
     
 }
+
+unsigned int Goalkeeper::getID() const {
+    
+    return this->id;
+}

@@ -21,7 +21,7 @@ private:
 public:
     Goalkeeper(string name, Date birthdate, unsigned char height);
     Position getPosition() const;
-    
+    unsigned int getID() const;
 };
 
 #endif /* Goalkeeper_hpp */
