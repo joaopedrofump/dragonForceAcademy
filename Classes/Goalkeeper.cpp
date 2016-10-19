@@ -12,6 +12,7 @@ Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height) : Athl
     
     this->goalsConceded = 0;
     this->saves = 0;
+    this->id = ++Worker::workersCounter;
     
 }
 
@@ -19,4 +20,10 @@ Position Goalkeeper::getPosition() const {
     
     return GoalkeeperPos;
     
+}
+
+unsigned int Goalkeeper::getID() const {
+    
+    return this->id;
+
 }

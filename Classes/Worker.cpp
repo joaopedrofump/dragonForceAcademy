@@ -8,6 +8,8 @@
 
 #include "Worker.hpp"
 
+unsigned int Worker::workersCounter = 0;
+
 Worker::Worker(string name, Date birthdate) {
     
     this->name = name;
