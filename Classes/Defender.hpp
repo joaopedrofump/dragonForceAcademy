@@ -10,5 +10,18 @@
 #define Defender_hpp
 
 #include <stdio.h>
+#include "Athlete.hpp"
+
+class Defender : public Athlete {
+private:
+    unsigned int goalsScored;
+    DefenderPosition detailedPosition;
+public:
+    Defender(string name, Date birthdate, unsigned char height, DefenderPosition detailedPosition);
+    Position getPosition() const;
+    unsigned int getID();
+    
+};
+    
 
 #endif /* Defender_hpp */

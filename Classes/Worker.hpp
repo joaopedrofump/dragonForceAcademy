@@ -22,7 +22,7 @@ using namespace std;
 
 
 class Worker {
-private:
+protected:
     /*!
      Worker name
      */
@@ -48,9 +48,9 @@ public:
     Worker(string name, Date birthdate);
     //! Worker constructor.
     /*!
-     \param id the id to set. This is an abstract method to make this class abstract
+     This is an abstract method to make this class abstract
      */
-    virtual bool setID(unsigned int id) = 0;
+    virtual unsigned int getID() = 0;
 };
 
 #endif /* Worker_hpp */
