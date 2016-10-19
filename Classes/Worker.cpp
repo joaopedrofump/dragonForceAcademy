@@ -7,3 +7,10 @@
 //
 
 #include "Worker.hpp"
+
+Worker::Worker(string name, Date birthdate) {
+    
+    this->name = name;
+    this->birthdate = birthdate;
+    
+}

@@ -7,3 +7,9 @@
 //
 
 #include "Athlete.hpp"
+
+Athlete::Athlete(string name, Date birthdate, unsigned char height) : Worker(name, birthdate) {
+    
+    this->height = height;
+    
+}
