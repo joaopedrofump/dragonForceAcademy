@@ -36,9 +36,9 @@ Date::Date(bool currentDate) {
         struct tm timeInfo;
         localtime_s(&timeInfo, &t);
         
-        this->dia = timeInfo.tm_mday;
-        this->mes = (timeInfo.tm_mon) + 1;
-        this->ano = timeInfo.tm_year + 1900;
+        this->day = timeInfo.tm_mday;
+        this->month= (timeInfo.tm_mon) + 1;
+        this->year = timeInfo.tm_year + 1900;
         this->valid = this->isValid();
         
 #endif
