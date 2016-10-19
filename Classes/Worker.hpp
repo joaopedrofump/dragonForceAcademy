@@ -50,7 +50,8 @@ public:
     /*!
      This is an abstract method to make this class abstract
      */
-    virtual unsigned int getID() = 0;
+    virtual unsigned int getID() const = 0;
+
 };
 
 #endif /* Worker_hpp */
