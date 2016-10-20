@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <stdio.h>
+#include <vector>
 
 using namespace std;
 
@@ -76,7 +77,8 @@ enum ForwardPosition {
     
     CentreForward,
     SecondStriker,
-    Winger
+    RigthWinger,
+	LeftWinger
     
 };
 
