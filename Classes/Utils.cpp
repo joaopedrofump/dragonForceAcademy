@@ -11,6 +11,7 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include <vector>
 
 //teste branch
 
