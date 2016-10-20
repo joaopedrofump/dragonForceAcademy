@@ -12,16 +12,19 @@
 #include <stdio.h>
 #include <iostream>
 #include "Worker.hpp"
+#include "ECG.hpp"
 
 class Athlete : public Worker {
     
-private:
+protected:
     unsigned char height;
+    ECG* ecg; //apontador para ECG quando houver classe
 
 public:
     Athlete(string name, Date birthdate, unsigned char height);
+    ~Athlete();
     virtual Position getPosition() const = 0;
-
+    void addECG(bool resultado);
 };
 
 #endif /* Athlete_hpp */
