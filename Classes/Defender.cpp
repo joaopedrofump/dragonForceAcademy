@@ -10,10 +10,12 @@
 
 Defender::Defender(string name, Date birthdate, unsigned char height, DefenderPosition detailedPosition) : Athlete(name, birthdate, height) {
     
+
     this->id = ++Worker::workersCounter;
     this->detailedPosition = detailedPosition;
     
 }
+
 
 Defender::~Defender() {
     cout << "Defender destroyed" << endl;

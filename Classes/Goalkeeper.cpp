@@ -16,9 +16,11 @@ Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height) : Athl
     
 }
 
+
 Goalkeeper::~Goalkeeper() {
     cout << "Goalkeeper destroyed\n" << endl;
 }
+
 
 Position Goalkeeper::getPosition() const {
     

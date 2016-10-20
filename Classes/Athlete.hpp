@@ -13,6 +13,7 @@
 #include <iostream>
 #include "Worker.hpp"
 
+<<<<<<< HEAD
 class ECG {
 private:
     bool resultado;
@@ -33,6 +34,16 @@ public:
     ~Athlete();
     virtual Position getPosition() const = 0;
     void addECG(bool resultado);
+=======
+class Athlete : public Worker {
+    
+private:
+    unsigned char height;
+
+public:
+    Athlete(string name, Date birthdate, unsigned char height);
+    virtual Position getPosition() const = 0;
+>>>>>>> 62fb5076ee9c11070ff7dda2f7f367bbba09d115
 };
 
 #endif /* Athlete_hpp */
