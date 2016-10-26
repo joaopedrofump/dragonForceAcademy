@@ -5,12 +5,13 @@
 //  Created by Joao Furriel on 12/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#pragma once
 
 #ifndef Athlete_hpp
 #define Athlete_hpp
 
-#include <stdio.h>
-#include <iostream>
+//#include <stdio.h>
+//#include <iostream>
 #include "Worker.hpp"
 #include "ECG.hpp"
 

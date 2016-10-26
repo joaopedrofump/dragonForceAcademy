@@ -1,15 +1,16 @@
 #pragma once
 
-#include <stdio.h>
-#include <iostream>
+/*#include <stdio.h>
+#include <iostream>*/
 #include "Worker.hpp"
 
 class Trainer : public Worker {
 
 private:
-	unsigned char height;
+	Position trainerPosition;
 
 public:
-	Trainer(string name, Date birthdate, unsigned char height);
-	virtual Position getPosition() const = 0;
+	Trainer(string name, Date birthdate, Position trainerPosition);
+	Position getPosition();
+	unsigned int getID() const;
 };

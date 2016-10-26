@@ -5,6 +5,7 @@
 //  Created by Joao Furriel on 13/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#pragma once
 
 #ifndef Goalkeeper_hpp
 #define Goalkeeper_hpp

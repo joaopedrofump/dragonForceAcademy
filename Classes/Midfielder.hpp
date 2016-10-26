@@ -5,6 +5,7 @@
 //  Created by Joao Furriel on 20/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#pragma once
 
 #ifndef Midfielder_hpp
 #define Midfielder_hpp
