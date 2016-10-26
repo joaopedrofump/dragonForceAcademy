@@ -15,7 +15,13 @@
 
 //teste branch
 
-// data na forma DD/MM/AAA
+
+
+// ===========================================
+// ==============  DATE  =====================
+// ===========================================
+
+// data na forma DD/MM/AAAA
 
 Date::Date(bool currentDate) {
     
@@ -57,7 +63,6 @@ Date::Date(bool currentDate) {
     }
     
 }
-
 
 Date::Date(string dataStr) {
     
@@ -236,7 +241,6 @@ bool operator>=(const Date &date1, const Date date2) {
     
 }
 
-
 void Date::save(ofstream &out) const {
     
     out << this;
@@ -332,4 +336,116 @@ void Date::setCurrentDate() {
     
 #endif
     
+}
+
+
+
+// ===========================================
+// ==============  FUNCTIONS  ================
+// ===========================================
+
+void trimString(string &inputString) {
+
+
+	//only for strings bigger than one char
+	if (inputString.size() > 1) {
+
+		//erase every ' ' char till it finds the fisrt that it is not ' '
+		inputString.erase(0, inputString.find_first_not_of(" "));
+
+		if (inputString == "")
+			return;
+
+		//while the last char is empty, it will be removed from the string
+		while (inputString.at(inputString.size() - 1) == ' ') {
+
+			inputString.pop_back();
+
+		}
+	}
+}
+
+bool validateName(string &nome) {
+
+	trimString(nome);
+
+	stringstream nomeStream(nome); //stringStream que contém o nome do cliente
+	vector<string> nomes; //vector com a lista de nomes do cliente
+
+						  //verificar se contém digitos
+
+	for (size_t i = 0; i < nome.size(); i++) {
+
+		if (isdigit((int)nome.at(i))) {
+
+			cout << "O nome não pode conter digitos, apenas letras." << endl;
+			return false;
+
+		}
+
+	}
+
+	//preencher o vector com os nomes
+
+	while (!nomeStream.eof()) {
+		string nomeActual;
+		getline(nomeStream, nomeActual, ' ');
+		nomes.push_back(nomeActual);
+
+
+	}
+
+	//verificar se tem pelo menos dois nomes
+
+	if (nomes.size() < 2) {
+
+		cout << "O nome do cliente tem de ser constituído por pelo menos dois nomes" << endl;
+		return false;
+
+	}
+
+	//verificar que cada nome tem pelo menos 3 letras
+
+	for (size_t i = 0; i < nomes.size(); i++) {
+
+		if (nomes.at(i).size() < 2) {
+
+			cout << "Cada nome tem de conter pelo menos duas letras." << endl;
+			return false;
+
+		}
+	}
+
+	nome.at(0) = (char)toupper(nome.at(0));
+
+
+
+	for (size_t i = 0; i < nome.size() - 1; i++) {
+
+		if (nome.at(i) == ' ') {
+
+			nome.at(i + 1) = toupper(nome.at(i + 1));
+
+		}
+
+
+	}
+
+	return true;
+
+
+}
+
+string trimLink(string link) {
+
+	string trimedString;
+
+	for (size_t i = 0; i < link.length(); i++) {
+		if (link[i] == '.')
+			break;
+		else
+			trimedString += link[i];
+	}
+
+	return trimedString;
 }

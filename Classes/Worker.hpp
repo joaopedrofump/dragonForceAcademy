@@ -5,12 +5,13 @@
 //  Created by Joao Furriel on 13/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#pragma once
 
 #ifndef Worker_hpp
 #define Worker_hpp
 
-#include <stdio.h>
-#include <iostream>
+/*#include <stdio.h>
+#include <iostream>*/
 #include "Utils.hpp"
 
 using namespace std;
