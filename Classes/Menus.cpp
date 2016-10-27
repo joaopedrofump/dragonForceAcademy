@@ -12,16 +12,6 @@ using namespace std;
 
 const string PATH; // = COLOCAR DIRETORIO DO PEDRO PARA PODER ACEDER PELO MAC;
 
-/*typedef map<unsigned int, Cliente>::const_iterator constIntClient;
-typedef map<string, Cliente>::const_iterator constIntClientString;
-
-typedef map<unsigned int, Produto>::const_iterator constIntProduto;
-typedef map<string, Produto>::const_iterator constIntProdutoString;
-
-typedef multimap<unsigned int, unsigned int>::const_iterator constIteMMTra;
-typedef pair <multimap<unsigned int,unsigned int>::iterator, multimap<unsigned int,unsigned int>::iterator> iteradorPar;*/
-
-
 bool initialInfo(string & fileClub) {
 
     ifstream inStreamClub;
