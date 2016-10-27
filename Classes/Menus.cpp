@@ -10,7 +10,7 @@ Leonardo Teixeira
 
 using namespace std;
 
-const string PATH = "\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub";
+const string PATH; // = COLOCAR DIRETORIO DO PEDRO PARA PODER ACEDER PELO MAC;
 
 /*typedef map<unsigned int, Cliente>::const_iterator constIntClient;
 typedef map<string, Cliente>::const_iterator constIntClientString;
@@ -26,23 +26,56 @@ bool initialInfo(string & fileClub) {
 
     ifstream inStreamClub;
     bool clubExists;
+	string clubName;
+
+	/*cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
+	getline(cin, clubName);*/
+
+
     
-	fileClub = MAINFOLDER + string("\\TextFiles\\club.txt");
-	
-    
-#ifdef __llvm__
-    
-    string fileSeasons2 = "";
-    
-	fileSeasons2.append(PATH).append(fileSeasons);
-    
-	fileSeasons = fileSeasons2;
-#endif
-    
-	inStreamClub.open(fileClub.c_str());
-    clubExists = inStreamClub.good();
-	inStreamClub.close();
-    return clubExists;
+	if (clubName != "") {
+		fileClub = clubName + "\\club.txt";
+
+
+		//CORRIGIR ISTO - MAC
+		#ifdef __llvm__
+
+		string fileSeasons2 = "";
+
+		fileSeasons2.append(PATH).append(fileSeasons);
+
+		fileSeasons = fileSeasons2;
+		#endif
+
+		inStreamClub.open(fileClub.c_str());
+		clubExists = inStreamClub.good();
+		inStreamClub.close();
+		return clubExists;
+	}
+		
+	else {
+		string newClubName;
+
+		clearScreen();
+		cout << Table({ "Please, insert a name for your new club" });
+		getline(cin, newClubName);
+
+
+		if(!_mkdir(newClubName.c_str()))
+			clearScreen();
+			cout << Table({ "Folder correctly created!" });
+		
+		ofstream outfile(newClubName + "\\club.txt");
+		
+		
+		outfile << newClubName << endl;
+
+		outfile.close();
+
+		fileClub = newClubName + "\\club.txt";
+
+		return true;
+	}
 }
 
 

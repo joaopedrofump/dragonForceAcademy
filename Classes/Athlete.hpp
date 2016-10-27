@@ -12,7 +12,7 @@
 
 //#include <stdio.h>
 //#include <iostream>
-#include "Worker.hpp"
+#include "Trainer.hpp"
 #include "ECG.hpp"
 
 class Athlete : public Worker {

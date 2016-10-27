@@ -9,18 +9,11 @@ Leonardo Teixeira
 
 #pragma once
 
-/*#include <iostream>
-#include <fstream>
-#include <string>
-
-
-#include <map>*/
-#include "Utils.hpp"
 #include "Club.hpp"
 
 using namespace std;
 
-bool initialInfo(string & clubName, string & fileSeasons);
+bool initialInfo(string & fileSeasons);
 
 void initialOptions(Club & footballClub);
 

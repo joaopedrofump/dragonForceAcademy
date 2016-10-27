@@ -10,8 +10,6 @@
 #ifndef Goalkeeper_hpp
 #define Goalkeeper_hpp
 
-#include <stdio.h>
-#include <iostream>
 #include "Athlete.hpp"
 
 class Goalkeeper : public Athlete {

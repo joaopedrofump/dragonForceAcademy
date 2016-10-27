@@ -1,10 +1,9 @@
 #include "Level.h"
 
-Level::Level(ageLevel ageLevelName, vector<Athlete *> playersVector, vector<Trainer*> trainersVector) {
+Level::Level(ageLevel ageLevelName, vector<Worker*> workersVector) {
 
 	this->ageLevelName = ageLevelName;
-	this->players = playersVector;
-	this->trainers = trainersVector;
+	this->workers = workersVector;
 
 }
 
@@ -39,12 +38,13 @@ Level::Level(ifstream &in) {
 			Date birthDayTrainer(birthDate);
 
 			// Read TrainerR's position
-			Position positionTrainer = positionsMap.at(tmpWorker.substr(0, tmpWorker.find(';', 0)));
+			
+			/*Position positionTrainer = positionsMap.at(tmpWorker.substr(0, tmpWorker.find(';', 0)));
 
-			Worker* newTrainerR = new Trainer(nameTrainerR, birthDayTrainer, positionTrainer);
+			Trainer* newTrainerR = new Trainer(nameTrainerR, birthDayTrainer, positionTrainer);
 
 			if(init == "TR")
-				this->trainerResponsible = newTrainerR;
+				this->trainerResponsible = newTrainerR;*/
 
 		}
 		else if (init == "P") {

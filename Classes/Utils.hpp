@@ -17,17 +17,14 @@
 #include <stdio.h>
 #include <vector>
 #include <map>
+#include <ctime>
+#include <direct.h>
+#include <Windows.h>
+
 
 using namespace std;
 
 string const FILE_SEPRATOR = "------------------------------------------------";
-
-string trimLink(string link);
-
-void trimString(string &inputString);
-
-bool validateName(string &nome);
-
 
 // ===========================================
 // ===============  DATE  ====================
@@ -61,6 +58,74 @@ public:
 	void setCurrentDate();
 };
 
+
+// ===========================================
+// ===============  TABLE  ===================
+// ===========================================
+
+class Table {
+private:
+	//stringstream tableStream;
+	vector<vector<string>> tableVector;
+	vector<bool> blocks; //FALSE se a linha est· colada ‡ de cima, TRUE se s„o linhas separadas
+
+	unsigned int numColumns;
+	unsigned int numLines;
+	vector<int> columnsWidth;
+	vector<string> lastLineComponents;
+	unsigned int indent;
+
+
+
+public:
+	stringstream tableStream;
+
+	Table(vector<string> components, unsigned int indentacao = 0);
+	Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao = 0);
+	Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao = 0);
+	//Table(unsigned int indentacao = 0);
+
+	void formatTable(char internalChar, char limitingChar, vector<int> spacesForColumn, unsigned int indentacaoFT = 0);
+
+	vector<int> getColumsWidth() const;
+	unsigned int getIndentacao() const;
+	vector<vector<string>> getTableVector() const;
+	vector<bool> getBlocks() const;
+
+	void addNewLine(vector<string> components);
+	void addDataInSameLine(vector<string> components);
+
+	void adjustColumnsSize(vector<int> spaspacesForColumn);
+
+	friend ostream& operator<<(ostream& out, const Table &table);
+
+};
+
+
+// ===========================================
+// ==============  FUNCTIONS  ================
+// ===========================================
+
+void trimString(string &inputString);
+
+bool validateName(string &nome);
+
+string trimLink(string link);
+
+void clearScreen();
+
+bool validateName(string &nome);
+
+void SetCursor(int column, int line);
+
+int GetCursorX();
+
+int GetCursorY();
+
+void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
+
+
+
 // ===========================================
 // ===============  ENUMS  ===================
 // ===========================================
@@ -75,13 +140,6 @@ enum Position {
     
 };
 
-map<string, Position> positionsMap = { { "GNR", General },
-									   { "GK", GoalkeeperPos },
-									   { "DF", DefenderPos },
-									   { "MF", MidfielderPos },
-									   { "FW", ForwardPos } };
-
-
 enum DefenderPosition {
     
 	CenterBack, // CB
@@ -89,11 +147,6 @@ enum DefenderPosition {
 	RightBack,  // RB
     
 };
-
-map<string, DefenderPosition> defendersMap = { { "CB", CenterBack },
-											   { "LB", LeftBack },
-										       { "RB", RightBack }};
-
 
 enum MidfielderPosition {
     
@@ -105,13 +158,6 @@ enum MidfielderPosition {
     
 };
 
-map<string, MidfielderPosition> midfieldersMap = { { "CM", CentreMidfielder },
-												 { "CDM", DefensiveMidfielder },
-												 { "CAM", AttackingMidfielder },
-												 { "LM", LeftMidfield },
-												 { "RM", RightMidfield } };
-
-
 enum ForwardPosition {
     
 	Striker,       // ST
@@ -120,11 +166,6 @@ enum ForwardPosition {
 	LeftWinger     // LW
     
 };
-
-map<string, ForwardPosition> fowardsMap = { { "CM", Striker },
-											  { "CDM", CentreForward },
-											  { "CAM", RigthWinger },
-											  { "LM", LeftWinger } };
 
 enum ageLevel {
 

@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Utils.hpp"
+//#include "Utils.hpp"
 #include "Season.hpp"
 
-#define MAINFOLDER "C:\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub"
+#define MAINFOLDER_LEO "C:\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub\\TextFiles"
 
 
 class Club {
 	string name;
 	vector<Season*> seasons;
 	unsigned int numberOfSeasons;
-	string fileClub;
+	string fileName;
 
 public:
 	Club(string name, vector<Season*> seasonsVector);

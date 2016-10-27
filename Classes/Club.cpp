@@ -4,11 +4,11 @@ Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(sea
 
 Club::Club(string fileClub) {
 
-	this->fileClub = fileClub;
+	this->fileName = fileClub;
 
 	ifstream inStreamClub;
 
-	inStreamClub.open(this->fileClub.c_str());
+	inStreamClub.open(this->fileName.c_str());
 	if (!inStreamClub.eof()) {
 		getline(inStreamClub, this->name);
 	}

@@ -10,7 +10,6 @@
 #ifndef Midfielder_hpp
 #define Midfielder_hpp
 
-#include <stdio.h>
 #include "Athlete.hpp"
 
 class Midfielder : public Athlete {

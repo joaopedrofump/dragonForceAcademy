@@ -10,7 +10,6 @@
 #ifndef Defender_hpp
 #define Defender_hpp
 
-#include <stdio.h>
 #include "Athlete.hpp"
 
 class Defender : public Athlete {

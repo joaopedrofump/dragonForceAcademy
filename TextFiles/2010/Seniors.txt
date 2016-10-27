@@ -1,0 +1,5 @@
+TR ; Luis Martins ; 23/05/1960 ; General
+T ; Pedro Santos ; 31/01/1973 ; GoalkeeperPos
+T ; Pascoal Medeiros ; 1/11/1967 ; ForwardPos
+P ; Andre Silva ; 20/07/1995 ; ForwardPos ; Striker
+p ; Jose Sa ; 14/09/1991 ; GoalkeeperPos

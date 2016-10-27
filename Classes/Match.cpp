@@ -1,6 +1,6 @@
 #include "Match.hpp"
 
-Match::Match(Date matchDay, Club homeTeam, Club awayTeam) 
+Match::Match(Date matchDay, Club* homeTeam, Club* awayTeam) 
 	: matchDay(matchDay), homeTeam(homeTeam), awayTeam(awayTeam){}
 
 // GETTERS
@@ -9,11 +9,11 @@ Date Match::getMatchDay() const {
 	return matchDay;
 }
 
-Club Match::getHomeTeam() const {
+Club* Match::getHomeTeam() const {
 	return homeTeam;
 }
 
-Club Match::getAwayTeam() const {
+Club* Match::getAwayTeam() const {
 	return awayTeam;
 }
 
@@ -27,8 +27,12 @@ void Match::setMatchDay(Date newDay) {
 	matchDay = newDay;
 }
 
-void Match::setHomeTeam(Club newHomeTeam) {
+void Match::setHomeTeam(Club* newHomeTeam) {
 	homeTeam = newHomeTeam;
+}
+
+void Match::setAwayTeam(Club* newAwayTeam) {
+	awayTeam = newAwayTeam;
 }
 
 void Match::setPlayers(vector<Athlete*> newPlayersList) {

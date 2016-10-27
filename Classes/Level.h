@@ -3,7 +3,6 @@
 //#include <iostream>
 //#include "Utils.hpp"
 #include "Athlete.hpp"
-#include "Trainer.hpp"
 
 using namespace std;
 
@@ -13,13 +12,21 @@ private:
 	
 	ageLevel ageLevelName;
 
-	vector<Athlete*> players;
-	vector<Trainer*> trainers;
+	vector<Worker*> workers;
 
-	Worker* trainerResponsible;
+	Trainer* trainerResponsible;
+
+	unsigned int minAge;
+	unsigned int maxAge;
+
+	unsigned int minHeight;
+
+	//vector<Tournament> tournaments;
+	//vector<Training> trainings;
+	//vector<Match> friendlys;
 
 public:
-	Level(ageLevel ageLevelName, vector<Athlete *> playersVector, vector<Trainer*> trainersVector);
+	Level(ageLevel ageLevelName, vector<Worker*> workersVector);
 	Level(ifstream &in);
 
 
