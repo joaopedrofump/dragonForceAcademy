@@ -3,6 +3,7 @@
 //#include <iostream>
 //#include "Utils.hpp"
 #include "Athlete.hpp"
+#include "Trainer.hpp"
 
 using namespace std;
 

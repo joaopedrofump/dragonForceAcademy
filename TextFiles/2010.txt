@@ -1,3 +1,0 @@
-U13.txt
-U15.txt
-Seniors.txt

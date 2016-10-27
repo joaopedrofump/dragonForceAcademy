@@ -1,5 +1,6 @@
 #include "Level.h"
 
+
 Level::Level(ageLevel ageLevelName, vector<Worker*> workersVector) {
 
 	this->ageLevelName = ageLevelName;

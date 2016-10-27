@@ -9,6 +9,7 @@ Club::Club(string fileClub) {
 	ifstream inStreamClub;
 
 	inStreamClub.open(this->fileName.c_str());
+
 	if (!inStreamClub.eof()) {
 		getline(inStreamClub, this->name);
 	}

@@ -124,8 +124,6 @@ int GetCursorY();
 
 void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
 
-
-
 // ===========================================
 // ===============  ENUMS  ===================
 // ===========================================

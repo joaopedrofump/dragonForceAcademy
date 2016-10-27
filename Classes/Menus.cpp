@@ -66,6 +66,7 @@ bool initialInfo(string & fileClub) {
 
 		return true;
 	}
+
 }
 
 
