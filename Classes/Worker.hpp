@@ -10,8 +10,6 @@
 #ifndef Worker_hpp
 #define Worker_hpp
 
-/*#include <stdio.h>
-#include <iostream>*/
 #include "Utils.hpp"
 
 using namespace std;
@@ -40,13 +38,15 @@ protected:
      Worker counter to keep track and generate the ids
      */
     static unsigned int workersCounter;
+
+
 public:
     //! Worker constructor.
     /*!
      \param name the name of the worker.
      \param birthdate the worker birthdate.
      */
-    Worker(string name, Date birthdate);
+    Worker(string name, Date birthdate, unsigned int id = 0);
     //! Worker constructor.
     /*!
      This is an abstract method to make this class abstract

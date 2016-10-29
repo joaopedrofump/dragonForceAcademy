@@ -8,12 +8,14 @@
 
 #include "Defender.hpp"
 
-Defender::Defender(string name, Date birthdate, unsigned char height, DefenderPosition detailedPosition) : Athlete(name, birthdate, height) {
+Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
     
-
-    this->id = ++Worker::workersCounter;
-    this->detailedPosition = detailedPosition;
-    
+	if (id == 0) {
+		this->id = ++Worker::workersCounter;
+	}
+	else {
+		this->id = id;
+	}
 }
 
 
@@ -27,7 +29,7 @@ Position Defender::getPosition() const {
     
 }
 
-unsigned int Defender::getID() {
+unsigned int Defender::getID() const{
     
     return this->id;
     

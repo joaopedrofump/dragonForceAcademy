@@ -11,6 +11,7 @@
 #define Utils_hpp
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -101,6 +102,58 @@ public:
 
 };
 
+// ===========================================
+// =============  FRACTION  ==================
+// ===========================================
+
+class Fraction {
+
+private:
+	int numerator;
+	int denominator;
+
+public:
+	Fraction();
+	Fraction(int num, int den);
+	Fraction(string fractionString);
+
+	//  Operations as fractions
+
+	Fraction operator+(Fraction value) const;
+	void operator+=(Fraction &value);
+
+	Fraction operator-(Fraction value) const;
+	void operator-=(Fraction &value);
+
+	Fraction operator*(Fraction value) const;
+	void operator*=(Fraction &value);
+
+	Fraction operator/(Fraction value) const;
+	void operator/=(Fraction &value);
+
+	//  Comparers
+
+	bool operator<(Fraction value) const;
+	bool operator==(Fraction value) const;
+	bool operator>=(Fraction value) const;
+	bool operator>(Fraction value) const;
+	bool operator<=(Fraction value) const;
+
+	//  Operations as Ratio
+
+	Fraction operator|(Fraction value) const;
+	void Fraction::operator|=(Fraction &value);
+
+	Fraction& operator++();
+	Fraction operator++(int);
+
+	void reduce();
+
+	//  Console functions
+
+	void print(bool originalFraction = true) const;
+	void printPercentage() const;
+};
 
 // ===========================================
 // ==============  FUNCTIONS  ================
@@ -125,18 +178,30 @@ int GetCursorY();
 void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
 
 // ===========================================
-// ===============  ENUMS  ===================
+// ==========  ENUMS & STRUCTS ===============
 // ===========================================
+
+enum CoachType {
+
+	HeadCoach,			// HDC
+	AssistantCoach,		// ASC
+	GoalkeeperCoach,	// GKC
+	PhysicalTrainer		// PHT
+
+};
+
+//map<string, CoachType> coachTypeMap;
 
 enum Position {
     
-	General,        // GNR
     GoalkeeperPos,  // GK
     DefenderPos,    // DF
     MidfielderPos,  // MF
     ForwardPos      // FW
     
 };
+
+//map<string, Position> positionsMap;
 
 enum DefenderPosition {
     
@@ -145,6 +210,8 @@ enum DefenderPosition {
 	RightBack,  // RB
     
 };
+
+//map<string, DefenderPosition> defendersMap;
 
 enum MidfielderPosition {
     
@@ -156,6 +223,8 @@ enum MidfielderPosition {
     
 };
 
+//map<string, MidfielderPosition> midfieldersMap;
+
 enum ForwardPosition {
     
 	Striker,       // ST
@@ -164,6 +233,8 @@ enum ForwardPosition {
 	LeftWinger     // LW
     
 };
+
+//map<string, ForwardPosition> fowardsMap;
 
 enum ageLevel {
 
@@ -174,6 +245,14 @@ enum ageLevel {
 	Seniors
 
 };
+
+struct Info {
+	Fraction trainingFreq;
+	unsigned int goalsScored;
+	Fraction passAccuracy;
+	//...
+};
+
 
 
 

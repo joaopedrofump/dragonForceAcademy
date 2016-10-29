@@ -8,9 +8,14 @@
 
 #include "Midfielder.hpp"
 
-Midfielder::Midfielder(string name, Date birthdate, unsigned char height, MidfielderPosition detailedPosition) : Athlete(name, birthdate, height) {
-    this->id = ++Worker::workersCounter;
-    this->detailedPosition = detailedPosition;
+Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height) {
+
+	if (id == 0) {
+		this->id = ++Worker::workersCounter;
+	}
+	else {
+		this->id = id;
+	}
 }
 
 Midfielder::~Midfielder() {

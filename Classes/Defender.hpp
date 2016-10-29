@@ -10,17 +10,17 @@
 #ifndef Defender_hpp
 #define Defender_hpp
 
-#include "Athlete.hpp"
+#include "Midfielder.hpp"
 
 class Defender : public Athlete {
 private:
     unsigned int goalsScored;
-    DefenderPosition detailedPosition;
+    //DefenderPosition detailedPosition;
 public:
-    Defender(string name, Date birthdate, unsigned char height, DefenderPosition detailedPosition);
+    Defender(string name, Date birthdate, unsigned char height, unsigned int = 0);
     ~Defender();
     Position getPosition() const;
-    unsigned int getID();
+    unsigned int getID() const;
     
 };
     

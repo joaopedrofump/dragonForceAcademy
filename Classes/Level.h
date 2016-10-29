@@ -1,9 +1,6 @@
 #pragma once
 
-//#include <iostream>
-//#include "Utils.hpp"
-#include "Athlete.hpp"
-#include "Trainer.hpp"
+#include "Goalkeeper.hpp"
 
 using namespace std;
 
@@ -13,9 +10,10 @@ private:
 	
 	ageLevel ageLevelName;
 
-	vector<Worker*> workers;
+	vector<Coach*> trainers;
+	map<unsigned int, Info> mapInfoSeason;
 
-	Trainer* trainerResponsible;
+	unsigned int headCoachId;
 
 	unsigned int minAge;
 	unsigned int maxAge;
@@ -27,8 +25,8 @@ private:
 	//vector<Match> friendlys;
 
 public:
-	Level(ageLevel ageLevelName, vector<Worker*> workersVector);
-	Level(ifstream &in);
+	Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<unsigned int, Info> mapInfoSeason);
+	Level(ifstream &in, string yearOfSeason, string fileClub); 
 
 
 

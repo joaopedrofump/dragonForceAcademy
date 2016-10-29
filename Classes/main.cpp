@@ -21,6 +21,8 @@ int main(int argc, const char * argv[]) {
 		return(1);
 	}
 
+	//Create the club of the current program running
+	Club currProgramClub(club);
 
 	system("PAUSE");
 	return 0;

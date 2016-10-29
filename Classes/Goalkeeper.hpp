@@ -10,7 +10,7 @@
 #ifndef Goalkeeper_hpp
 #define Goalkeeper_hpp
 
-#include "Athlete.hpp"
+#include "Defender.hpp"
 
 class Goalkeeper : public Athlete {
 private:
@@ -18,7 +18,7 @@ private:
     unsigned int saves;
         
 public:
-    Goalkeeper(string name, Date birthdate, unsigned char height);
+    Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int = 0);
     ~Goalkeeper();
     Position getPosition() const;
     unsigned int getID() const;

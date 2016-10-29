@@ -18,13 +18,13 @@ bool initialInfo(string & fileClub) {
     bool clubExists;
 	string clubName;
 
-	/*cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
-	getline(cin, clubName);*/
+	cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
+	getline(cin, clubName);
 
-
+	//clubName = "Pastas GitHub\\Dragon Force Academy";
     
 	if (clubName != "") {
-		fileClub = clubName + "\\club.txt";
+		fileClub = clubName/* + "\\club.txt"*/;
 
 
 		//CORRIGIR ISTO - MAC
@@ -37,7 +37,7 @@ bool initialInfo(string & fileClub) {
 		fileSeasons = fileSeasons2;
 		#endif
 
-		inStreamClub.open(fileClub.c_str());
+		inStreamClub.open((fileClub + "\\club.txt").c_str());
 		clubExists = inStreamClub.good();
 		inStreamClub.close();
 		return clubExists;

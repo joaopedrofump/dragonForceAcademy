@@ -1,56 +1,91 @@
 #include "Level.h"
 
 
-Level::Level(ageLevel ageLevelName, vector<Worker*> workersVector) {
+Level::Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<unsigned int, Info> mapInfoSeason) {
 
 	this->ageLevelName = ageLevelName;
-	this->workers = workersVector;
+	this->trainers = coachesVector;
+	this->mapInfoSeason = mapInfoSeason;
 
 }
 
-Level::Level(ifstream &in) {
+Level::Level(ifstream &in, string yearOfSeason, string fileClub) {
 
 	string tmpString;
 	getline(in, tmpString);
 
+
+	// Read information of this level
 	ifstream inStreamLevel;
 
-	inStreamLevel.open(tmpString.c_str());
+	inStreamLevel.open((fileClub + "\\" + trimLink(yearOfSeason) + "\\" + tmpString).c_str());
 
-	while (!inStreamLevel.eof()) {
+	
+	if (!inStreamLevel.eof()) {
 		
-		string tmpWorker;
-		getline(inStreamLevel, tmpWorker);
+		string idHeadCoach;
+		getline(inStreamLevel, idHeadCoach);
 
+		this->headCoachId = atoi(idHeadCoach.c_str());
 
-		// Checking if is a Trainer Responsible (TR), a Trainer (T), or a Player (P)
-		string init = tmpWorker.substr(0, tmpWorker.find(';', 0));
-		
-		if(init == "TR" || init == "T"){
+		string ages;
+		getline(inStreamLevel, ages);
 
-			// Read TrainerR's name
-			string nameTrainerR = tmpWorker.substr(0, tmpWorker.find(';', 0));
-			validateName(nameTrainerR);
+		this->minAge =atoi(ages.substr(0, ages.find('-', 0)).c_str());
 
-			// Read TrainerR's birthday
-			string birthDate = tmpWorker.substr(0, tmpWorker.find(';', 0));
-			trimString(birthDate);
+		ages = ages.substr(ages.find('-', 0) + 2);
 
-			Date birthDayTrainer(birthDate);
+		this->maxAge = atoi(ages.c_str());
 
-			// Read TrainerR's position
-			
-			/*Position positionTrainer = positionsMap.at(tmpWorker.substr(0, tmpWorker.find(';', 0)));
+		string heightLevel;
 
-			Trainer* newTrainerR = new Trainer(nameTrainerR, birthDayTrainer, positionTrainer);
+		getline(inStreamLevel, heightLevel);
+		this->minHeight = atoi(heightLevel.c_str());
 
-			if(init == "TR")
-				this->trainerResponsible = newTrainerR;*/
-
-		}
-		else if (init == "P") {
-
-			//CONTINUAR
-		}
 	}
+
+	inStreamLevel.close();
+
+	//Read information of athletes
+	ifstream inStreamCoachesLevel;
+
+	inStreamCoachesLevel.open((fileClub + "\\" + trimLink(yearOfSeason) + "\\" + trimLink(tmpString) + "\\Athletes.txt").c_str());
+
+	while (!inStreamCoachesLevel.eof()) {
+
+		string tmpAthlete;
+		getline(inStreamCoachesLevel, tmpAthlete);
+
+		unsigned int tmpAthleteId = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0)).c_str());
+
+		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 1);
+
+		Date tmpExpECG(tmpAthlete.substr(0, tmpAthlete.find(';', 0)));
+
+		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 1);
+
+		Fraction tmpAthleteAssiduity(tmpAthlete.substr(0, tmpAthlete.find(';', 0)));
+
+		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 1);
+
+		unsigned int tmpAthleteGoalsScored = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0)).c_str());
+
+		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 1);
+
+		Fraction tmpAthletePassAcc(tmpAthlete);
+
+
+
+
+		Info infoTmpAthlete;
+		infoTmpAthlete.trainingFreq = tmpAthleteAssiduity;
+		infoTmpAthlete.goalsScored = tmpAthleteGoalsScored;
+		infoTmpAthlete.passAccuracy = tmpAthletePassAcc;
+
+		this->mapInfoSeason.insert({ tmpAthleteId, infoTmpAthlete });
+
+	}
+
+	inStreamCoachesLevel.close();
+	
 }

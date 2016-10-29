@@ -10,10 +10,7 @@
 #ifndef Athlete_hpp
 #define Athlete_hpp
 
-//#include <stdio.h>
-//#include <iostream>
-
-#include "Trainer.hpp"
+#include "Coach.hpp"
 #include "ECG.hpp"
 
 class Athlete : public Worker {
@@ -21,9 +18,11 @@ class Athlete : public Worker {
 protected:
     unsigned char height;
     ECG* ecg; //apontador para ECG quando houver classe
+	Position position;
 
 public:
-    Athlete(string name, Date birthdate, unsigned char height);
+    Athlete(string name, Date birthdate, unsigned char height, unsigned int id = 0);
+	Athlete(ifstream &in);
     ~Athlete();
     virtual Position getPosition() const = 0;
     void addECG(bool resultado);

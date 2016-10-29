@@ -548,6 +548,194 @@ ostream& operator<<(ostream& out, const Table &tableToShow) {
 	return out;
 }
 
+//=================================
+//=========  FRACTION  ============
+//=================================
+
+Fraction::Fraction() {
+	numerator = 0;
+	denominator = 1;
+}
+
+Fraction::Fraction(int newNumerator, int newDenominator) {
+	numerator = newNumerator;
+	denominator = newDenominator;
+}
+
+Fraction::Fraction(string fractionString) {
+	string tmpString = fractionString;
+	numerator = atoi(tmpString.substr(0, tmpString.find('/', 0)).c_str());
+	tmpString = tmpString.substr(tmpString.find('/', 0) + 1);
+	denominator = atoi(tmpString.c_str());
+}
+
+void Fraction::reduce() {
+
+	int num = numerator;
+	int den = denominator;
+
+	if (num>den) {
+		for (int counter = 2; counter<den; counter++) {
+			while (num%counter == 0 & den%counter == 0) {
+				num = (num / counter);
+				den = (den / counter);
+			}
+		}
+	}
+	else if (den > num) {
+		for (int counter = 2; counter<num; counter++) {
+			while (num%counter == 0 & den%counter == 0) {
+				num = (num / counter);
+				den = (den / counter);
+			}
+		}
+	}
+
+	this->numerator = num;
+	this->denominator = den;
+}
+
+//  Operations as fractions
+
+Fraction Fraction::operator+(Fraction value) const {
+	Fraction  result;
+	result.numerator = (numerator * value.denominator) + (value.numerator*denominator);
+	result.denominator = denominator * value.denominator;
+	return result;
+
+}
+
+void Fraction::operator+=(Fraction &value) {
+	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator-(Fraction value) const {
+	Fraction  result;
+	result.numerator = (numerator * value.denominator) - (value.numerator*denominator);
+	result.denominator = denominator * value.denominator;
+	return result;
+}
+
+void Fraction::operator-=(Fraction &value) {
+	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator*(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator * value.numerator;
+	result.denominator = denominator * value.denominator;
+	return result;
+}
+
+void Fraction::operator*=(Fraction &value) {
+	this->numerator = numerator * value.numerator;
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator/(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator * value.denominator;
+	result.denominator = denominator * value.numerator;
+	return result;
+}
+
+void Fraction::operator/=(Fraction &value) {
+	this->numerator = numerator * value.denominator;
+	this->denominator = denominator * value.numerator;
+}
+
+//  Comparers
+
+bool Fraction::operator<(Fraction value) const {
+	double frac1;
+	double frac2;
+	frac1 = (numerator*1.0 / denominator);
+	frac2 = (value.numerator*1.0 / value.denominator);
+	return frac1 < frac2;
+}
+
+bool Fraction::operator==(Fraction value) const {
+	return (numerator*1.0 / denominator) == (value.numerator*1.0 / value.denominator);
+}
+
+bool Fraction::operator>=(Fraction value) const {
+	return !this->operator<(value);
+}
+
+bool Fraction::operator>(Fraction value) const {
+	double frac1;
+	double frac2;
+	frac1 = (numerator*1.0 / denominator);
+	frac2 = (value.numerator*1.0 / value.denominator);
+	return frac1 > frac2;
+}
+
+bool Fraction::operator<=(Fraction value) const {
+	return !this->operator>(value);
+}
+
+//  Operations as Ratio
+
+Fraction Fraction::operator|(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator + value.numerator;
+	result.denominator = denominator + value.denominator;
+	return result;
+
+}
+
+void Fraction::operator|=(Fraction &value) {
+	this->numerator = numerator + value.numerator;
+	this->denominator = denominator + value.denominator;
+}
+
+Fraction& Fraction::operator++ () {    // prefix ++
+	this->numerator += 1;
+	this->denominator += 1;
+	return *this;
+}
+
+Fraction Fraction::operator++ (int) { // postfix ++
+	Fraction result(*this);
+	++(*this);
+	return result;
+}
+
+//  Console functions
+
+void Fraction::print(bool originalFraction) const {
+	int num = numerator;
+	int den = denominator;
+
+	if (!originalFraction) {
+		if (num>den) {
+			for (int counter = 2; counter<den; counter++) {
+				while (num%counter == 0 & den%counter == 0) {
+					num = (num / counter);
+					den = (den / counter);
+				}
+			}
+		}
+		else if (den > num) {
+			for (int counter = 2; counter<num; counter++) {
+				while (num%counter == 0 & den%counter == 0) {
+					num = (num / counter);
+					den = (den / counter);
+				}
+			}
+		}
+	}
+
+	cout << num << "/" << den;
+}
+
+void Fraction::printPercentage() const {
+	double number = numerator*1.0 / denominator;
+
+	cout << fixed << setprecision(2) << 100 * number << "%";
+}
 
 // ===========================================
 // ==============  FUNCTIONS  ================
@@ -743,27 +931,30 @@ void ignoreLine(bool ignoreControl, string message) {
 
 
 // ===========================================
-// ==============  ENUMS  ====================
+// ===========  ENUMS & MAPS =================
 // ===========================================
 
+extern const map<string, CoachType> coachTypeMap = { { "HDC", HeadCoach },
+{ "ASC", AssistantCoach },
+{ "GKC", GoalkeeperCoach },
+{ "PHT", PhysicalTrainer } };
 
-map<string, Position> positionsMap = {  { "GNR", General },
-										{ "GK", GoalkeeperPos },
-										{ "DF", DefenderPos },
-										{ "MF", MidfielderPos },
-										{ "FW", ForwardPos } };
+extern const map<string, Position> positionsMap = { { "GK", GoalkeeperPos },
+{ "DF", DefenderPos },
+{ "MF", MidfielderPos },
+{ "FW", ForwardPos } };
 
-map<string, DefenderPosition> defendersMap = {  { "CB", CenterBack },
-												{ "LB", LeftBack },
-												{ "RB", RightBack } };
+extern const map<string, DefenderPosition> defendersMap = { { "CB", CenterBack },
+{ "LB", LeftBack },
+{ "RB", RightBack } };
 
-map<string, MidfielderPosition> midfieldersMap = {  { "CM", CentreMidfielder },
-													{ "CDM", DefensiveMidfielder },
-													{ "CAM", AttackingMidfielder },
-													{ "LM", LeftMidfield },
-													{ "RM", RightMidfield } };
+extern const map<string, MidfielderPosition> midfieldersMap = { { "CM", CentreMidfielder },
+{ "CDM", DefensiveMidfielder },
+{ "CAM", AttackingMidfielder },
+{ "LM", LeftMidfield },
+{ "RM", RightMidfield } };
 
-map<string, ForwardPosition> fowardsMap = { { "CM", Striker },
-											{ "CDM", CentreForward },
-											{ "CAM", RigthWinger },
-											{ "LM", LeftWinger } };
+extern const map<string, ForwardPosition> fowardsMap = { { "CM", Striker },
+{ "CDM", CentreForward },
+{ "CAM", RigthWinger },
+{ "LM", LeftWinger } };

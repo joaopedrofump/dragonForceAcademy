@@ -15,10 +15,10 @@
 class Midfielder : public Athlete {
 private:
     unsigned int goalsScored;
-    MidfielderPosition detailedPosition;
+	//MidfielderPosition detailedPosition;
     
 public:
-    Midfielder(string name, Date birthdate, unsigned char height, MidfielderPosition detailedPosition);
+    Midfielder(string name, Date birthdate, unsigned char height, unsigned int id = 0);
     ~Midfielder();
     Position getPosition() const;
     unsigned int getID() const;
