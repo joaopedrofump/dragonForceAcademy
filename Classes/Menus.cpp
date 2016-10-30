@@ -18,10 +18,11 @@ bool initialInfo(string & fileClub) {
     bool clubExists;
 	string clubName;
 
-	cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
-	getline(cin, clubName);
+	/*cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
+	getline(cin, clubName);*/
 
-	//clubName = "Pastas GitHub\\Dragon Force Academy";
+	// Just for test!!
+	clubName = "Pastas GitHub\\Dragon Force Academy";
     
 	if (clubName != "") {
 		fileClub = clubName/* + "\\club.txt"*/;

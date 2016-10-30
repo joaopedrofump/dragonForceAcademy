@@ -8,7 +8,7 @@
 
 #include "Goalkeeper.hpp"
 
-Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
+Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, GoalkeeperPos, id) {
     
     this->goalsConceded = 0;
     this->saves = 0;

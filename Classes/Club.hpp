@@ -1,6 +1,10 @@
 #pragma once
 
-#include "Season.hpp"
+//#include "Season.hpp"
+#include "Goalkeeper.hpp"
+
+class Season;
+class Level;
 
 #define MAINFOLDER_LEO "C:\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub\\TextFiles"
 
@@ -12,7 +16,7 @@ extern const map<string, DefenderPosition> defendersMap;
 
 extern const map<string, MidfielderPosition> midfieldersMap;
 
-extern const map<string, ForwardPosition> fowardsMap;
+extern const map<string, ForwardPosition> forwardsMap;
 
 
 class Club {
@@ -29,5 +33,9 @@ public:
 	Club(string fileClub);
 
 	string getName() const;
+	vector<Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
+
+
+
 };
