@@ -1,6 +1,8 @@
 #include "Season.hpp"
 
-Season::Season(ifstream &in, string fileClub) {
+#include "Club.hpp"
+
+Season::Season(ifstream &in, string fileClub, Club* club) {
 
 	string tmpString;
 	getline(in, tmpString);
@@ -11,7 +13,7 @@ Season::Season(ifstream &in, string fileClub) {
 
 	while (!inStreamSeason.eof()) {
 
-		Level* actualLevel = new Level(inStreamSeason, tmpString, fileClub);
+		Level* actualLevel = new Level(inStreamSeason, tmpString, fileClub, club);
 
 		this->levels.push_back(actualLevel);
 	}

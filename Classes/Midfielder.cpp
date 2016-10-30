@@ -8,7 +8,7 @@
 
 #include "Midfielder.hpp"
 
-Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height) {
+Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, MidfielderPos, id) {
 
 	if (id == 0) {
 		this->id = ++Worker::workersCounter;
@@ -25,7 +25,7 @@ Midfielder::~Midfielder() {
 }
 
 Position Midfielder::getPosition() const {
-    return DefenderPos;
+    return MidfielderPos;
     
 }
 

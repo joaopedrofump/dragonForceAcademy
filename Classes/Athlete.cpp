@@ -8,10 +8,11 @@
 
 #include "Athlete.hpp"
 
-Athlete::Athlete(string name, Date birthdate, unsigned char height, unsigned int id) : Worker(name, birthdate, id) {
+Athlete::Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id) : Worker(name, birthdate, id) {
     
     this->height = height;
     this->ecg = NULL;
+	this->position = position;
     
 }
 

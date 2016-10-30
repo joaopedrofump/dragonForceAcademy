@@ -1,5 +1,8 @@
 #include "Club.hpp"
 
+#include "Season.hpp"
+#include "Level.h"
+
 Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(seasonsVector) {}
 
 Club::Club(string fileClub) {
@@ -108,7 +111,7 @@ Club::Club(string fileClub) {
 
 	while (!inStreamClub.eof()) {
 		
-		Season* actualSeason = new Season(inStreamClub, fileClub);
+		Season* actualSeason = new Season(inStreamClub, fileClub, this);
 
 		this->seasons.push_back(actualSeason);
 	}
@@ -120,6 +123,10 @@ Club::Club(string fileClub) {
 
 string Club::getName() const {
 	return name;
+}
+
+vector<Worker*> Club::getWorkers() const {
+	return allWokers;
 }
 
 vector<Season*> Club::getSeasons() const {

@@ -25,7 +25,7 @@
 
 using namespace std;
 
-string const FILE_SEPRATOR = "------------------------------------------------";
+string const FILE_SEPARATOR = "------------------------------------------------";
 
 // ===========================================
 // ===============  DATE  ====================
@@ -246,10 +246,73 @@ enum ageLevel {
 
 };
 
-struct Info {
+class Info {
 	Fraction trainingFreq;
-	unsigned int goalsScored;
+	unsigned int yellowCards;
+	unsigned int redCards;
+public:
+	Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards)
+		: trainingFreq(trainingFreq), yellowCards(yellowCards), redCards(redCards){}
+};
+
+class InfoGK : public Info {
+	
+	unsigned int saves;
+	unsigned int goalsConceeded;
+public:
+	InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
+		   unsigned int saves, unsigned int goalsConceeded)
+		: Info(trainingFreq, yellowCards, redCards), saves(saves), goalsConceeded(goalsConceeded){}
+
+	//...
+};
+
+class InfoDF : public Info {
+
+	unsigned int tackles;
+	unsigned int goalsConceeded;
+	unsigned int faults;
 	Fraction passAccuracy;
+	vector<DefenderPosition> positions;
+
+public:
+	InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
+		   unsigned int tackles, unsigned int goalsConceeded, unsigned int faults, Fraction passAccuracy, vector<DefenderPosition> positions)
+		: Info(trainingFreq, yellowCards, redCards),
+			   tackles(tackles), goalsConceeded(goalsConceeded), faults(faults), passAccuracy(passAccuracy), positions(positions){}
+	
+	//...
+};
+
+class InfoMF : public Info {
+
+	unsigned int tackles;
+	unsigned int goalsScored;
+	unsigned int assistsMade;
+	unsigned int faults;
+	Fraction passAccuracy;
+	vector<MidfielderPosition> positions;
+public:
+	InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
+		unsigned int tackles, unsigned int goalsScored, unsigned int assistsMade, unsigned int faults, Fraction passAccuracy, vector<MidfielderPosition> positions)
+		: Info(trainingFreq, yellowCards, redCards),
+		tackles(tackles), goalsScored(goalsScored), assistsMade(assistsMade), faults(faults), passAccuracy(passAccuracy), positions(positions) {}
+
+	//...
+};
+
+struct InfoFW : public Info {
+
+	unsigned int goalsScored;
+	unsigned int assistsMade;
+	Fraction passAccuracy;
+	vector<ForwardPosition> positions;
+public:
+	InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
+		   unsigned int goalsScored, unsigned int assistsMade, Fraction passAccuracy, vector<ForwardPosition> positions)
+		: Info(trainingFreq, yellowCards, redCards),
+		goalsScored(goalsScored), assistsMade(assistsMade), passAccuracy(passAccuracy), positions(positions) {}
+
 	//...
 };
 

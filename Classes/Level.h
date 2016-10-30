@@ -4,6 +4,7 @@
 
 using namespace std;
 
+class Club;
 class Level
 {
 private:
@@ -11,9 +12,9 @@ private:
 	ageLevel ageLevelName;
 
 	vector<Coach*> trainers;
-	map<unsigned int, Info> mapInfoSeason;
+	map<Athlete*, Info*> mapInfoSeason;
 
-	unsigned int headCoachId;
+	Coach* mainCoach;
 
 	unsigned int minAge;
 	unsigned int maxAge;
@@ -25,8 +26,8 @@ private:
 	//vector<Match> friendlys;
 
 public:
-	Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<unsigned int, Info> mapInfoSeason);
-	Level(ifstream &in, string yearOfSeason, string fileClub); 
+	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
+	Level(ifstream &in, string yearOfSeason, string fileClub, Club* club); 
 
 
 

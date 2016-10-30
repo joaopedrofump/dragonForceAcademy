@@ -954,7 +954,7 @@ extern const map<string, MidfielderPosition> midfieldersMap = { { "CM", CentreMi
 { "LM", LeftMidfield },
 { "RM", RightMidfield } };
 
-extern const map<string, ForwardPosition> fowardsMap = { { "CM", Striker },
+extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
 { "CDM", CentreForward },
 { "CAM", RigthWinger },
 { "LM", LeftWinger } };
