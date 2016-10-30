@@ -161,6 +161,7 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 			infoTmpAthlete = new InfoDF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
 										tackles, goalsConceeded, faults, passAccuracy, positions);
 
+			//cout << static_cast<InfoDF*>(infoTmpAthlete)->faults;
 		}
 
 		// Read Midfielders specific informations
