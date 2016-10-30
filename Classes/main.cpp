@@ -16,13 +16,15 @@ int main(int argc, const char * argv[]) {
 	string club;
 
 	if (!initialInfo(club)) {
-		cout << Table({ "Nao foi possivel ler todos os ficheiros. Por favor verifique os ficheiros." }) << endl;
+		cout << Table({ "Could not read all the files. Please check the files." }) << endl;
 		ignoreLine(false);
 		return(1);
 	}
 
 	//Create the club of the current program running
 	Club currProgramClub(club);
+
+	initialOptions(currProgramClub);
 
 	system("PAUSE");
 	return 0;

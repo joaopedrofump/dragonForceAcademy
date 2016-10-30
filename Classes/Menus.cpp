@@ -70,114 +70,133 @@ bool initialInfo(string & fileClub) {
 
 }
 
+bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation) {
 
+	bool resultado = false;
+	string answer;
+	Table confirmar({ "Press Enter to confirm or any key to turn back." });
+	Table msg(confirmationMsg, blocks, spacesForColumn, indentation);
+	cout << msg << endl;
+	cout << confirmar << endl;
+
+
+	getline(cin, answer);
+
+	if (answer.size() == 0) {
+		resultado = true;
+	}
+
+
+	return resultado;
+
+}
 
 
 /******************************************
-* Menu Inicial
+* Initial Menu
 ******************************************/
 
 
-/*
-void opcoesIniciais(Club &mainClub) {
-    unsigned int opcao;
+
+void initialOptions(Club &mainClub) {
+    unsigned int option;
 	
-    while ((opcao = menuInicial()))
-        switch (opcao) {
-            case 1: opcoesGestaoClientes(supermercado);
+    while ((option = mainMenu()))
+        switch (option) {
+		case 1: optionsAthletesManagement(mainClub);
                 break;
-            case 2: opcoesGestaoProdutos(supermercado);
+            /*case 2: opcoesGestaoProdutos(supermercado);
                 break;
             case 3: opcoesGestaoTransacoes(supermercado);
                 break;
             case 4: opcoesRecomendacao(supermercado);
-				break;
+				break;*/
 			case 5:
 				break;
         }
-    supermercado.saveChanges();
+    //supermercado.saveChanges();
 }
 
-unsigned short int menuInicial() {
-    unsigned short int opcao = 0;
+unsigned short int mainMenu() {
+    unsigned short int option = 0;
     bool control = false;
-	Table acabarPrograma({ "Tem a certeza que pretende encerrar o programa?" });
+	Table closeProgram({ "Are you sure you want to quit the program?" });
     while (!control) {
-        mostrarMenuInicial(0);
-        control = leUnsignedShortInt(opcao, 0, 4);
+        showMainMenu(0);
+        control = leUnsignedShortInt(option, 0, 4);
     }
 
-	if (opcao == 0 && !confirmar(acabarPrograma.getTableVector(), acabarPrograma.getBlocks(), acabarPrograma.getColumsWidth(), acabarPrograma.getIndentacao())) {
-		opcao = 5;
+	if (option == 0 && !confirm(closeProgram.getTableVector(), closeProgram.getBlocks(), closeProgram.getColumsWidth(), closeProgram.getIndentacao())) {
+		option = 5;
 	}
-    return opcao;
+    return option;
 }
 
-void mostrarMenuInicial(unsigned short int opcaoEscolhida) {
+void showMainMenu(unsigned short int opcaoChosen) {
     clearScreen();
-    Table menu({ "Menu Inicial" });
-    vector<string> menuCabecalho;
-    switch (opcaoEscolhida) {
+    Table menu({ "Main Menu" });
+    vector<string> headerMenu;
+    switch (opcaoChosen) {
         case 0:
-            menuCabecalho = { "1 - Clientes", "2 - Produtos", "3 - Transacoes", "4 - Recomendacoes", "0 - Sair" };
+			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - Actual Season", "4 - Other Seasons", "0 - Exit" };
             break;
         case 1:
-            menuCabecalho = { "1 - Clientes" + string(14, ' '), "2 - Produtos", "3 - Transacoes", "4 - Recomendacoes", "0 - Sair" };
+			headerMenu = { "1 - Athletes" + string(11, ' '), "2 - Coaches", "3 - Actual Season", "4 - Other Seasons", "0 - Exit" };
             break;
         case 2:
-            menuCabecalho = { "1 - Clientes", "2 - Produtos" + string(14, ' '), "3 - Transacoes", "4 - Recomendacoes", "0 - Sair" };
+			headerMenu = { "1 - Clientes", "2 - Produtos" + string(14, ' '), "3 - Transacoes", "4 - Recomendacoes", "0 - Sair" };
             break;
         case 3:
-            menuCabecalho = { "1 - Clientes", "2 - Produtos", "3 - Transacoes" + string(21, ' '), "4 - Recomendacoes", "0 - Sair" };
+			headerMenu = { "1 - Clientes", "2 - Produtos", "3 - Transacoes" + string(21, ' '), "4 - Recomendacoes", "0 - Sair" };
             break;
         default:
-            menuCabecalho = { "1 - Clientes", "2 - Produtos", "3 - Transacoes", "4 - Recomendacoes" + string(30, ' '), "0 - Sair" };
+			headerMenu = { "1 - Clientes", "2 - Produtos", "3 - Transacoes", "4 - Recomendacoes" + string(30, ' '), "0 - Sair" };
             break;
     }
-    Table menuOpcoes(menuCabecalho);
+    Table optionsMenu(headerMenu);
     cout << menu << endl;
-    cout << menuOpcoes;
-}*/
+    cout << optionsMenu;
+}
 
 /******************************************
  * Gestao de Clientes
  ******************************************/
 
-/*unsigned short int menuGestaoClientes() {
-    unsigned short int opcao;
+unsigned short int menuAthletesManagement() {
+    unsigned short int option;
     bool control = false;
     do {
-        mostrarMenuInicial(1);
-        Table menuClientes({ "1 - Listar clientes" });
-        menuClientes.addNewLine({ "2 - Ver informacao cliente" });
-        menuClientes.addNewLine({ "3 - Adicionar cliente" });
-		menuClientes.addNewLine({ "4 - Reativar cliente" });
-        menuClientes.addNewLine({ "5 - Remover cliente" });
-        menuClientes.addNewLine({ "0 - Voltar ao menu inicial" });
-        cout << menuClientes;
-        control = leUnsignedShortInt(opcao, 0, 5);
+        showMainMenu(1);
+        Table menuAthletes({ "1 - Show Athletes" });
+		menuAthletes.addNewLine({ "2 - See an Athlete" });
+		menuAthletes.addNewLine({ "3 - Add Athlete" });
+		menuAthletes.addNewLine({ "4 - Reintroduce Athlete" });
+		menuAthletes.addNewLine({ "5 - Remove Athlete" });
+		menuAthletes.addNewLine({ "0 - Back to Main Menu" });
+        cout << menuAthletes;
+        control = leUnsignedShortInt(option, 0, 5);
     } while (!control);
-    return opcao;
+    return option;
 }
 
-void opcoesGestaoClientes(VendeMaisMais &supermercado) {
-    unsigned int opcao;
+void  optionsAthletesManagement(Club &mainClub) {
+    unsigned int option;
     
-    while ((opcao = menuGestaoClientes())) {
+    while ((option = menuAthletesManagement())) {
 		string input;
 		unsigned int idCliente;
         bool control = false;
 		bool sairDoSwitch = false;
 
-		stringstream ss;
+		/*stringstream ss;
 		string str;
 		Table mostrarCliente({ "Informacao" , "Dados" });
 		Table confirmarAdicionar({ "Tem a certeza que pretende adicionar o cliente?" });
 		Table confirmarEliminar({ "Tem a certeza que pretende eliminar o cliente?" });
 		Table confirmarReativar({ "Tem a certeza que pretende reactivar o cliente?" });
-		Data hoje(true);
+		Date today(true);
 
-        switch (opcao) {
+        switch (option) {
             case 1:           //=========== MOSTRAR CLIENTES ==============
                 
                 if (supermercado.getMapIDtoCliente().size() == 0) {
@@ -522,9 +541,9 @@ void opcoesGestaoClientes(VendeMaisMais &supermercado) {
 				break;
             case 0:
                 break;
-        }
+        }*/
     }
-}*/
+}
 
 /******************************************
  * Gestao de Produtos

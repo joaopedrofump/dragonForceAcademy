@@ -929,6 +929,62 @@ void ignoreLine(bool ignoreControl, string message) {
 
 }
 
+bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro) {
+
+	string inputUser;
+	bool resultadoBool = false;
+
+	Table tabelaMensagemErro({ mensagemErro });
+
+	getline(cin, inputUser);
+	stringstream inteirosStream(inputUser);
+	trimString(inputUser);
+
+	if (inputUser.size() == 0) {
+
+		input = 0;
+		return true;
+
+	}
+
+	while (!inteirosStream.eof()) {
+
+		unsigned short int currentInt;
+		inteirosStream >> currentInt;
+
+		if (inteirosStream.fail()) {
+
+			inteirosStream.clear();
+			inteirosStream.ignore(1);
+
+
+		}
+
+		else {
+
+			input = currentInt;
+			resultadoBool = true;
+			break;
+
+		}
+
+
+	}
+
+	if (!resultadoBool) {
+
+		cout << tabelaMensagemErro << endl;
+
+
+	}
+
+	return resultadoBool;
+
+
+
+
+}
+
 
 // ===========================================
 // ===========  ENUMS & MAPS =================
