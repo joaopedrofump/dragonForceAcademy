@@ -1,6 +1,0 @@
-1 ; Rui Pedro Teixeira ; 26/09/1965 ; HDC
-2 ; José Figueiredo ; 12/05/1954 ; GKC
-3 ; Nuno Vieira ; 31/12/1975 ; PHT
-8 ; Jesualdo Ribeira ; 30/09/1975 ; HDC
-9 ; Miguel Furtado ; 28/07/1982 ; PHT
-10 ; Leonel Junqueira ; 12/08/1979 ; GKC

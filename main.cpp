@@ -3,19 +3,29 @@
 //  DragonForceAcadamy
 //
 //  Created by Joao Furriel on 12/10/16.
-//  Copyright Â© 2016 JoÃ£o Furriel Pinheiro. All rights reserved.
+//  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
 
-#include <iostream>
-#include "Utils.hpp"
-#include "Goalkeeper.hpp"
-
+#include "Menus.h"
 
 int main(int argc, const char * argv[]) {
-    
-    Goalkeeper jp("jp", Date(6, 9, 1985), 178);
-    
-    cout << jp.getPosition() << endl;
-    
-    return 0;
+
+
+	//Ask the user if there is already a club, or if it will be created.
+
+	string club;
+
+	if (!initialInfo(club)) {
+		cout << Table({ "Could not read all the files. Please check the files." }) << endl;
+		ignoreLine(false);
+		return(1);
+	}
+
+	//Create the club of the current program running
+	Club currProgramClub(club);
+
+	initialOptions(currProgramClub);
+
+	system("PAUSE");
+	return 0;
 }
