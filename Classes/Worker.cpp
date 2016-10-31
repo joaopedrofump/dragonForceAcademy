@@ -34,4 +34,15 @@ unsigned int Worker::getID() const{
 	return this->id;
 }
 
+bool Worker::operator==(Worker* worker) const {
 
+	if (this->getID() == worker->getID())
+		return true;
+	return false;
+}
+
+
+void Worker::setStatus(bool newStatus) {
+
+	this->status = newStatus;
+}

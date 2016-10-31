@@ -26,6 +26,7 @@ public:
     ~Athlete();
     virtual Position getPosition() const = 0;
     void addECG(bool resultado);
+	bool isAthlete() const;
 };
 
 #endif /* Athlete_hpp */
