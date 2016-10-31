@@ -1,8 +1,0 @@
-12 ; 22/01/2011 ; 14/16 ; 0 ; 0 ; 42 ; 10
-9 ; 18/01/2011 ; 10/14 ; 3 ; 0 ; CM , CDM ; 90/101 ; 18 ; 3 ; 5 ; 13
-7 ; 1/02/2011 ; 7/8 ; 6 ; 1 ; LB ; 112/130 ; 29 ; 10 ; 12
-------------------------------------------------
-ID ; ECG Expiration Date ; Training Assiduity ; Yellow Cards ; Red Cards ; Saves ; Goals Conceeded (GK)
-									 ; Positions ; Pass Acuracy ; Tackles ; Goals Conceeded ; Faults (DF)
-									 			    ; Tackles ; Goals ; Assists ; Faults (MF)
-									 	     		    ; Goals ; Assists (FW)

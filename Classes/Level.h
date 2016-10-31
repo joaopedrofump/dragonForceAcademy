@@ -4,17 +4,28 @@
 
 using namespace std;
 
-class Club;
+extern const map<string, CoachType> coachTypeMap;
+
+extern const map<string, Position> positionsMap;
+
+extern const map<string, DefenderPosition> defendersMap;
+
+extern const map<string, MidfielderPosition> midfieldersMap;
+
+extern const map<string, ForwardPosition> forwardsMap;
+
+
+//class Club;
 class Level
 {
 private:
 	
 	ageLevel ageLevelName;
 
-	vector<Coach*> trainers;
-	map<Athlete*, Info*> mapInfoSeason;
+	vector<unsigned int> trainersIds;
+	map<unsigned int, Info*> mapInfoSeason;
 
-	Coach* mainCoach;
+	unsigned int mainCoachID;
 
 	unsigned int minAge;
 	unsigned int maxAge;
@@ -27,7 +38,7 @@ private:
 
 public:
 	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
-	Level(ifstream &in, string yearOfSeason, string fileClub, Club* club); 
+	Level(ifstream &in, string yearOfSeason, string fileClub); 
 
 
 

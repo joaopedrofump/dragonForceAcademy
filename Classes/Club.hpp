@@ -1,22 +1,14 @@
 #pragma once
 
-//#include "Season.hpp"
-#include "Goalkeeper.hpp"
+#include "Season.hpp"
+//#include "Goalkeeper.hpp"
 
-class Season;
-class Level;
+//class Season;
+//class Level;
 
 #define MAINFOLDER_LEO "C:\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub\\TextFiles"
 
-extern const map<string, CoachType> coachTypeMap;
 
-extern const map<string, Position> positionsMap;
-
-extern const map<string, DefenderPosition> defendersMap;
-
-extern const map<string, MidfielderPosition> midfieldersMap;
-
-extern const map<string, ForwardPosition> forwardsMap;
 
 
 class Club {

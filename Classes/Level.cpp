@@ -1,6 +1,6 @@
 #include "Level.h"
 
-#include "Club.hpp"
+//#include "Club.hpp"
 
 /*Level::Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason) {
 
@@ -10,7 +10,7 @@
 
 }*/
 
-Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
+Level::Level(ifstream &in, string yearOfSeason, string fileClub) {
 
 	string tmpString;
 	getline(in, tmpString);
@@ -29,16 +29,18 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 
 		unsigned int headCoachId = atoi(idHeadCoach.c_str());
 
-		for (size_t i = 0; i < club->getWorkers().size(); i++) {
+		/*for (size_t i = 0; i < club->getWorkers().size(); i++) {
 			if (club->getWorkers().at(i)->getID() == headCoachId) {
 				this->mainCoach = (Coach*)club->getWorkers().at(i);
 			}
-		}
+		}*/
+
+		this->mainCoachID = headCoachId;
 
 		string ages;
 		getline(inStreamLevel, ages);
 
-		this->minAge =atoi(ages.substr(0, ages.find('-', 0)).c_str());
+		this->minAge = atoi(ages.substr(0, ages.find('-', 0)).c_str());
 
 		ages = ages.substr(ages.find('-', 0) + 2);
 
@@ -71,6 +73,10 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 
 		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
 
+		string tmpAthletePos = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
+
+		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
+
 		Date tmpExpECG(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
 
 		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
@@ -87,18 +93,20 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 
 		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
 
-		Athlete* tmpAthletePtr = 0;
+		/*Athlete* tmpAthletePtr = 0;
 
 		for (size_t i = 0; i < club->getWorkers().size(); i++) {
 			if (club->getWorkers().at(i)->getID() == tmpAthleteId) {
 				tmpAthletePtr = (Athlete*)club->getWorkers().at(i);
 			}
-		}
+		}*/
+
+
 
 		Info* infoTmpAthlete;
 
 		// Read Goalkeepers specific informations
-		if (tmpAthletePtr->getPosition() == GoalkeeperPos) {
+		if (positionsMap.at(tmpAthletePos) == GoalkeeperPos) {
 
 			unsigned int saves = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
 
@@ -114,7 +122,7 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 		}
 
 		// Read Defenders specific informations
-		else if(tmpAthletePtr->getPosition() == DefenderPos){
+		else if(positionsMap.at(tmpAthletePos) == DefenderPos){
 
 			/*InfoDF* infoTmpAthletePos = new InfoDF;
 			infoTmpAthletePos->trainingFreq = tmpAthleteAssiduity;
@@ -165,7 +173,7 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 		}
 
 		// Read Midfielders specific informations
-		else if(tmpAthletePtr->getPosition() == MidfielderPos) {
+		else if(positionsMap.at(tmpAthletePos) == MidfielderPos) {
 
 			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
 
@@ -217,7 +225,7 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 		}
 
 		// Read Goalkeeper specific informations
-		else if (tmpAthletePtr->getPosition() == ForwardPos) {
+		else if (positionsMap.at(tmpAthletePos) == ForwardPos) {
 
 			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
 
@@ -258,7 +266,7 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 
 		
 
-		this->mapInfoSeason.insert({ tmpAthletePtr, infoTmpAthlete });
+		this->mapInfoSeason.insert({ tmpAthleteId, infoTmpAthlete });
 
 	}
 
@@ -275,11 +283,13 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 		string tmpCoach;
 		getline(inStreamAthletesLevel, tmpCoach);
 
-		for (size_t i = 0; i < club->getWorkers().size(); i++) {
+		/*for (size_t i = 0; i < club->getWorkers().size(); i++) {
 			if (club->getWorkers().at(i)->getID() == atoi(tmpCoach.c_str())) {
 				this->trainers.push_back((Coach*)club->getWorkers().at(i));
 			}
-		}
+		}*/
+
+		trainersIds.push_back(atoi(tmpCoach.c_str()));
 	}
 
 	inStreamCoachesLevel.close();

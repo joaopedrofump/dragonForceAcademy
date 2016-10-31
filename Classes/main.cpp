@@ -26,6 +26,6 @@ int main(int argc, const char * argv[]) {
 
 	initialOptions(currProgramClub);
 
-	system("PAUSE");
+	//system("PAUSE");
 	return 0;
 }

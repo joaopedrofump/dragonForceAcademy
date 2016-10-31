@@ -5,7 +5,7 @@
 //#include "Goalkeeper.hpp"
 
 
-class Club;
+//class Club;
 class Season {
 	unsigned int year;
 
@@ -15,7 +15,7 @@ class Season {
 
 public:
 	Season(unsigned int year, vector<Level*> levelsVector);
-	Season(ifstream &in, string fileClub, Club* club);
+	Season(ifstream &in, string fileClub);
 
 	unsigned int getYear() const;
 };

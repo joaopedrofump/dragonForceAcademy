@@ -1,7 +1,7 @@
 #include "Club.hpp"
 
-#include "Season.hpp"
-#include "Level.h"
+//#include "Season.hpp"
+//#include "Level.h"
 
 Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(seasonsVector) {}
 
@@ -111,7 +111,7 @@ Club::Club(string fileClub) {
 
 	while (!inStreamClub.eof()) {
 		
-		Season* actualSeason = new Season(inStreamClub, fileClub, this);
+		Season* actualSeason = new Season(inStreamClub, fileClub);
 
 		this->seasons.push_back(actualSeason);
 	}
