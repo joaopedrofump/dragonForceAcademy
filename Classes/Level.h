@@ -19,6 +19,7 @@ private:
 	Worker* trainerResponsible;
 
 public:
+    
 	Level(ageLevel ageLevelName, vector<Athlete *> playersVector, vector<Trainer*> trainersVector);
 	Level(ifstream &in);
 
