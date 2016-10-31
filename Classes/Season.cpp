@@ -4,19 +4,21 @@
 
 
 Season::Season(string seasonName, string fileClub) {
-
-	ifstream inStreamSeason;
-
-	inStreamSeason.open((fileClub + stringPath("/") + seasonName).c_str());
-
-	while (!inStreamSeason.eof()) {
-
-
-		Level* actualLevel = new Level(inStreamSeason, seasonName, fileClub);
-
-
-		this->levels.push_back(actualLevel);
-	}
-
-	inStreamSeason.close();
+    
+    this->year = stoi(seasonName);
+    this->fileName = stringPath(fileClub + "/" + seasonName);
+    
+    Level* levelu13 = new Level(seasonName, fileName, "U13");
+    Level* levelu15 = new Level(seasonName, fileName, "U15");
+    Level* levelu17 = new Level(seasonName, fileName, "U17");
+    Level* levelu19 = new Level(seasonName, fileName, "U19");
+    Level* seniors = new Level(seasonName, fileName, "Seniors");
+    
+    this->levels.push_back(levelu13);
+    this->levels.push_back(levelu15);
+    this->levels.push_back(levelu17);
+    this->levels.push_back(levelu19);
+    this->levels.push_back(seniors);
+    
 }
+

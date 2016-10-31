@@ -46,12 +46,60 @@ void initialInfo(string &fileClub) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
         }
+        Date currentDate(true);
+        string year = to_string(currentDate.getYear());
 		ofstream outfileClub((path() + clubName) + stringPath("/club.txt"));
 		outfileClub << clubName << endl;
+        outfileClub << year;
 		outfileClub.close();
         ofstream outfileCoaches((path() + clubName) + stringPath("/coaches.txt"));
         outfileCoaches.close();
         ofstream outfileAthletes((path() + clubName) + stringPath("/athletes.txt"));
+        outfileAthletes.close();
+        
+        
+        //create folders for current season and levels
+        createDirectory(stringPath((path() + clubName + "/" + year)).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U13")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U15")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U17")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors")).c_str());
+        
+        //create info files for levels
+        ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/infoLevel.txt"));
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        
+
+        
         fileClub = clubName;
 	}
 

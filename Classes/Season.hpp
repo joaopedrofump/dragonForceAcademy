@@ -8,9 +8,7 @@
 //class Club;
 class Season {
 	unsigned int year;
-
 	vector<Level*> levels;
-	
 	string fileName;
 
 public:

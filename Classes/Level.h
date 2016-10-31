@@ -39,7 +39,7 @@ private:
 public:
 
 	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
-	Level(ifstream &in, string yearOfSeason, string fileClub); 
+	Level(string yearOfSeason, string fileClub, string levelName);
 
 
 
