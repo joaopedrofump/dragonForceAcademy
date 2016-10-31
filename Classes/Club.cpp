@@ -1,13 +1,13 @@
 #include "Club.hpp"
 
-#include "Season.hpp"
-#include "Level.h"
+//#include "Season.hpp"
+//#include "Level.h"
 
 Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(seasonsVector) {}
 
 Club::Club(string fileClub) {
 
-	this->fileName = fileClub + stringPath("/club.txt");
+	this->fileName = path() + fileClub + stringPath("/club.txt");
 
 	// =============================
 	// ======  Read Coaches  ======
@@ -15,7 +15,7 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamCoaches;
 
-	inStreamCoaches.open(fileClub + stringPath("/coaches.txt").c_str());
+	inStreamCoaches.open(path() + fileClub + stringPath("/coaches.txt").c_str());
 	
 	while (!inStreamCoaches.eof()) {
 
@@ -55,7 +55,7 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamAthletes;
 
-	inStreamAthletes.open(fileClub + stringPath("/athletes.txt").c_str());
+	inStreamAthletes.open(path() + fileClub + stringPath("/athletes.txt").c_str());
 
 	while (!inStreamAthletes.eof()) {
 
@@ -109,7 +109,7 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamClub;
 
-	inStreamClub.open(this->fileName.c_str());
+	inStreamClub.open(path() + fileName.c_str());
 
 	// Read the Name of the Club
 
@@ -126,7 +126,7 @@ Club::Club(string fileClub) {
             continue;
         }
         
-		Season* actualSeason = new Season(seasonName, fileClub, this);
+		Season* actualSeason = new Season(seasonName, path() + fileClub);
 
 		this->seasons.push_back(actualSeason);
 	}

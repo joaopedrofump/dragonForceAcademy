@@ -8,6 +8,21 @@
 
 #include "Utils.hpp"
 
+string path() {
+	
+#ifdef __llvm__
+
+	string path = "";
+
+#elif _MSC_VER
+
+	string path = "..\\Debug\\";
+
+#endif
+	return path;
+}
+
+
 // ===========================================
 // ==============  DATE  =====================
 // ===========================================

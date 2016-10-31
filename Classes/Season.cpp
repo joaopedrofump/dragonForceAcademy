@@ -1,8 +1,9 @@
 #include "Season.hpp"
 
-#include "Club.hpp"
+//#include "Club.hpp"
 
-Season::Season(string seasonName, string fileClub, Club* club) {
+
+Season::Season(string seasonName, string fileClub) {
 
 	ifstream inStreamSeason;
 
@@ -10,7 +11,9 @@ Season::Season(string seasonName, string fileClub, Club* club) {
 
 	while (!inStreamSeason.eof()) {
 
-		Level* actualLevel = new Level(inStreamSeason, seasonName, fileClub, club);
+
+		Level* actualLevel = new Level(inStreamSeason, seasonName, fileClub);
+
 
 		this->levels.push_back(actualLevel);
 	}

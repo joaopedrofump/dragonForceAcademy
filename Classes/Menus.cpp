@@ -14,13 +14,14 @@ void initialInfo(string &fileClub) {
     ifstream inStreamClub;
     bool clubExists;
 	string clubName;
+
     cout << Table({ "Please, insert the name of the club" });
     getline(cin, clubName);
     
 	if (clubName != "") {
         
 		fileClub = clubName;
-		inStreamClub.open((fileClub + stringPath("/club.txt")).c_str());
+		inStreamClub.open((path() + fileClub + stringPath("/club.txt")).c_str());
 		clubExists = inStreamClub.good();
         
         if(!clubExists) {
@@ -39,17 +40,18 @@ void initialInfo(string &fileClub) {
         getline(cin, clubName);
         
 		clearScreen();
-		
-        if(!createDirectory(clubName.c_str())) {
+
+
+        if(!createDirectory((path() + clubName).c_str())) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
         }
-		ofstream outfileClub(clubName + stringPath("/club.txt"));
+		ofstream outfileClub((path() + clubName) + stringPath("/club.txt"));
 		outfileClub << clubName << endl;
 		outfileClub.close();
-        ofstream outfileCoaches(clubName + stringPath("/coaches.txt"));
+        ofstream outfileCoaches((path() + clubName) + stringPath("/coaches.txt"));
         outfileCoaches.close();
-        ofstream outfileAthletes(clubName + stringPath("/athletes.txt"));
+        ofstream outfileAthletes((path() + clubName) + stringPath("/athletes.txt"));
         fileClub = clubName;
 	}
 
@@ -144,7 +146,7 @@ void showMainMenu(unsigned short int opcaoChosen) {
 }
 
 /******************************************
- * Gestao de Clientes
+ * Athletes Management
  ******************************************/
 
 unsigned short int menuAthletesManagement() {
@@ -173,16 +175,16 @@ void  optionsAthletesManagement(Club &mainClub) {
         bool control = false;
 		bool sairDoSwitch = false;
 
-		/*stringstream ss;
+		stringstream ss;
 		string str;
 		Table mostrarCliente({ "Informacao" , "Dados" });
-		Table confirmarAdicionar({ "Tem a certeza que pretende adicionar o cliente?" });
-		Table confirmarEliminar({ "Tem a certeza que pretende eliminar o cliente?" });
-		Table confirmarReativar({ "Tem a certeza que pretende reactivar o cliente?" });
+		Table confirmAdd({ "Are you sure you want to add the athlete?" });
+		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
+		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
 		Date today(true);
 
-        switch (option) {
-            case 1:           //=========== MOSTRAR CLIENTES ==============
+        /*switch (option) {
+            case 1:           //=========== SHOW ATHLETES ==============
                 
                 if (supermercado.getMapIDtoCliente().size() == 0) {
                     

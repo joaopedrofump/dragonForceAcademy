@@ -15,7 +15,7 @@ class ECG {
 
 private:
     bool resultado;
-	Date expirationDate;
+	//Date expirationDate;
 
 public:
     ECG(bool resultado);

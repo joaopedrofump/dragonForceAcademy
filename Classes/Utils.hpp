@@ -184,6 +184,7 @@ void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para co
 
 bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro = "Invalid Input");
 
+string path();
 
 // ===========================================
 // ==========  ENUMS & STRUCTS ===============

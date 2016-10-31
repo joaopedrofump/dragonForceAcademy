@@ -5,8 +5,18 @@
 //  Created by Joao Furriel on 12/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#ifdef __llvm__
 
 #include "Menus.h"
+
+#elif _MSC_VER
+
+#include "Classes\\Menus.h"
+
+#endif
+
+
+
 
 int main(int argc, const char * argv[]) {
 
