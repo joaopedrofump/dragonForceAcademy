@@ -13,4 +13,5 @@ public:
 	Coach(string name, Date birthdate, CoachType coachRole, unsigned int id = 0);
 	Coach(ifstream &in);
 	unsigned int getID() const;
+	bool isAthlete() const;
 };

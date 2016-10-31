@@ -13,3 +13,8 @@ Coach::Coach(string name, Date birthdate, CoachType coachRole, unsigned int id) 
 unsigned int Coach::getID() const {
 	return this->id;
 }
+
+bool Coach::isAthlete() const {
+
+	return false;
+}
