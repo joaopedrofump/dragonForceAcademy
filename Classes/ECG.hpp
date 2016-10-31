@@ -9,6 +9,7 @@
 
 #ifndef ECG_hpp
 #define ECG_hpp
+#include "Utils.hpp"
 
 class ECG {
 

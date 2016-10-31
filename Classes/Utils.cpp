@@ -981,10 +981,7 @@ bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsig
 	return resultadoBool;
 
 
-
-
 }
-
 
 // ===========================================
 // ===========  ENUMS & MAPS =================
@@ -1014,3 +1011,57 @@ extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
 { "CDM", CentreForward },
 { "CAM", RigthWinger },
 { "LM", LeftWinger } };
+
+
+int createDirectory(const char* path) {
+    
+#ifdef __llvm__
+    
+    mkdir(path, 0777);
+    return 0;
+
+#elif _MSC_VER
+    
+    _mkdir(path);
+    return 0;
+
+#endif
+    
+}
+
+string stringPath(string originalStr) {
+    
+#ifdef __llvm__
+    
+    return originalStr;
+#endif
+    
+    if(originalStr == "/") {
+        return "\\";
+    }
+    
+    vector<string> dirs;
+    while (true) {
+        
+        dirs.push_back(originalStr.substr(0, originalStr.find('/', 0)));
+        
+        originalStr = originalStr.substr(originalStr.find('/', 0) + 1);
+        
+        if (originalStr == originalStr.substr(originalStr.find('/', 0) + 1)) {
+            
+            dirs.push_back(originalStr);
+            break;
+        }
+        
+    }
+    
+    string result;
+    
+    for (size_t i = 0; i < dirs.size() - 1; i++) {
+        result = result + dirs.at(i) + "\\";
+    }
+    result = result + dirs.at(dirs.size() - 1);
+    
+    return result;
+    
+}

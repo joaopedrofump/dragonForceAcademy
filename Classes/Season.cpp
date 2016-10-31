@@ -2,18 +2,15 @@
 
 #include "Club.hpp"
 
-Season::Season(ifstream &in, string fileClub, Club* club) {
-
-	string tmpString;
-	getline(in, tmpString);
+Season::Season(string seasonName, string fileClub, Club* club) {
 
 	ifstream inStreamSeason;
 
-	inStreamSeason.open((fileClub + "\\" + tmpString).c_str());
+	inStreamSeason.open((fileClub + stringPath("/") + seasonName).c_str());
 
 	while (!inStreamSeason.eof()) {
 
-		Level* actualLevel = new Level(inStreamSeason, tmpString, fileClub, club);
+		Level* actualLevel = new Level(inStreamSeason, seasonName, fileClub, club);
 
 		this->levels.push_back(actualLevel);
 	}

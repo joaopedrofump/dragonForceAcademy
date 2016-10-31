@@ -15,7 +15,7 @@ class Season {
 
 public:
 	Season(unsigned int year, vector<Level*> levelsVector);
-	Season(ifstream &in, string fileClub, Club* club);
+	Season(string seasonName, string fileClub, Club* club);
 
 	unsigned int getYear() const;
 };

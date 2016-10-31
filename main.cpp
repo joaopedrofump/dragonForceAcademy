@@ -14,18 +14,20 @@ int main(int argc, const char * argv[]) {
 	//Ask the user if there is already a club, or if it will be created.
 
 	string club;
-
-	if (!initialInfo(club)) {
-		cout << Table({ "Could not read all the files. Please check the files." }) << endl;
-		ignoreLine(false);
-		return(1);
-	}
-
-	//Create the club of the current program running
-	Club currProgramClub(club);
-
-	initialOptions(currProgramClub);
-
+    
+    try {
+        
+        initialInfo(club);
+        Club currProgramClub(club);
+        initialOptions(currProgramClub);
+    }
+    
+    catch(string s) {
+        
+        cout << s << endl;
+        
+    }
+    
 	system("PAUSE");
 	return 0;
 }

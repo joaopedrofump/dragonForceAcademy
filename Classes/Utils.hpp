@@ -19,8 +19,13 @@
 #include <vector>
 #include <map>
 #include <ctime>
+#ifdef __llvm__
+#include <sys/stat.h>
+#elif _MSC_VER
 #include <direct.h>
 #include <Windows.h>
+#endif
+
 
 
 using namespace std;
@@ -142,7 +147,7 @@ public:
 	//  Operations as Ratio
 
 	Fraction operator|(Fraction value) const;
-	void Fraction::operator|=(Fraction &value);
+	void operator|=(Fraction &value);
 
 	Fraction& operator++();
 	Fraction operator++(int);
@@ -320,7 +325,9 @@ public:
 	//...
 };
 
+int createDirectory(const char* path);
 
+string stringPath(string originalStr);
 
 
 #endif /* Utils_hpp */

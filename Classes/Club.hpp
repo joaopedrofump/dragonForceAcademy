@@ -6,8 +6,6 @@
 class Season;
 class Level;
 
-#define MAINFOLDER_LEO "C:\\Users\\Leo\\Desktop\\FEUP\\2º ANO\\AEDA\\DragonForceAcademy\\DragonForceAcademy\\Pastas GitHub\\TextFiles"
-
 extern const map<string, CoachType> coachTypeMap;
 
 extern const map<string, Position> positionsMap;

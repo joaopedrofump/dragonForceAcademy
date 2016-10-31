@@ -7,7 +7,7 @@ Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(sea
 
 Club::Club(string fileClub) {
 
-	this->fileName = fileClub + "\\club.txt";
+	this->fileName = fileClub + stringPath("/club.txt");
 
 	// =============================
 	// ======  Read Coaches  ======
@@ -15,12 +15,16 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamCoaches;
 
-	inStreamCoaches.open(fileClub + string("\\Coaches.txt").c_str());
+	inStreamCoaches.open(fileClub + stringPath("/coaches.txt").c_str());
 	
 	while (!inStreamCoaches.eof()) {
 
 		string tmpString;
 		getline(inStreamCoaches, tmpString);
+        
+        if(tmpString.length()==0) {
+            continue;
+        }
 
 		unsigned int newCoachId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
 
@@ -51,12 +55,16 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamAthletes;
 
-	inStreamAthletes.open(fileClub + string("\\Athletes.txt").c_str());
+	inStreamAthletes.open(fileClub + stringPath("/athletes.txt").c_str());
 
 	while (!inStreamAthletes.eof()) {
 
 		string tmpString;
 		getline(inStreamAthletes, tmpString);
+        
+        if(tmpString.length()==0) {
+            continue;
+        }
 
 		unsigned int newAthleteId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
 
@@ -110,13 +118,20 @@ Club::Club(string fileClub) {
 	}
 
 	while (!inStreamClub.eof()) {
-		
-		Season* actualSeason = new Season(inStreamClub, fileClub, this);
+        
+        string seasonName;
+        getline(inStreamClub, seasonName);
+        
+        if(seasonName.length() == 0) {
+            continue;
+        }
+        
+		Season* actualSeason = new Season(seasonName, fileClub, this);
 
 		this->seasons.push_back(actualSeason);
 	}
 
-	this->numberOfSeasons = seasons.size();
+	this->numberOfSeasons = (int)seasons.size();
 
 
 }

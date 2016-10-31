@@ -13,7 +13,7 @@ Leonardo Teixeira
 
 using namespace std;
 
-bool initialInfo(string & fileSeasons);
+void initialInfo(string & fileSeasons);
 
 bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation);
 

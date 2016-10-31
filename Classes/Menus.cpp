@@ -5,67 +5,52 @@ Leonardo Teixeira
 
 */
 
-
 #include "Menus.h"
 
 using namespace std;
 
-const string PATH; // = COLOCAR DIRETORIO DO PEDRO PARA PODER ACEDER PELO MAC;
-
-bool initialInfo(string & fileClub) {
+void initialInfo(string &fileClub) {
 
     ifstream inStreamClub;
     bool clubExists;
 	string clubName;
-
-	/*cout << Table({"Please introduce the directory of data. (Enter if there are no data)"}) << endl;
-	getline(cin, clubName);*/
-
-	// Just for test!!
-	clubName = "Pastas GitHub\\Dragon Force Academy";
+    cout << Table({ "Please, insert the name of the club" });
+    getline(cin, clubName);
     
 	if (clubName != "") {
-		fileClub = clubName/* + "\\club.txt"*/;
-
-
-		//CORRIGIR ISTO - MAC
-		#ifdef __llvm__
-
-		string fileSeasons2 = "";
-
-		fileSeasons2.append(PATH).append(fileSeasons);
-
-		fileSeasons = fileSeasons2;
-		#endif
-
-		inStreamClub.open((fileClub + "\\club.txt").c_str());
+        
+		fileClub = clubName;
+		inStreamClub.open((fileClub + stringPath("/club.txt")).c_str());
 		clubExists = inStreamClub.good();
+        
+        if(!clubExists) {
+            string s = "Could not read file";
+            throw s;
+        }
+        
 		inStreamClub.close();
-		return clubExists;
+
 	}
 		
 	else {
-		string newClubName;
-
+		
+        string clubName;
+        cout << Table({ "Ok. let's create the club. Please, insert the name for the new club" });
+        getline(cin, clubName);
+        
 		clearScreen();
-		cout << Table({ "Please, insert a name for your new club" });
-		getline(cin, newClubName);
-
-
-		if(!_mkdir(newClubName.c_str()))
+		
+        if(!createDirectory(clubName.c_str())) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
-		
-		ofstream outfile(newClubName + "\\club.txt");
-		
-		
-		outfile << newClubName << endl;
-
-		outfile.close();
-
-		fileClub = newClubName + "\\club.txt";
-
-		return true;
+        }
+		ofstream outfileClub(clubName + stringPath("/club.txt"));
+		outfileClub << clubName << endl;
+		outfileClub.close();
+        ofstream outfileCoaches(clubName + stringPath("/coaches.txt"));
+        outfileCoaches.close();
+        ofstream outfileAthletes(clubName + stringPath("/athletes.txt"));
+        fileClub = clubName;
 	}
 
 }
