@@ -274,6 +274,29 @@ ostream& operator<<(ostream& out, const Date &data) {
     return out;
 }
 
+unsigned int operator-(const Date & date)
+{
+	Date currentDate(true);
+	
+
+	if (date.getMonth() > currentDate.getMonth())
+	{
+		return (currentDate.getYear() - date.getYear() - 1);
+	}
+
+	if (date.getMonth() == currentDate.getMonth())
+	{
+		if (date.getDay() > currentDate.getDay())
+		{
+			return (currentDate.getYear() - date.getYear() - 1);
+		}
+		else
+		{
+			return (currentDate.getYear() - date.getYear());
+		}
+	}
+}
+
 string Date::showDate() const {
     
     string finalDate = "";

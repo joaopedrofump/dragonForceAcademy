@@ -30,7 +30,7 @@ private:
 	unsigned int minAge;
 	unsigned int maxAge;
 
-	unsigned int minHeight;
+	char minHeight;
 
 	//vector<Tournament> tournaments;
 	//vector<Training> trainings;
@@ -39,7 +39,11 @@ private:
 public:
 
 	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
+
 	Level(ifstream &in, string yearOfSeason, string fileClub); 
+	unsigned int getMinAge() const;
+	unsigned int getMaxAge() const;
+	char getMinHeight() const;
 
 
 

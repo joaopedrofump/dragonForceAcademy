@@ -46,3 +46,25 @@ void Worker::setStatus(bool newStatus) {
 
 	this->status = newStatus;
 }
+
+unsigned int Worker::getIdade() const {
+	Date currentDate(true);
+
+
+	if (birthdate.getMonth() > currentDate.getMonth())
+	{
+		return (currentDate.getYear() - birthdate.getYear() - 1);
+	}
+
+	if (birthdate.getMonth() == currentDate.getMonth())
+	{
+		if (birthdate.getDay() > currentDate.getDay())
+		{
+			return (currentDate.getYear() - birthdate.getYear() - 1);
+		}
+		else
+		{
+			return (currentDate.getYear() - birthdate.getYear());
+		}
+	}
+}

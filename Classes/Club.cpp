@@ -207,4 +207,61 @@ map<unsigned int, Worker*> Club::getCoaches() const {
 	return result;
 }
 
+void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char height) {
+	Date currentDate(true);
+	Season* currentSeason = 0;
+	Athlete* w = 0;
+
+	try
+	{
+		if (pos == 1)
+		{
+			w = new Goalkeeper(name, birthdate, height);
+			
+		}
+		else if (pos == 2)
+		{
+			w = new Defender(name, birthdate, height);
+		
+		}
+		else if (pos == 3)
+		{
+			w = new Midfielder(name, birthdate, height);
+		}
+		else if (pos == 4)
+		{
+			Worker* w = new Forward(name, birthdate, height);
+		}
+		
+		allWorkers.insert(pair<unsigned int, Worker*>(w->getID(), w));
+
+		for (unsigned int i = 0; i < seasons.size(); i++)
+		{
+			if (currentDate.getYear() == seasons.at(i)->getYear())
+			{
+				//Season* currentSeason;
+				currentSeason = seasons.at(i);
+				break;
+			}
+		}
+
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
+		{
+			if (w->getIdade() > currentSeason->getLevels().at(i)->getMinAge() && w->getIdade() < currentSeason->getLevels().at(i)->getMaxAge())
+			{
+				if (w->getHeight() < currentSeason->getLevels().at(i)->getMinHeight())
+				{
+
+				}
+			}
+		}
+	
+	}
+	/*to be completed*/
+	catch (...)	{
+		
+	}
+
+}
+
 

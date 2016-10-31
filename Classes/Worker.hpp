@@ -70,6 +70,7 @@ public:
 	void setStatus(bool newStatus);
 
     ~Worker();
+	unsigned int getIdade() const;
 
 
 };

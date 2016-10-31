@@ -25,8 +25,10 @@ public:
 	Athlete(ifstream &in);
     ~Athlete();
     virtual Position getPosition() const = 0;
+	unsigned char getHeight() const;
     void addECG(bool resultado);
 	bool isAthlete() const;
+
 };
 
 #endif /* Athlete_hpp */

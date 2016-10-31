@@ -19,4 +19,7 @@ public:
 
 
 	unsigned int getYear() const;
+
+	vector<Level*> getLevels() const;
 };
+
