@@ -34,4 +34,26 @@ unsigned int Worker::getID() const{
 	return this->id;
 }
 
+unsigned int Worker::getIdade() const
+{
+	Date currentDate(true);
+
+
+	if (birthdate.getMonth() > currentDate.getMonth())
+	{
+		return (currentDate.getYear() - birthdate.getYear() - 1);
+	}
+
+	if (birthdate.getMonth() == currentDate.getMonth())
+	{
+		if (birthdate.getDay() > currentDate.getDay())
+		{
+			return (currentDate.getYear() - birthdate.getYear() - 1);
+		}
+		else
+		{
+			return (currentDate.getYear() - birthdate.getYear());
+		}
+}
+
 

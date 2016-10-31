@@ -21,11 +21,12 @@ protected:
 	Position position;
 
 public:
-    Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id = 0);
+    Athlete(string name, Date birthdate, unsigned char height, Position position);
 	Athlete(ifstream &in);
     ~Athlete();
     virtual Position getPosition() const = 0;
     void addECG(bool resultado);
+	unsigned char getHeight() const;
 };
 
 #endif /* Athlete_hpp */

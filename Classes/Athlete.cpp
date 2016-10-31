@@ -8,39 +8,13 @@
 
 #include "Athlete.hpp"
 
-Athlete::Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id) : Worker(name, birthdate, id) {
+Athlete::Athlete(string name, Date birthdate, unsigned char height, Position position) : Worker(name, birthdate, id) {
     
     this->height = height;
     this->ecg = NULL;
 	this->position = position;
     
 }
-
-/*Athlete::Athlete(ifstream &in) {
-
-	string tmpString;
-	getline(in, tmpString);
-
-	this->id = atoi( tmpString.substr(0, tmpString.find(';', 0)).c_str() );
-
-	tmpString = tmpString.substr(tmpString.find(';', 0) + 1);
-
-	this->name = tmpString.substr(0, tmpString.find(';', 0));
-
-	tmpString = tmpString.substr(tmpString.find(';', 0) + 1);
-
-	this->birthdate = Date(tmpString.substr(0, tmpString.find(';', 0)));
-
-	tmpString = tmpString.substr(tmpString.find(';', 0) + 1);
-
-	this->height = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
-
-	tmpString = tmpString.substr(tmpString.find(';', 0) + 1);
-
-	this->position = positionsMap.at(tmpString);
-
-
-}*/
 
 Athlete::~Athlete() {
     
@@ -54,4 +28,9 @@ Athlete::~Athlete() {
 void Athlete::addECG(bool resultado) {
     
     this->ecg = new ECG(resultado);
+}
+
+unsigned char Athlete::getHeight() const
+{
+	return height;
 }

@@ -284,3 +284,18 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub, Club* club) {
 
 	inStreamCoachesLevel.close();
 }
+
+unsigned int Level::getMinAge() const
+{
+	return minAge;
+}
+
+unsigned int Level::getMaxAge() const
+{
+	return maxAge;
+}
+
+char Level::getMinHeight() const
+{
+	return minHeight;
+}

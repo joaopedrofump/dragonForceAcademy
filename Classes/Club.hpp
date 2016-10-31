@@ -2,6 +2,7 @@
 
 //#include "Season.hpp"
 #include "Goalkeeper.hpp"
+#include "Forward.hpp"
 
 class Season;
 class Level;
@@ -35,6 +36,7 @@ public:
 	string getName() const;
 	vector<Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
+	void addPlayer(Position pos, string name, Date birthdate, unsigned char height);
 
 
 

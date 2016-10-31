@@ -18,4 +18,5 @@ public:
 	Season(ifstream &in, string fileClub, Club* club);
 
 	unsigned int getYear() const;
+	vector<Level*> getLevels() const;
 };

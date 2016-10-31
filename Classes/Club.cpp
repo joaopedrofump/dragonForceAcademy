@@ -133,4 +133,62 @@ vector<Season*> Club::getSeasons() const {
 	return seasons;
 }
 
+void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char height)
+{
+	Date currentDate(true);
+	Season* currentSeason;
+	Athlete* w;
+
+	try
+	{
+		if (pos == 1)
+		{
+			w = new Goalkeeper(name, birthdate, height);
+			
+		}
+		else if (pos == 2)
+		{
+			w = new Defender(name, birthdate, height);
+		
+		}
+		else if (pos == 3)
+		{
+			w = new Midfielder(name, birthdate, height);
+		}
+		else if (pos == 4)
+		{
+			Worker* w = new Forward(name, birthdate, height);
+		}
+		
+		allWokers.push_back(w);
+
+		for (unsigned int i = 0; i < seasons.size(); i++)
+		{
+			if (currentDate.getYear() == seasons.at(i)->getYear())
+			{
+				Season* currentSeason;
+				seasons.at(i) = currentSeason;
+				break;
+			}
+		}
+
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
+		{
+			if (w->getIdade() > currentSeason->getLevels().at(i)->getMinAge() && w->getIdade() < currentSeason->getLevels().at(i)->getMaxAge())
+			{
+				if (w->getHeight() < currentSeason->getLevels().at(i)->getMinHeight())
+				{
+
+				}
+			}
+		}
+	
+	}
+	catch (/*to be completed*/)
+	{
+		
+	}
+
+}
+
 

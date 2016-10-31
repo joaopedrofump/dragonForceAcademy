@@ -2,6 +2,11 @@
 
 #include "Club.hpp"
 
+Season::Season(unsigned int year, vector<Level*> levelsVector)
+{
+	this->year = year;
+}
+
 Season::Season(ifstream &in, string fileClub, Club* club) {
 
 	string tmpString;
@@ -19,4 +24,14 @@ Season::Season(ifstream &in, string fileClub, Club* club) {
 	}
 
 	inStreamSeason.close();
+}
+
+unsigned int Season::getYear() const
+{
+	return year;
+}
+
+vector<Level*> Season::getLevels() const
+{
+	return levels;
 }

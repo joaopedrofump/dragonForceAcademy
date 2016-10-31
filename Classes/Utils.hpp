@@ -55,6 +55,7 @@ public:
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
+	friend unsigned int operator-(const Date & date);
 	string showDate() const;
 	void setCurrentDate();
 };
@@ -197,10 +198,10 @@ enum CoachType {
 
 enum Position {
     
-    GoalkeeperPos,  // GK
-    DefenderPos,    // DF
-    MidfielderPos,  // MF
-    ForwardPos      // FW
+    GoalkeeperPos = 1,  // GK
+    DefenderPos = 2,    // DF
+    MidfielderPos = 3,  // MF
+    ForwardPos = 4,      // FW
     
 };
 
@@ -208,9 +209,9 @@ enum Position {
 
 enum DefenderPosition {
     
-	CenterBack, // CB
-	LeftBack,   // LB
-	RightBack,  // RB
+	CenterBack = 1, // CB
+	LeftBack = 2,   // LB
+	RightBack = 3,  // RB
     
 };
 
@@ -218,11 +219,11 @@ enum DefenderPosition {
 
 enum MidfielderPosition {
     
-    CentreMidfielder,     // CM
-    DefensiveMidfielder,  // CDM
-    AttackingMidfielder,  // CAM
-	LeftMidfield,         // LM
-	RightMidfield		  // RM
+    CentreMidfielder = 1,     // CM
+    DefensiveMidfielder = 2,  // CDM
+    AttackingMidfielder = 3,  // CAM
+	LeftMidfield = 4,         // LM
+	RightMidfield = 5		  // RM
     
 };
 
@@ -230,10 +231,10 @@ enum MidfielderPosition {
 
 enum ForwardPosition {
     
-	Striker,       // ST
-	CentreForward, // CF
-    RigthWinger,   // RW
-	LeftWinger     // LW
+	Striker = 1,       // ST
+	CentreForward = 2, // CF
+    RigthWinger = 3,   // RW
+	LeftWinger = 4    // LW
     
 };
 
@@ -241,11 +242,11 @@ enum ForwardPosition {
 
 enum ageLevel {
 
-	U13,
-	U15,
-	U17,
-	U19,
-	Seniors
+	U13 = 1,
+	U15 = 2,
+	U17 = 3,
+	U19 = 4,
+	Seniors = 5
 
 };
 

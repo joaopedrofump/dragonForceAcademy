@@ -53,6 +53,7 @@ public:
      */
     virtual unsigned int getID() const = 0;
     ~Worker();
+	unsigned int getIdade() const;
 
 };
 
