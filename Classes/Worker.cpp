@@ -10,10 +10,18 @@
 
 unsigned int Worker::workersCounter = 0;
 
-Worker::Worker(string name, Date birthdate) {
+Worker::Worker(string name, Date birthdate, unsigned int id) {
     
     this->name = name;
     this->birthdate = birthdate;
+
+	if (id == 0) {
+		this->id = ++workersCounter;
+	}
+	else {
+		this->id = id;
+	}
+	//Fazer id com o static wrkersCounter
     
 }
 
@@ -21,3 +29,9 @@ Worker::~Worker() {
     
     cout << "Worker Destroyed\n" << endl;
 }
+
+unsigned int Worker::getID() const{
+	return this->id;
+}
+
+

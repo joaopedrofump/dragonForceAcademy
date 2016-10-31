@@ -1,15 +1,21 @@
 #pragma once
 
-#include "Utils.hpp"
 #include "Level.h"
 
+//#include "Goalkeeper.hpp"
+
+
+class Club;
 class Season {
 	unsigned int year;
+
 	vector<Level*> levels;
+	
+	string fileName;
+
 public:
 	Season(unsigned int year, vector<Level*> levelsVector);
-	Season(ifstream &in);
+	Season(ifstream &in, string fileClub, Club* club);
 
 	unsigned int getYear() const;
-
 };

@@ -9,22 +9,21 @@ Leonardo Teixeira
 
 #pragma once
 
-/*#include <iostream>
-#include <fstream>
-#include <string>
-
-
-#include <map>*/
-#include "Utils.hpp"
 #include "Club.hpp"
 
 using namespace std;
 
-bool initialInfo(string & clubName, string & fileSeasons);
+bool initialInfo(string & fileSeasons);
+
+bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation);
 
 void initialOptions(Club & footballClub);
 
-//void opcoesGestaoClientes(VendeMaisMais & supermercado);
+unsigned short int mainMenu();
+
+void showMainMenu(unsigned short int optionChosen = 0);
+
+void optionsAthletesManagement(Club & footballClubo);
 
 /*void listarClientesOrdemAlfabetica(VendeMaisMais & supermercado);
 
@@ -34,8 +33,7 @@ void listarProdutos(VendeMaisMais & supermercado);*/
 
 void opcoesRecomendacao(VendeMaisMais & supermercado);
 
-void mostrarMenuInicial(unsigned short int opcaoEscolhida = 0);
+void showInitialMenu(unsigned short int opcaoEscolhida = 0);
 
-void opcoesGestaoProdutos(VendeMaisMais &supermercado);
+void opcoesGestaoProdutos(VendeMaisMais &supermercado);*/
 
-unsigned short int menuInicial();*/

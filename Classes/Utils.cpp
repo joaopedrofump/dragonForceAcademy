@@ -8,20 +8,11 @@
 
 #include "Utils.hpp"
 
-#include <string>
-#include <fstream>
-#include <ctime>
-#include <vector>
-
-//teste branch
-
-
-
 // ===========================================
 // ==============  DATE  =====================
 // ===========================================
 
-// data na forma DD/MM/AAAA
+// date in form DD/MM/YYYY
 
 Date::Date(bool currentDate) {
     
@@ -339,6 +330,412 @@ void Date::setCurrentDate() {
 }
 
 
+// ===========================================
+// ===============  TABLE  ===================
+// ===========================================
+
+Table::Table(vector<string> components, unsigned int indentacao) {
+
+	vector<int> spaces;
+	for (size_t i = 0; i < components.size(); i++) {
+		spaces.push_back((int)components.at(i).length());
+	}
+	formatTable('_', ' ', spaces, indentacao);
+	formatTable(' ', '|', spaces, indentacao);
+	tableStream << string(indentacao, ' ') << " |  ";
+	for (int i = 0; i < components.size(); i++) {
+		tableStream << components.at(i) << "  |  ";
+	}
+	tableStream << endl;
+	formatTable('_', '|', spaces, indentacao);
+
+	numColumns = (int)components.size();
+	numLines = 1;
+	columnsWidth = spaces;
+	lastLineComponents = components;
+	tableVector.push_back(components);
+	blocks.push_back(true);
+
+	indent = indentacao;
+}
+
+Table::Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao) {
+	formatTable('_', ' ', spacesForColumn, indentacao);
+	formatTable(' ', '|', spacesForColumn, indentacao);
+	tableStream << string(indentacao, ' ') << " |  ";
+	for (int i = 0; i < components.size(); i++) {
+		tableStream << components.at(i) << string(spacesForColumn.at(i) - components.at(i).length(), ' ') << "  |  ";
+	}
+	tableStream << endl;
+	formatTable('_', '|', spacesForColumn, indentacao);
+
+	numColumns = (int)components.size();
+	numLines = 1;
+	columnsWidth = spacesForColumn;
+	lastLineComponents = components;
+	tableVector.push_back(components);
+
+	this->indent = indentacao;
+}
+
+Table::Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao) {
+
+	unsigned int numColumnsV = 0;
+	vector<int> columnsSizes;
+	for (size_t i = 0; i < tableVector.size(); i++) {
+		if (numColumnsV < tableVector.at(i).size()) {
+			numColumnsV = (int)tableVector.at(i).size();
+		}
+	}
+	for (int j = 0; j < numColumnsV; j++) {
+		columnsSizes.push_back(0);
+	}
+	formatTable('_', ' ', spacesForColumn, indentacao);
+	formatTable(' ', '|', spacesForColumn, indentacao);
+	for (int x = 0; x < tableVector.size(); x++) {
+		if (tableVector.at(x).size() < numColumnsV) {
+			tableVector.at(x).push_back("");
+		}
+
+		tableStream << string(indentacao, ' ') << " |  ";
+
+		for (unsigned int i = 0; i < numColumnsV; i++) {
+
+			int dif = spacesForColumn.at(i) - tableVector.at(x).at(i).length(); //espaços a mais
+			string temporario;
+			if (dif > 0) {
+				temporario = string(spacesForColumn.at(i) - tableVector.at(x).at(i).length(), ' ');
+			}
+			else {
+				temporario = string(tableVector.at(x).at(i).length() - spacesForColumn.at(i), ' ');
+			}
+
+			tableStream << tableVector.at(x).at(i) << temporario << "  |  ";
+		}
+		tableStream << endl;
+
+		if (blocks.at(x)) {
+			formatTable('_', '|', spacesForColumn, indentacao);
+			//formatTable(' ', '|', spacesForColumn, indentacao);
+			if (x < tableVector.size() - 1) {
+				//formatTable('_', '|', spacesForColumn, indentacao);
+				formatTable(' ', '|', spacesForColumn, indentacao);
+			}
+		}
+	}
+
+
+	this->blocks = blocks;
+	this->tableVector = tableVector;
+	this->columnsWidth = spacesForColumn;
+	this->numColumns = numColumnsV;
+	this->numLines = (int)tableVector.size();
+	this->lastLineComponents = tableVector.at(tableVector.size() - 1);
+	this->indent = indentacao;
+}
+
+void Table::addNewLine(vector<string> components) {
+	if (components.size() < this->numColumns) {  //Verifica se vector componentes tem menor nÃºmero de termos
+		for (size_t x = components.size(); x < numColumns; x++) {  //da tabela original e adiciona nesse caso.
+			components.push_back("");
+		}
+	}
+	if (components.size() > this->numColumns) {  //Verifica se vector componentes tem maior nÃºmero de termos
+		for (int x = numColumns; x < components.size(); x++) { //da tabela original e remove-os, nesse caso.
+			components.pop_back();
+		}
+	}
+	vector<int> spaces;
+	for (size_t i = 0; i < components.size(); i++) {
+		if (components.at(i).length() >= this->columnsWidth.at(i)) {
+			spaces.push_back((int)components.at(i).length());
+		}
+		else {
+			spaces.push_back(columnsWidth.at(i));
+		}
+	} //Redefine a largura das colunas para a tabela alterada
+	tableStream.str(string());
+	tableStream.clear();
+	Table newTable(this->tableVector, this->blocks, spaces, this->indent); //Reconstroi a tabela anterior com a largura das colunas redefinida
+	tableStream << newTable;
+	formatTable(' ', '|', spaces, this->indent);
+	tableStream << string(this->indent, ' ') << " |  ";
+	for (int i = 0; i < components.size(); i++) {
+		tableStream << components.at(i) << string(spaces.at(i) - components.at(i).length(), ' ') << "  |  ";
+	}
+	tableStream << endl;
+	formatTable('_', '|', spaces, this->indent);
+
+	numLines++;
+	this->lastLineComponents = components;
+	this->tableVector.push_back(components);
+	this->columnsWidth = spaces;
+	this->blocks.push_back(true);
+}
+
+void Table::addDataInSameLine(vector<string> components) {
+
+	if (components.size() < this->numColumns) {  //Verifica se vector componentes tem menor nÃºmero de termos
+		for (size_t x = components.size(); x < numColumns; x++) {  //da tabela original e adiciona nesse caso.
+			components.push_back("");
+		}
+	}
+	if (components.size() > this->numColumns) {  //Verifica se vector componentes tem maior nÃºmero de termos
+		for (int x = numColumns; x < components.size(); x++) { //da tabela original e remove-os, nesse caso.  MELHORAR!!!
+			components.pop_back();
+		}
+	}
+	vector<int> spaces;
+	for (size_t i = 0; i < components.size(); i++) {
+		if (components.at(i).length() >= this->columnsWidth.at(i)) {
+			spaces.push_back((int)components.at(i).length());
+		}
+		else {
+			spaces.push_back(columnsWidth.at(i));
+		}
+	} //Redefine a largura das colunas para a tabela alterada
+
+	tableStream.str(string());
+	tableStream.clear();
+	tableVector.push_back(components);
+	blocks.pop_back();
+	blocks.push_back(false);
+
+	blocks.push_back(true); //concatena a penultima linha com a œltima
+
+	Table newTable(this->tableVector, this->blocks, spaces); //Reconstroi a tabela anterior com a largura das colunas redefinida
+	tableStream << newTable;
+	/*tableStream << " |  ";
+	for (int i = 0; i < components.size(); i++){
+	tableStream << components.at(i) << string(spaces.at(i) - components.at(i).length(), ' ') << "  |  ";
+	}
+	tableStream << endl;
+	formatTable('_', '|', spaces);*/
+
+	this->columnsWidth = spaces;
+}
+
+void Table::formatTable(char internalChar, char limitingChar, vector<int> spacesForColumn, unsigned int indentacaoFT) {
+	tableStream << string(indentacaoFT, ' ') << " " << limitingChar;
+	for (size_t i = 0; i < spacesForColumn.size(); i++) {
+		for (int x = 0; x < spacesForColumn.at(i) + 4; x++) {
+			tableStream << internalChar;
+		}
+		tableStream << limitingChar;
+	}
+	tableStream << endl;
+}
+
+vector<int> Table::getColumsWidth() const {
+	return columnsWidth;
+}
+
+unsigned int Table::getIndentacao() const {
+	return indent;
+}
+
+vector<vector<string>> Table::getTableVector() const {
+	return this->tableVector;
+}
+
+vector<bool> Table::getBlocks() const {
+	return this->blocks;
+}
+
+ostream& operator<<(ostream& out, const Table &tableToShow) {
+	out << tableToShow.tableStream.str();
+	//formatTableShow('_', '|', tableToShow.getColumsWidth(), tableToShow.getIndentacao(), out);
+	return out;
+}
+
+//=================================
+//=========  FRACTION  ============
+//=================================
+
+Fraction::Fraction() {
+	numerator = 0;
+	denominator = 1;
+}
+
+Fraction::Fraction(int newNumerator, int newDenominator) {
+	numerator = newNumerator;
+	denominator = newDenominator;
+}
+
+Fraction::Fraction(string fractionString) {
+	string tmpString = fractionString;
+	numerator = atoi(tmpString.substr(0, tmpString.find('/', 0)).c_str());
+	tmpString = tmpString.substr(tmpString.find('/', 0) + 1);
+	denominator = atoi(tmpString.c_str());
+}
+
+void Fraction::reduce() {
+
+	int num = numerator;
+	int den = denominator;
+
+	if (num>den) {
+		for (int counter = 2; counter<den; counter++) {
+			while (num%counter == 0 & den%counter == 0) {
+				num = (num / counter);
+				den = (den / counter);
+			}
+		}
+	}
+	else if (den > num) {
+		for (int counter = 2; counter<num; counter++) {
+			while (num%counter == 0 & den%counter == 0) {
+				num = (num / counter);
+				den = (den / counter);
+			}
+		}
+	}
+
+	this->numerator = num;
+	this->denominator = den;
+}
+
+//  Operations as fractions
+
+Fraction Fraction::operator+(Fraction value) const {
+	Fraction  result;
+	result.numerator = (numerator * value.denominator) + (value.numerator*denominator);
+	result.denominator = denominator * value.denominator;
+	return result;
+
+}
+
+void Fraction::operator+=(Fraction &value) {
+	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator-(Fraction value) const {
+	Fraction  result;
+	result.numerator = (numerator * value.denominator) - (value.numerator*denominator);
+	result.denominator = denominator * value.denominator;
+	return result;
+}
+
+void Fraction::operator-=(Fraction &value) {
+	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator*(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator * value.numerator;
+	result.denominator = denominator * value.denominator;
+	return result;
+}
+
+void Fraction::operator*=(Fraction &value) {
+	this->numerator = numerator * value.numerator;
+	this->denominator = denominator * value.denominator;
+}
+
+Fraction Fraction::operator/(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator * value.denominator;
+	result.denominator = denominator * value.numerator;
+	return result;
+}
+
+void Fraction::operator/=(Fraction &value) {
+	this->numerator = numerator * value.denominator;
+	this->denominator = denominator * value.numerator;
+}
+
+//  Comparers
+
+bool Fraction::operator<(Fraction value) const {
+	double frac1;
+	double frac2;
+	frac1 = (numerator*1.0 / denominator);
+	frac2 = (value.numerator*1.0 / value.denominator);
+	return frac1 < frac2;
+}
+
+bool Fraction::operator==(Fraction value) const {
+	return (numerator*1.0 / denominator) == (value.numerator*1.0 / value.denominator);
+}
+
+bool Fraction::operator>=(Fraction value) const {
+	return !this->operator<(value);
+}
+
+bool Fraction::operator>(Fraction value) const {
+	double frac1;
+	double frac2;
+	frac1 = (numerator*1.0 / denominator);
+	frac2 = (value.numerator*1.0 / value.denominator);
+	return frac1 > frac2;
+}
+
+bool Fraction::operator<=(Fraction value) const {
+	return !this->operator>(value);
+}
+
+//  Operations as Ratio
+
+Fraction Fraction::operator|(Fraction value) const {
+	Fraction result;
+	result.numerator = numerator + value.numerator;
+	result.denominator = denominator + value.denominator;
+	return result;
+
+}
+
+void Fraction::operator|=(Fraction &value) {
+	this->numerator = numerator + value.numerator;
+	this->denominator = denominator + value.denominator;
+}
+
+Fraction& Fraction::operator++ () {    // prefix ++
+	this->numerator += 1;
+	this->denominator += 1;
+	return *this;
+}
+
+Fraction Fraction::operator++ (int) { // postfix ++
+	Fraction result(*this);
+	++(*this);
+	return result;
+}
+
+//  Console functions
+
+void Fraction::print(bool originalFraction) const {
+	int num = numerator;
+	int den = denominator;
+
+	if (!originalFraction) {
+		if (num>den) {
+			for (int counter = 2; counter<den; counter++) {
+				while (num%counter == 0 & den%counter == 0) {
+					num = (num / counter);
+					den = (den / counter);
+				}
+			}
+		}
+		else if (den > num) {
+			for (int counter = 2; counter<num; counter++) {
+				while (num%counter == 0 & den%counter == 0) {
+					num = (num / counter);
+					den = (den / counter);
+				}
+			}
+		}
+	}
+
+	cout << num << "/" << den;
+}
+
+void Fraction::printPercentage() const {
+	double number = numerator*1.0 / denominator;
+
+	cout << fixed << setprecision(2) << 100 * number << "%";
+}
 
 // ===========================================
 // ==============  FUNCTIONS  ================
@@ -449,3 +846,171 @@ string trimLink(string link) {
 
 	return trimedString;
 }
+
+void clearScreen() {
+
+#ifdef __llvm__
+
+	system("clear");
+
+#elif _MSC_VER
+
+	system("cls");
+
+#endif
+
+}
+
+void SetCursor(int column, int line)
+
+{
+
+#ifdef _MSC_VER
+	COORD coord;
+	coord.X = column;
+	coord.Y = line;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		coord
+		);
+
+#endif
+}
+
+int GetCursorX()
+{
+
+#ifdef _MSC_VER
+	CONSOLE_SCREEN_BUFFER_INFO SBInfo;
+	COORD                      result;
+	if (!GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &SBInfo))
+		return -1;
+
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &SBInfo);
+
+	return SBInfo.dwCursorPosition.X;
+#endif
+
+	return 1;
+}
+
+int GetCursorY()
+{
+
+#ifdef _MSC_VER
+	CONSOLE_SCREEN_BUFFER_INFO SBInfo;
+	COORD                      result;
+	if (!GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &SBInfo))
+		return -1;
+
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &SBInfo);
+
+	return SBInfo.dwCursorPosition.Y;
+
+#endif
+
+	return 1;
+}
+
+void ignoreLine(bool ignoreControl, string message) {
+
+	string temp;
+	Table tableEnter({ message });
+	cout << tableEnter << endl;
+	if (ignoreControl) {
+
+		cin.ignore(1000, '\n');
+
+	}
+	getline(cin, temp);
+
+
+}
+
+bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro) {
+
+	string inputUser;
+	bool resultadoBool = false;
+
+	Table tabelaMensagemErro({ mensagemErro });
+
+	getline(cin, inputUser);
+	stringstream inteirosStream(inputUser);
+	trimString(inputUser);
+
+	if (inputUser.size() == 0) {
+
+		input = 0;
+		return true;
+
+	}
+
+	while (!inteirosStream.eof()) {
+
+		unsigned short int currentInt;
+		inteirosStream >> currentInt;
+
+		if (inteirosStream.fail()) {
+
+			inteirosStream.clear();
+			inteirosStream.ignore(1);
+
+
+		}
+
+		else {
+
+			input = currentInt;
+			resultadoBool = true;
+			break;
+
+		}
+
+
+	}
+
+	if (!resultadoBool) {
+
+		cout << tabelaMensagemErro << endl;
+
+
+	}
+
+	return resultadoBool;
+
+
+
+
+}
+
+
+// ===========================================
+// ===========  ENUMS & MAPS =================
+// ===========================================
+
+extern const map<string, CoachType> coachTypeMap = { { "HDC", HeadCoach },
+{ "ASC", AssistantCoach },
+{ "GKC", GoalkeeperCoach },
+{ "PHT", PhysicalTrainer } };
+
+extern const map<string, Position> positionsMap = { { "GK", GoalkeeperPos },
+{ "DF", DefenderPos },
+{ "MF", MidfielderPos },
+{ "FW", ForwardPos } };
+
+extern const map<string, DefenderPosition> defendersMap = { { "CB", CenterBack },
+{ "LB", LeftBack },
+{ "RB", RightBack } };
+
+extern const map<string, MidfielderPosition> midfieldersMap = { { "CM", CentreMidfielder },
+{ "CDM", DefensiveMidfielder },
+{ "CAM", AttackingMidfielder },
+{ "LM", LeftMidfield },
+{ "RM", RightMidfield } };
+
+extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
+{ "CDM", CentreForward },
+{ "CAM", RigthWinger },
+{ "LM", LeftWinger } };

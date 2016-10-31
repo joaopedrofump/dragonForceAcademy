@@ -1,34 +1,34 @@
 #pragma once
 
-#include "Utils.hpp"
 #include "Club.hpp"
-#include "Athlete.hpp"
 
 class Match{
 	Date matchDay;
 
-	Club homeTeam;
-	Club awayTeam;
+	Club* homeTeam;
+	Club* awayTeam;
 	
 
 	vector<Athlete*> players;
 	
 public:
-	Match(Date matchDay, Club homeTeam, Club awayTeam);
+	Match(Date matchDay, Club* homeTeam, Club* awayTeam);
 	~Match();
 
 	// GETS
 
 	Date getMatchDay() const;
-	Club getHomeTeam() const;
-	Club getAwayTeam() const;
+	Club* getHomeTeam() const;
+	Club* getAwayTeam() const;
 	vector<Athlete*> getPlayers() const;
 
 	// SETS
 
 	void setMatchDay(Date newDay);
-	void setHomeTeam(Club newHomeTeam);
-	void setAwayTeam(Club newAwayTeam);
+	void setHomeTeam(Club* newHomeTeam);
+	void setAwayTeam(Club* newAwayTeam);
 	void setPlayers(vector<Athlete*> newPlayersList);
 };
+
+
 

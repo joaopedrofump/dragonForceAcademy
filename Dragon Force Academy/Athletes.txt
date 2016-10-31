@@ -1,0 +1,6 @@
+4 ; Andre Gomes ; 12/09/1998 ; 182 ; MF
+5 ; Sandro Lins ; 31/03/1998 ; 178 ; DF
+6 ; Ruben Neves ; 13/12/1997 ; 190 ; GK
+7 ; Renato Rebelo ; 20/01/1985 ; 180 ; DF
+12 ; Mariano Kepler ; 13/08/1992 ; 183 ; GK
+9 ; Cristian Muriel ; 21/06/1990 ; 175 ; MF

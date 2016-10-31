@@ -10,11 +10,12 @@
 #ifndef ECG_hpp
 #define ECG_hpp
 
-#include <stdio.h>
-
 class ECG {
+
 private:
     bool resultado;
+	Date expirationDate;
+
 public:
     ECG(bool resultado);
     ECG& setResultado(bool resultado);

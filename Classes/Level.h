@@ -1,27 +1,34 @@
 #pragma once
 
-//#include <iostream>
-//#include "Utils.hpp"
-#include "Athlete.hpp"
-#include "Trainer.hpp"
+#include "Goalkeeper.hpp"
 
 using namespace std;
 
+class Club;
 class Level
 {
 private:
 	
 	ageLevel ageLevelName;
 
-	vector<Athlete*> players;
-	vector<Trainer*> trainers;
+	vector<Coach*> trainers;
+	map<Athlete*, Info*> mapInfoSeason;
 
-	Worker* trainerResponsible;
+	Coach* mainCoach;
+
+	unsigned int minAge;
+	unsigned int maxAge;
+
+	unsigned int minHeight;
+
+	//vector<Tournament> tournaments;
+	//vector<Training> trainings;
+	//vector<Match> friendlys;
 
 public:
-    
-	Level(ageLevel ageLevelName, vector<Athlete *> playersVector, vector<Trainer*> trainersVector);
-	Level(ifstream &in);
+
+	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
+	Level(ifstream &in, string yearOfSeason, string fileClub, Club* club); 
 
 
 
