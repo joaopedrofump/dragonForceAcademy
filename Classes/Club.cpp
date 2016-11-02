@@ -268,12 +268,20 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char he
 			}
 		}
         
+        unsigned int age = athleteToAdd->getIdade();
+        
 		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
             
 		{
-			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() < currentSeason->getLevels().at(i)->getMaxAge()))
+			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() <= currentSeason->getLevels().at(i)->getMaxAge()))
 			{
                 currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
+                
+                string path = stringPath(currentSeason->getFileName() + "/" + currentSeason->getLevels().at(i)->levelName() + "/Athletes.txt");
+                ofstream saveToFile(path);
+                saveToFile << athleteToAdd->getID() << " ; " << athleteToAdd->getPosition() << " ; " << *infoAthleteToAdd;
+                
+
                 
 			}
 		}

@@ -110,13 +110,17 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 		// Read Goalkeepers specific informations
 		if (positionsMap.at(tmpAthletePos) == GoalkeeperPos) {
 
+
 			infoTmpAthlete = new InfoGK(tmpAthlete);
+
 		}
 
 		// Read Defenders specific informations
 		else if(positionsMap.at(tmpAthletePos) == DefenderPos){
 
+
 			infoTmpAthlete = new InfoDF(tmpAthlete);
+
 		}
 
 		// Read Midfielders specific informations
@@ -186,4 +190,30 @@ Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     this->mapInfoPlayers.insert(playerInfo);
     return this;
     
+}
+
+string Level::levelName() const {
+    
+    string result;
+    
+    switch (this->ageLevelName) {
+        case U13:
+            result = "U13";
+            break;
+        case U15:
+            result = "U15";
+            break;
+        case U17:
+            result = "U17";
+            break;
+        case U19:
+            result = "U19";
+            break;
+        case Seniors:
+            result = "Seniors";
+            break;
+        default:
+            break;
+    }
+    return result;
 }

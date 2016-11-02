@@ -18,8 +18,6 @@ Info::Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCard
     this->goalsScored = goalsScored;
     this->assists = assists;
     this->passAccuracy = passAccuracy;
-    
-    
 }
 
 Info::Info(string &newInfo) {
@@ -75,7 +73,15 @@ Info::Info(string &newInfo) {
 
 }
 
-Info::Info(){};
+Info::Info() {
+    this->yellowCards = 0;
+    this->redCards = 0;
+    this->tackles = 0;
+    this->fouls = 0;
+    this->goalsScored = 0;
+    this->assists = 0;
+
+};
 
 Fraction Info::getTrainingFreq() const {
     
@@ -142,12 +148,32 @@ void Info::addPassAccuracy(Fraction passAccuracy) {
     this->passAccuracy |= passAccuracy;
 }
 
+ostream& operator<<(ostream& out, const Info &info) {
+    
+    out << info.generateString();
+    return out;
+    
+}
+
+string Info::generateString() const {
+    
+    return (trainingFreq.getFrac() + " ; " + to_string(this->tackles) + " ; " + to_string(this->fouls) + " ; " + to_string(this->yellowCards) + " ; " + to_string(this->redCards) + " ; " + to_string(this->goalsScored) + " ; " + to_string(this->assists) + " ; " + this->passAccuracy.getFrac());
+    
+}
+
+void Info::save(ofstream &out) {
+    
+    out << *this;
+    
+}
+
 InfoGK::InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->saves = saves;
     this->goalsConceeded = goalsConceeded;
     
 }
+
 
 InfoGK::InfoGK(string &newInfo) : Info(newInfo) {
 
@@ -161,7 +187,11 @@ InfoGK::InfoGK(string &newInfo) : Info(newInfo) {
 
 	this->saves = tmpGKsaves;
 	this->goalsConceeded = tmpGKgoalsConceeded;
+}
 
+InfoGK::InfoGK() : Info() {
+    this->saves = 0;
+    this->goalsConceeded = 0;
 }
 
 unsigned int InfoGK::getSaves() const {
@@ -180,11 +210,18 @@ void InfoGK::addGoalsConceeded(unsigned int goalsConceeded) {
     this->goalsConceeded += goalsConceeded;
 }
 
+string InfoGK::generateString() const {
+    
+    return Info::generateString() + " ; " + to_string(this->saves) + " ; " + to_string(this->goalsConceeded);
+    
+}
+
 InfoDF::InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
     
 }
+
 
 InfoDF::InfoDF(string &newInfo) {
 
@@ -208,6 +245,13 @@ InfoDF::InfoDF(string &newInfo) {
 	this->positions = tmpDFpositions;
 }
 
+InfoDF::InfoDF() : Info() {
+    
+    vector<DefenderPosition> empty;
+    this->positions = empty;
+    
+}
+
 vector<DefenderPosition> InfoDF::getDefenderSpecificPositions() const {
     
     return this->positions;
@@ -220,6 +264,25 @@ void InfoDF::addDefenderSpecificPosition(DefenderPosition newPos) {
         this->positions.push_back(newPos);
     }
     
+}
+
+string InfoDF::generateString() const {
+    
+    string positionsString;
+    
+    if(this->positions.size() > 0) {
+        
+        positionsString = this->positions.at(0);
+        
+    }
+    
+    for (size_t i = 1; i < this->positions.size(); i++) {
+        
+        positionsString += (" , " + to_string(this->positions.at(i)));
+        
+    }
+    
+    return Info::generateString() + " ; " + positionsString;
 }
 
 InfoMF::InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
@@ -250,6 +313,13 @@ InfoMF::InfoMF(string &newInfo) {
 	this->positions = tmpMFpositions;
 }
 
+InfoMF::InfoMF() : Info() {
+    
+    vector<MidfielderPosition> empty;
+    this->positions = empty;
+    
+}
+
 vector<MidfielderPosition> InfoMF::getMidfielderSpecificPositions() const {
     
     return this->positions;
@@ -263,11 +333,31 @@ void InfoMF::addMidfielderSpecificPosition(MidfielderPosition newPos) {
     }
 }
 
+string InfoMF::generateString() const {
+    
+    string positionsString;
+    
+    if(this->positions.size() > 0) {
+        
+        positionsString = this->positions.at(0);
+        
+    }
+    
+    for (size_t i = 1; i < this->positions.size(); i++) {
+        
+        positionsString += (" , " + to_string(this->positions.at(i)));
+        
+    }
+    
+    return Info::generateString() + " ; " + positionsString;
+}
+
 InfoFW::InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
     
 }
+
 
 InfoFW::InfoFW(string &newInfo) {
 
@@ -291,6 +381,13 @@ InfoFW::InfoFW(string &newInfo) {
 	this->positions = tmpFWpositions;
 }
 
+InfoFW::InfoFW() : Info() {
+    
+    vector<ForwardPosition> empty;
+    this->positions = empty;
+    
+}
+
 vector<ForwardPosition> InfoFW::getForwardSpecificPositions() const {
     
     return this->positions;
@@ -301,4 +398,23 @@ void InfoFW::addAttackerSpecificPosition(ForwardPosition newPos) {
     if(find(this->positions.begin(), this->positions.end(), newPos) == this->positions.end()) {
         this->positions.push_back(newPos);
     }
+}
+
+string InfoFW::generateString() const {
+    
+    string positionsString;
+    
+    if(this->positions.size() > 0) {
+        
+        positionsString = this->positions.at(0);
+        
+    }
+    
+    for (size_t i = 1; i < this->positions.size(); i++) {
+        
+        positionsString += (" , " + to_string(this->positions.at(i)));
+        
+    }
+    
+    return Info::generateString() + " ; " + positionsString;
 }

@@ -159,6 +159,7 @@ public:
 
 	void print(bool originalFraction = true) const;
 	void printPercentage() const;
+    string getFrac() const;
 };
 
 // ===========================================

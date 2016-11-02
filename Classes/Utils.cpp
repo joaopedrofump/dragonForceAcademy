@@ -813,6 +813,11 @@ void Fraction::printPercentage() const {
 	cout << fixed << setprecision(2) << 100 * number << "%";
 }
 
+string Fraction::getFrac() const {
+    
+    return (to_string(this->numerator) + "/" +  to_string(this->denominator));
+}
+
 // ===========================================
 // ==============  FUNCTIONS  ================
 // ===========================================

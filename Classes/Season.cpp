@@ -36,3 +36,8 @@ vector<Level*> Season::getLevels() const
 	return levels;
 }
 
+string Season::getFileName() const {
+    
+    return this->fileName;
+    
+}

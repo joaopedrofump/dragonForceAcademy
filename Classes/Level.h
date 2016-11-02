@@ -35,6 +35,7 @@ public:
 	char getMinHeight() const;
     map<unsigned int, Info*> getMapInfoPlayers() const;
     Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
+    string levelName() const;
 
 
 };
