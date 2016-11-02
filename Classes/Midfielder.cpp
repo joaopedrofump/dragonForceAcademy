@@ -15,6 +15,8 @@ Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsign
     }
 }
 
+Midfielder::Midfielder(string &newMF) : Athlete(newMF, MidfielderPos) {}
+
 Midfielder::~Midfielder() {
     
     cout << "Midfielder destroyed\n" << endl;

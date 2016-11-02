@@ -28,4 +28,6 @@ public:
 
 	//void showAthletes(bool onlyActives = false) const;
 
+	void saveChanges();
+
 };

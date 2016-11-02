@@ -22,11 +22,17 @@ protected:
 
 public:
     Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id = 0);
-	Athlete(ifstream &in);
+
+	Athlete(string &newAthlete, Position position);
+
     ~Athlete();
-    virtual Position getPosition() const = 0;
-	unsigned char getHeight() const;
+
+    unsigned int getPosition() const;
+
+	unsigned int getHeight() const;
+
     void addECG(bool resultado);
+
 	bool isAthlete() const;
 };
 

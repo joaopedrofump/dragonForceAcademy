@@ -15,6 +15,8 @@ Defender::Defender(string name, Date birthdate, unsigned char height, unsigned i
     }
 }
 
+Defender::Defender(string &newDF) : Athlete(newDF, DefenderPos) {}
+
 
 Defender::~Defender() {
     cout << "Defender destroyed" << endl;

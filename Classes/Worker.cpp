@@ -14,6 +14,7 @@ Worker::Worker(string name, Date birthdate, unsigned int id) {
     
     this->name = name;
     this->birthdate = birthdate;
+	this->status = true;
 
 	if (id == 0) {
 		this->id = ++workersCounter;
@@ -23,6 +24,13 @@ Worker::Worker(string name, Date birthdate, unsigned int id) {
 	}
 	//Fazer id com o static wrkersCounter
     
+}
+
+Worker::Worker() {
+	this->birthdate = Date(1, 1, 1950);
+	this->id = 0;
+	this->name = "Initial Name";
+	this->status = true;
 }
 
 Worker::~Worker() {
@@ -41,6 +49,14 @@ bool Worker::operator==(Worker* worker) const {
 	return false;
 }
 
+void Worker::setId(unsigned int newId) {
+
+	this->id = newId;
+
+	if (newId > workersCounter)
+		workersCounter = newId;
+
+}
 
 void Worker::setStatus(bool newStatus) {
 
@@ -58,4 +74,8 @@ Date Worker::getBirthdate() const {
     
      return this->birthdate;
     
+}
+
+string Worker::getName() const {
+	return this->name;
 }

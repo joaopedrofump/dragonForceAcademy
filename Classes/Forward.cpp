@@ -7,6 +7,8 @@ Forward::Forward(string name, Date birthdate, unsigned char height, unsigned int
     }
 }
 
+Forward::Forward(string &newFW) : Athlete(newFW, ForwardPos) {}
+
 Forward::~Forward()
 {
 	cout << "Forward destroyed\n" << endl;

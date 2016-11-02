@@ -9,6 +9,7 @@ private:
 
 public:
 	Forward(string name, Date birthdate, unsigned char height, unsigned id = 0);
+	Forward(string &newFW);
     ~Forward();
 	Position getPosition() const;
 	unsigned int getID() const;

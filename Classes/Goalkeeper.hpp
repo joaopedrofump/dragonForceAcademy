@@ -19,6 +19,7 @@ private:
         
 public:
     Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int = 0);
+	Goalkeeper(string &newGK);
     ~Goalkeeper();
     Position getPosition() const;
     unsigned int getID() const;

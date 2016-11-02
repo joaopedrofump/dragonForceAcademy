@@ -18,6 +18,7 @@ private:
     //DefenderPosition detailedPosition;
 public:
     Defender(string name, Date birthdate, unsigned char height, unsigned int = 0);
+	Defender(string &newDF);
     ~Defender();
     Position getPosition() const;
     unsigned int getID() const;

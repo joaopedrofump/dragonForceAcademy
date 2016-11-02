@@ -19,6 +19,7 @@ private:
     
 public:
     Midfielder(string name, Date birthdate, unsigned char height, unsigned int id = 0);
+	Midfielder(string &newMF);
     ~Midfielder();
     Position getPosition() const;
     unsigned int getID() const;

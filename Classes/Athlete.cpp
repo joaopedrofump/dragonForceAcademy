@@ -19,6 +19,26 @@ Athlete::Athlete(string name, Date birthdate, unsigned char height, Position pos
     }
 }
 
+Athlete::Athlete(string &newAthlete, Position position) : position(position) {
+
+	string newAthleteName = newAthlete.substr(0, newAthlete.find(';', 0));
+
+	newAthlete = newAthlete.substr(newAthlete.find(';', 0) + 2);
+
+	Date newAthleteBirthdate = Date(newAthlete.substr(0, newAthlete.find(';', 0)));
+
+	newAthlete = newAthlete.substr(newAthlete.find(';', 0) + 2);
+
+	unsigned int newAthleteHeigth = atoi(newAthlete.c_str());
+
+
+	this->name = newAthleteName;
+	this->birthdate = newAthleteBirthdate;
+	this->height = newAthleteHeigth;
+}
+
+
+
 Athlete::~Athlete() {
     
     if(this->ecg) {
@@ -38,6 +58,11 @@ bool Athlete::isAthlete() const {
 	return true;
 
 }
-unsigned char Athlete::getHeight() const {
+
+unsigned int Athlete::getPosition() const {
+	return position;
+}
+
+unsigned int Athlete::getHeight() const {
 	return height;
 }
