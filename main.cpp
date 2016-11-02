@@ -29,8 +29,10 @@ int main(int argc, const char * argv[]) {
         
         initialInfo(club);
         Club currProgramClub(club);
-        currProgramClub.addPlayer(DefenderPos, "Joao Pedro", Date(10,12,1991), 178);
-        currProgramClub.addPlayer(GoalkeeperPos, "Leo", Date(23,04,2003), 178);
+        currProgramClub.addPlayer(DefenderPos, "Joao Pedro", Date(10,02,1991), 178);
+        currProgramClub.addPlayer(GoalkeeperPos, "Leo", Date(23,04,1991), 190);
+		currProgramClub.addPlayer(MidfielderPos, "Inacio Correia", Date(21, 05, 1991), 160);
+		currProgramClub.addPlayer(GoalkeeperPos, "Manuel Gomes", Date(12, 1, 1991), 166);
         initialOptions(currProgramClub);
         
         

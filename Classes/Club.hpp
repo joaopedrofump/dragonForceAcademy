@@ -1,7 +1,8 @@
 #pragma once
 
+#include "Goalkeeper.hpp"
 
-#include "Season.hpp"
+class Season;
 
 extern const map<string, CoachType> coachTypeMap;
 
@@ -27,5 +28,7 @@ public:
 	map<unsigned int, Worker*> getCoaches() const;
 
 	//void showAthletes(bool onlyActives = false) const;
+
+	void saveChanges();
 
 };

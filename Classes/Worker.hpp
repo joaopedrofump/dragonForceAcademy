@@ -51,7 +51,9 @@ public:
      \param birthdate the worker birthdate.
      */
     Worker(string name, Date birthdate, unsigned int id = 0);
-    //! Worker constructor.
+	//! Worker empty constructor.
+	Worker();
+    //! Abstract method - get the worker id.
     /*!
      This is an abstract method to make this class abstract
      */
@@ -68,12 +70,35 @@ public:
 	This is the set status function that actualize the status atribute
 	*/
 	void setStatus(bool newStatus);
+	/*!
+	This is the set ID function that actualize the ID atribute
+	*/
+	void setId(unsigned int newId);
+
+	
 
     ~Worker();
+
+	//====== GETTERS =============
 	unsigned int getIdade() const;
     
     Date getBirthdate() const;
+    
+    virtual Info* getInfo() const { Info* res = new Info(); return res;};
+    virtual void addInfo(Info* moreInfo){};
+    
+    friend ostream& operator<<(ostream& out, const Worker &worker);
+	virtual string generateInfo() const { return ""; };
 
+	string getName() const;
+	/*!
+	This is an abstract method to get the athlete or coach position
+	*/
+	virtual unsigned int getPosition() const = 0;
+	/*!
+	This is an abstract method to get the athlete height
+	*/
+	virtual unsigned int getHeight() const = 0;
 
 
 };

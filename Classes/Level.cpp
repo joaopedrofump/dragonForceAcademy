@@ -1,16 +1,8 @@
 #include "Level.h"
 
-//#include "Club.hpp"
+#include "Club.hpp"
 
-/*Level::Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason) {
-
-	this->ageLevelName = ageLevelName;
-	this->trainers = coachesVector;
-	this->mapInfoSeason = mapInfoSeason;
-
-}*/
-
-Level::Level(string yearOfSeason, string fileClub, string levelName) {
+Level::Level(string yearOfSeason, string fileClub, string levelName, Club* parentClub) {
 
     if(levelName == "U13") {
         
@@ -108,7 +100,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 		Info* infoTmpAthlete;
 
 		// Read Goalkeepers specific informations
-		if (positionsMap.at(tmpAthletePos) == GoalkeeperPos) {
+		if (stoi(tmpAthletePos) == GoalkeeperPos) {
 
 
 			infoTmpAthlete = new InfoGK(tmpAthlete);
@@ -116,7 +108,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 		}
 
 		// Read Defenders specific informations
-		else if(positionsMap.at(tmpAthletePos) == DefenderPos){
+		else if(stoi(tmpAthletePos) == DefenderPos){
 
 
 			infoTmpAthlete = new InfoDF(tmpAthlete);
@@ -124,19 +116,22 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 		}
 
 		// Read Midfielders specific informations
-		else if(positionsMap.at(tmpAthletePos) == MidfielderPos) {
+		else if(stoi(tmpAthletePos) == MidfielderPos) {
 
 			infoTmpAthlete = new InfoMF(tmpAthlete);
 		}
 
 		// Read Forwards specific informations
-		else if (positionsMap.at(tmpAthletePos) == ForwardPos) {
+		else if (stoi(tmpAthletePos) == ForwardPos) {
 
 			infoTmpAthlete = new InfoFW(tmpAthlete);
 		}
 			
 
 		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
+        
+        Worker* thisWorker = parentClub->getAthletes().at(tmpAthleteId);
+        thisWorker->addInfo(infoTmpAthlete);
 
 	}
 

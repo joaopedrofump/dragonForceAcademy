@@ -14,14 +14,14 @@
 
 class Midfielder : public Athlete {
 private:
-    unsigned int goalsScored;
-	//MidfielderPosition detailedPosition;
-    
+    Info* generalInfo;
 public:
     Midfielder(string name, Date birthdate, unsigned char height, unsigned int id = 0);
+	Midfielder(string &newMF);
     ~Midfielder();
-    Position getPosition() const;
     unsigned int getID() const;
+    Info* getInfo() const;
+    void addInfo(Info* moreInfo);
     
 };
 

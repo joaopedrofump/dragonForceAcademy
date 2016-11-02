@@ -11,7 +11,15 @@ private:
 
 public:
 	Coach(string name, Date birthdate, CoachType coachRole, unsigned int id = 0);
-	Coach(ifstream &in);
+	Coach(string &newCoach);
 	unsigned int getID() const;
 	bool isAthlete() const;
+
+	unsigned int getPosition() const;
+	unsigned int getHeight() const;
+
+    Info* getInfo() const { Info* res = new Info(); return res;};
+    void addInfo(Info* moreInfo){};
+
+    string generateInfo() const;
 };

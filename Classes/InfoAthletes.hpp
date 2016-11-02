@@ -70,7 +70,8 @@ public:
     friend ostream& operator<<(ostream& out, const Info &info);
     virtual string generateString() const;
     virtual void save (ofstream& out);
-    
+    void sumGeneralInfo(const Info &info2);
+    virtual void operator+=(const Info* info2){};
     
 };
 
@@ -88,7 +89,8 @@ public:
     unsigned int  getGoalsConceeded() const;
     void addGoalsConceeded(unsigned int goalsConceeded);
     string generateString() const;
-
+    void operator+=(const Info* info2);
+    
 };
 
 class InfoDF : public Info {
@@ -101,6 +103,7 @@ public:
     vector<DefenderPosition> getDefenderSpecificPositions() const;
     void addDefenderSpecificPosition(DefenderPosition newPos);
     string generateString() const;
+    void operator+=(const Info* info2);
 };
 
 class InfoMF : public Info {
@@ -116,6 +119,7 @@ public:
     vector<MidfielderPosition> getMidfielderSpecificPositions() const;
     void addMidfielderSpecificPosition(MidfielderPosition newPos);
     string generateString() const;
+    void operator+=(const Info* info2);
 };
 
 class InfoFW : public Info {
@@ -129,6 +133,7 @@ public:
     vector<ForwardPosition> getForwardSpecificPositions() const;
     void addAttackerSpecificPosition(ForwardPosition newPos);
     string generateString() const;
+    void operator+=(const Info* info2);
 };
 
 #endif /* InfoAthletes_hpp */
