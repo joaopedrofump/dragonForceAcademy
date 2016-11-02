@@ -1,7 +1,8 @@
 #pragma once
 
+#include "Goalkeeper.hpp"
 
-#include "Season.hpp"
+class Season;
 
 extern const map<string, CoachType> coachTypeMap;
 

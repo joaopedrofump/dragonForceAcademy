@@ -8,11 +8,14 @@
 
 #include "Defender.hpp"
 
-Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, DefenderPos, id) {
+Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
     
     if (id != 0) {
         this->id = id;
     }
+    
+    this->position = DefenderPos;
+    this->generalInfo = new InfoDF();
 }
 
 
@@ -29,5 +32,15 @@ Position Defender::getPosition() const {
 unsigned int Defender::getID() const{
     
     return this->id;
+    
+}
+
+Info* Defender::getInfo() const {
+    return this->generalInfo;
+}
+
+void Defender::addInfo(Info* moreInfo) {
+    
+    *(this->generalInfo) += moreInfo;
     
 }

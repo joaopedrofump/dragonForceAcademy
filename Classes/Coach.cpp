@@ -18,3 +18,9 @@ bool Coach::isAthlete() const {
 
 	return false;
 }
+
+string Coach::generateInfo() const {
+    
+    return (to_string(this->getID()) + " ; " + this->name + " ; " + this->getBirthdate().showDate() + " ; " + to_string(this->trainerPosition));
+    
+}

@@ -148,7 +148,7 @@ public:
 	//  Operations as Ratio
 
 	Fraction operator|(Fraction value) const;
-	void operator|=(Fraction &value);
+	void operator|=(const Fraction &value);
 
 	Fraction& operator++();
 	Fraction operator++(int);

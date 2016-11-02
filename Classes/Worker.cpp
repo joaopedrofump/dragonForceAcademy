@@ -59,3 +59,10 @@ Date Worker::getBirthdate() const {
      return this->birthdate;
     
 }
+
+ostream& operator<<(ostream& out, const Worker &worker) {
+    
+    out << worker.generateInfo();
+    return out;
+    
+}

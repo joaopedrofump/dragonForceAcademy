@@ -2,12 +2,9 @@
 
 #include "Goalkeeper.hpp"
 
-using namespace std;
+class Club;
 
-
-//class Club;
-class Level
-{
+class Level {
 private:
 	
 	ageLevel ageLevelName;
@@ -29,7 +26,7 @@ private:
 public:
 
 	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
-	Level(string yearOfSeason, string fileClub, string levelName);
+	Level(string yearOfSeason, string fileClub, string levelName, Club* parentClub);
 	unsigned int getMinAge() const;
 	unsigned int getMaxAge() const;
 	char getMinHeight() const;

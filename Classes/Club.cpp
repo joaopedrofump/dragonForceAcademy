@@ -1,6 +1,6 @@
 #include "Club.hpp"
 
-//#include "Season.hpp"
+#include "Season.hpp"
 //#include "Level.h"
 
 Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(seasonsVector) {}
@@ -157,7 +157,7 @@ Club::Club(string fileClub) {
             continue;
         }
         
-		Season* actualSeason = new Season(seasonName, path() + fileClub);
+		Season* actualSeason = new Season(seasonName, path() + fileClub, this);
 
 		this->seasons.push_back(actualSeason);
 	}
@@ -267,8 +267,6 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char he
 				break;
 			}
 		}
-        
-        unsigned int age = athleteToAdd->getIdade();
         
 		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
             

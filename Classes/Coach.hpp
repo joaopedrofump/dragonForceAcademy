@@ -14,4 +14,7 @@ public:
 	Coach(ifstream &in);
 	unsigned int getID() const;
 	bool isAthlete() const;
+    Info* getInfo() const { Info* res = new Info(); return res;};
+    void addInfo(Info* moreInfo){};
+    string generateInfo() const;
 };

@@ -8,11 +8,10 @@
 
 #include "Athlete.hpp"
 
-Athlete::Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id) : Worker(name, birthdate, id) {
+Athlete::Athlete(string name, Date birthdate, unsigned char height, unsigned int id) : Worker(name, birthdate, id) {
     
     this->height = height;
     this->ecg = NULL;
-	this->position = position;
 
 	if (id != 0) {
         this->id = id;
@@ -40,4 +39,10 @@ bool Athlete::isAthlete() const {
 }
 unsigned char Athlete::getHeight() const {
 	return height;
+}
+
+string Athlete::generateInfo() const {
+    
+    return (to_string(this->getID()) + " ; " + to_string(this->getPosition()) + " ; " + this->name + " ; " + this->getBirthdate().showDate() + " ; " + to_string(this->height));
+    
 }

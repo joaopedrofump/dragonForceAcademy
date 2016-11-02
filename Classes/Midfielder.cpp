@@ -8,11 +8,14 @@
 
 #include "Midfielder.hpp"
 
-Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, MidfielderPos, id) {
+Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
 
     if (id != 0) {
         this->id = id;
     }
+    
+    this->position = MidfielderPos;
+    this->generalInfo = new InfoMF();
 }
 
 Midfielder::~Midfielder() {
@@ -29,5 +32,15 @@ Position Midfielder::getPosition() const {
 unsigned int Midfielder::getID() const {
     
     return this->id;
+    
+}
+
+Info* Midfielder::getInfo() const {
+    return this->generalInfo;
+}
+
+void Midfielder::addInfo(Info* moreInfo) {
+    
+    *(this->generalInfo) += moreInfo;
     
 }

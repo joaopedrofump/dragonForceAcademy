@@ -14,14 +14,15 @@
 
 class Goalkeeper : public Athlete {
 private:
-    unsigned int goalsConceded;
-    unsigned int saves;
+    Info* generalInfo;
         
 public:
     Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int = 0);
     ~Goalkeeper();
     Position getPosition() const;
     unsigned int getID() const;
+    Info* getInfo() const;
+    void addInfo(Info* moreInfo);
 
 };
 
