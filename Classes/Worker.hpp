@@ -10,7 +10,7 @@
 #ifndef Worker_hpp
 #define Worker_hpp
 
-#include "Utils.hpp"
+#include "InfoAthletes.hpp"
 
 using namespace std;
 
@@ -70,6 +70,10 @@ public:
 	void setStatus(bool newStatus);
 
     ~Worker();
+	unsigned int getIdade() const;
+    
+    Date getBirthdate() const;
+
 
 
 };

@@ -1,0 +1,115 @@
+//
+//  InfoAthletes.hpp
+//  DragonForceAcademy
+//
+//  Created by Joao Furriel on 02/11/16.
+//  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
+//
+
+#ifndef InfoAthletes_hpp
+#define InfoAthletes_hpp
+
+#include <stdio.h>
+#include "Utils.hpp"
+
+class Info {
+protected:
+    Fraction trainingFreq;
+    unsigned int yellowCards;
+    unsigned int redCards;
+    unsigned int tackles;
+    unsigned int fouls;
+    unsigned int goalsScored;
+    unsigned int assists;
+    Fraction passAccuracy;
+public:
+    Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
+    Info();
+    Fraction getTrainingFreq() const;
+    void addTraining(Fraction newTraining);
+    unsigned int getYellowCards() const;
+    unsigned int getRedCards() const;
+    void addYellowCard();
+    void addRedCard();
+    unsigned int  getTackles() const;
+    void addTackles(unsigned int tackles);
+    unsigned int  getFouls() const;
+    void addFouls(unsigned int fouls);
+    unsigned int getGoalsScored() const;
+    void addGoalsScored(unsigned int goalsScored);
+    unsigned int getAssists() const;
+    void addAssists(unsigned int assists);
+    Fraction getPassAccuracy() const;
+    void addPassAccuracy(Fraction passAccuracy);
+    
+    virtual unsigned int getSaves() const;
+    virtual void addSaves(unsigned int saves);
+    
+    virtual unsigned int getGoalsConceeded() const;
+    virtual void addGoalsConceeded(unsigned int goalsConceeded);
+    
+    virtual vector<DefenderPosition> getDefenderSpecificPositions() const;
+    virtual void addDefenderSpecificPosition(DefenderPosition newPos);
+    
+    virtual vector<MidfielderPosition> getMidfielderSpecificPositions() const;
+    virtual void addMidfielderSpecificPosition(MidfielderPosition newPos);
+    
+    virtual vector<ForwardPosition> getForwardSpecificPositions() const;
+    virtual void addAttackerSpecificPosition(ForwardPosition newPos);
+};
+
+class InfoGK : public Info {
+protected:
+    unsigned int saves;
+    unsigned int goalsConceeded;
+    
+public:
+    InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
+    InfoGK(){};
+    unsigned int getSaves() const;
+    void addSaves(unsigned int saves);
+    unsigned int  getGoalsConceeded() const;
+    void addGoalsConceeded(unsigned int goalsConceeded);
+};
+
+class InfoDF : public Info {
+protected:
+    vector<DefenderPosition> positions;
+public:
+    InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
+    
+    InfoDF(){};
+    vector<DefenderPosition> getDefenderSpecificPositions() const;
+    void addDefenderSpecificPosition(DefenderPosition newPos);
+
+    
+};
+
+class InfoMF : public Info {
+protected:
+    vector<MidfielderPosition> positions;
+public:
+    InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
+    
+    InfoMF(){};
+    
+    //pass accuracy
+    
+    vector<MidfielderPosition> getMidfielderSpecificPositions() const;
+    void addMidfielderSpecificPosition(MidfielderPosition newPos);
+
+};
+
+class InfoFW : public Info {
+protected:
+
+    vector<ForwardPosition> positions;
+public:
+    InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
+    
+    InfoFW(){};
+    vector<ForwardPosition> getForwardSpecificPositions() const;
+    void addAttackerSpecificPosition(ForwardPosition newPos);
+};
+
+#endif /* InfoAthletes_hpp */

@@ -45,4 +45,17 @@ bool Worker::operator==(Worker* worker) const {
 void Worker::setStatus(bool newStatus) {
 
 	this->status = newStatus;
+
+}
+
+unsigned int Worker::getIdade() const {
+	
+    return Date(true) - this->birthdate;
+
+}
+
+Date Worker::getBirthdate() const {
+    
+     return this->birthdate;
+    
 }

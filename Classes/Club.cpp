@@ -183,7 +183,7 @@ map<unsigned int, Worker*> Club::getAthletes() const {
 
 	map<unsigned int, Worker*> result;
 
-	for (size_t i = 0; i < getWorkers().size(); i++) {
+	for (unsigned int i = 0; i < getWorkers().size(); i++) {
 
 		if (getWorkers().at(i)->isAthlete()) {
 			result.insert(pair<unsigned int, Worker*>(getWorkers().at(i)->getID(), getWorkers().at(i)));
@@ -197,7 +197,7 @@ map<unsigned int, Worker*> Club::getCoaches() const {
 
 	map<unsigned int, Worker*> result;
 
-	for (size_t i = 0; i < getWorkers().size(); i++) {
+	for (unsigned int i = 0; i < getWorkers().size(); i++) {
 
 		if (!getWorkers().at(i)->isAthlete()) {
 			result.insert(pair<unsigned int, Worker*>(getWorkers().at(i)->getID(), getWorkers().at(i)));
@@ -207,4 +207,82 @@ map<unsigned int, Worker*> Club::getCoaches() const {
 	return result;
 }
 
+void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char height) {
+	Date currentDate(true);
+	Season* currentSeason = 0;
+	Athlete* athleteToAdd = 0;
+    Info* infoAthleteToAdd = 0;
+    
+    //mudar estrutura do try
+    
+//    if (1) {
+//        
+//        try {
+//            
+//            
+//            
+//        }
+//        
+//        catch(...){}
+//        
+//    }
+//    
+//    else {
+//        
+//        throw string("cannot add player with unkwnown position");
+//    }
+
+	try
+	{
+		if (pos == 1)
+		{
+			athleteToAdd = new Goalkeeper(name, birthdate, height);
+            infoAthleteToAdd = new InfoGK();
+			
+		}
+		else if (pos == 2)
+		{
+			athleteToAdd = new Defender(name, birthdate, height);
+            infoAthleteToAdd = new InfoDF();
+		
+		}
+		else if (pos == 3)
+		{
+			athleteToAdd = new Midfielder(name, birthdate, height);
+            infoAthleteToAdd = new InfoMF();
+		}
+		else if (pos == 4)
+		{
+			athleteToAdd = new Forward(name, birthdate, height);
+            infoAthleteToAdd = new InfoFW();
+		}
+		
+		allWorkers.insert(pair<unsigned int, Worker*>(athleteToAdd->getID(), athleteToAdd));
+
+		for (unsigned int i = 0; i < seasons.size(); i++)
+		{
+			if (currentDate.getYear() == seasons.at(i)->getYear())
+			{
+				currentSeason = seasons.at(i);
+				break;
+			}
+		}
+        
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
+            
+		{
+			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() < currentSeason->getLevels().at(i)->getMaxAge()))
+			{
+                currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
+                
+			}
+		}
+	
+	}
+	/*to be completed*/
+	catch (...)	{
+		
+	}
+
+}
 

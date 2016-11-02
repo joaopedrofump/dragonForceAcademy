@@ -3,6 +3,11 @@
 //#include "Club.hpp"
 
 
+Season::Season(unsigned int year, vector<Level*> levelsVector){
+	this->year = year;
+	this->levels = levelsVector;
+}
+
 Season::Season(string seasonName, string fileClub) {
     
     this->year = stoi(seasonName);
@@ -20,5 +25,14 @@ Season::Season(string seasonName, string fileClub) {
     this->levels.push_back(levelu19);
     this->levels.push_back(seniors);
     
+}
+unsigned int Season::getYear() const
+{
+	return year;
+}
+
+vector<Level*> Season::getLevels() const
+{
+	return levels;
 }
 

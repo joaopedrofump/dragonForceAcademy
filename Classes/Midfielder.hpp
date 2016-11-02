@@ -10,7 +10,7 @@
 #ifndef Midfielder_hpp
 #define Midfielder_hpp
 
-#include "Athlete.hpp"
+#include "Forward.hpp"
 
 class Midfielder : public Athlete {
 private:

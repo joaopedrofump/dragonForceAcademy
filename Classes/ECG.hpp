@@ -9,7 +9,7 @@
 
 #ifndef ECG_hpp
 #define ECG_hpp
-#include "Utils.hpp"
+#include "InfoAthletes.hpp"
 
 class ECG {
 

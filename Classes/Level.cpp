@@ -278,7 +278,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 
 		
 
-		this->mapInfoSeason.insert({ tmpAthleteId, infoTmpAthlete });
+		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
 
 	}
 
@@ -302,4 +302,34 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 	}
 
 	inStreamLevel.close();
+
+}
+
+unsigned int Level::getMinAge() const
+{
+	return minAge;
+}
+
+unsigned int Level::getMaxAge() const
+{
+	return maxAge;
+}
+
+char Level::getMinHeight() const
+{
+	return minHeight;
+
+}
+
+map<unsigned int, Info*> Level::getMapInfoPlayers() const{
+    
+    return this->mapInfoPlayers;
+    
+}
+
+Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
+    
+    this->mapInfoPlayers.insert(playerInfo);
+    return this;
+    
 }

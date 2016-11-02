@@ -13,6 +13,13 @@ Athlete::Athlete(string name, Date birthdate, unsigned char height, Position pos
     this->height = height;
     this->ecg = NULL;
 	this->position = position;
+
+	if (id == 0) {
+		this->id = ++Worker::workersCounter;
+	}
+	else {
+		this->id = id;
+	}
     
 }
 
@@ -33,4 +40,8 @@ void Athlete::addECG(bool resultado) {
 bool Athlete::isAthlete() const {
 
 	return true;
+
+}
+unsigned char Athlete::getHeight() const {
+	return height;
 }

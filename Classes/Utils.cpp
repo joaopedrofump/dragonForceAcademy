@@ -274,6 +274,29 @@ ostream& operator<<(ostream& out, const Date &data) {
     return out;
 }
 
+unsigned int operator-(const Date &date1, const Date &date2)
+{
+	
+	if (date2.getMonth() > date1.getMonth())
+	{
+		return (date1.getYear() - date2.getYear() - 1);
+	}
+
+	if (date2.getMonth() == date1.getMonth())
+	{
+		if (date2.getDay() > date1.getDay())
+		{
+			return (date1.getYear() - date2.getYear() - 1);
+		}
+		else
+		{
+			return (date1.getYear() - date2.getYear());
+		}
+	}
+    
+    return date1.getYear() - date2.getYear();
+}
+
 string Date::showDate() const {
     
     string finalDate = "";
@@ -1080,3 +1103,5 @@ string stringPath(string originalStr) {
     return result;
     
 }
+
+
