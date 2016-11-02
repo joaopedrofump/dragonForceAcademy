@@ -14,14 +14,15 @@
 
 class Defender : public Athlete {
 private:
-    unsigned int goalsScored;
-    //DefenderPosition detailedPosition;
+    Info* generalInfo;
+    
 public:
     Defender(string name, Date birthdate, unsigned char height, unsigned int = 0);
 	Defender(string &newDF);
     ~Defender();
-    Position getPosition() const;
     unsigned int getID() const;
+    Info* getInfo() const;
+    void addInfo(Info* moreInfo);
     
 };
     

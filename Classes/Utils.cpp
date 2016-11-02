@@ -762,7 +762,7 @@ Fraction Fraction::operator|(Fraction value) const {
 
 }
 
-void Fraction::operator|=(Fraction &value) {
+void Fraction::operator|=(const Fraction &value) {
 	this->numerator = numerator + value.numerator;
 	this->denominator = denominator + value.denominator;
 }

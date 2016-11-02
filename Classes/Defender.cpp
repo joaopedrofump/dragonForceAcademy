@@ -8,11 +8,14 @@
 
 #include "Defender.hpp"
 
-Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, DefenderPos, id) {
+Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
     
     if (id != 0) {
         this->id = id;
     }
+    
+    this->position = DefenderPos;
+    this->generalInfo = new InfoDF();
 }
 
 Defender::Defender(string &newDF) : Athlete(newDF, DefenderPos) {}
@@ -22,14 +25,24 @@ Defender::~Defender() {
     cout << "Defender destroyed" << endl;
 }
 
-Position Defender::getPosition() const {
+/*Position Defender::getPosition() const {
     
     return DefenderPos;
     
-}
+}*/
 
 unsigned int Defender::getID() const{
     
     return this->id;
+    
+}
+
+Info* Defender::getInfo() const {
+    return this->generalInfo;
+}
+
+void Defender::addInfo(Info* moreInfo) {
+    
+    *(this->generalInfo) += moreInfo;
     
 }

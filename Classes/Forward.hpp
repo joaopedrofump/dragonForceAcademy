@@ -5,13 +5,14 @@
 class Forward : public Athlete
 {
 private:
-	unsigned int goalsScored;
+    Info* generalInfo;
 
 public:
 	Forward(string name, Date birthdate, unsigned char height, unsigned id = 0);
 	Forward(string &newFW);
     ~Forward();
-	Position getPosition() const;
 	unsigned int getID() const;
+    Info* getInfo() const;
+    void addInfo(Info* moreInfo);
 
 };

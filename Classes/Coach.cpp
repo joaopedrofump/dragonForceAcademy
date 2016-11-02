@@ -49,3 +49,9 @@ unsigned int Coach::getPosition() const {
 unsigned int Coach::getHeight() const {
 	return 0;
 }
+
+string Coach::generateInfo() const {
+    
+    return (to_string(this->getID()) + " ; " + this->name + " ; " + this->getBirthdate().showDate() + " ; " + to_string(this->trainerPosition));
+    
+}

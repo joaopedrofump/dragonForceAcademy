@@ -167,6 +167,20 @@ void Info::save(ofstream &out) {
     
 }
 
+void Info::sumGeneralInfo(const Info &info2) {
+    
+    this->trainingFreq |= info2.getTrainingFreq();
+    this->tackles += info2.getTackles();
+    this->fouls += info2.getFouls();
+    this->yellowCards += info2.getYellowCards();
+    this->redCards += info2.getRedCards();
+    this->goalsScored += info2.getGoalsScored();
+    this->assists += info2.getAssists();
+    
+}
+
+
+
 InfoGK::InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->saves = saves;
@@ -215,6 +229,15 @@ string InfoGK::generateString() const {
     return Info::generateString() + " ; " + to_string(this->saves) + " ; " + to_string(this->goalsConceeded);
     
 }
+
+void InfoGK::operator+=(const Info* info2) {
+    
+    this->sumGeneralInfo(*info2);
+    this->addSaves(info2->getSaves());
+    this->addGoalsConceeded(info2->getGoalsConceeded());
+    
+}
+
 
 InfoDF::InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
@@ -285,6 +308,21 @@ string InfoDF::generateString() const {
     return Info::generateString() + " ; " + positionsString;
 }
 
+void InfoDF::operator+=(const Info* info2) {
+    
+    this->sumGeneralInfo(*info2);
+    
+    for(size_t i = 0; i < info2->getDefenderSpecificPositions().size();i++) {
+        
+        if(find(this->getDefenderSpecificPositions().begin(), this->getDefenderSpecificPositions().end(), info2->getDefenderSpecificPositions().at(i)) == this->getDefenderSpecificPositions().end()) {
+            
+            this->Info::addDefenderSpecificPosition(info2->getDefenderSpecificPositions().at(i));
+            
+        }
+    }
+    
+}
+
 InfoMF::InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
@@ -352,6 +390,21 @@ string InfoMF::generateString() const {
     return Info::generateString() + " ; " + positionsString;
 }
 
+void InfoMF::operator+=(const Info* info2) {
+    
+    this->sumGeneralInfo(*info2);
+    
+    for(size_t i = 0; i < info2->getMidfielderSpecificPositions().size();i++) {
+        
+        if(find(this->getMidfielderSpecificPositions().begin(), this->getMidfielderSpecificPositions().end(), info2->getMidfielderSpecificPositions().at(i)) == this->getMidfielderSpecificPositions().end()) {
+            
+            this->Info::addMidfielderSpecificPosition(info2->getMidfielderSpecificPositions().at(i));
+            
+        }
+    }
+    
+}
+
 InfoFW::InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
@@ -417,4 +470,19 @@ string InfoFW::generateString() const {
     }
     
     return Info::generateString() + " ; " + positionsString;
+}
+
+void InfoFW::operator+=(const Info* info2) {
+    
+    this->sumGeneralInfo(*info2);
+    
+    for(size_t i = 0; i < info2->getForwardSpecificPositions().size();i++) {
+        
+        if(find(this->getForwardSpecificPositions().begin(), this->getForwardSpecificPositions().end(), info2->getForwardSpecificPositions().at(i)) == this->getForwardSpecificPositions().end()) {
+            
+            this->Info::addAttackerSpecificPosition(info2->getForwardSpecificPositions().at(i));
+            
+        }
+    }
+    
 }

@@ -8,16 +8,16 @@ Season::Season(unsigned int year, vector<Level*> levelsVector){
 	this->levels = levelsVector;
 }
 
-Season::Season(string seasonName, string fileClub) {
+Season::Season(string seasonName, string fileClub, Club* parentClub) {
     
     this->year = stoi(seasonName);
     this->fileName = stringPath(fileClub + "/" + seasonName);
     
-    Level* levelu13 = new Level(seasonName, fileName, "U13");
-    Level* levelu15 = new Level(seasonName, fileName, "U15");
-    Level* levelu17 = new Level(seasonName, fileName, "U17");
-    Level* levelu19 = new Level(seasonName, fileName, "U19");
-    Level* seniors = new Level(seasonName, fileName, "Seniors");
+    Level* levelu13 = new Level(seasonName, fileName, "U13", parentClub);
+    Level* levelu15 = new Level(seasonName, fileName, "U15", parentClub);
+    Level* levelu17 = new Level(seasonName, fileName, "U17", parentClub);
+    Level* levelu19 = new Level(seasonName, fileName, "U19", parentClub);
+    Level* seniors = new Level(seasonName, fileName, "Seniors", parentClub);
     
     this->levels.push_back(levelu13);
     this->levels.push_back(levelu15);

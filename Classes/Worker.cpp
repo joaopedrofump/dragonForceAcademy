@@ -79,3 +79,10 @@ Date Worker::getBirthdate() const {
 string Worker::getName() const {
 	return this->name;
 }
+
+ostream& operator<<(ostream& out, const Worker &worker) {
+    
+    out << worker.generateInfo();
+    return out;
+    
+}

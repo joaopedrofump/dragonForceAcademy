@@ -21,7 +21,7 @@ protected:
 	Position position;
 
 public:
-    Athlete(string name, Date birthdate, unsigned char height, Position position, unsigned int id = 0);
+    Athlete(string name, Date birthdate, unsigned char height, unsigned int id = 0);
 
 	Athlete(string &newAthlete, Position position);
 
@@ -34,6 +34,8 @@ public:
     void addECG(bool resultado);
 
 	bool isAthlete() const;
+    
+    string generateInfo() const;
 };
 
 #endif /* Athlete_hpp */
