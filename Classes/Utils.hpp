@@ -60,6 +60,7 @@ public:
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
+	friend unsigned int operator-(const Date &date1, const Date &date2);
 	string showDate() const;
 	void setCurrentDate();
 };
@@ -158,6 +159,7 @@ public:
 
 	void print(bool originalFraction = true) const;
 	void printPercentage() const;
+    string getFrac() const;
 };
 
 // ===========================================
@@ -203,10 +205,10 @@ enum CoachType {
 
 enum Position {
     
-    GoalkeeperPos,  // GK
-    DefenderPos,    // DF
-    MidfielderPos,  // MF
-    ForwardPos      // FW
+    GoalkeeperPos = 1,  // GK
+    DefenderPos = 2,    // DF
+    MidfielderPos = 3,  // MF
+    ForwardPos = 4,      // FW
     
 };
 
@@ -214,9 +216,9 @@ enum Position {
 
 enum DefenderPosition {
     
-	CenterBack, // CB
-	LeftBack,   // LB
-	RightBack,  // RB
+	CenterBack = 1, // CB
+	LeftBack = 2,   // LB
+	RightBack = 3,  // RB
     
 };
 
@@ -224,11 +226,11 @@ enum DefenderPosition {
 
 enum MidfielderPosition {
     
-    CentreMidfielder,     // CM
-    DefensiveMidfielder,  // CDM
-    AttackingMidfielder,  // CAM
-	LeftMidfield,         // LM
-	RightMidfield		  // RM
+    CentreMidfielder = 1,     // CM
+    DefensiveMidfielder = 2,  // CDM
+    AttackingMidfielder = 3,  // CAM
+	LeftMidfield = 4,         // LM
+	RightMidfield = 5		  // RM
     
 };
 
@@ -236,10 +238,10 @@ enum MidfielderPosition {
 
 enum ForwardPosition {
     
-	Striker,       // ST
-	CentreForward, // CF
-    RigthWinger,   // RW
-	LeftWinger     // LW
+	Striker = 1,       // ST
+	CentreForward = 2, // CF
+    RigthWinger = 3,   // RW
+	LeftWinger = 4    // LW
     
 };
 
@@ -247,83 +249,12 @@ enum ForwardPosition {
 
 enum ageLevel {
 
-	U13,
-	U15,
-	U17,
-	U19,
-	Seniors
+	U13 = 1,
+	U15 = 2,
+	U17 = 3,
+	U19 = 4,
+	Seniors = 5
 
-};
-
-class Info {
-public:
-	Fraction trainingFreq;
-	unsigned int yellowCards;
-	unsigned int redCards;
-
-	Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards)
-		: trainingFreq(trainingFreq), yellowCards(yellowCards), redCards(redCards){}
-};
-
-class InfoGK : public Info {
-public:
-	unsigned int saves;
-	unsigned int goalsConceeded;
-
-	InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
-		   unsigned int saves, unsigned int goalsConceeded)
-		: Info(trainingFreq, yellowCards, redCards), saves(saves), goalsConceeded(goalsConceeded){}
-
-	//...
-};
-
-class InfoDF : public Info {
-public:
-	unsigned int tackles;
-	unsigned int goalsConceeded;
-	unsigned int faults;
-	Fraction passAccuracy;
-	vector<DefenderPosition> positions;
-
-
-	InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
-		   unsigned int tackles, unsigned int goalsConceeded, unsigned int faults, Fraction passAccuracy, vector<DefenderPosition> positions)
-		: Info(trainingFreq, yellowCards, redCards),
-			   tackles(tackles), goalsConceeded(goalsConceeded), faults(faults), passAccuracy(passAccuracy), positions(positions){}
-	
-	//...
-};
-
-class InfoMF : public Info {
-public:
-	unsigned int tackles;
-	unsigned int goalsScored;
-	unsigned int assistsMade;
-	unsigned int faults;
-	Fraction passAccuracy;
-	vector<MidfielderPosition> positions;
-
-	InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
-		unsigned int tackles, unsigned int goalsScored, unsigned int assistsMade, unsigned int faults, Fraction passAccuracy, vector<MidfielderPosition> positions)
-		: Info(trainingFreq, yellowCards, redCards),
-		tackles(tackles), goalsScored(goalsScored), assistsMade(assistsMade), faults(faults), passAccuracy(passAccuracy), positions(positions) {}
-
-	//...
-};
-
-struct InfoFW : public Info {
-public:
-	unsigned int goalsScored;
-	unsigned int assistsMade;
-	Fraction passAccuracy;
-	vector<ForwardPosition> positions;
-
-	InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards,
-		   unsigned int goalsScored, unsigned int assistsMade, Fraction passAccuracy, vector<ForwardPosition> positions)
-		: Info(trainingFreq, yellowCards, redCards),
-		goalsScored(goalsScored), assistsMade(assistsMade), passAccuracy(passAccuracy), positions(positions) {}
-
-	//...
 };
 
 int createDirectory(const char* path);

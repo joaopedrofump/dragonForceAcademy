@@ -1,16 +1,13 @@
 #pragma once
 
-#include "Season.hpp"
-//#include "Goalkeeper.hpp"
 
-//class Season;
-//class Level;
+#include "Season.hpp"
 
 extern const map<string, CoachType> coachTypeMap;
 
 class Club {
 	string name;
-	vector<Worker*> allWokers;
+	map<unsigned int, Worker*> allWorkers;
 	vector<Season*> seasons;
 	unsigned int numberOfSeasons;
 
@@ -22,9 +19,13 @@ public:
 	Club(string fileClub);
 
 	string getName() const;
-	vector<Worker*> getWorkers() const;
+	map<unsigned int, Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
+	void addPlayer(Position pos, string name, Date birthdate, unsigned char height);
 
+	map<unsigned int, Worker*> getAthletes() const;
+	map<unsigned int, Worker*> getCoaches() const;
 
+	//void showAthletes(bool onlyActives = false) const;
 
 };

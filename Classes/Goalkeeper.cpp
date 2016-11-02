@@ -13,13 +13,9 @@ Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height, unsign
     this->goalsConceded = 0;
     this->saves = 0;
 
-	if (id == 0) {
-		this->id = ++Worker::workersCounter;
-	}
-	else {
-		this->id = id;
-	}
-    
+    if (id != 0) {
+        this->id = id;
+    }
     
 }
 

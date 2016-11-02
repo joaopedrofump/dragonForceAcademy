@@ -3,6 +3,8 @@
 Match::Match(Date matchDay, Club* homeTeam, Club* awayTeam) 
 	: matchDay(matchDay), homeTeam(homeTeam), awayTeam(awayTeam){}
 
+Match::~Match() {};
+
 // GETTERS
 
 Date Match::getMatchDay() const {

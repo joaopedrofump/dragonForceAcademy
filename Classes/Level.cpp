@@ -10,63 +10,90 @@
 
 }*/
 
-Level::Level(ifstream &in, string yearOfSeason, string fileClub) {
+Level::Level(string yearOfSeason, string fileClub, string levelName) {
 
-	string tmpString;
-	getline(in, tmpString);
-
-
+    if(levelName == "U13") {
+        
+        this->minAge = 11;
+        this->maxAge = 13;
+        this->minHeight = 130;
+        this->ageLevelName = U13;
+        
+    }
+    
+    else if(levelName == "U15") {
+        
+        this->minAge = 13;
+        this->maxAge = 15;
+        this->minHeight = 150;
+        this->ageLevelName = U15;
+        
+    }
+    
+    else if(levelName == "U17") {
+        
+        this->minAge = 15;
+        this->maxAge = 17;
+        this->minHeight = 170;
+        this->ageLevelName = U17;
+        
+    }
+    
+    else if(levelName == "U19") {
+        
+        this->minAge = 17;
+        this->maxAge = 19;
+        this->minHeight = 175;
+        this->ageLevelName = U19;
+        
+    }
+    
+    else {
+        
+        this->minAge = 19;
+        this->maxAge = 45;
+        this->minHeight = 180;
+        this->ageLevelName = Seniors;
+        
+    }
+    
 	// Read information of this level
-	ifstream inStreamLevel;
+    ifstream inStreamLevel(stringPath(path() + fileClub + "/" + levelName + "/infoLevel.txt"));
 
-	inStreamLevel.open((fileClub + "\\" + trimLink(yearOfSeason) + "\\" + tmpString).c_str());
-
-	
 	if (!inStreamLevel.eof()) {
 		
 		string idHeadCoach;
 		getline(inStreamLevel, idHeadCoach);
-
-		unsigned int headCoachId = atoi(idHeadCoach.c_str());
-
-		/*for (size_t i = 0; i < club->getWorkers().size(); i++) {
-			if (club->getWorkers().at(i)->getID() == headCoachId) {
-				this->mainCoach = (Coach*)club->getWorkers().at(i);
-			}
-		}*/
-
-		this->mainCoachID = headCoachId;
-
-		string ages;
-		getline(inStreamLevel, ages);
-
-		this->minAge = atoi(ages.substr(0, ages.find('-', 0)).c_str());
-
-		ages = ages.substr(ages.find('-', 0) + 2);
-
-		this->maxAge = atoi(ages.c_str());
-
-		string heightLevel;
-
-		getline(inStreamLevel, heightLevel);
-		this->minHeight = atoi(heightLevel.c_str());
-
+        
+        if(idHeadCoach.length() != 0) {
+            
+            unsigned int headCoachId = atoi(idHeadCoach.c_str());
+            
+            this->mainCoachID = headCoachId;
+        }
+            
 	}
 
 	inStreamLevel.close();
 
 	//Read information of athletes
-	ifstream inStreamAthletesLevel;
+    
+    string caminho = stringPath(path() + fileClub  + "/" + levelName + "/Athletes.txt");
+    
+    inStreamLevel.open(caminho.c_str());
 
-	inStreamAthletesLevel.open((fileClub + "\\" + trimLink(yearOfSeason) + "\\" + trimLink(tmpString) + "\\Athletes.txt").c_str());
 
-	while (!inStreamAthletesLevel.eof()) {
+	while (!inStreamLevel.eof()) {
 
 		string tmpAthlete;
-		getline(inStreamAthletesLevel, tmpAthlete);
+		getline(inStreamLevel, tmpAthlete);
 
 		if (tmpAthlete == FILE_SEPARATOR)
 			break;
+        
+        if(tmpAthlete.length() == 0) {
+            continue;
+        }
 
 
 		unsigned int tmpAthleteId = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
@@ -76,221 +103,117 @@ Level::Level(ifstream &in, string yearOfSeason, string fileClub) {
 		string tmpAthletePos = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
 
 		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		Date tmpExpECG(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		Fraction tmpAthleteAssiduity(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		unsigned int tmpAthleteYellowCards = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		unsigned int tmpAthleteRedCards = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		/*Athlete* tmpAthletePtr = 0;
-
-		for (size_t i = 0; i < club->getWorkers().size(); i++) {
-			if (club->getWorkers().at(i)->getID() == tmpAthleteId) {
-				tmpAthletePtr = (Athlete*)club->getWorkers().at(i);
-			}
-		}*/
-
-
+		
 
 		Info* infoTmpAthlete;
 
 		// Read Goalkeepers specific informations
 		if (positionsMap.at(tmpAthletePos) == GoalkeeperPos) {
 
-			unsigned int saves = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
 
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
+			infoTmpAthlete = new InfoGK(tmpAthlete);
 
-			unsigned int goalsConceeded = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-
-			infoTmpAthlete = new InfoGK(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards, saves, goalsConceeded);
-		
 		}
 
 		// Read Defenders specific informations
 		else if(positionsMap.at(tmpAthletePos) == DefenderPos){
 
-			/*InfoDF* infoTmpAthletePos = new InfoDF;
-			infoTmpAthletePos->trainingFreq = tmpAthleteAssiduity;
-			infoTmpAthletePos->yellowCards = tmpAthleteYellowCards;
-			infoTmpAthletePos->redCards = tmpAthleteRedCards;*/
 
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
+			infoTmpAthlete = new InfoDF(tmpAthlete);
 
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<DefenderPosition> positions;
-
-			while (tmpAthletePositions != "") {
-				
-				positions.push_back(defendersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-			
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Tackles
-			unsigned int tackles = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Conceeded
-			unsigned int goalsConceeded = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Faults
-			unsigned int faults = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoDF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										tackles, goalsConceeded, faults, passAccuracy, positions);
-
-			//cout << static_cast<InfoDF*>(infoTmpAthlete)->faults;
 		}
 
 		// Read Midfielders specific informations
 		else if(positionsMap.at(tmpAthletePos) == MidfielderPos) {
 
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<MidfielderPosition> positions;
-
-			while (tmpAthletePositions != "") {
-
-				string test = tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1);
-
-				positions.push_back(midfieldersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Tackles
-			unsigned int tackles = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Scored
-			unsigned int goalsScored = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Assists made
-			unsigned int assistsMade = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Faults
-			unsigned int faults = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoMF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-				tackles, goalsScored, assistsMade, faults, passAccuracy, positions);
-
+			infoTmpAthlete = new InfoMF(tmpAthlete);
 		}
 
-		// Read Goalkeeper specific informations
+		// Read Forwards specific informations
 		else if (positionsMap.at(tmpAthletePos) == ForwardPos) {
 
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<ForwardPosition> positions;
-
-			while (tmpAthletePositions != "") {
-
-				positions.push_back(forwardsMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Scored
-			unsigned int goalsScored = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Assists made
-			unsigned int assistsMade = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoFW(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										goalsScored, assistsMade, passAccuracy, positions);
-
+			infoTmpAthlete = new InfoFW(tmpAthlete);
 		}
+			
 
-		
-
-		this->mapInfoSeason.insert({ tmpAthleteId, infoTmpAthlete });
+		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
 
 	}
 
-	inStreamAthletesLevel.close();
+	inStreamLevel.close();
 
 	// Read information of coaches
 
-	ifstream inStreamCoachesLevel;
-
-	inStreamCoachesLevel.open((fileClub + "\\" + trimLink(yearOfSeason) + "\\" + trimLink(tmpString) + "\\Coaches.txt").c_str());
+	inStreamLevel.open(stringPath(path() + fileClub + "/" + levelName + "Coaches.txt").c_str());
 	
-	while (!inStreamAthletesLevel.eof()) {
+	while (!inStreamLevel.eof()) {
 
 		string tmpCoach;
-		getline(inStreamAthletesLevel, tmpCoach);
+		getline(inStreamLevel, tmpCoach);
+        
+        if(tmpCoach.length() == 0) {
+            continue;
+        }
 
-		/*for (size_t i = 0; i < club->getWorkers().size(); i++) {
-			if (club->getWorkers().at(i)->getID() == atoi(tmpCoach.c_str())) {
-				this->trainers.push_back((Coach*)club->getWorkers().at(i));
-			}
-		}*/
 
 		trainersIds.push_back(atoi(tmpCoach.c_str()));
 	}
 
-	inStreamCoachesLevel.close();
+	inStreamLevel.close();
+
+}
+
+unsigned int Level::getMinAge() const
+{
+	return minAge;
+}
+
+unsigned int Level::getMaxAge() const
+{
+	return maxAge;
+}
+
+char Level::getMinHeight() const
+{
+	return minHeight;
+
+}
+
+map<unsigned int, Info*> Level::getMapInfoPlayers() const{
+    
+    return this->mapInfoPlayers;
+    
+}
+
+Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
+    
+    this->mapInfoPlayers.insert(playerInfo);
+    return this;
+    
+}
+
+string Level::levelName() const {
+    
+    string result;
+    
+    switch (this->ageLevelName) {
+        case U13:
+            result = "U13";
+            break;
+        case U15:
+            result = "U15";
+            break;
+        case U17:
+            result = "U17";
+            break;
+        case U19:
+            result = "U19";
+            break;
+        case Seniors:
+            result = "Seniors";
+            break;
+        default:
+            break;
+    }
+    return result;
 }

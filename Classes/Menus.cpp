@@ -46,12 +46,60 @@ void initialInfo(string &fileClub) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
         }
+        Date currentDate(true);
+        string year = to_string(currentDate.getYear());
 		ofstream outfileClub((path() + clubName) + stringPath("/club.txt"));
 		outfileClub << clubName << endl;
+        outfileClub << year;
 		outfileClub.close();
         ofstream outfileCoaches((path() + clubName) + stringPath("/coaches.txt"));
         outfileCoaches.close();
         ofstream outfileAthletes((path() + clubName) + stringPath("/athletes.txt"));
+        outfileAthletes.close();
+        
+        
+        //create folders for current season and levels
+        createDirectory(stringPath((path() + clubName + "/" + year)).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U13")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U15")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U17")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors")).c_str());
+        
+        //create info files for levels
+        ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/infoLevel.txt"));
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/infoLevel.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Athletes.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Coaches.txt").c_str());
+        outfileInfoLevel.close();
+        
+
+        
         fileClub = clubName;
 	}
 
@@ -131,14 +179,14 @@ void showMainMenu(unsigned short int opcaoChosen) {
 			headerMenu = { "1 - Athletes" + string(11, ' '), "2 - Coaches", "3 - Actual Season", "4 - Other Seasons", "0 - Exit" };
             break;
         case 2:
-			headerMenu = { "1 - Clientes", "2 - Produtos" + string(14, ' '), "3 - Transacoes", "4 - Recomendacoes", "0 - Sair" };
-            break;
+			headerMenu = { "1 - Athletes", "2 - Coaches" + string(11, ' '), "3 - Actual Season", "4 - Other Seasons", "0 - Exit" };
+			break;
         case 3:
-			headerMenu = { "1 - Clientes", "2 - Produtos", "3 - Transacoes" + string(21, ' '), "4 - Recomendacoes", "0 - Sair" };
-            break;
+			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - Actual Season" + string(11, ' '), "4 - Other Seasons" + string(11, ' '), "0 - Exit" };
+			break;
         default:
-			headerMenu = { "1 - Clientes", "2 - Produtos", "3 - Transacoes", "4 - Recomendacoes" + string(30, ' '), "0 - Sair" };
-            break;
+			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - Actual Season", "4 - Other Seasons", "0 - Exit" };
+			break;
     }
     Table optionsMenu(headerMenu);
     cout << menu << endl;
@@ -177,25 +225,27 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 		stringstream ss;
 		string str;
-		Table mostrarCliente({ "Informacao" , "Dados" });
+		//Table mostrarCliente({ "Informacao" , "Dados" });
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
 		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
 		Date today(true);
 
-        /*switch (option) {
-            case 1:           //=========== SHOW ATHLETES ==============
+        switch (option) {
+            /*case 1:           //=========== SHOW ATHLETES ==============
                 
-                if (supermercado.getMapIDtoCliente().size() == 0) {
+				clearScreen();
+				showMainMenu(0);
+
+                if (mainClub.getAthletes().size() == 0) {
                     
-                    clearScreen();
-                    mostrarMenuInicial();
-                    cout << Table({"Nao existem clientes."});
+                    cout << Table({"There are no athletes."});
                     ignoreLine(false);
                     break;
                 }
-                clearScreen();
-                mostrarMenuInicial(0);
+
+
+                
                 supermercado.listarClientesOrdemAlfa();
                 ignoreLine(false);
                 break;
@@ -204,7 +254,7 @@ void  optionsAthletesManagement(Club &mainClub) {
                 if (supermercado.getMapIDtoCliente().size() == 0) {
                     
                     clearScreen();
-                    mostrarMenuInicial();
+					showMainMenu();
                     cout << Table({"Nao existem clientes."});
                     ignoreLine(false);
                     break;
@@ -212,7 +262,7 @@ void  optionsAthletesManagement(Club &mainClub) {
                 
                 do {
                     clearScreen();
-                    mostrarMenuInicial(0);
+					showMainMenu(0);
 					supermercado.listarClientesOrdemAlfa();
                     Table introIdNome({ "Introduza o ID ou o NOME do cliente." });
                     cout << introIdNome << endl;
@@ -224,24 +274,44 @@ void  optionsAthletesManagement(Club &mainClub) {
                     if (isdigit(input.at(0))) {
                         idCliente = stoi(input);
                         clearScreen();
-                        mostrarMenuInicial(0);
+						showMainMenu(0);
                         control = supermercado.mostraInformacaoCliente(idCliente);
                         ignoreLine(false);
                     }
                     else {
                         clearScreen();
-                        mostrarMenuInicial(0);
+						showMainMenu(0);
                         control = supermercado.mostraInformacaoCliente(input);
                         ignoreLine(false);
                     }
                 } while (!control);
-                break;
-            case 3:            //=========== ADICIONAR CLIENTE ================
+                break;*/
+            case 3:            //=========== ADD ATHLETE ================
                 do {
                     clearScreen();
-                    mostrarMenuInicial(0);
-                    Table introIdNome({ "Introduza NOME do cliente." });
+					showMainMenu(1);
+					Table menuAthletes({ "1 - Show Athletes" });
+					menuAthletes.addNewLine({ "2 - See an Athlete     " });
+					menuAthletes.addNewLine({ "3 - Add Athlete" });
+
+					Table addAthlete({ "1 - Goalkeeper" }, 9);
+					addAthlete.addNewLine({ "2 - Defender" });
+					addAthlete.addNewLine({ "3 - Midfielder" });
+					addAthlete.addNewLine({ "4 - Forward" });
+
+					Table menuAthletes2({ "4 - Reintroduce Athlete" });
+					menuAthletes2.addNewLine({ "5 - Remove Athlete" });
+					menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
+					cout << menuAthletes << addAthlete << menuAthletes2;
+					control = true;
+					system("PAUSE");
+
+					//CONTINUAR
+
+
+                    /*Table introIdNome({ "Introduza NOME do cliente." });
                     cout << introIdNome << endl;
+
                     getline(cin, input);
                     if (stringVazia(input)) {
 						sairDoSwitch = true;
@@ -249,9 +319,9 @@ void  optionsAthletesManagement(Club &mainClub) {
                     }
                     trimString(input);
                     control = validateName(input);
-                    //ignoreLine(false, "Cliente adicionado com sucesso");
+                    //ignoreLine(false, "Cliente adicionado com sucesso");*/
                 } while (!control);
-				if (sairDoSwitch) break;  //Teclar enter apenas, cancela a operacao
+				/*if (sairDoSwitch) break;  //Teclar enter apenas, cancela a operacao
 				
 
 				//Mostrar resumo da operacao
@@ -527,8 +597,8 @@ void  optionsAthletesManagement(Club &mainClub) {
                 supermercado.saveChanges();
 				break;
             case 0:
-                break;
-        }*/
+                break;*/
+        }
     }
 }
 

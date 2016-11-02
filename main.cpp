@@ -29,7 +29,11 @@ int main(int argc, const char * argv[]) {
         
         initialInfo(club);
         Club currProgramClub(club);
+        currProgramClub.addPlayer(DefenderPos, "Joao Pedro", Date(10,12,1991), 178);
+        currProgramClub.addPlayer(GoalkeeperPos, "Leo", Date(23,04,2003), 178);
         initialOptions(currProgramClub);
+        
+        
     }
     
     catch(string s) {

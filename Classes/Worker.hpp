@@ -10,7 +10,7 @@
 #ifndef Worker_hpp
 #define Worker_hpp
 
-#include "Utils.hpp"
+#include "InfoAthletes.hpp"
 
 using namespace std;
 
@@ -34,6 +34,10 @@ protected:
      Worker unique id for each club worker
      */
     unsigned int id;
+	/*!
+	Worker current status 
+	*/
+	bool status;
     /*!
      Worker counter to keep track and generate the ids
      */
@@ -52,7 +56,25 @@ public:
      This is an abstract method to make this class abstract
      */
     virtual unsigned int getID() const = 0;
+	/*!
+	This is an abstract method to check if the object is an Athlete
+	*/
+	virtual bool isAthlete() const = 0;
+	/*!
+	This is the == operator that returns true if the  id's are equal
+	*/
+	bool operator==(Worker* worker) const;
+	/*!
+	This is the set status function that actualize the status atribute
+	*/
+	void setStatus(bool newStatus);
+
     ~Worker();
+	unsigned int getIdade() const;
+    
+    Date getBirthdate() const;
+
+
 
 };
 
