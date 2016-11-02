@@ -26,6 +26,6 @@ public:
 	map<unsigned int, Worker*> getAthletes() const;
 	map<unsigned int, Worker*> getCoaches() const;
 
-	void showAthletes(bool onlyActives = false) const;
+	//void showAthletes(bool onlyActives = false) const;
 
 };

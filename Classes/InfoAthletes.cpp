@@ -22,6 +22,59 @@ Info::Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCard
     
 }
 
+Info::Info(string &newInfo) {
+
+	// Training Assiduity
+	Fraction tmpAthleteAssiduity(newInfo.substr(0, newInfo.find(';', 0) - 1));
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Tackles
+	unsigned int  tmpAthleteTackles = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Faults
+	unsigned int tmpAthleteFouls = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Yellow Cards
+	unsigned int tmpAthleteYellowCards = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Red Cards
+	unsigned int tmpAthleteRedCards = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Goals Scored
+	unsigned int tmpAthleteGoalsScored = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Assists made
+	unsigned int tmpAthleteAssistsMade = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Pass Acuracy
+	Fraction tmpAthletePassAccuracy(newInfo.substr(0, newInfo.find(';', 0) - 1));
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	this->trainingFreq = tmpAthleteAssiduity;
+	this->tackles = tmpAthleteTackles;
+	this->fouls = tmpAthleteFouls;
+	this->yellowCards = tmpAthleteYellowCards;
+	this->redCards = tmpAthleteRedCards;
+	this->goalsScored = tmpAthleteGoalsScored;
+	this->assists = tmpAthleteAssistsMade;
+	this->passAccuracy = tmpAthletePassAccuracy;
+
+}
+
 Info::Info(){};
 
 Fraction Info::getTrainingFreq() const {
@@ -96,6 +149,21 @@ InfoGK::InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
     
 }
 
+InfoGK::InfoGK(string &newInfo) : Info(newInfo) {
+
+	unsigned int tmpGKsaves = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	unsigned int tmpGKgoalsConceeded = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	this->saves = tmpGKsaves;
+	this->goalsConceeded = tmpGKgoalsConceeded;
+
+}
+
 unsigned int InfoGK::getSaves() const {
     return this->saves;
 }
@@ -118,12 +186,34 @@ InfoDF::InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
     
 }
 
+InfoDF::InfoDF(string &newInfo) {
+
+	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Read positions
+	vector<DefenderPosition> tmpDFpositions;
+
+	while (tmpAthletePositions != "") {
+
+		positions.push_back(defendersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+
+		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+			break;
+
+		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+	}
+
+	this->positions = tmpDFpositions;
+}
 
 vector<DefenderPosition> InfoDF::getDefenderSpecificPositions() const {
     
     return this->positions;
     
 }
+
 void InfoDF::addDefenderSpecificPosition(DefenderPosition newPos) {
     
     if(find(this->positions.begin(), this->positions.end(), newPos) == this->positions.end()) {
@@ -138,11 +228,34 @@ InfoMF::InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
     
 }
 
+InfoMF::InfoMF(string &newInfo) {
+
+	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Read positions
+	vector<MidfielderPosition> tmpMFpositions;
+
+	while (tmpAthletePositions != "") {
+
+		positions.push_back(midfieldersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+
+		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+			break;
+
+		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+	}
+
+	this->positions = tmpMFpositions;
+}
+
 vector<MidfielderPosition> InfoMF::getMidfielderSpecificPositions() const {
     
     return this->positions;
     
 }
+
 void InfoMF::addMidfielderSpecificPosition(MidfielderPosition newPos) {
     
     if(find(this->positions.begin(), this->positions.end(), newPos) == this->positions.end()) {
@@ -156,12 +269,34 @@ InfoFW::InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
     
 }
 
+InfoFW::InfoFW(string &newInfo) {
+
+	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+
+	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+
+	// Read positions
+	vector<ForwardPosition> tmpFWpositions;
+
+	while (tmpAthletePositions != "") {
+
+		positions.push_back(forwardsMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+
+		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+			break;
+
+		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+	}
+
+	this->positions = tmpFWpositions;
+}
 
 vector<ForwardPosition> InfoFW::getForwardSpecificPositions() const {
     
     return this->positions;
     
 }
+
 void InfoFW::addAttackerSpecificPosition(ForwardPosition newPos) {
     if(find(this->positions.begin(), this->positions.end(), newPos) == this->positions.end()) {
         this->positions.push_back(newPos);

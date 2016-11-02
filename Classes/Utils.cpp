@@ -592,7 +592,7 @@ ostream& operator<<(ostream& out, const Table &tableToShow) {
 
 Fraction::Fraction() {
 	numerator = 0;
-	denominator = 1;
+	denominator = 0;
 }
 
 Fraction::Fraction(int newNumerator, int newDenominator) {
@@ -608,6 +608,9 @@ Fraction::Fraction(string fractionString) {
 }
 
 void Fraction::reduce() {
+
+	if (numerator == 0 && denominator == 0)
+		return;
 
 	int num = numerator;
 	int den = denominator;
@@ -636,6 +639,9 @@ void Fraction::reduce() {
 //  Operations as fractions
 
 Fraction Fraction::operator+(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+	
 	Fraction  result;
 	result.numerator = (numerator * value.denominator) + (value.numerator*denominator);
 	result.denominator = denominator * value.denominator;
@@ -644,11 +650,17 @@ Fraction Fraction::operator+(Fraction value) const {
 }
 
 void Fraction::operator+=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator-(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction  result;
 	result.numerator = (numerator * value.denominator) - (value.numerator*denominator);
 	result.denominator = denominator * value.denominator;
@@ -656,11 +668,17 @@ Fraction Fraction::operator-(Fraction value) const {
 }
 
 void Fraction::operator-=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator*(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction result;
 	result.numerator = numerator * value.numerator;
 	result.denominator = denominator * value.denominator;
@@ -668,11 +686,17 @@ Fraction Fraction::operator*(Fraction value) const {
 }
 
 void Fraction::operator*=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = numerator * value.numerator;
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator/(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction result;
 	result.numerator = numerator * value.denominator;
 	result.denominator = denominator * value.numerator;
@@ -680,6 +704,9 @@ Fraction Fraction::operator/(Fraction value) const {
 }
 
 void Fraction::operator/=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+	
 	this->numerator = numerator * value.denominator;
 	this->denominator = denominator * value.numerator;
 }
@@ -687,10 +714,21 @@ void Fraction::operator/=(Fraction &value) {
 //  Comparers
 
 bool Fraction::operator<(Fraction value) const {
+
+
 	double frac1;
 	double frac2;
-	frac1 = (numerator*1.0 / denominator);
-	frac2 = (value.numerator*1.0 / value.denominator);
+	if (denominator == 0)
+		frac1 = (numerator*1.0 / denominator + 1);
+	else
+		frac1 = (numerator*1.0 / denominator);
+
+	if (denominator == 0)
+		frac2 = (value.numerator*1.0 / value.denominator + 1);
+	else
+		frac2 = (value.numerator*1.0 / value.denominator);
+
+	
 	return frac1 < frac2;
 }
 

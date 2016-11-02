@@ -103,180 +103,34 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 		string tmpAthletePos = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
 
 		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		Date tmpExpECG(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		Fraction tmpAthleteAssiduity(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		unsigned int tmpAthleteYellowCards = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		unsigned int tmpAthleteRedCards = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
+		
 
 		Info* infoTmpAthlete;
 
 		// Read Goalkeepers specific informations
 		if (positionsMap.at(tmpAthletePos) == GoalkeeperPos) {
 
-			unsigned int saves = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			unsigned int goalsConceeded = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-
-			infoTmpAthlete = new InfoGK(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards, saves, goalsConceeded);
-		
+			infoTmpAthlete = new InfoGK(tmpAthlete);
 		}
 
 		// Read Defenders specific informations
 		else if(positionsMap.at(tmpAthletePos) == DefenderPos){
 
-
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<DefenderPosition> positions;
-
-			while (tmpAthletePositions != "") {
-				
-				positions.push_back(defendersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-			
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Tackles
-			unsigned int tackles = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Conceeded
-			unsigned int goalsConceeded = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Faults
-			unsigned int faults = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoDF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										tackles, goalsConceeded, faults, passAccuracy, positions);
-
+			infoTmpAthlete = new InfoDF(tmpAthlete);
 		}
 
 		// Read Midfielders specific informations
 		else if(positionsMap.at(tmpAthletePos) == MidfielderPos) {
 
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<MidfielderPosition> positions;
-
-			while (tmpAthletePositions != "") {
-
-				string test = tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1);
-
-				positions.push_back(midfieldersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Tackles
-			unsigned int tackles = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Scored
-			unsigned int goalsScored = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Assists made
-			unsigned int assistsMade = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Faults
-			unsigned int faults = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoMF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-				tackles, goalsScored, assistsMade, faults, passAccuracy, positions);
-
+			infoTmpAthlete = new InfoMF(tmpAthlete);
 		}
 
-		// Read Goalkeeper specific informations
+		// Read Forwards specific informations
 		else if (positionsMap.at(tmpAthletePos) == ForwardPos) {
 
-			string tmpAthletePositions = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Read positions
-			vector<ForwardPosition> positions;
-
-			while (tmpAthletePositions != "") {
-
-				positions.push_back(forwardsMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-				if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-					break;
-
-				tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-			}
-
-			// Pass Acuracy
-			Fraction passAccuracy(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1));
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Goals Scored
-			unsigned int goalsScored = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			// Assists made
-			unsigned int assistsMade = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
-
-			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-			infoTmpAthlete = new InfoFW(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										goalsScored, assistsMade, passAccuracy, positions);
-
+			infoTmpAthlete = new InfoFW(tmpAthlete);
 		}
-
-		
+			
 
 		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
 

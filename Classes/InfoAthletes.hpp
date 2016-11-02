@@ -9,8 +9,17 @@
 #ifndef InfoAthletes_hpp
 #define InfoAthletes_hpp
 
-#include <stdio.h>
 #include "Utils.hpp"
+
+extern const map<string, CoachType> coachTypeMap;
+
+extern const map<string, Position> positionsMap;
+
+extern const map<string, DefenderPosition> defendersMap;
+
+extern const map<string, MidfielderPosition> midfieldersMap;
+
+extern const map<string, ForwardPosition> forwardsMap;
 
 class Info {
 protected:
@@ -24,7 +33,8 @@ protected:
     Fraction passAccuracy;
 public:
     Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
-    Info();
+	Info(string &newInfo);
+	Info();
     Fraction getTrainingFreq() const;
     void addTraining(Fraction newTraining);
     unsigned int getYellowCards() const;
@@ -42,10 +52,10 @@ public:
     Fraction getPassAccuracy() const;
     void addPassAccuracy(Fraction passAccuracy);
     
-    virtual unsigned int getSaves() const;
-    virtual void addSaves(unsigned int saves);
+	virtual unsigned int getSaves() const;
+	virtual void addSaves(unsigned int saves);
     
-    virtual unsigned int getGoalsConceeded() const;
+    virtual unsigned int getGoalsConceeded() const = 0;
     virtual void addGoalsConceeded(unsigned int goalsConceeded);
     
     virtual vector<DefenderPosition> getDefenderSpecificPositions() const;
@@ -65,7 +75,8 @@ protected:
     
 public:
     InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
-    InfoGK(){};
+	InfoGK(string &newInfo);
+	InfoGK(){};
     unsigned int getSaves() const;
     void addSaves(unsigned int saves);
     unsigned int  getGoalsConceeded() const;
@@ -77,7 +88,7 @@ protected:
     vector<DefenderPosition> positions;
 public:
     InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
-    
+	InfoDF(string &newInfo);
     InfoDF(){};
     vector<DefenderPosition> getDefenderSpecificPositions() const;
     void addDefenderSpecificPosition(DefenderPosition newPos);
@@ -90,7 +101,7 @@ protected:
     vector<MidfielderPosition> positions;
 public:
     InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
-    
+	InfoMF(string &newInfo);
     InfoMF(){};
     
     //pass accuracy
@@ -106,7 +117,7 @@ protected:
     vector<ForwardPosition> positions;
 public:
     InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
-    
+	InfoFW(string &newInfo);
     InfoFW(){};
     vector<ForwardPosition> getForwardSpecificPositions() const;
     void addAttackerSpecificPosition(ForwardPosition newPos);

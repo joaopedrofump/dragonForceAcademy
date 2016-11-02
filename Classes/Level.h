@@ -4,16 +4,6 @@
 
 using namespace std;
 
-extern const map<string, CoachType> coachTypeMap;
-
-extern const map<string, Position> positionsMap;
-
-extern const map<string, DefenderPosition> defendersMap;
-
-extern const map<string, MidfielderPosition> midfieldersMap;
-
-extern const map<string, ForwardPosition> forwardsMap;
-
 
 //class Club;
 class Level
