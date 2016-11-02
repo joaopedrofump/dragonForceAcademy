@@ -14,13 +14,9 @@ Athlete::Athlete(string name, Date birthdate, unsigned char height, Position pos
     this->ecg = NULL;
 	this->position = position;
 
-	if (id == 0) {
-		this->id = ++Worker::workersCounter;
-	}
-	else {
-		this->id = id;
-	}
-    
+	if (id != 0) {
+        this->id = id;
+    }
 }
 
 Athlete::~Athlete() {

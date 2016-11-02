@@ -10,12 +10,9 @@
 
 Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, DefenderPos, id) {
     
-	if (id == 0) {
-		this->id = ++Worker::workersCounter;
-	}
-	else {
-		this->id = id;
-	}
+    if (id != 0) {
+        this->id = id;
+    }
 }
 
 

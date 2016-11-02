@@ -134,7 +134,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
 
 
-			infoTmpAthlete = new InfoGK(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards, saves, goalsConceeded);
+			infoTmpAthlete = new InfoGK();
 		
 		}
 
@@ -179,8 +179,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 
 			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
 
-			infoTmpAthlete = new InfoDF(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										tackles, goalsConceeded, faults, passAccuracy, positions);
+			infoTmpAthlete = new InfoDF();
 
 		}
 
@@ -271,8 +270,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName) {
 
 			tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
 
-			infoTmpAthlete = new InfoFW(tmpAthleteAssiduity, tmpAthleteYellowCards, tmpAthleteRedCards,
-										goalsScored, assistsMade, passAccuracy, positions);
+			infoTmpAthlete = new InfoFW();
 
 		}
 
@@ -332,4 +330,30 @@ Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     this->mapInfoPlayers.insert(playerInfo);
     return this;
     
+}
+
+string Level::levelName() const {
+    
+    string result;
+    
+    switch (this->ageLevelName) {
+        case U13:
+            result = "U13";
+            break;
+        case U15:
+            result = "U15";
+            break;
+        case U17:
+            result = "U17";
+            break;
+        case U19:
+            result = "U19";
+            break;
+        case Seniors:
+            result = "Seniors";
+            break;
+        default:
+            break;
+    }
+    return result;
 }

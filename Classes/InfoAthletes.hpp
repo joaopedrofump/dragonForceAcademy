@@ -42,20 +42,26 @@ public:
     Fraction getPassAccuracy() const;
     void addPassAccuracy(Fraction passAccuracy);
     
-    virtual unsigned int getSaves() const;
-    virtual void addSaves(unsigned int saves);
+    virtual unsigned int getSaves() const {return 0;};
+    virtual void addSaves(unsigned int saves) {};
     
-    virtual unsigned int getGoalsConceeded() const;
-    virtual void addGoalsConceeded(unsigned int goalsConceeded);
+    virtual unsigned int getGoalsConceeded() const {return 0;};
+    virtual void addGoalsConceeded(unsigned int goalsConceeded){};
     
-    virtual vector<DefenderPosition> getDefenderSpecificPositions() const;
-    virtual void addDefenderSpecificPosition(DefenderPosition newPos);
+    virtual vector<DefenderPosition> getDefenderSpecificPositions() const {vector<DefenderPosition> res; return res;}
+    virtual void addDefenderSpecificPosition(DefenderPosition newPos){};
     
-    virtual vector<MidfielderPosition> getMidfielderSpecificPositions() const;
-    virtual void addMidfielderSpecificPosition(MidfielderPosition newPos);
+    virtual vector<MidfielderPosition> getMidfielderSpecificPositions() const {vector<MidfielderPosition> res; return res;}
+    virtual void addMidfielderSpecificPosition(MidfielderPosition newPos) {};
     
-    virtual vector<ForwardPosition> getForwardSpecificPositions() const;
-    virtual void addAttackerSpecificPosition(ForwardPosition newPos);
+    virtual vector<ForwardPosition> getForwardSpecificPositions() const {vector<ForwardPosition> res; return res;}
+    virtual void addAttackerSpecificPosition(ForwardPosition newPos){};
+    
+    friend ostream& operator<<(ostream& out, const Info &info);
+    virtual string generateString() const;
+    virtual void save (ofstream& out);
+    
+    
 };
 
 class InfoGK : public Info {
@@ -65,11 +71,13 @@ protected:
     
 public:
     InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
-    InfoGK(){};
+    InfoGK();
     unsigned int getSaves() const;
     void addSaves(unsigned int saves);
     unsigned int  getGoalsConceeded() const;
     void addGoalsConceeded(unsigned int goalsConceeded);
+    string generateString() const;
+
 };
 
 class InfoDF : public Info {
@@ -78,11 +86,10 @@ protected:
 public:
     InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
     
-    InfoDF(){};
+    InfoDF();
     vector<DefenderPosition> getDefenderSpecificPositions() const;
     void addDefenderSpecificPosition(DefenderPosition newPos);
-
-    
+    string generateString() const;
 };
 
 class InfoMF : public Info {
@@ -91,13 +98,13 @@ protected:
 public:
     InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
     
-    InfoMF(){};
+    InfoMF();
     
     //pass accuracy
     
     vector<MidfielderPosition> getMidfielderSpecificPositions() const;
     void addMidfielderSpecificPosition(MidfielderPosition newPos);
-
+    string generateString() const;
 };
 
 class InfoFW : public Info {
@@ -107,9 +114,10 @@ protected:
 public:
     InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
     
-    InfoFW(){};
+    InfoFW();
     vector<ForwardPosition> getForwardSpecificPositions() const;
     void addAttackerSpecificPosition(ForwardPosition newPos);
+    string generateString() const;
 };
 
 #endif /* InfoAthletes_hpp */
