@@ -74,12 +74,14 @@ Info::Info(string &newInfo) {
 }
 
 Info::Info() {
+    this->trainingFreq = Fraction();
     this->yellowCards = 0;
     this->redCards = 0;
     this->tackles = 0;
     this->fouls = 0;
     this->goalsScored = 0;
     this->assists = 0;
+    this->passAccuracy = Fraction();
 
 };
 
@@ -246,25 +248,30 @@ InfoDF::InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
 }
 
 
-InfoDF::InfoDF(string &newInfo) {
+InfoDF::InfoDF(string &newInfo) : Info(newInfo) {
 
-	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
-
-	// Read positions
-	vector<DefenderPosition> tmpDFpositions;
-
-	while (tmpAthletePositions != "") {
-
-		positions.push_back(defendersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-			break;
-
-		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-	}
-
+    // Read positions
+    vector<DefenderPosition> tmpDFpositions;
+    
+    if(newInfo.size() != 0) {
+        
+        string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+        
+        newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+        
+        while (tmpAthletePositions != "") {
+            
+            positions.push_back(defendersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+            
+            if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+                break;
+            
+            tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+        }
+        
+    }
+    
+	
 	this->positions = tmpDFpositions;
 }
 
@@ -329,24 +336,32 @@ InfoMF::InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
     
 }
 
-InfoMF::InfoMF(string &newInfo) {
+InfoMF::InfoMF(string &newInfo) : Info(newInfo) {
+    
+    vector<MidfielderPosition> tmpMFpositions;
+    
+    if(newInfo.size() != 0) {
+        
+        string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+        
+        newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+        
+        // Read positions
+        
+        
+        while (tmpAthletePositions != "") {
+            
+            positions.push_back(midfieldersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+            
+            if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+                break;
+            
+            tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+        }
+        
+    }
 
-	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
-
-	// Read positions
-	vector<MidfielderPosition> tmpMFpositions;
-
-	while (tmpAthletePositions != "") {
-
-		positions.push_back(midfieldersMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-			break;
-
-		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-	}
+	
 
 	this->positions = tmpMFpositions;
 }
@@ -412,24 +427,28 @@ InfoFW::InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int red
 }
 
 
-InfoFW::InfoFW(string &newInfo) {
-
-	string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
-
-	// Read positions
-	vector<ForwardPosition> tmpFWpositions;
-
-	while (tmpAthletePositions != "") {
-
-		positions.push_back(forwardsMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
-
-		if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
-			break;
-
-		tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
-	}
+InfoFW::InfoFW(string &newInfo) : Info(newInfo) {
+    
+    // Read positions
+    vector<ForwardPosition> tmpFWpositions;
+    
+    if(newInfo.size() != 0) {
+        
+        string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
+        
+        newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+        
+        while (tmpAthletePositions != "") {
+            
+            positions.push_back(forwardsMap.at(tmpAthletePositions.substr(0, tmpAthletePositions.find(',', 0) - 1)));
+            
+            if (tmpAthletePositions.find(',', 0) >= tmpAthletePositions.length())
+                break;
+            
+            tmpAthletePositions = tmpAthletePositions.substr(tmpAthletePositions.find(',', 0) + 2);
+        }
+        
+    }
 
 	this->positions = tmpFWpositions;
 }

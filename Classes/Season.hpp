@@ -6,14 +6,15 @@ class Club;
 class Season {
 	unsigned int year;
 	vector<Level*> levels;
-	string fileName;
+	string pathToSeasonFolder;
+    string seasonName;
 
 public:
 	Season(unsigned int year, vector<Level*> levelsVector);
-	Season(string seasonName, string fileClub, Club* parentClub);
-    string getFileName() const;
+	Season(string seasonName, Club* parentClub);
 	unsigned int getYear() const;
-
 	vector<Level*> getLevels() const;
+    string getPathToSeasonFolder() const;
+    string getSeasonName() const;
 };
 

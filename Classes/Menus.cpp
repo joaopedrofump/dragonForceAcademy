@@ -9,44 +9,43 @@ Leonardo Teixeira
 
 using namespace std;
 
-void initialInfo(string &fileClub) {
+void initialInfo(string &clubName) {
 
     ifstream inStreamClub;
     bool clubExists;
-	string clubName;
+	string clubNameFromUser;
 
     cout << Table({ "Please, insert the name of the club" });
-    getline(cin, clubName);
+    getline(cin, clubNameFromUser);
     
-	if (clubName != "") {
+	if (clubNameFromUser != "") {
         
-		fileClub = clubName;
-		inStreamClub.open((path() + fileClub + stringPath("/club.txt")).c_str());
+		inStreamClub.open((path() + clubNameFromUser + stringPath("/club.txt")).c_str());
 		clubExists = inStreamClub.good();
         
         if(!clubExists) {
             string s = "Could not read file";
-            throw s;
+            throw InvalidStream((path() + clubNameFromUser + stringPath("/club.txt")), read);
         }
         
+        clubName = clubNameFromUser;
 		inStreamClub.close();
 
 	}
 		
 	else {
 		
-        string clubName;
+        string newClubName;
         cout << Table({ "Ok. let's create the club. Please, insert the name for the new club" });
         getline(cin, clubName);
         
 		clearScreen();
 
-
         if(!createDirectory((path() + clubName).c_str())) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
         }
-        Date currentDate(true);
+        Date currentDate;
         string year = to_string(currentDate.getYear());
 		ofstream outfileClub((path() + clubName) + stringPath("/club.txt"));
 		outfileClub << clubName << endl;
@@ -67,40 +66,28 @@ void initialInfo(string &fileClub) {
         createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors")).c_str());
         
         //create info files for levels
-        ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/infoLevel.txt"));
-        outfileInfoLevel.close();
-        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
+        ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Coaches.txt").c_str());
-        outfileInfoLevel.close();
-        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/infoLevel.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Coaches.txt").c_str());
         outfileInfoLevel.close();
-        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/infoLevel.txt").c_str());
-        outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Coaches.txt").c_str());
         outfileInfoLevel.close();
-        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/infoLevel.txt").c_str());
-        outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Coaches.txt").c_str());
-        outfileInfoLevel.close();
-        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/infoLevel.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Coaches.txt").c_str());
         outfileInfoLevel.close();
         
-
-        
-        fileClub = clubName;
+        newClubName = clubName;
 	}
 
 }
@@ -229,7 +216,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
 		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
-		Date today(true);
+		Date today();
 
         switch (option) {
             /*case 1:           //=========== SHOW ATHLETES ==============

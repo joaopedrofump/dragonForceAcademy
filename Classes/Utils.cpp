@@ -29,9 +29,7 @@ string path() {
 
 // date in form DD/MM/YYYY
 
-Date::Date(bool currentDate) {
-    
-    if (currentDate) {
+Date::Date() {
         
 #ifdef __llvm__
         
@@ -41,32 +39,18 @@ Date::Date(bool currentDate) {
         this->day = timePtr->tm_mday;
         this->month = (timePtr->tm_mon) + 1;
         this->year = timePtr->tm_year + 1900;
-        this->valid = this->isValid();
         
 #elif _MSC_VER
         
         time_t t = time(NULL);
         struct tm timeInfo;
         localtime_s(&timeInfo, &t);
-        
         this->day = timeInfo.tm_mday;
         this->month= (timeInfo.tm_mon) + 1;
         this->year = timeInfo.tm_year + 1900;
-        this->valid = this->isValid();
         
 #endif
-        
-    }
     
-    else {
-        
-        this->day = 0;
-        this->month = 0;
-        this->year = 0;
-        this->valid = this->isValid();
-        
-        
-    }
     
 }
 
@@ -75,35 +59,45 @@ Date::Date(string dataStr) {
     stringstream dataStream(dataStr);
     char separator1;
     char separator2;
+    int tmpDay;
+    int tmpMonth;
+    int tmpYear;
     
-    dataStream >> this->day;
+    dataStream >> tmpDay;
     dataStream >> separator1;
-    dataStream >> this->month;
+    dataStream >> tmpMonth;
     dataStream >> separator2;
-    dataStream >> this->year;
+    dataStream >> tmpYear;
     
     if (separator1 != '/' || separator2 != '/') {
         
-        valid = false;
+        throw InvalidDateException(InvalidSeparators,0,0,0);
         
     }
     
-    else {
-        
-        this->valid = isValid();
-        
-    }
-    
+    *this = Date(tmpDay,tmpMonth,tmpYear);
     
 }
 
 Date::Date(unsigned int day, unsigned int month, unsigned int year) {
     
+    if (year < 1900) {
+        throw InvalidDateException(InvalidYear, day, month, year);
+    }
+    
+    if (month <= 0 || month > 12) {
+        
+        throw InvalidDateException(InvalidMonth, day, month, year);
+    }
+    
+    if ((day <= 0) || (day  > numDays(month, year))) {
+        
+        throw InvalidDateException(InvalidDay, day, month, year);
+    }
+    
     this->day = day;
     this->month = month;
     this->year = year;
-    
-    this->valid = isValid();
     
 }
 
@@ -121,27 +115,53 @@ int Date::getYear() const {
 
 void Date::setDay(int day) {
     
+    if ((day <= 0) || (day  > numDays(this->month, this->year))) {
+        
+        throw InvalidDateException(InvalidDay, day, this->month, this->year);
+    }
+    
     this->day = day;
     
 }
 
 void Date::setMonth(int month) {
+    
+    if (month <= 0 || month > 12) {
+        
+        throw InvalidDateException(InvalidYear, this->day, month, this->year);
+    }
+    
+    if ((this->day <= 0) || (this->day  > numDays(month, this->year))) {
+        
+        throw InvalidDateException(InvalidDay, this->day, month, this->year);
+    }
+    
     this->month = month;
 }
 
 void Date::setYear(int year) {
+    
+    if (year < 1900) {
+        throw InvalidDateException(InvalidYear, this->day, this->month, year);
+    }
+    
+    if ((this->day <= 0) || (this->day  > numDays(this->month, year))) {
+        
+        throw InvalidDateException(InvalidDay, day, this->month, year);
+    }
+    
     this->year = year;
 }
 
-bool Date::isLeap() const {
+bool Date::isLeap(int year) const {
     
-    if (this->year % 400 == 0) {
+    if (year % 400 == 0) {
         return true;
     }
     
     else {
         
-        if (this->year % 4 == 0 && this->year % 100 != 0) {
+        if (year % 4 == 0 && year % 100 != 0) {
             return true;
         }
         
@@ -151,14 +171,14 @@ bool Date::isLeap() const {
     }
 }
 
-int Date::numDays() const {
+int Date::numDays(int month, int year) const {
     
-    switch (this->year) {
+    switch (month) {
         case 4: case 6: case 9: case 11:
             return 30;
             break;
         case 2:
-            if (this->isLeap()) {
+            if (this->isLeap(year)) {
                 return 29;
             }
             else {
@@ -170,27 +190,6 @@ int Date::numDays() const {
             return 31;
             break;
     }
-}
-
-bool Date::isValid() {
-    
-    if (this->year < 1900) {
-        return false;
-    }
-    
-    if (this->month == 0 || this->year > 12) {
-        
-        return false;
-    }
-    
-    if ((this->day == 0) || (this->day  > numDays())) {
-        
-        return false;
-    }
-    
-    return true;
-    
-    
 }
 
 bool operator>=(const Date &date1, const Date date2) {
@@ -253,24 +252,9 @@ void Date::save(ofstream &out) const {
     
 }
 
-bool Date::getValid() const {
-    
-    return this->valid;
-    
-}
-
 ostream& operator<<(ostream& out, const Date &data) {
     
-    if (data.getValid()) {
-        out << data.getDay() << "/" << data.getMonth() << "/" << data.getYear();
-    }
-    
-    else {
-        
-        out << "Data Inválida";
-        
-    }
-    
+    out << data.getDay() << "/" << data.getMonth() << "/" << data.getYear();
     return out;
 }
 
@@ -366,7 +350,6 @@ void Date::setCurrentDate() {
 #endif
     
 }
-
 
 // ===========================================
 // ===============  TABLE  ===================

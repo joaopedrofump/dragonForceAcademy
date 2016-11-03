@@ -14,11 +14,11 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <stdio.h>
 #include <vector>
 #include <map>
 #include <ctime>
+#include "Exceptions.hpp"
 #ifdef __llvm__
 #include <sys/stat.h>
 #elif _MSC_VER
@@ -27,10 +27,76 @@
 #endif
 
 
-
-using namespace std;
-
 string const FILE_SEPARATOR = "------------------------------------------------";
+
+// ===========================================
+// ==========  ENUMS & STRUCTS ===============
+// ===========================================
+
+enum CoachType {
+    
+    HeadCoach,			// HDC
+    AssistantCoach,		// ASC
+    GoalkeeperCoach,	// GKC
+    PhysicalTrainer		// PHT
+    
+};
+
+//map<string, CoachType> coachTypeMap;
+
+enum Position {
+    
+    GoalkeeperPos = 1,  // GK
+    DefenderPos = 2,    // DF
+    MidfielderPos = 3,  // MF
+    ForwardPos = 4,      // FW
+    
+};
+
+//map<string, Position> positionsMap;
+
+enum DefenderPosition {
+    
+    CenterBack = 1, // CB
+    LeftBack = 2,   // LB
+    RightBack = 3,  // RB
+    
+};
+
+//map<string, DefenderPosition> defendersMap;
+
+enum MidfielderPosition {
+    
+    CentreMidfielder = 1,     // CM
+    DefensiveMidfielder = 2,  // CDM
+    AttackingMidfielder = 3,  // CAM
+    LeftMidfield = 4,         // LM
+    RightMidfield = 5		  // RM
+    
+};
+
+//map<string, MidfielderPosition> midfieldersMap;
+
+enum ForwardPosition {
+    
+    Striker = 1,       // ST
+    CentreForward = 2, // CF
+    RigthWinger = 3,   // RW
+    LeftWinger = 4    // LW
+    
+};
+
+//map<string, ForwardPosition> fowardsMap;
+
+enum ageLevel {
+    
+    U13 = 1,
+    U15 = 2,
+    U17 = 3,
+    U19 = 4,
+    Seniors = 5
+    
+};
 
 // ===========================================
 // ===============  DATE  ====================
@@ -41,19 +107,16 @@ private:
 	int day;
 	int month;
 	int year;
-	bool valid;
-	bool isLeap() const;
-	int numDays() const;
-	bool isValid();
+	bool isLeap(int year) const;
+	int numDays(int month, int year) const;
 
 public:
-	Date(bool currentDate = false);
+	Date();//data actual
 	Date(string data); // data na forma DD/MM/AAAA
 	Date(unsigned int dia, unsigned int mes, unsigned int ano);
 	int getDay() const;
 	int getMonth() const;
 	int getYear() const;
-	bool getValid() const;
 	void setDay(int dia);
 	void setMonth(int mes);
 	void setYear(int ano);
@@ -187,75 +250,6 @@ void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para co
 bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro = "Invalid Input");
 
 string path();
-
-// ===========================================
-// ==========  ENUMS & STRUCTS ===============
-// ===========================================
-
-enum CoachType {
-
-	HeadCoach,			// HDC
-	AssistantCoach,		// ASC
-	GoalkeeperCoach,	// GKC
-	PhysicalTrainer		// PHT
-
-};
-
-//map<string, CoachType> coachTypeMap;
-
-enum Position {
-    
-    GoalkeeperPos = 1,  // GK
-    DefenderPos = 2,    // DF
-    MidfielderPos = 3,  // MF
-    ForwardPos = 4,      // FW
-    
-};
-
-//map<string, Position> positionsMap;
-
-enum DefenderPosition {
-    
-	CenterBack = 1, // CB
-	LeftBack = 2,   // LB
-	RightBack = 3,  // RB
-    
-};
-
-//map<string, DefenderPosition> defendersMap;
-
-enum MidfielderPosition {
-    
-    CentreMidfielder = 1,     // CM
-    DefensiveMidfielder = 2,  // CDM
-    AttackingMidfielder = 3,  // CAM
-	LeftMidfield = 4,         // LM
-	RightMidfield = 5		  // RM
-    
-};
-
-//map<string, MidfielderPosition> midfieldersMap;
-
-enum ForwardPosition {
-    
-	Striker = 1,       // ST
-	CentreForward = 2, // CF
-    RigthWinger = 3,   // RW
-	LeftWinger = 4    // LW
-    
-};
-
-//map<string, ForwardPosition> fowardsMap;
-
-enum ageLevel {
-
-	U13 = 1,
-	U15 = 2,
-	U17 = 3,
-	U19 = 4,
-	Seniors = 5
-
-};
 
 int createDirectory(const char* path);
 

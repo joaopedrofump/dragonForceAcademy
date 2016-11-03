@@ -13,7 +13,7 @@ Leonardo Teixeira
 
 using namespace std;
 
-void initialInfo(string & fileSeasons);
+void initialInfo(string& clubName);
 
 bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation);
 

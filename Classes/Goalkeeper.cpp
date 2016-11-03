@@ -19,9 +19,15 @@ Goalkeeper::Goalkeeper(string name, Date birthdate, unsigned char height, unsign
     
 }
 
-Goalkeeper::Goalkeeper(string &newGK) : Athlete(newGK, GoalkeeperPos){}
+Goalkeeper::Goalkeeper(string &newGK) : Athlete(newGK, GoalkeeperPos){
+    
+    this->generalInfo = new InfoGK();
+    
+}
 
 Goalkeeper::~Goalkeeper() {
+    
+    delete this->generalInfo;
     cout << "Goalkeeper destroyed\n" << endl;
 }
 

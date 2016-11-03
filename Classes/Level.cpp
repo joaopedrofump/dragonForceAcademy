@@ -2,14 +2,19 @@
 
 #include "Club.hpp"
 
-Level::Level(string yearOfSeason, string fileClub, string levelName, Club* parentClub) {
-
+Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, Club* parentClub) {
+    
+    this->levelName = levelName;
+    this->pathToLevelFolder = stringPath(pathToSeasonFolder + "/" + this->levelName);
+    this->pathToLevelAthletesFile = stringPath(this->pathToLevelFolder + "/Athletes.txt");
+    this->pathToLevelCoachesFile = stringPath(this->pathToLevelFolder + "/Coaches.txt");
+    
     if(levelName == "U13") {
         
         this->minAge = 11;
         this->maxAge = 13;
         this->minHeight = 130;
-        this->ageLevelName = U13;
+        this->levelEnum = U13;
         
     }
     
@@ -18,7 +23,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
         this->minAge = 13;
         this->maxAge = 15;
         this->minHeight = 150;
-        this->ageLevelName = U15;
+        this->levelEnum = U15;
         
     }
     
@@ -27,7 +32,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
         this->minAge = 15;
         this->maxAge = 17;
         this->minHeight = 170;
-        this->ageLevelName = U17;
+        this->levelEnum = U17;
         
     }
     
@@ -36,7 +41,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
         this->minAge = 17;
         this->maxAge = 19;
         this->minHeight = 175;
-        this->ageLevelName = U19;
+        this->levelEnum = U19;
         
     }
     
@@ -45,35 +50,18 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
         this->minAge = 19;
         this->maxAge = 45;
         this->minHeight = 180;
-        this->ageLevelName = Seniors;
+        this->levelEnum = Seniors;
         
     }
     
+    
+    
 	// Read information of this level
-    ifstream inStreamLevel(stringPath(path() + fileClub + "/" + levelName + "/infoLevel.txt"));
-
-	if (!inStreamLevel.eof()) {
-		
-		string idHeadCoach;
-		getline(inStreamLevel, idHeadCoach);
-        
-        if(idHeadCoach.length() != 0) {
-            
-            unsigned int headCoachId = atoi(idHeadCoach.c_str());
-            
-            this->mainCoachID = headCoachId;
-        }
-            
-	}
-
-	inStreamLevel.close();
+    ifstream inStreamLevel;
 
 	//Read information of athletes
     
-    string caminho = stringPath(path() + fileClub  + "/" + levelName + "/Athletes.txt");
-    
-    inStreamLevel.open(caminho.c_str());
-
+    inStreamLevel.open(this->pathToLevelAthletesFile);
 
 	while (!inStreamLevel.eof()) {
 
@@ -102,7 +90,6 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
 		// Read Goalkeepers specific informations
 		if (stoi(tmpAthletePos) == GoalkeeperPos) {
 
-
 			infoTmpAthlete = new InfoGK(tmpAthlete);
 
 		}
@@ -110,9 +97,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
 		// Read Defenders specific informations
 		else if(stoi(tmpAthletePos) == DefenderPos){
 
-
 			infoTmpAthlete = new InfoDF(tmpAthlete);
-
 		}
 
 		// Read Midfielders specific informations
@@ -130,7 +115,10 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
 
 		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
         
+        map<unsigned int, Worker*> tmpMap =  parentClub->getAthletes();
+        
         Worker* thisWorker = parentClub->getAthletes().at(tmpAthleteId);
+        
         thisWorker->addInfo(infoTmpAthlete);
 
 	}
@@ -139,8 +127,18 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
 
 	// Read information of coaches
 
-	inStreamLevel.open(stringPath(path() + fileClub + "/" + levelName + "Coaches.txt").c_str());
-	
+	inStreamLevel.open(pathToLevelCoachesFile);
+    
+    string mainCoach;
+    getline(inStreamLevel, mainCoach);
+    
+    if(mainCoach.length() != 0) {
+        this->levelMainCoach = stoi(mainCoach);
+    }
+    else {
+        this->levelMainCoach = -1;
+    }
+    
 	while (!inStreamLevel.eof()) {
 
 		string tmpCoach;
@@ -150,8 +148,7 @@ Level::Level(string yearOfSeason, string fileClub, string levelName, Club* paren
             continue;
         }
 
-
-		trainersIds.push_back(atoi(tmpCoach.c_str()));
+		coachesIdsVector.push_back(stoi(tmpCoach));
 	}
 
 	inStreamLevel.close();
@@ -187,28 +184,26 @@ Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     
 }
 
-string Level::levelName() const {
+string Level::getLevelName() const {
     
-    string result;
-    
-    switch (this->ageLevelName) {
-        case U13:
-            result = "U13";
-            break;
-        case U15:
-            result = "U15";
-            break;
-        case U17:
-            result = "U17";
-            break;
-        case U19:
-            result = "U19";
-            break;
-        case Seniors:
-            result = "Seniors";
-            break;
-        default:
-            break;
-    }
-    return result;
+    return this->levelName;
 }
+
+vector<unsigned int> Level::getCoaches() const {
+    return this->coachesIdsVector;
+}
+
+int Level::getMainCoachId() const {
+    return this->levelMainCoach;
+}
+
+string Level::getPathToLevelFolder() const {
+    return this->pathToLevelFolder;
+}
+string Level::getPathToLevelAthletesFile() const {
+    return this->pathToLevelAthletesFile;
+}
+string Level::getPathToLevelCoachesFile() const {
+    return this->pathToLevelCoachesFile;
+}
+

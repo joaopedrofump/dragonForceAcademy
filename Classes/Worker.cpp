@@ -66,7 +66,7 @@ void Worker::setStatus(bool newStatus) {
 
 unsigned int Worker::getIdade() const {
 	
-    return Date(true) - this->birthdate;
+    return Date() - this->birthdate;
 
 }
 

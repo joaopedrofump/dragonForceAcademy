@@ -18,18 +18,17 @@ Defender::Defender(string name, Date birthdate, unsigned char height, unsigned i
     this->generalInfo = new InfoDF();
 }
 
-Defender::Defender(string &newDF) : Athlete(newDF, DefenderPos) {}
-
-
-Defender::~Defender() {
-    cout << "Defender destroyed" << endl;
+Defender::Defender(string &newDF) : Athlete(newDF, DefenderPos) {
+    
+    this->generalInfo = new InfoDF();
+    
 }
 
-/*Position Defender::getPosition() const {
+Defender::~Defender() {
     
-    return DefenderPos;
-    
-}*/
+    delete this->generalInfo;
+    cout << "Defender destroyed" << endl;
+}
 
 unsigned int Defender::getID() const{
     

@@ -7,17 +7,18 @@ class Season;
 extern const map<string, CoachType> coachTypeMap;
 
 class Club {
-	string name;
+	string clubName;
 	map<unsigned int, Worker*> allWorkers;
 	vector<Season*> seasons;
 	unsigned int numberOfSeasons;
-
-	string fileName;
+    string pathToClubFolder;
+    string pathToClubAthletesFile;
+    string pathToClubCoachesFile;
+    string pathToClubInfoFile;
 
 
 public:
-	Club(string name, vector<Season*> seasonsVector);
-	Club(string fileClub);
+	Club(string clubName);
 
 	string getName() const;
 	map<unsigned int, Worker*> getWorkers() const;
@@ -30,5 +31,9 @@ public:
 	//void showAthletes(bool onlyActives = false) const;
 
 	void saveChanges();
+    string getPathToClubFolder() const;
+    string getPathToClubAthletesFile() const;
+    string getPathToClubCoachesFile() const;
+    string getPathToClubInfoFile() const;
 
 };

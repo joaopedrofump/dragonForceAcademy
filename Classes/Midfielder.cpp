@@ -18,10 +18,15 @@ Midfielder::Midfielder(string name, Date birthdate, unsigned char height, unsign
     this->generalInfo = new InfoMF();
 }
 
-Midfielder::Midfielder(string &newMF) : Athlete(newMF, MidfielderPos) {}
+Midfielder::Midfielder(string &newMF) : Athlete(newMF, MidfielderPos) {
+    
+    this->generalInfo = new InfoMF();
+    
+}
 
 Midfielder::~Midfielder() {
     
+    delete this->generalInfo;
     cout << "Midfielder destroyed\n" << endl;
     
 }

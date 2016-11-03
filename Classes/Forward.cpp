@@ -10,24 +10,24 @@ Forward::Forward(string name, Date birthdate, unsigned char height, unsigned int
     this->generalInfo = new InfoFW();
 }
 
-Forward::Forward(string &newFW) : Athlete(newFW, ForwardPos) {}
+Forward::Forward(string &newFW) : Athlete(newFW, ForwardPos) {
+    
+    this->generalInfo = new InfoFW();
+}
 
-Forward::~Forward()
-{
+Forward::~Forward() {
+    
 	cout << "Forward destroyed\n" << endl;
 }
 
-/*Position Forward::getPosition() const
-{
-	return ForwardPos;
-}*/
-
-unsigned int Forward::getID() const
-{
+unsigned int Forward::getID() const {
+    
+    delete this->generalInfo;
 	return this->id;
 }
 
 Info* Forward::getInfo() const {
+    
     return this->generalInfo;
 }
 
