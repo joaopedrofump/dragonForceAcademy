@@ -247,13 +247,19 @@ int GetCursorY();
 
 void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
 
-bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro = "Invalid Input");
+bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage = "Invalid Input");
+
+bool emptyString(string stringTest);
 
 string path();
 
 int createDirectory(const char* path);
 
 string stringPath(string originalStr);
+
+string getLevelFromAge(Date birthDate);
+
+string readAndCut(string &stringToCut);
 
 
 #endif /* Utils_hpp */

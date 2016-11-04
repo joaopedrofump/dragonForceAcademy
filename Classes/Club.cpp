@@ -6,7 +6,8 @@
 Club::Club(string clubName) {
 
     this->clubName = clubName;
-    this->pathToClubFolder = stringPath((path() + clubName));
+	string pathtest = path();
+    this->pathToClubFolder = stringPath((pathtest + clubName));
     this->pathToClubAthletesFile = stringPath(this->pathToClubFolder + "/athletes.txt");
     this->pathToClubCoachesFile = stringPath(this->pathToClubFolder+ "/coaches.txt");
     this->pathToClubInfoFile = stringPath(this->pathToClubFolder + "/club.txt");
@@ -274,9 +275,8 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char he
 			}
 		}
         
-		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
-            
-		{
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++) {
+
 			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() <= currentSeason->getLevels().at(i)->getMaxAge()))
 			{
                 currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
@@ -378,7 +378,10 @@ void Club::saveChanges() {
             }
         
             coachesOStream << (*i)->getLevels().at(iteLevels)->getMainCoachId() << endl;
-            for(vector<unsigned int>::iterator iteratorCoaches = (*i)->getLevels().at(iteLevels)->getCoaches().begin(); iteratorCoaches != (*i)->getLevels().at(iteLevels)->getCoaches().end(); iteratorCoaches++) {
+
+			vector<unsigned int> tmpVectorCoaches = (*i)->getLevels().at(iteLevels)->getCoaches();
+
+			for(vector<unsigned int>::iterator iteratorCoaches = tmpVectorCoaches.begin(); iteratorCoaches != tmpVectorCoaches.end(); iteratorCoaches++) {
                 
                 coachesOStream << *iteratorCoaches;
                 

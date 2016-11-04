@@ -99,6 +99,10 @@ public:
 	This is an abstract method to get the athlete height
 	*/
 	virtual unsigned int getHeight() const = 0;
+	/*!
+	This is a static method to get the last Id created
+	*/
+	static unsigned int getLastId();
 
 
 };

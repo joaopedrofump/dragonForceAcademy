@@ -80,6 +80,12 @@ string Worker::getName() const {
 	return this->name;
 }
 
+unsigned int Worker::getLastId() {
+
+	return Worker::workersCounter;
+
+}
+
 ostream& operator<<(ostream& out, const Worker &worker) {
     
     out << worker.generateInfo();
