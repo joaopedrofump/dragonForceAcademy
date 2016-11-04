@@ -8,7 +8,7 @@ private:
     Info* generalInfo;
 
 public:
-	Forward(string name, Date birthdate, unsigned char height, unsigned id = 0);
+	Forward(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned id = 0);
 	Forward(string &newFW);
     ~Forward();
 	unsigned int getID() const;

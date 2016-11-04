@@ -10,7 +10,7 @@ private:
 	CoachType trainerPosition;
 
 public:
-	Coach(string name, Date birthdate, CoachType coachRole, unsigned int id = 0);
+	Coach(string name, Date birthdate, unsigned int civilID, CoachType coachRole, unsigned int id = 0);
 	Coach(string &newCoach);
 	unsigned int getID() const;
 	bool isAthlete() const;
@@ -22,4 +22,6 @@ public:
     void addInfo(Info* moreInfo){};
 
     string generateInfo() const;
+    
+    vector<string> showInScreen() const;
 };

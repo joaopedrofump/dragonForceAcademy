@@ -42,6 +42,10 @@ protected:
      Worker counter to keep track and generate the ids
      */
     static unsigned int workersCounter;
+    /*!
+     Worker Civil ID
+     */
+    unsigned int civilID;
 
 
 public:
@@ -50,7 +54,7 @@ public:
      \param name the name of the worker.
      \param birthdate the worker birthdate.
      */
-    Worker(string name, Date birthdate, unsigned int id = 0);
+    Worker(string name, Date birthdate, unsigned int civilID, unsigned int id = 0);
 	//! Worker empty constructor.
 	Worker();
     //! Abstract method - get the worker id.
@@ -99,6 +103,12 @@ public:
 	This is an abstract method to get the athlete height
 	*/
 	virtual unsigned int getHeight() const = 0;
+    
+    unsigned int getCivilID() const;
+    
+    virtual vector<string> showInScreen() const;
+    
+    bool isActive() const;
 
 
 };

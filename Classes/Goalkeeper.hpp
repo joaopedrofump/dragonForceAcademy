@@ -17,7 +17,7 @@ private:
     Info* generalInfo;
         
 public:
-    Goalkeeper(string name, Date birthdate, unsigned char height, unsigned int = 0);
+    Goalkeeper(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int = 0);
 	Goalkeeper(string &newGK);
     ~Goalkeeper();
     unsigned int getID() const;

@@ -11,6 +11,7 @@
 #define Utils_hpp
 
 #include <iostream>
+#include <math.h>
 #include <iomanip>
 #include <fstream>
 #include <sstream>
@@ -254,6 +255,8 @@ string path();
 int createDirectory(const char* path);
 
 string stringPath(string originalStr);
+
+string getLevelFromAge(Date birthDate);
 
 
 #endif /* Utils_hpp */

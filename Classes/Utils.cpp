@@ -1130,4 +1130,25 @@ string stringPath(string originalStr) {
     
 }
 
-
+string getLevelFromAge(Date birthDate) {
+    
+    unsigned int age = Date() - birthDate;
+    
+    if (age < 13)
+        return "Under 13";
+    
+    else if (age >= 13 && age < 15)
+        return "Under 15";
+    
+    else if (age >= 15 && age < 17)
+        return "Under 17";
+    
+    else if (age >= 17 && age < 19)
+        return "Under 19";
+    
+    else if (age >= 19 && age < 45)
+        return "Seniors";
+    
+    else
+        return "No Level available";
+}

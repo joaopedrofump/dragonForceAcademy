@@ -8,7 +8,7 @@
 
 #include "Defender.hpp"
 
-Defender::Defender(string name, Date birthdate, unsigned char height, unsigned int id) : Athlete(name, birthdate, height, id) {
+Defender::Defender(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id) : Athlete(name, birthdate, civilID,height, id) {
     
     if (id != 0) {
         this->id = id;

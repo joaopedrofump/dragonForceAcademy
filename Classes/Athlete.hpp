@@ -21,7 +21,7 @@ protected:
 	Position position;
 
 public:
-    Athlete(string name, Date birthdate, unsigned char height, unsigned int id = 0);
+    Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id = 0);
 
 	Athlete(string &newAthlete, Position position);
 
@@ -36,6 +36,8 @@ public:
 	bool isAthlete() const;
     
     string generateInfo() const;
+    
+    vector<string> showInScreen() const;
 };
 
 #endif /* Athlete_hpp */

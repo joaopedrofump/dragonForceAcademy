@@ -10,11 +10,25 @@
 
 unsigned int Worker::workersCounter = 0;
 
-Worker::Worker(string name, Date birthdate, unsigned int id) {
+Worker::Worker(string name, Date birthdate, unsigned int civilID, unsigned int id) {
+    
+    if(to_string(civilID).length() != 8) {
+        throw string("Invalid Civil ID");
+    }
+    
+    if(!validateName(name)) {
+        throw string("Invalid Name");
+    }
+    
+    if(Date()-birthdate < 11 || Date() - birthdate > 45) {
+        throw string("Invalid Age");
+    }
     
     this->name = name;
     this->birthdate = birthdate;
 	this->status = true;
+    this->civilID = civilID;
+    
 
 	if (id == 0) {
 		this->id = ++workersCounter;
@@ -22,16 +36,10 @@ Worker::Worker(string name, Date birthdate, unsigned int id) {
 	else {
 		this->id = id;
 	}
-	//Fazer id com o static wrkersCounter
     
 }
 
-Worker::Worker() {
-	this->birthdate = Date(1, 1, 1950);
-	this->id = 0;
-	this->name = "Initial Name";
-	this->status = true;
-}
+Worker::Worker() {}
 
 Worker::~Worker() {
     
@@ -85,4 +93,24 @@ ostream& operator<<(ostream& out, const Worker &worker) {
     out << worker.generateInfo();
     return out;
     
+}
+
+vector<string> Worker::showInScreen() const {
+    
+    vector<string>output;
+    output.push_back(to_string(this->id));
+    output.push_back(to_string(this->civilID));
+    output.push_back(this->name);
+    output.push_back(this->birthdate.showDate());
+    output.push_back(to_string(this->getIdade()) + " y");
+    return output;
+    
+}
+
+unsigned int Worker::getCivilID() const {
+    return this->civilID;
+}
+
+bool Worker::isActive()const {
+    return this->status;
 }

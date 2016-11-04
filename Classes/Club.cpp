@@ -213,53 +213,33 @@ string Club::getPathToClubInfoFile() const {
     return this->pathToClubInfoFile;
 }
 
-void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char height) {
+void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height) {
 	Date currentDate;
 	Season* currentSeason = 0;
 	Athlete* athleteToAdd = 0;
     Info* infoAthleteToAdd = 0;
-    
-    //mudar estrutura do try
-    
-//    if (1) {
-//        
-//        try {
-//            
-//            
-//            
-//        }
-//        
-//        catch(...){}
-//        
-//    }
-//    
-//    else {
-//        
-//        throw string("cannot add player with unkwnown position");
-//    }
 
-	try
-	{
+	try {
 		if (pos == 1)
 		{
-			athleteToAdd = new Goalkeeper(name, birthdate, height);
+			athleteToAdd = new Goalkeeper(name, birthdate, civilID, height);
             infoAthleteToAdd = new InfoGK();
 			
 		}
 		else if (pos == 2)
 		{
-			athleteToAdd = new Defender(name, birthdate, height);
+			athleteToAdd = new Defender(name, birthdate, civilID, height);
             infoAthleteToAdd = new InfoDF();
 		
 		}
 		else if (pos == 3)
 		{
-			athleteToAdd = new Midfielder(name, birthdate, height);
+			athleteToAdd = new Midfielder(name, birthdate, civilID, height);
             infoAthleteToAdd = new InfoMF();
 		}
 		else if (pos == 4)
 		{
-			athleteToAdd = new Forward(name, birthdate, height);
+			athleteToAdd = new Forward(name, birthdate, civilID, height);
             infoAthleteToAdd = new InfoFW();
 		}
 		
@@ -285,10 +265,11 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char he
 	
 	}
 	/*to be completed*/
+    
 	catch (...)	{
 		
 	}
-
+    
 }
 
 
@@ -304,7 +285,8 @@ void Club::saveChanges() {
 			currentFile << i->second->getPosition() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
-			currentFile << i->second->getHeight();
+			currentFile << i->second->getHeight() << " ; ";
+            currentFile << i->second->getCivilID();
 
 			if (i != allWorkers.end())
 				currentFile << endl;
@@ -322,7 +304,8 @@ void Club::saveChanges() {
 			currentFile << i->second->getID() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
-			currentFile << i->second->getPosition();
+			currentFile << i->second->getPosition() << " ; ";
+            currentFile << i->second->getCivilID();
 
 			if (i != allWorkers.end())
 				currentFile << endl;
@@ -398,4 +381,48 @@ void Club::saveChanges() {
         
 	}
 
+}
+
+void Club::showAthletes(bool onlyActives) const {
+    
+    Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status" });
+    map<unsigned int, Worker*>::const_iterator workersIterator;
+    
+    if(onlyActives) {
+        
+        bool firstActive = false;
+        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+            if (workersIterator->second->isActive() && !firstActive && workersIterator->second->isAthlete()) {
+                
+                athletesTable.addNewLine(workersIterator->second->showInScreen());
+                firstActive = true;
+                continue;
+            }
+            
+            if (workersIterator->second->isActive() && firstActive && workersIterator->second->isAthlete()) {
+                
+                athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+            }
+        }
+        
+    }
+    
+    else {
+        
+        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+            
+            if (workersIterator == this->allWorkers.begin()) {
+                
+                athletesTable.addNewLine(workersIterator->second->showInScreen());
+            }
+            else {
+                
+                athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+            }
+        }
+        
+    }
+    
+    cout << athletesTable << endl;
+    
 }
