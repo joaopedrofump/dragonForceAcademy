@@ -17,7 +17,7 @@ private:
     Info* generalInfo;
     
 public:
-    Defender(string name, Date birthdate, unsigned char height, unsigned int = 0);
+    Defender(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int = 0);
 	Defender(string &newDF);
     ~Defender();
     unsigned int getID() const;

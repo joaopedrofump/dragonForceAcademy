@@ -839,7 +839,7 @@ bool validateName(string &nome) {
 
 		if (isdigit((int)nome.at(i))) {
 
-			cout << "O nome não pode conter digitos, apenas letras." << endl;
+			throw string("The name cannot contain digits, only letters.\n");
 			return false;
 
 		}
@@ -860,18 +860,18 @@ bool validateName(string &nome) {
 
 	if (nomes.size() < 2) {
 
-		cout << "O nome do cliente tem de ser constituído por pelo menos dois nomes" << endl;
+		throw string("The name must be comprised of at least two names.\n");
 		return false;
 
 	}
 
-	//verificar que cada nome tem pelo menos 3 letras
+	//verificar que cada nome tem pelo menos 2 letras
 
 	for (size_t i = 0; i < nomes.size(); i++) {
 
 		if (nomes.at(i).size() < 2) {
 
-			cout << "Cada nome tem de conter pelo menos duas letras." << endl;
+			throw string("Each name must contain at least two letters.\n");
 			return false;
 
 		}
@@ -993,58 +993,102 @@ void ignoreLine(bool ignoreControl, string message) {
 
 }
 
-bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro) {
+bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage) {
 
 	string inputUser;
-	bool resultadoBool = false;
+	bool result = false;
 
-	Table tabelaMensagemErro({ mensagemErro });
+	Table tableErrorMessage({ errorMessage });
 
 	getline(cin, inputUser);
-	stringstream inteirosStream(inputUser);
+	stringstream integersStream(inputUser);
 	trimString(inputUser);
 
 	if (inputUser.size() == 0) {
 
 		input = 0;
 		return true;
-
 	}
 
-	while (!inteirosStream.eof()) {
+	while (!integersStream.eof()) {
 
 		unsigned short int currentInt;
-		inteirosStream >> currentInt;
+		integersStream >> currentInt;
 
-		if (inteirosStream.fail()) {
+		if (integersStream.fail()) {
 
-			inteirosStream.clear();
-			inteirosStream.ignore(1);
-
-
+			integersStream.clear();
+			integersStream.ignore(1);
 		}
-
 		else {
 
 			input = currentInt;
-			resultadoBool = true;
+			result = true;
 			break;
+		}
+	}
+
+	if (!result) {
+
+		cout << tableErrorMessage << endl;
+	}
+
+	return result;
+}
+
+bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
+
+
+	string dates;
+	bool resultBool = false;
+
+
+
+	Table tableMessage({ message });
+	Table tableErrorMessage({ errorMessage });
+	cout << tableMessage << endl;
+	getline(cin, dates);
+	stringstream datesStream(dates);
+	trimString(dates);
+
+	if (dates.size() == 0) {
+
+		return true;
+	}
+
+	while (!datesStream.eof()) {
+
+		string currentDateStr;
+		getline(datesStream, currentDateStr, ' ');
+
+		Date currentDate(currentDateStr);
+
+		resultVector.push_back(currentDate);
+		resultBool = true;
+
+		if (resultVector.size() == 2) {
+
+			resultBool = true;
 
 		}
-
-
 	}
 
-	if (!resultadoBool) {
+	if (!resultBool) {
 
-		cout << tabelaMensagemErro << endl;
-
-
+		cout << tableErrorMessage << endl;
 	}
 
-	return resultadoBool;
+	return resultBool;
+
+}
 
 
+bool emptyString(string stringTest) {
+
+	if (stringTest.size() == 0) {
+		return true;
+	}
+	return false;
 }
 
 // ===========================================
@@ -1099,35 +1143,55 @@ string stringPath(string originalStr) {
     
     return originalStr;
 #endif
-    
-    if(originalStr == "/") {
-        return "\\";
-    }
-    
-    vector<string> dirs;
-    while (true) {
-        
-        dirs.push_back(originalStr.substr(0, originalStr.find('/', 0)));
-        
-        originalStr = originalStr.substr(originalStr.find('/', 0) + 1);
-        
-        if (originalStr == originalStr.substr(originalStr.find('/', 0) + 1)) {
-            
-            dirs.push_back(originalStr);
-            break;
-        }
-        
-    }
-    
-    string result;
-    
-    for (size_t i = 0; i < dirs.size() - 1; i++) {
-        result = result + dirs.at(i) + "\\";
-    }
-    result = result + dirs.at(dirs.size() - 1);
-    
-    return result;
+
+	string result = "";
+
+	for (size_t i = 0; i < originalStr.size(); i++) {
+
+		if (originalStr.at(i) == '/') {
+
+			result += "\\";
+
+		}
+		else {
+			result += originalStr.at(i);
+		}
+
+	}
+
+	return result;
     
 }
 
+string getLevelFromAge(Date birthDate) {
+    
+    unsigned int age = Date() - birthDate;
+    
+    if (age < 13)
+        return "Under 13";
+    
+    else if (age >= 13 && age < 15)
+        return "Under 15";
+    
+    else if (age >= 15 && age < 17)
+        return "Under 17";
+    
+    else if (age >= 17 && age < 19)
+        return "Under 19";
+    
+    else if (age >= 19 && age < 45)
+        return "Seniors";
+    
+    else
+        return "No Level available";
+}
 
+
+string readAndCut(string &stringToCut) {
+
+	string result = stringToCut.substr(0, stringToCut.find(';', 0) - 1);
+
+	stringToCut = stringToCut.substr(stringToCut.find(';', 0) + 2);
+
+	return result;
+}

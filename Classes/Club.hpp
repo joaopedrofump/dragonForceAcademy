@@ -23,7 +23,7 @@ public:
 	string getName() const;
 	map<unsigned int, Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
-	void addPlayer(Position pos, string name, Date birthdate, unsigned char height);
+	void addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height);
 
 	map<unsigned int, Worker*> getAthletes() const;
 	map<unsigned int, Worker*> getCoaches() const;
@@ -35,5 +35,6 @@ public:
     string getPathToClubAthletesFile() const;
     string getPathToClubCoachesFile() const;
     string getPathToClubInfoFile() const;
+    void showAthletes(bool onlyActives = false) const;
 
 };

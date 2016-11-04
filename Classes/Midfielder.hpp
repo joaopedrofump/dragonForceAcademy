@@ -16,7 +16,7 @@ class Midfielder : public Athlete {
 private:
     Info* generalInfo;
 public:
-    Midfielder(string name, Date birthdate, unsigned char height, unsigned int id = 0);
+    Midfielder(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id = 0);
 	Midfielder(string &newMF);
     ~Midfielder();
     unsigned int getID() const;
