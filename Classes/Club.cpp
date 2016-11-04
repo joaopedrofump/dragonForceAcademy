@@ -6,7 +6,8 @@
 Club::Club(string clubName) {
 
     this->clubName = clubName;
-    this->pathToClubFolder = stringPath((path() + clubName));
+	string pathtest = path();
+    this->pathToClubFolder = stringPath((pathtest + clubName));
     this->pathToClubAthletesFile = stringPath(this->pathToClubFolder + "/athletes.txt");
     this->pathToClubCoachesFile = stringPath(this->pathToClubFolder+ "/coaches.txt");
     this->pathToClubInfoFile = stringPath(this->pathToClubFolder + "/club.txt");
@@ -83,6 +84,10 @@ Club::Club(string clubName) {
 		unsigned int newAthleteId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
 
 		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+        
+        unsigned int newAthleteCivilId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
+        
+        tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
 
 		unsigned int newAthletePosition = stoi(tmpString.substr(0, tmpString.find(';', 0)));
 
@@ -105,6 +110,7 @@ Club::Club(string clubName) {
 		}
 
 		newAthlete->setId(newAthleteId);
+        newAthlete->setCivilId(newAthleteCivilId);
 
 		this->allWorkers.insert(pair<unsigned int, Worker*>(newAthlete->getID(), newAthlete));
 
@@ -254,9 +260,8 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
 			}
 		}
         
-		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
-            
-		{
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++) {
+
 			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() <= currentSeason->getLevels().at(i)->getMaxAge()))
 			{
                 currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
@@ -282,11 +287,11 @@ void Club::saveChanges() {
 	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
 		if (i->second->isAthlete()) {
 			currentFile << i->second->getID() << " ; ";
+            currentFile << i->second->getCivilID() << " ; ";
 			currentFile << i->second->getPosition() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
-			currentFile << i->second->getHeight() << " ; ";
-            currentFile << i->second->getCivilID();
+			currentFile << i->second->getHeight();
 
 			if (i != allWorkers.end())
 				currentFile << endl;
@@ -301,11 +306,11 @@ void Club::saveChanges() {
 
 	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
 		if (!i->second->isAthlete()) {
-			currentFile << i->second->getID() << " ; ";
+            currentFile << i->second->getID() << " ; ";
+            currentFile << i->second->getCivilID() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
-			currentFile << i->second->getPosition() << " ; ";
-            currentFile << i->second->getCivilID();
+			currentFile << i->second->getPosition();
 
 			if (i != allWorkers.end())
 				currentFile << endl;
@@ -361,7 +366,10 @@ void Club::saveChanges() {
             }
         
             coachesOStream << (*i)->getLevels().at(iteLevels)->getMainCoachId() << endl;
-            for(vector<unsigned int>::iterator iteratorCoaches = (*i)->getLevels().at(iteLevels)->getCoaches().begin(); iteratorCoaches != (*i)->getLevels().at(iteLevels)->getCoaches().end(); iteratorCoaches++) {
+
+			vector<unsigned int> tmpVectorCoaches = (*i)->getLevels().at(iteLevels)->getCoaches();
+
+			for(vector<unsigned int>::iterator iteratorCoaches = tmpVectorCoaches.begin(); iteratorCoaches != tmpVectorCoaches.end(); iteratorCoaches++) {
                 
                 coachesOStream << *iteratorCoaches;
                 

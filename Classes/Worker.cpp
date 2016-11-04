@@ -66,6 +66,12 @@ void Worker::setId(unsigned int newId) {
 
 }
 
+void Worker::setCivilId(unsigned int newCivilId) {
+    
+    this->civilID = newCivilId;
+    
+}
+
 void Worker::setStatus(bool newStatus) {
 
 	this->status = newStatus;
@@ -86,6 +92,12 @@ Date Worker::getBirthdate() const {
 
 string Worker::getName() const {
 	return this->name;
+}
+
+unsigned int Worker::getLastId() {
+
+	return Worker::workersCounter;
+
 }
 
 ostream& operator<<(ostream& out, const Worker &worker) {

@@ -78,6 +78,10 @@ public:
 	This is the set ID function that actualize the ID atribute
 	*/
 	void setId(unsigned int newId);
+    /*!
+     This is the set Civil ID function that actualize the civil ID atribute
+     */
+    void setCivilId(unsigned int newCivilId);
 
 	
 
@@ -103,12 +107,19 @@ public:
 	This is an abstract method to get the athlete height
 	*/
 	virtual unsigned int getHeight() const = 0;
+
     
     unsigned int getCivilID() const;
     
     virtual vector<string> showInScreen() const;
     
     bool isActive() const;
+
+	/*!
+	This is a static method to get the last Id created
+	*/
+	static unsigned int getLastId();
+
 
 
 };

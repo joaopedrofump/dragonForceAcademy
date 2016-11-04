@@ -145,7 +145,7 @@ unsigned short int mainMenu() {
 	Table closeProgram({ "Are you sure you want to quit the program?" });
     while (!control) {
         showMainMenu(0);
-        control = leUnsignedShortInt(option, 0, 4);
+        control = readUnsignedShortInt(option, 0, 4);
     }
 
 	if (option == 0 && !confirm(closeProgram.getTableVector(), closeProgram.getBlocks(), closeProgram.getColumsWidth(), closeProgram.getIndentacao())) {
@@ -196,7 +196,7 @@ unsigned short int menuAthletesManagement() {
 		menuAthletes.addNewLine({ "5 - Remove Athlete" });
 		menuAthletes.addNewLine({ "0 - Back to Main Menu" });
         cout << menuAthletes;
-        control = leUnsignedShortInt(option, 0, 5);
+        control = readUnsignedShortInt(option, 0, 5);
     } while (!control);
     return option;
 }
@@ -205,21 +205,21 @@ void  optionsAthletesManagement(Club &mainClub) {
     unsigned int option;
     
     while ((option = menuAthletesManagement())) {
-		string input;
+		//string input;
 		unsigned int idCliente;
         bool control = false;
-		bool sairDoSwitch = false;
+		bool exitSwitch = false;
 
 		stringstream ss;
 		string str;
-		//Table mostrarCliente({ "Informacao" , "Dados" });
+		Table showInformation({ "Informacao" , "Dados" });
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
 		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
-		Date today();
+		Date today;
 
         switch (option) {
-            /*case 1:           //=========== SHOW ATHLETES ==============
+            case 1:           //=========== SHOW ATHLETES ==============
                 
 				clearScreen();
 				showMainMenu(0);
@@ -233,9 +233,9 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 
                 
-                supermercado.listarClientesOrdemAlfa();
+                mainClub.showAthletes();
                 ignoreLine(false);
-                break;
+                break;/*
             case 2:          //============ MOSTRAR UM CLIENTE ============
                 
                 if (supermercado.getMapIDtoCliente().size() == 0) {
@@ -274,7 +274,13 @@ void  optionsAthletesManagement(Club &mainClub) {
                 } while (!control);
                 break;*/
             case 3:            //=========== ADD ATHLETE ================
-                do {
+                
+				string newAthleteName;
+				string newAthleteBirthDate;
+				string newAthleteHeight;
+                string newAthleteCivilId;
+				
+				do {
                     clearScreen();
 					showMainMenu(1);
 					Table menuAthletes({ "1 - Show Athletes" });
@@ -291,60 +297,126 @@ void  optionsAthletesManagement(Club &mainClub) {
 					menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
 					cout << menuAthletes << addAthlete << menuAthletes2;
 					control = true;
-					system("PAUSE");
 
-					//CONTINUAR
+					unsigned short int position;
+					control = readUnsignedShortInt(position, 1, 4);
 
 
-                    /*Table introIdNome({ "Introduza NOME do cliente." });
-                    cout << introIdNome << endl;
 
-                    getline(cin, input);
-                    if (stringVazia(input)) {
-						sairDoSwitch = true;
+					//system("PAUSE");
+
+					// Read Athlete's Name
+
+					clearScreen();
+					showMainMenu(0);
+
+                    Table introName({ "Please, enter the athlete's NAME." });
+                    cout << introName << endl;
+
+					
+                    getline(cin, newAthleteName);
+
+                    if (emptyString(newAthleteName)) {
+						exitSwitch = true;
                         break;
                     }
-                    trimString(input);
-                    control = validateName(input);
+
+                    trimString(newAthleteName);
+
+					// Read Athlete's Birth Date
+					clearScreen();
+					showMainMenu(0);
+
+					Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
+					cout << introBirthDate << endl;
+
+					
+					getline(cin, newAthleteBirthDate);
+
+					if (emptyString(newAthleteBirthDate)) {
+						exitSwitch = true;
+						break;
+					}
+
+					trimString(newAthleteBirthDate);
+
+
+
+					// Read Athlete's Height
+
+					clearScreen();
+					showMainMenu(0);
+
+					Table introHeight({ "Please, enter the athlete's HEIGHT." });
+					cout << introHeight << endl;
+
+					
+					getline(cin, newAthleteHeight);
+
+					if (emptyString(newAthleteHeight)) {
+						exitSwitch = true;
+						break;
+					}
+
+					trimString(newAthleteHeight);
+                    
+                    
+                    
+                    // Read Athlete's Height
+                    
+                    clearScreen();
+                    showMainMenu(0);
+                    
+                    Table introCivilID({ "Please, enter the athlete's CIVIL ID." });
+                    cout << introCivilID << endl;
+                    
+                    
+                    getline(cin, newAthleteCivilId);
+                    
+                    if (emptyString(newAthleteCivilId)) {
+                        exitSwitch = true;
+                        break;
+                    }
+                    
+                    trimString(newAthleteCivilId);
+
+					try {
+						mainClub.addPlayer((Position)position, newAthleteName, newAthleteBirthDate, stoi(newAthleteCivilId), stoi(newAthleteHeight));
+					}
+					catch (InvalidDateException e) {
+						control = false;
+					}
+                    //control = validateName(input);
                     //ignoreLine(false, "Cliente adicionado com sucesso");*/
                 } while (!control);
-				/*if (sairDoSwitch) break;  //Teclar enter apenas, cancela a operacao
+
+				if (exitSwitch) break;  //Teclar enter apenas, cancela a operacao
 				
 
 				//Mostrar resumo da operacao
+
+				showInformation.addNewLine({ "ID: " , to_string(Worker::getLastId() + 1) });  // Mostra o id
+                
+                showInformation.addNewLine({ "Civil ID: " , newAthleteCivilId }); // Mostra o Nome
+
+				showInformation.addNewLine({ "Name: " , newAthleteName }); // Mostra o Nome
 				
-				ss << Cliente::getNumClientes() + 1;
-				str = ss.str();
+				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDate });
 
-				mostrarCliente.addNewLine({ "Id de Cliente: " , str });  // Mostra o id
-
-				ss.str("");
-				ss << input;
-				str = ss.str();
-
-				mostrarCliente.addNewLine({ "Nome do Cliente: " , str }); // Mostra o Nome
-
-				ss.str("");
-				ss << hoje.mostrarData();
-				str = ss.str();
-
-
-				mostrarCliente.addNewLine({ "Cartao de Cliente: " , str });
+				showInformation.addNewLine({ "Level: " , getLevelFromAge(newAthleteBirthDate) });
 
 				clearScreen();
-				mostrarMenuInicial(0);
+				showMainMenu(0);
+								
+				cout << confirmAdd;
 
-				
-				cout << confirmarAdicionar;
-
-				if (!confirmar(mostrarCliente.getTableVector(), mostrarCliente.getBlocks(), mostrarCliente.getColumsWidth(), mostrarCliente.getIndentacao())) {
+				if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
 					break;
 				}
-				ignoreLine(false, "Cliente adicionado com sucesso");
-                supermercado.adicionarCliente(input);
-                supermercado.saveChanges();
+				ignoreLine(false, "Athlete correctly added!");
+                mainClub.saveChanges();
                 break;
-            case 5:            //============  ELIMINAR CLIENTES ================
+            /*case 5:            //============  ELIMINAR CLIENTES ================
                 
                 
                 

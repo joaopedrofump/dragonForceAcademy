@@ -16,13 +16,12 @@ Forward::Forward(string &newFW) : Athlete(newFW, ForwardPos) {
 }
 
 Forward::~Forward() {
-    
+	delete this->generalInfo;
 	cout << "Forward destroyed\n" << endl;
 }
 
 unsigned int Forward::getID() const {
     
-    delete this->generalInfo;
 	return this->id;
 }
 

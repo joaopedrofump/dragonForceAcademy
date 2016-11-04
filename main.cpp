@@ -25,16 +25,15 @@ int main(int argc, const char * argv[]) {
         
         initialInfo(clubName);
         Club currentClubInProgram(clubName);
-        /*
-        currentClubInProgram.addPlayer(DefenderPos, "Joao Pedro", Date(10,12,1991), 12877354, 178);
-        currentClubInProgram.addPlayer(GoalkeeperPos, "Leo", Date(23,4,2003), 17486937, 190);
-		currentClubInProgram.addPlayer(MidfielderPos, "Inacio Correia", Date(21, 5, 2000), 84625386, 160);
-		currentClubInProgram.addPlayer(GoalkeeperPos, "Manuel Gomes", Date(12, 1, 1991), 12523759 ,166);
-         */
-        currentClubInProgram.saveChanges();
-        //initialOptions(currentClubInProgram);
-        currentClubInProgram.showAthletes();
         
+        /*currentClubInProgram.addPlayer(DefenderPos, "Joao Pedro", Date(10,12,1991), 178);
+        currentClubInProgram.addPlayer(GoalkeeperPos, "Leo", Date(23,4,2003), 190);
+		currentClubInProgram.addPlayer(MidfielderPos, "Inacio Correia", Date(21, 5, 2000), 160);
+		currentClubInProgram.addPlayer(GoalkeeperPos, "Manuel Gomes", Date(12, 1, 1991), 166);*/
+        
+        currentClubInProgram.saveChanges();
+        initialOptions(currentClubInProgram);
+
         
     }
     

@@ -20,26 +20,10 @@ Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned cha
 
 Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 
-	string newAthleteName = newAthlete.substr(0, newAthlete.find(';', 0));
+	this->name = readAndCut(newAthlete);
+	this->birthdate = Date(readAndCut(newAthlete));
+	this->height = stoi(readAndCut(newAthlete));
 
-	newAthlete = newAthlete.substr(newAthlete.find(';', 0) + 2);
-
-	Date newAthleteBirthdate = Date(newAthlete.substr(0, newAthlete.find(';', 0)));
-
-	newAthlete = newAthlete.substr(newAthlete.find(';', 0) + 2);
-
-	unsigned int newAthleteHeigth = atoi(newAthlete.c_str());
-    
-    newAthlete = newAthlete.substr(newAthlete.find(';', 0) + 2);
-    
-    unsigned int newAthleteCivilID = stoi(newAthlete);
-
-
-	this->name = newAthleteName;
-	this->birthdate = newAthleteBirthdate;
-	this->height = newAthleteHeigth;
-    this->civilID = newAthleteCivilID;
-    this->status = true;
 }
 
 
