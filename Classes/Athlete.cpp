@@ -23,6 +23,7 @@ Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 	this->name = readAndCut(newAthlete);
 	this->birthdate = Date(readAndCut(newAthlete));
 	this->height = stoi(readAndCut(newAthlete));
+    this->ecg = NULL;
 
 }
 
@@ -37,9 +38,23 @@ Athlete::~Athlete() {
     
 }
 
-void Athlete::addECG(bool resultado) {
+void Athlete::updateECG(bool resultado, Date expirationDate) {
     
-    this->ecg = new ECG(resultado);
+    ECG* tmpECG;
+    try {
+        tmpECG = new ECG(resultado, expirationDate);
+    } catch (...) {
+        cout << "error adding new ECG, ECG invalid" << endl;
+    }
+    
+    if(!this->ecg) {
+        this->ecg = tmpECG;
+    }
+    else {
+        delete this->ecg;
+        this->ecg = tmpECG;
+    }
+    
 }
 
 bool Athlete::isAthlete() const {

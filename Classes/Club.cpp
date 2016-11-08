@@ -220,9 +220,15 @@ string Club::getPathToClubInfoFile() const {
 }
 
 void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height) {
-	Date currentDate;
-	Season* currentSeason = 0;
-	Athlete* athleteToAdd = 0;
+	
+    
+    if(this->findWorkerByCivilID(civilID) != -1) {
+        throw string("This player is already registered");
+    }
+    
+    Date currentDate;
+    Season* currentSeason = 0;
+    Athlete* athleteToAdd = 0;
     Info* infoAthleteToAdd = 0;
 
 	try {
@@ -276,7 +282,6 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
 	}
     
 }
-
 
 void Club::saveChanges() {
 
@@ -434,3 +439,33 @@ void Club::showAthletes(bool onlyActives) const {
     cout << athletesTable << endl;
     
 }
+
+int Club::findWorkerByCivilID(unsigned int civilID) {
+    
+    map<unsigned int, Worker*>::const_iterator clientsIterator = this->allWorkers.begin();
+    while (clientsIterator != this->allWorkers.end()) {
+        
+        if ((clientsIterator->second)->getCivilID() == civilID) {
+            
+            return clientsIterator->first;
+            
+        }
+        clientsIterator++;
+        
+    }
+    return -1;
+    
+}
+
+void Club::updateECG(unsigned int athleteID, bool result) {
+    
+    if(this->allWorkers.find(athleteID) == allWorkers.end()) {
+        
+        throw string("Athlete not found");
+        
+    }
+    
+    allWorkers.find(athleteID)->second->updateECG(result);
+    
+}
+

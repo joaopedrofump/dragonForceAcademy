@@ -126,3 +126,5 @@ unsigned int Worker::getCivilID() const {
 bool Worker::isActive()const {
     return this->status;
 }
+
+void Worker::updateECG(bool resultado, Date expirationDate) {}
