@@ -24,15 +24,16 @@ int main(int argc, const char * argv[]) {
     try {
         
         initialInfo(clubName);
-        Club currentClubInProgram(clubName);
+		
+		Club currentClubInProgram(clubName);
         
         currentClubInProgram.saveChanges();
         
         
         
-        //initialOptions(currentClubInProgram);
+        initialOptions(currentClubInProgram);
         
-        currentClubInProgram.updateECG(1, true);
+        //currentClubInProgram.updateECG(1, true);
         cout << "teste" << endl;
         
         
@@ -50,6 +51,8 @@ int main(int argc, const char * argv[]) {
         cout << invalidStream.getMessage() << endl;
         
     }
-
+	catch (...) {
+		cout << "Qualquer excepcao";
+	}
 	return 0;
 }
