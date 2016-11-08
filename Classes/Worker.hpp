@@ -12,6 +12,8 @@
 
 #include "InfoAthletes.hpp"
 
+#include "ECG.hpp"
+
 using namespace std;
 
 //! Worker Class
@@ -109,6 +111,11 @@ public:
 	This is an abstract method to get the athlete height
 	*/
 	virtual unsigned int getHeight() const = 0;
+	/*!
+	This is an abstract method to get the athlete height
+	*/
+	virtual ECG* getECG() const;
+
 
     
     unsigned int getCivilID() const;

@@ -23,8 +23,9 @@ Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 	this->name = readAndCut(newAthlete);
 	this->birthdate = Date(readAndCut(newAthlete));
 	this->height = stoi(readAndCut(newAthlete));
-    this->ecg = NULL;
+	this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
 
+	cout << "Teste";
 }
 
 
@@ -40,7 +41,7 @@ Athlete::~Athlete() {
 
 void Athlete::updateECG(bool resultado, Date expirationDate) {
     
-    ECG* tmpECG;
+    ECG* tmpECG = 0;
     try {
         tmpECG = new ECG(resultado, expirationDate);
     } catch (...) {
@@ -69,6 +70,10 @@ unsigned int Athlete::getPosition() const {
 
 unsigned int Athlete::getHeight() const {
 	return height;
+}
+
+ECG* Athlete::getECG() const {
+	return this->ecg;
 }
 
 string Athlete::generateInfo() const {

@@ -11,7 +11,6 @@
 #define Athlete_hpp
 
 #include "Coach.hpp"
-#include "ECG.hpp"
 
 class Athlete : public Worker {
     
@@ -30,6 +29,8 @@ public:
     unsigned int getPosition() const;
 
 	unsigned int getHeight() const;
+
+	ECG* getECG() const;
     
     void updateECG(bool resultado, Date expirationDate);
 

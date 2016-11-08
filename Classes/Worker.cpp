@@ -128,3 +128,5 @@ bool Worker::isActive()const {
 }
 
 void Worker::updateECG(bool resultado, Date expirationDate) {}
+
+ECG* Worker::getECG() const { return NULL; }

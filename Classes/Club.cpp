@@ -293,7 +293,9 @@ void Club::saveChanges() {
 			currentFile << i->second->getPosition() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
-			currentFile << i->second->getHeight();
+			currentFile << i->second->getHeight() << " ; ";
+			currentFile << (i->second->getECG()->getResultado() ? "VALID" : "INVALID") << " ; ";
+			currentFile << i->second->getECG()->getExpirationDate();
 
 			if (i != allWorkers.end())
 				currentFile << endl;
