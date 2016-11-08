@@ -36,5 +36,7 @@ public:
     string getPathToClubCoachesFile() const;
     string getPathToClubInfoFile() const;
     void showAthletes(bool onlyActives = false) const;
+    int findWorkerByCivilID(unsigned int civilID);
+    void updateECG(unsigned int athleteID, bool result);
 
 };

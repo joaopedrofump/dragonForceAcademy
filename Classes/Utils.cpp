@@ -246,6 +246,10 @@ bool operator>=(const Date &date1, const Date date2) {
     
 }
 
+bool operator<(const Date &date1, const Date &date2) {
+    return !(date1 >= date2);
+}
+
 void Date::save(ofstream &out) const {
     
     out << this;
@@ -258,7 +262,7 @@ ostream& operator<<(ostream& out, const Date &data) {
     return out;
 }
 
-unsigned int operator-(const Date &date1, const Date &date2)
+int operator-(const Date &date1, const Date &date2)
 {
 	
 	if (date2.getMonth() > date1.getMonth())
@@ -350,6 +354,9 @@ void Date::setCurrentDate() {
 #endif
     
 }
+
+
+
 
 // ===========================================
 // ===============  TABLE  ===================

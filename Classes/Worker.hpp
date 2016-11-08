@@ -82,6 +82,8 @@ public:
      This is the set Civil ID function that actualize the civil ID atribute
      */
     void setCivilId(unsigned int newCivilId);
+    
+    virtual void updateECG(bool resultado, Date expirationDate = Date(Date().getDay(), Date().getMonth(),Date().getYear()+1));
 
 	
 

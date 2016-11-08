@@ -30,8 +30,8 @@ public:
     unsigned int getPosition() const;
 
 	unsigned int getHeight() const;
-
-    void addECG(bool resultado);
+    
+    void updateECG(bool resultado, Date expirationDate);
 
 	bool isAthlete() const;
     

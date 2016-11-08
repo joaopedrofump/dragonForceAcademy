@@ -15,12 +15,12 @@ class ECG {
 
 private:
     bool resultado;
-	//Date expirationDate;
+	Date expirationDate;
 
 public:
-    ECG(bool resultado);
-    ECG& setResultado(bool resultado);
+    ECG(bool resultado, Date exprirationDate);
     bool getResultado() const;
+    Date getExpirationDate() const;
 };
 
 #endif /* ECG_hpp */

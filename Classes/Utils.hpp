@@ -123,8 +123,9 @@ public:
 	void setYear(int ano);
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
+    friend bool operator<(const Date &date1, const Date &date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
-	friend unsigned int operator-(const Date &date1, const Date &date2);
+	friend int operator-(const Date &date1, const Date &date2);
 	string showDate() const;
 	void setCurrentDate();
 };
