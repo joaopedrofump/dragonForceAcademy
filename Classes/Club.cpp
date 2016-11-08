@@ -59,7 +59,7 @@ Club::Club(string clubName) {
 
 		//Read the last line of file that contains inactive athletes
 		if (tmpString == FILE_SEPARATOR) {
-			string tmpString;
+			//string tmpString;
 			getline(inStreamAthletes, tmpString);
 
 			unsigned int athleteId;
@@ -77,22 +77,19 @@ Club::Club(string clubName) {
 
 				this->allWorkers.at(athleteId)->setStatus(false);
 			}
+			break;
 		}
 
-		// Read athlete informations
-
-		unsigned int newAthleteId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
-
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+		// Read athlete informations:
+		
+		//ID
+		unsigned int newAthleteId = stoi(readAndCut(tmpString));
         
-        unsigned int newAthleteCivilId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
-        
-        tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+		//Civil ID
+        unsigned int newAthleteCivilId = stoi(readAndCut(tmpString));
 
-		unsigned int newAthletePosition = stoi(tmpString.substr(0, tmpString.find(';', 0)));
-
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
-
+		//Position
+		unsigned int newAthletePosition = stoi(readAndCut(tmpString));
 
 		Worker* newAthlete = 0;
 
@@ -296,6 +293,20 @@ void Club::saveChanges() {
 			if (i != allWorkers.end())
 				currentFile << endl;
 		}
+	}
+
+	currentFile << FILE_SEPARATOR << endl;
+
+	// Save Inactive Players
+	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
+
+		if (!(i->second->isActive())) {
+
+			currentFile << i->second->getID();
+			currentFile << " ";
+
+		}
+
 	}
 
 	currentFile.close();

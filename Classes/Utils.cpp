@@ -1020,8 +1020,10 @@ bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, uns
 			integersStream.clear();
 			integersStream.ignore(1);
 		}
-		else {
-
+		else if (currentInt > max || currentInt < min) {
+			throw InvalidInput(errorMessage);
+		}
+		else{
 			input = currentInt;
 			result = true;
 			break;
@@ -1030,7 +1032,7 @@ bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, uns
 
 	if (!result) {
 
-		cout << tableErrorMessage << endl;
+		throw InvalidInput(errorMessage);
 	}
 
 	return result;
@@ -1185,7 +1187,6 @@ string getLevelFromAge(Date birthDate) {
     else
         return "No Level available";
 }
-
 
 string readAndCut(string &stringToCut) {
 

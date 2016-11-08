@@ -49,4 +49,13 @@ public:
     string getMessage();
 };
 
+class InvalidInput {
+private:
+	string exceptionMessage;
+public:
+	InvalidInput(string exceptionMessage);
+	string getMessage();
+};
+
+
 #endif /* Exceptions_hpp */

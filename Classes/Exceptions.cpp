@@ -44,6 +44,7 @@ InvalidStream::InvalidStream(string fileName, InvalidStreamType type) {
     this->fileName = fileName;
     this->type = type;
 }
+
 string InvalidStream::getMessage() {
     
     switch (this->type) {
@@ -60,4 +61,14 @@ string InvalidStream::getMessage() {
     
     
     return this->fileName;
+}
+
+InvalidInput::InvalidInput(string exceptionMessage) {
+
+	this->exceptionMessage = exceptionMessage;
+}
+
+string InvalidInput::getMessage() {
+
+	return this->exceptionMessage;
 }

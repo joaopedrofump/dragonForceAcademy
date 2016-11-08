@@ -184,18 +184,42 @@ void showMainMenu(unsigned short int opcaoChosen) {
  * Athletes Management
  ******************************************/
 
+void printAthletesMenu() {
+	clearScreen();
+	showMainMenu(1);
+	Table menuAthletes({ "1 - Show Athletes" });
+	menuAthletes.addNewLine({ "2 - See an Athlete" });
+	menuAthletes.addNewLine({ "3 - Add Athlete" });
+	menuAthletes.addNewLine({ "4 - Reintroduce Athlete" });
+	menuAthletes.addNewLine({ "5 - Remove Athlete" });
+	menuAthletes.addNewLine({ "0 - Back to Main Menu" });
+	cout << menuAthletes;
+}
+
+void printAddAthleteMenu() {
+	clearScreen();
+	showMainMenu(1);
+	Table menuAthletes({ "1 - Show Athletes" });
+	menuAthletes.addNewLine({ "2 - See an Athlete     " });
+	menuAthletes.addNewLine({ "3 - Add Athlete" });
+
+	Table addAthlete({ "1 - Goalkeeper" }, 28);
+	addAthlete.addNewLine({ "2 - Defender" });
+	addAthlete.addNewLine({ "3 - Midfielder" });
+	addAthlete.addNewLine({ "4 - Forward" });
+
+	Table menuAthletes2({ "4 - Reintroduce Athlete" });
+	menuAthletes2.addNewLine({ "5 - Remove Athlete" });
+	menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
+	cout << menuAthletes << addAthlete << menuAthletes2;
+}
+
+
 unsigned short int menuAthletesManagement() {
     unsigned short int option;
     bool control = false;
     do {
-        showMainMenu(1);
-        Table menuAthletes({ "1 - Show Athletes" });
-		menuAthletes.addNewLine({ "2 - See an Athlete" });
-		menuAthletes.addNewLine({ "3 - Add Athlete" });
-		menuAthletes.addNewLine({ "4 - Reintroduce Athlete" });
-		menuAthletes.addNewLine({ "5 - Remove Athlete" });
-		menuAthletes.addNewLine({ "0 - Back to Main Menu" });
-        cout << menuAthletes;
+		printAthletesMenu();
         control = readUnsignedShortInt(option, 0, 5);
     } while (!control);
     return option;
@@ -212,7 +236,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 		stringstream ss;
 		string str;
-		Table showInformation({ "Informacao" , "Dados" });
+		Table showInformation({ "Information" , "Data" });
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
 		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
@@ -281,27 +305,30 @@ void  optionsAthletesManagement(Club &mainClub) {
                 string newAthleteCivilId;
 				
 				do {
-                    clearScreen();
-					showMainMenu(1);
-					Table menuAthletes({ "1 - Show Athletes" });
-					menuAthletes.addNewLine({ "2 - See an Athlete     " });
-					menuAthletes.addNewLine({ "3 - Add Athlete" });
-
-					Table addAthlete({ "1 - Goalkeeper" }, 9);
-					addAthlete.addNewLine({ "2 - Defender" });
-					addAthlete.addNewLine({ "3 - Midfielder" });
-					addAthlete.addNewLine({ "4 - Forward" });
-
-					Table menuAthletes2({ "4 - Reintroduce Athlete" });
-					menuAthletes2.addNewLine({ "5 - Remove Athlete" });
-					menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
-					cout << menuAthletes << addAthlete << menuAthletes2;
-					control = true;
+					printAddAthleteMenu();
+					control = false;
 
 					unsigned short int position;
-					control = readUnsignedShortInt(position, 1, 4);
 
+					while (!control) {
+						try {
+							control = readUnsignedShortInt(position, 0, 4);
+						}
+						catch (InvalidInput e) {
+							printAddAthleteMenu();
 
+							Table printErrorMessage({ e.getMessage() });
+							cout << printErrorMessage;
+
+						}
+					}
+					
+
+					// If user push Enter or 0
+					if (!position) {
+						exitSwitch = true;
+						break;
+					}
 
 					//system("PAUSE");
 
