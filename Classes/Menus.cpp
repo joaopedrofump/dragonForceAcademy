@@ -229,8 +229,8 @@ void  optionsAthletesManagement(Club &mainClub) {
     unsigned int option;
     
     while ((option = menuAthletesManagement())) {
-		//string input;
-		unsigned int idCliente;
+		string input;
+		unsigned int idWorker;
         bool control = false;
 		bool exitSwitch = false;
 
@@ -240,6 +240,13 @@ void  optionsAthletesManagement(Club &mainClub) {
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
 		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
+
+
+		string newAthleteName;
+		string newAthleteBirthDateStr;
+		Date newAthleteBirthDate;
+		string newAthleteHeight;
+		string newAthleteCivilId;
 		Date today;
 
         switch (option) {
@@ -299,17 +306,14 @@ void  optionsAthletesManagement(Club &mainClub) {
                 break;*/
             case 3:            //=========== ADD ATHLETE ================
                 
-				string newAthleteName;
-				string newAthleteBirthDate;
-				string newAthleteHeight;
-                string newAthleteCivilId;
 				
 				do {
 					printAddAthleteMenu();
-					control = false;
+					
 
 					unsigned short int position;
 
+					control = false;
 					while (!control) {
 						try {
 							control = readUnsignedShortInt(position, 0, 4);
@@ -317,8 +321,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 						catch (InvalidInput e) {
 							printAddAthleteMenu();
 
-							Table printErrorMessage({ e.getMessage() });
-							cout << printErrorMessage;
+							cout << Table({ e.getMessage() });
 
 						}
 					}
@@ -330,66 +333,126 @@ void  optionsAthletesManagement(Club &mainClub) {
 						break;
 					}
 
-					//system("PAUSE");
 
 					// Read Athlete's Name
-
 					clearScreen();
 					showMainMenu(0);
 
-                    Table introName({ "Please, enter the athlete's NAME." });
-                    cout << introName << endl;
+					control = false;
+					while (!control) {
+						try {
 
-					
-                    getline(cin, newAthleteName);
+							cout << Table({ "Please, enter the athlete's NAME." }) << endl;
 
-                    if (emptyString(newAthleteName)) {
-						exitSwitch = true;
-                        break;
-                    }
+							getline(cin, newAthleteName);
 
-                    trimString(newAthleteName);
+							if (emptyString(newAthleteName)) {
+								exitSwitch = true;
+								break;
+							}
+
+							control = validateName(newAthleteName);
+
+
+						}
+						catch (InvalidInput e) {
+							clearScreen();
+							showMainMenu(0);
+
+							Table printErrorMessage({ e.getMessage() });
+							cout << printErrorMessage;
+
+						}
+					}
+
+					//If user push ENTER
+					if (exitSwitch) break;
+
+					//==========================
 
 					// Read Athlete's Birth Date
 					clearScreen();
 					showMainMenu(0);
 
-					Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
-					cout << introBirthDate << endl;
+					control = false;
+					while (!control) {
+						try {
 
-					
-					getline(cin, newAthleteBirthDate);
 
-					if (emptyString(newAthleteBirthDate)) {
-						exitSwitch = true;
-						break;
+							Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
+							cout << introBirthDate << endl;
+
+
+							getline(cin, newAthleteBirthDateStr);
+
+							if (emptyString(newAthleteBirthDateStr)) {
+								exitSwitch = true;
+								break;
+							}
+
+							trimString(newAthleteBirthDateStr);
+
+							newAthleteBirthDate = Date(newAthleteBirthDateStr);
+
+							control = true;
+
+						}
+						catch (InvalidDate e) {
+							clearScreen();
+							showMainMenu(0);
+
+							Table printErrorMessage({ e.getMessage() });
+							cout << printErrorMessage;
+
+						}
 					}
 
-					trimString(newAthleteBirthDate);
+					//If user push ENTER
+					if (exitSwitch) break;
 
-
+					//==========================
 
 					// Read Athlete's Height
 
 					clearScreen();
 					showMainMenu(0);
 
-					Table introHeight({ "Please, enter the athlete's HEIGHT." });
-					cout << introHeight << endl;
+					unsigned short int heigth;
 
-					
-					getline(cin, newAthleteHeight);
+					control = false;
+					while (!control) {
+						try {
 
-					if (emptyString(newAthleteHeight)) {
-						exitSwitch = true;
-						break;
+							Table introHeight({ "Please, enter the athlete's HEIGHT." });
+							cout << introHeight << endl;
+
+							control = readUnsignedShortInt(heigth, 100, 250, "Invalid heigth: This value must be between 100 and 250");
+
+							// ENTER
+							if (!heigth) {
+								exitSwitch = true;
+								break;
+							}
+
+
+							
+						}
+						catch (InvalidInput e) {
+
+							clearScreen();
+							showMainMenu(0);
+
+							cout << Table({ e.getMessage() });
+
+						}
 					}
 
-					trimString(newAthleteHeight);
-                    
-                    
-                    
-                    // Read Athlete's Height
+					//If user push ENTER
+					if (exitSwitch) break;
+
+					//==========================
+
+                    // Read Athlete's Civil ID
                     
                     clearScreen();
                     showMainMenu(0);
@@ -407,12 +470,8 @@ void  optionsAthletesManagement(Club &mainClub) {
                     
                     trimString(newAthleteCivilId);
 
-					try {
-						mainClub.addPlayer((Position)position, newAthleteName, newAthleteBirthDate, stoi(newAthleteCivilId), stoi(newAthleteHeight));
-					}
-					catch (InvalidDateException e) {
-						control = false;
-					}
+					mainClub.addPlayer((Position)position, newAthleteName, newAthleteBirthDate, stoi(newAthleteCivilId), heigth);
+					
                     //control = validateName(input);
                     //ignoreLine(false, "Cliente adicionado com sucesso");*/
                 } while (!control);
@@ -428,7 +487,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 				showInformation.addNewLine({ "Name: " , newAthleteName }); // Mostra o Nome
 				
-				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDate });
+				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDateStr });
 
 				showInformation.addNewLine({ "Level: " , getLevelFromAge(newAthleteBirthDate) });
 
@@ -443,25 +502,22 @@ void  optionsAthletesManagement(Club &mainClub) {
 				ignoreLine(false, "Athlete correctly added!");
                 mainClub.saveChanges();
                 break;
-            /*case 5:            //============  ELIMINAR CLIENTES ================
+            case 5:            //============  REMOVE ATHLETES ================
                 
-                
-                
-                
-                if (supermercado.getMapIDtoCliente().size() == 0) {
+                if (mainClub.getAthletes().size() == 0) {
                     
                     clearScreen();
-                    mostrarMenuInicial();
-                    cout << Table({"Nao existem clientes."});
+                    showMainMenu();
+                    cout << Table({"There are no Athletes."});
                     ignoreLine(false);
                     break;
                 }
                 
-                if (!supermercado.existemClientesActivos()) {
+                if (mainClub.getAthletes(true).size() == 0) {
                     
                     clearScreen();
-                    mostrarMenuInicial();
-                    cout << Table({"Nao existem clientes activos."});
+                    showMainMenu();
+                    cout << Table({"There are no active Athletes."});
                     ignoreLine(false);
                     break;
                     
@@ -469,96 +525,56 @@ void  optionsAthletesManagement(Club &mainClub) {
                 
                 do {
                     clearScreen();
-                    mostrarMenuInicial(0);
-					supermercado.listarClientesOrdemAlfa(true);
-                    Table introIdNome({ "Introduza o ID ou o NOME do cliente a eliminar." });
+                    showMainMenu(0);
+					mainClub.showAthletes(true);
+                    Table introIdNome({ "Please enter the athlete's id to remove." });
                     cout << introIdNome << endl;
                     getline(cin, input);
-                    if (stringVazia(input)) {
+                    if (emptyString(input)) {
                         break;
                     }
+
                     trimString(input);
-                    if (isdigit(input.at(0))) { // ELIMINAR PELO ID
-                        idCliente = stoi(input);
-                        
-                        if (!supermercado.getMapIDtoCliente().at(idCliente).getStatus()) {
-                            cout << Table({"O cliente ja se encontra inactivo."});
-                            ignoreLine(false);
-                            continue;
-                        }
-                        
-                        
-                        control = supermercado.eliminarCliente(idCliente);
+                    
+					idWorker = stoi(input);
 
-						//Mostrar resumo da operacao
-
-						ss << idCliente;
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Id de Cliente: " , str });  // Mostra o id
-
-						ss.str("");
-						ss << supermercado.getMapIDtoCliente().at(idCliente).getNome();
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Nome do Cliente: " , str }); // Mostra o Nome
-
-						ss.str("");
-						ss << hoje.mostrarData();
-						str = ss.str();
+					if (!mainClub.getAthletes().at(idWorker)->isActive()) {
+						cout << Table({ "This Athlete was already remove." });
+						ignoreLine(false);
+						continue;
+					}
 
 
-						mostrarCliente.addNewLine({ "Cartao de Cliente: " , str });
+					// Show operation summary
 
-						clearScreen();
-						mostrarMenuInicial(0);
+					showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
 
-						
-						cout << confirmarEliminar;
+					showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
 
-						if (!confirmar(mostrarCliente.getTableVector(), mostrarCliente.getBlocks(), mostrarCliente.getColumsWidth(), mostrarCliente.getIndentacao())) {
-							break;
-						}
-						ignoreLine(false, "Cliente eliminado com sucesso");
-                    }
-                    else {   // ELIMINAR PELO NOME
-                        control = supermercado.eliminarCliente(input);
+					showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName()}); // Show Name
 
-						//Mostrar resumo da operacao
+					showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
 
-						ss << supermercado.getMapNametoCliente().at(input);
-						str = ss.str();
+					showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
 
-						mostrarCliente.addNewLine({ "Id de Cliente: " , str });  // Mostra o id
-
-						ss.str("");
-						ss << input;
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Nome do Cliente: " , str }); // Mostra o Nome
-
-						ss.str("");
-						ss << hoje.mostrarData();
-						str = ss.str();
+					clearScreen();
+					showMainMenu(0);
 
 
-						mostrarCliente.addNewLine({ "Cartao de Cliente: " , str });
+					cout << confirmRemove;
 
-						clearScreen();
-						mostrarMenuInicial(0);
+					if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
+						break;
+					}
 
+					ignoreLine(false, "Athlete removed correctly");
 
-						cout << confirmarEliminar;
+					control = mainClub.removeAthlete(idWorker);
 
-						if (!confirmar(mostrarCliente.getTableVector(), mostrarCliente.getBlocks(), mostrarCliente.getColumsWidth(), mostrarCliente.getIndentacao())) {
-							break;
-						}
-						ignoreLine(false, "Cliente eliminado com sucesso");
-                    }
                 } while (!control);
-                supermercado.saveChanges();
+                mainClub.saveChanges();
                 break;
-			case 4:  //================ REATIVAR CLIENTE ==================
+			/*case 4:  //================ REATIVAR CLIENTE ==================
 				
                 if (supermercado.getMapIDtoCliente().size() == 0) {
                     

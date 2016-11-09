@@ -161,7 +161,7 @@ vector<Season*> Club::getSeasons() const {
 	return seasons;
 }
 
-map<unsigned int, Worker*> Club::getAthletes() const {
+map<unsigned int, Worker*> Club::getAthletes(bool onlyActives) const {
 
 	map<unsigned int, Worker*> result;
     
@@ -170,7 +170,7 @@ map<unsigned int, Worker*> Club::getAthletes() const {
     
     while(workersIterator != workersEnd) {
         
-        if(workersIterator->second->isAthlete()) {
+        if(workersIterator->second->isAthlete() && (onlyActives ? workersIterator->second->isActive() : true)) {
             
             result.insert(*workersIterator);
             
@@ -178,6 +178,27 @@ map<unsigned int, Worker*> Club::getAthletes() const {
         workersIterator++;
         
     }
+
+	return result;
+}
+
+map<unsigned int, Worker*> Club::getInactives() const {
+
+	map<unsigned int, Worker*> result;
+
+	map<unsigned int, Worker*>::const_iterator workersIterator = this->allWorkers.begin();
+	map<unsigned int, Worker*>::const_iterator workersEnd = this->allWorkers.end();
+
+	while (workersIterator != workersEnd) {
+
+		if (workersIterator->second->isAthlete() && !(workersIterator->second->isActive())) {
+
+			result.insert(*workersIterator);
+
+		}
+		workersIterator++;
+
+	}
 
 	return result;
 }
@@ -275,9 +296,39 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
 	/*to be completed*/
     
 	catch (...)	{
-		
+		cout << "Erro ao criar atleta";
 	}
     
+}
+
+bool Club::removeAthlete(unsigned int athleteId) {
+
+	//Verify if the athlete exists
+
+	map<unsigned int, Worker*> tmpMap = this->getAthletes();
+	map<unsigned int, Worker*>::const_iterator it = tmpMap.find(athleteId);
+
+	if (it == tmpMap.end()) {
+
+		Table athleteNotFound({ "The Athlete was not found." });
+		cout << athleteNotFound << endl;
+		return false;
+
+	}
+
+	if (it->second->isActive()) {
+
+		this->allWorkers.at(athleteId)->setStatus(false);
+
+		Table athleteCorrectlyRemoved({ "The Athlete was correctly removed." });
+		cout << athleteCorrectlyRemoved << endl;
+	}
+	else {
+
+		Table athleteAlreadyRemoved({ "The Athlete was already removed." });
+		cout << athleteAlreadyRemoved << endl;
+	}
+	return true;
 }
 
 void Club::saveChanges() {
@@ -289,13 +340,19 @@ void Club::saveChanges() {
 	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
 		if (i->second->isAthlete()) {
 			currentFile << i->second->getID() << " ; ";
-            currentFile << i->second->getCivilID() << " ; ";
+			currentFile << i->second->getCivilID() << " ; ";
 			currentFile << i->second->getPosition() << " ; ";
 			currentFile << i->second->getName() << " ; ";
 			currentFile << i->second->getBirthdate() << " ; ";
 			currentFile << i->second->getHeight() << " ; ";
-			currentFile << (i->second->getECG()->getResultado() ? "VALID" : "INVALID") << " ; ";
-			currentFile << i->second->getECG()->getExpirationDate();
+
+			if (i->second->getECG()) {
+				currentFile << (i->second->getECG()->getResultado() ? "VALID" : "INVALID") << " ; ";
+				currentFile << i->second->getECG()->getExpirationDate();
+			}
+			else {
+				currentFile << "NONE";
+			}
 
 			if (i != allWorkers.end())
 				currentFile << endl;
@@ -305,7 +362,10 @@ void Club::saveChanges() {
 	currentFile << FILE_SEPARATOR << endl;
 
 	// Save Inactive Players
-	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
+
+	map<unsigned int, Worker*> tmpMap = getInactives();
+
+	for (map<unsigned int, Worker*>::const_iterator i = tmpMap.begin(); i != tmpMap.end(); i++) {
 
 		if (!(i->second->isActive())) {
 
@@ -411,7 +471,7 @@ void Club::saveChanges() {
 
 void Club::showAthletes(bool onlyActives) const {
     
-    Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status" });
+    Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
     map<unsigned int, Worker*>::const_iterator workersIterator;
     
     if(onlyActives) {

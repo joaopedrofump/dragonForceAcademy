@@ -34,13 +34,12 @@ int main(int argc, const char * argv[]) {
         initialOptions(currentClubInProgram);
         
         //currentClubInProgram.updateECG(1, true);
-        cout << "teste" << endl;
         
         
     
     }
     
-    catch(InvalidDateException e) {
+    catch(InvalidDate e) {
         
         cout << e.getMessage() << endl;
         

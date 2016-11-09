@@ -23,9 +23,9 @@ Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 	this->name = readAndCut(newAthlete);
 	this->birthdate = Date(readAndCut(newAthlete));
 	this->height = stoi(readAndCut(newAthlete));
-	this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
 
-	cout << "Teste";
+	if(newAthlete != "NONE")
+		this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
 }
 
 
@@ -108,9 +108,17 @@ vector<string> Athlete::showInScreen() const {
             break;
     }
     result.push_back(playerPosition);
+
     result.push_back(getLevelFromAge(this->birthdate));
+
     string workerStatus = this->status ? "ACTIVE" : "INACTIVE";
     result.push_back(workerStatus);
-    return result;
+
+	if (this->getECG())
+		result.push_back(this->getECG()->showInScreen());
+	else
+		result.push_back("NONE");
+
+	return result;
     
 }

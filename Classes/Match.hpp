@@ -28,6 +28,10 @@ public:
 	void setHomeTeam(Club* newHomeTeam);
 	void setAwayTeam(Club* newAwayTeam);
 	void setPlayers(vector<Athlete*> newPlayersList);
+
+	bool registerMatch() {
+
+	}
 };
 
 

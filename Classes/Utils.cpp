@@ -71,7 +71,7 @@ Date::Date(string dataStr) {
     
     if (separator1 != '/' || separator2 != '/') {
         
-        throw InvalidDateException(InvalidSeparators,0,0,0);
+        throw InvalidDate(InvalidSeparators,0,0,0);
         
     }
     
@@ -81,18 +81,18 @@ Date::Date(string dataStr) {
 
 Date::Date(unsigned int day, unsigned int month, unsigned int year) {
     
-    if (year < 1900) {
-        throw InvalidDateException(InvalidYear, day, month, year);
+    if (year < 1900 || year > 2100) {
+        throw InvalidDate(InvalidYear, day, month, year);
     }
     
     if (month <= 0 || month > 12) {
         
-        throw InvalidDateException(InvalidMonth, day, month, year);
+        throw InvalidDate(InvalidMonth, day, month, year);
     }
     
     if ((day <= 0) || (day  > numDays(month, year))) {
         
-        throw InvalidDateException(InvalidDay, day, month, year);
+        throw InvalidDate(InvalidDay, day, month, year);
     }
     
     this->day = day;
@@ -117,7 +117,7 @@ void Date::setDay(int day) {
     
     if ((day <= 0) || (day  > numDays(this->month, this->year))) {
         
-        throw InvalidDateException(InvalidDay, day, this->month, this->year);
+        throw InvalidDate(InvalidDay, day, this->month, this->year);
     }
     
     this->day = day;
@@ -128,12 +128,12 @@ void Date::setMonth(int month) {
     
     if (month <= 0 || month > 12) {
         
-        throw InvalidDateException(InvalidYear, this->day, month, this->year);
+        throw InvalidDate(InvalidYear, this->day, month, this->year);
     }
     
     if ((this->day <= 0) || (this->day  > numDays(month, this->year))) {
         
-        throw InvalidDateException(InvalidDay, this->day, month, this->year);
+        throw InvalidDate(InvalidDay, this->day, month, this->year);
     }
     
     this->month = month;
@@ -142,12 +142,12 @@ void Date::setMonth(int month) {
 void Date::setYear(int year) {
     
     if (year < 1900) {
-        throw InvalidDateException(InvalidYear, this->day, this->month, year);
+        throw InvalidDate(InvalidYear, this->day, this->month, year);
     }
     
     if ((this->day <= 0) || (this->day  > numDays(this->month, year))) {
         
-        throw InvalidDateException(InvalidDay, day, this->month, year);
+        throw InvalidDate(InvalidDay, day, this->month, year);
     }
     
     this->year = year;
@@ -353,6 +353,10 @@ void Date::setCurrentDate() {
     
 #endif
     
+}
+
+string Date::str() const {
+	return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
 }
 
 
@@ -833,70 +837,66 @@ void trimString(string &inputString) {
 	}
 }
 
-bool validateName(string &nome) {
+bool validateName(string &name) {
 
-	trimString(nome);
+	trimString(name);
 
-	stringstream nomeStream(nome); //stringStream que contém o nome do cliente
-	vector<string> nomes; //vector com a lista de nomes do cliente
+	stringstream nomeStream(name); //stringStream that contains the name
+	vector<string> names; //vector with a list of names
 
-						  //verificar se contém digitos
+	//verify if it contains digits
 
-	for (size_t i = 0; i < nome.size(); i++) {
+	for (size_t i = 0; i < name.size(); i++) {
 
-		if (isdigit((int)nome.at(i))) {
+		if (isdigit((int)name.at(i))) {
 
-			throw string("The name cannot contain digits, only letters.\n");
+			throw InvalidInput("The name cannot contain digits, only letters.");
 			return false;
 
 		}
 
 	}
 
-	//preencher o vector com os nomes
+	//fill the vector with the names
 
 	while (!nomeStream.eof()) {
-		string nomeActual;
-		getline(nomeStream, nomeActual, ' ');
-		nomes.push_back(nomeActual);
+		string currentName;
+		getline(nomeStream, currentName, ' ');
+		names.push_back(currentName);
 
 
 	}
 
-	//verificar se tem pelo menos dois nomes
+	//verify if it contains at least two names
 
-	if (nomes.size() < 2) {
+	if (names.size() < 2) {
 
-		throw string("The name must be comprised of at least two names.\n");
+		throw InvalidInput("The name must be comprised of at least two names.");
 		return false;
 
 	}
 
-	//verificar que cada nome tem pelo menos 2 letras
+	//verify if each name contains at least two letters
 
-	for (size_t i = 0; i < nomes.size(); i++) {
+	for (size_t i = 0; i < names.size(); i++) {
 
-		if (nomes.at(i).size() < 2) {
+		if (names.at(i).size() < 2) {
 
-			throw string("Each name must contain at least two letters.\n");
+			throw InvalidInput("Each name must contain at least two letters.");
 			return false;
 
 		}
 	}
 
-	nome.at(0) = (char)toupper(nome.at(0));
+	name.at(0) = (char)toupper(name.at(0));
 
 
+	for (size_t i = 0; i < name.size() - 1; i++) {
 
-	for (size_t i = 0; i < nome.size() - 1; i++) {
+		if (name.at(i) == ' ') {
 
-		if (nome.at(i) == ' ') {
-
-			nome.at(i + 1) = toupper(nome.at(i + 1));
-
+			name.at(i + 1) = toupper(name.at(i + 1));
 		}
-
-
 	}
 
 	return true;

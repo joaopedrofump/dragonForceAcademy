@@ -128,6 +128,7 @@ public:
 	friend int operator-(const Date &date1, const Date &date2);
 	string showDate() const;
 	void setCurrentDate();
+	string str() const;
 };
 
 
