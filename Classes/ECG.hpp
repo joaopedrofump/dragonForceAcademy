@@ -18,9 +18,10 @@ private:
 	Date expirationDate;
 
 public:
-    ECG(bool resultado, Date exprirationDate);
+	ECG(bool resultado, Date expirationDate);
     bool getResultado() const;
     Date getExpirationDate() const;
+	string showInScreen() const;
 };
 
 #endif /* ECG_hpp */

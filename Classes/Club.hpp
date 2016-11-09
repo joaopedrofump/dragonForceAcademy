@@ -23,19 +23,22 @@ public:
 	string getName() const;
 	map<unsigned int, Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
-	void addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height);
 
-	map<unsigned int, Worker*> getAthletes() const;
+	void addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height);
+	bool removeAthlete(unsigned int athleteId);
+
+	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
+	map<unsigned int, Worker*> getInactives() const;
 	map<unsigned int, Worker*> getCoaches() const;
 
-	//void showAthletes(bool onlyActives = false) const;
+	void showAthletes(bool onlyActives = false) const;
 
 	void saveChanges();
     string getPathToClubFolder() const;
     string getPathToClubAthletesFile() const;
     string getPathToClubCoachesFile() const;
     string getPathToClubInfoFile() const;
-    void showAthletes(bool onlyActives = false) const;
+
     int findWorkerByCivilID(unsigned int civilID);
     void updateECG(unsigned int athleteID, bool result);
 

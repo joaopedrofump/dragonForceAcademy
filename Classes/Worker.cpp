@@ -39,7 +39,9 @@ Worker::Worker(string name, Date birthdate, unsigned int civilID, unsigned int i
     
 }
 
-Worker::Worker() {}
+Worker::Worker() {
+	this->status = true;
+}
 
 Worker::~Worker() {
     
@@ -114,7 +116,7 @@ vector<string> Worker::showInScreen() const {
     output.push_back(to_string(this->civilID));
     output.push_back(this->name);
     output.push_back(this->birthdate.showDate());
-    output.push_back(to_string(this->getIdade()) + " y");
+    output.push_back(to_string(this->getIdade()));
     return output;
     
 }

@@ -8,7 +8,7 @@
 
 #include "Exceptions.hpp"
 
-InvalidDateException::InvalidDateException(DateExceptionType type, int day, int month, int year) {
+InvalidDate::InvalidDate(DateExceptionType type, int day, int month, int year) {
     
     this->type = type;
     this->day = day;
@@ -17,20 +17,31 @@ InvalidDateException::InvalidDateException(DateExceptionType type, int day, int 
     
 }
 
-string InvalidDateException::getMessage() {
+string InvalidDate::getMessage() {
     
     switch (this->type) {
         case InvalidDay:
-            return "Invalid Day Exception: " + to_string(this->day) + "/" + to_string(this->month) + "/" + to_string(this->year) + " is not a valid date.";
-            break;
+
+			if(day > 31 || day < 1)
+				return "Invalid Day: " + to_string(this->day) + " is not a valid day.";
+			else
+				return "Invalid Day: " + to_string(this->day) + "/" + to_string(this->month) + "/" + to_string(this->year) + " is not a valid date.";
+
+			break;
+
         case InvalidMonth:
-            return "Invalid Month Exception: " + to_string(this->month) + " is not a valid month.";
+
+            return "Invalid Month: " + to_string(this->month) + " is not a valid month.";
             break;
+
         case InvalidYear:
-            return "Invalid Year Exception: " + to_string(this->year) + " is not a valid year.";
+
+            return "Invalid Year: " + to_string(this->year) + " is not a valid year.";
             break;
+
         case InvalidSeparators:
-            return "Invalid Date Exception: Either separator 1 or separator 2 is not a valid date separator (/).";
+
+            return "Invalid Date: Either separator 1 or separator 2 is not a valid date separator (/).";
             break;
             
         default:

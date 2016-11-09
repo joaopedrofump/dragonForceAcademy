@@ -29,14 +29,14 @@ enum InvalidStreamType {
     
 };
 
-class InvalidDateException {
+class InvalidDate {
 private:
     int day;
     int month;
     int year;
     DateExceptionType type;
 public:
-    InvalidDateException(DateExceptionType type, int day, int month ,int year);
+	InvalidDate(DateExceptionType type, int day, int month ,int year);
     string getMessage();
 };
 
