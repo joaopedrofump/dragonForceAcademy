@@ -299,3 +299,8 @@ char Level::getMinHeight() const
 {
 	return minHeight;
 }
+
+map<Athlete*, Info*> Level::getMapInfoSeason() const
+{
+	return mapInfoSeason;
+}

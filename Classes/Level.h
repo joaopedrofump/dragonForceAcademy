@@ -32,6 +32,8 @@ public:
 	unsigned int getMinAge() const;
 	unsigned int getMaxAge() const;
 	char getMinHeight() const;
+	map<Athlete*, Info*> getMapInfoSeason() const;
+
 
 
 

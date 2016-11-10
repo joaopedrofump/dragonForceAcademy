@@ -178,7 +178,7 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char he
 			{
 				if (w->getHeight() < currentSeason->getLevels().at(i)->getMinHeight())
 				{
-
+					currentSeason->getLevels().at(i)->getMapInfoSeason().insert(w);
 				}
 			}
 		}
