@@ -3,11 +3,14 @@
 #include "Goalkeeper.hpp"
 
 class Season;
+class Match;
+class Level;
 
 extern const map<string, CoachType> coachTypeMap;
 
 class Club {
 	string clubName;
+    bool programClub;
 	map<unsigned int, Worker*> allWorkers;
 	vector<Season*> seasons;
 	unsigned int numberOfSeasons;
@@ -16,10 +19,8 @@ class Club {
     string pathToClubCoachesFile;
     string pathToClubInfoFile;
 
-
 public:
-	Club(string clubName);
-
+	Club(string clubName, bool empty = false);
 	string getName() const;
 	map<unsigned int, Worker*> getWorkers() const;
 	vector<Season*> getSeasons() const;
@@ -41,5 +42,8 @@ public:
 
     int findWorkerByCivilID(unsigned int civilID);
     void updateECG(unsigned int athleteID, bool result);
-
+    
+    void scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type);
+    bool isProgramClub() const;
+    
 };

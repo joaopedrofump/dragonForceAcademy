@@ -15,6 +15,12 @@
 
 #endif
 
+#include "Season.hpp"
+#include "Level.h"
+
+class Season;
+class Level;
+
 int main(int argc, const char * argv[]) {
 
 	//Ask the user if there is already a club, or if it will be created.
@@ -26,17 +32,15 @@ int main(int argc, const char * argv[]) {
         initialInfo(clubName);
 		
 		Club currentClubInProgram(clubName);
+                
+        currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(1), home);
         
         currentClubInProgram.saveChanges();
-        
-        
         
         initialOptions(currentClubInProgram);
         
         //currentClubInProgram.updateECG(1, true);
         
-        
-    
     }
     
     catch(InvalidDate e) {
