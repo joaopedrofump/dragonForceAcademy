@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Goalkeeper.hpp"
+#include "Match.hpp"
 
 class Club;
 
@@ -12,6 +13,11 @@ private:
     string pathToLevelFolder;
     string pathToLevelAthletesFile;
     string pathToLevelCoachesFile;
+    string pathToLevelMatchesFile;
+    string yearOfSeason;
+
+    unsigned int lastMatchId;
+    vector<Match*> levelMatches;
 
     int levelMainCoach;
 	vector<unsigned int> coachesIdsVector;
@@ -42,7 +48,12 @@ public:
     string getPathToLevelFolder() const;
     string getPathToLevelAthletesFile() const;
     string getPathToLevelCoachesFile() const;
-
-
+    string getPathToLevelMatchesFile() const;
+    
+    unsigned int getLastMatchId() const;
+    void updateLastMatchId();
+    
+    vector<Match*> getAllLevelMatches() const;
+    void addMatchToLevel(Match*);
 
 };

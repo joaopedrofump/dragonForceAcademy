@@ -99,6 +99,13 @@ enum ageLevel {
     
 };
 
+enum MatchType {
+    
+    home,
+    away,
+    neutral
+};
+
 // ===========================================
 // ===============  DATE  ====================
 // ===========================================
@@ -124,6 +131,7 @@ public:
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
     friend bool operator<(const Date &date1, const Date &date2);
+	friend bool operator==(const Date &date1, const Date &date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
 	friend int operator-(const Date &date1, const Date &date2);
 	string showDate() const;
@@ -250,7 +258,11 @@ int GetCursorY();
 
 void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
 
-bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage = "Invalid Input");
+bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage = "Invalid Input");
+
+bool readDates(vector<Date> &resultVector, string message, string errorMessage);
+
+bool readDate(Date &result, string message, string errorMessage);
 
 bool emptyString(string stringTest);
 

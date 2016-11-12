@@ -3,35 +3,47 @@
 #include "Club.hpp"
 
 class Match{
+    string id;
 	Date matchDay;
-
 	Club* homeTeam;
 	Club* awayTeam;
-	
-
-	vector<Athlete*> players;
+    unsigned int homeTeamScore;
+    unsigned int awayTeamScore;
+    map<unsigned int, Info*> mapInfoPlayers;
+    bool played;
 	
 public:
-	Match(Date matchDay, Club* homeTeam, Club* awayTeam);
+    Match(string id);
+	Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played = false);
+    Match(istringstream& iss);
+    Match(istringstream& iss, Club* programClub, MatchType homeOrAway);
 	~Match();
 
-	// GETS
+	// GETTERS
 
 	Date getMatchDay() const;
 	Club* getHomeTeam() const;
 	Club* getAwayTeam() const;
-	vector<Athlete*> getPlayers() const;
+	vector<Worker*> getPlayers() const;
+    map<unsigned int, Info*> getInfoPlayers() const;
+    string getId() const;
 
-	// SETS
+	// SETTERS
 
 	void setMatchDay(Date newDay);
 	void setHomeTeam(Club* newHomeTeam);
 	void setAwayTeam(Club* newAwayTeam);
-	void setPlayers(vector<Athlete*> newPlayersList);
-
-	bool registerMatch() {
-
-	}
+    
+    void setHomeTeamScore(unsigned int newHomeTeamScore);
+    void setAwayTeamScore(unsigned int newAwayTeamScore);
+    
+    void setPlayers(vector<unsigned int> playersIds);
+    void registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> infoPlayers);
+    
+    //IO
+    
+    friend ostream& operator<<(ostream& out, Match match);
+    bool operator==(const Match &compareMatch) const;
 };
 
 

@@ -2,12 +2,17 @@
 
 #include "Club.hpp"
 
+class Match;
+
 Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, Club* parentClub) {
     
+    this->yearOfSeason = yearOfSeason;
     this->levelName = levelName;
     this->pathToLevelFolder = stringPath(pathToSeasonFolder + "/" + this->levelName);
     this->pathToLevelAthletesFile = stringPath(this->pathToLevelFolder + "/Athletes.txt");
     this->pathToLevelCoachesFile = stringPath(this->pathToLevelFolder + "/Coaches.txt");
+    this->pathToLevelMatchesFile = stringPath(this->pathToLevelFolder + "/Matches.txt");
+    this->lastMatchId = 0;
     
     if(levelName == "U13") {
         
@@ -152,6 +157,41 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 	}
 
 	inStreamLevel.close();
+    
+    inStreamLevel.open(this->pathToLevelMatchesFile);
+    
+    string lastMatchIdString;
+    getline(inStreamLevel, lastMatchIdString);
+    
+    if(lastMatchIdString.size() != 0) {
+        
+        this->lastMatchId = stoi(lastMatchIdString);
+        
+    }
+    
+    while (!inStreamLevel.eof()) {
+        
+        string eachMatch;
+        getline(inStreamLevel, eachMatch);
+        
+        if(eachMatch.length() != 0) {
+            istringstream issEachMatch(eachMatch);
+            unsigned int type;
+            issEachMatch >> type;
+            string waste;
+            issEachMatch >> waste;
+            Match *thisMatch;
+            
+            thisMatch = (type == 0) ? new Match(issEachMatch, parentClub, home) : thisMatch = new Match(issEachMatch, parentClub, away);
+            this->levelMatches.push_back(thisMatch);
+            
+        }
+        
+    
+    }
+    
+    
+    inStreamLevel.close();
 
 }
 
@@ -205,5 +245,26 @@ string Level::getPathToLevelAthletesFile() const {
 }
 string Level::getPathToLevelCoachesFile() const {
     return this->pathToLevelCoachesFile;
+}
+string Level::getPathToLevelMatchesFile() const {
+    return this->pathToLevelMatchesFile;
+}
+
+unsigned int Level::getLastMatchId() const {
+    return this->lastMatchId;
+}
+
+void Level::updateLastMatchId() {
+    this->lastMatchId++;
+}
+
+vector<Match*> Level::getAllLevelMatches() const {
+    
+    return this->levelMatches;
+    
+}
+
+void Level::addMatchToLevel(Match* newMatch) {
+    this->levelMatches.push_back(newMatch);
 }
 

@@ -250,6 +250,10 @@ bool operator<(const Date &date1, const Date &date2) {
     return !(date1 >= date2);
 }
 
+bool operator==(const Date &date1, const Date &date2) {
+	return (!(date1 < date2) && !(date2 < date1));
+}
+
 void Date::save(ofstream &out) const {
     
     out << this;
@@ -433,7 +437,7 @@ Table::Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int
 
 		for (unsigned int i = 0; i < numColumnsV; i++) {
 
-			int dif = spacesForColumn.at(i) - tableVector.at(x).at(i).length(); //espaços a mais
+			int dif = spacesForColumn.at(i) - (unsigned int)tableVector.at(x).at(i).length(); //espaços a mais
 			string temporario;
 			if (dif > 0) {
 				temporario = string(spacesForColumn.at(i) - tableVector.at(x).at(i).length(), ' ');
@@ -633,7 +637,7 @@ void Fraction::reduce() {
 //  Operations as fractions
 
 Fraction Fraction::operator+(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 	
 	Fraction  result;
@@ -644,7 +648,7 @@ Fraction Fraction::operator+(Fraction value) const {
 }
 
 void Fraction::operator+=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
@@ -652,7 +656,7 @@ void Fraction::operator+=(Fraction &value) {
 }
 
 Fraction Fraction::operator-(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction  result;
@@ -662,7 +666,7 @@ Fraction Fraction::operator-(Fraction value) const {
 }
 
 void Fraction::operator-=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
@@ -670,7 +674,7 @@ void Fraction::operator-=(Fraction &value) {
 }
 
 Fraction Fraction::operator*(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction result;
@@ -680,7 +684,7 @@ Fraction Fraction::operator*(Fraction value) const {
 }
 
 void Fraction::operator*=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = numerator * value.numerator;
@@ -688,7 +692,7 @@ void Fraction::operator*=(Fraction &value) {
 }
 
 Fraction Fraction::operator/(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction result;
@@ -698,7 +702,7 @@ Fraction Fraction::operator/(Fraction value) const {
 }
 
 void Fraction::operator/=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 	
 	this->numerator = numerator * value.denominator;
@@ -1000,7 +1004,7 @@ void ignoreLine(bool ignoreControl, string message) {
 
 }
 
-bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage) {
+bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage) {
 
 	string inputUser;
 	bool result = false;
@@ -1019,7 +1023,7 @@ bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, uns
 
 	while (!integersStream.eof()) {
 
-		unsigned short int currentInt;
+		unsigned int currentInt;
 		integersStream >> currentInt;
 
 		if (integersStream.fail()) {
@@ -1045,7 +1049,7 @@ bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, uns
 	return result;
 }
 
-bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
+bool readDates(vector<Date> &resultVector, string message, string errorMessage) {
 
 
 	string dates;
@@ -1089,6 +1093,24 @@ bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
 
 	return resultBool;
 
+}
+
+bool readDate(Date &result, string message, string errorMessage) {
+
+	cout << Table({ message });
+	 
+	string input;
+
+	getline(cin, input);
+
+	if (input.size() == 0) {
+
+		return true;
+	}
+
+	result = Date(input);
+
+	return true;
 }
 
 

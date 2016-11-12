@@ -15,11 +15,15 @@ using namespace std;
 
 void initialInfo(string& clubName);
 
-bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation);
+bool confirm(const Table &message);
 
 void initialOptions(Club & footballClub);
 
 unsigned short int mainMenu();
+
+void printAddAthleteMenu();
+
+void printAthletesMenu();
 
 void showMainMenu(unsigned short int optionChosen = 0);
 
