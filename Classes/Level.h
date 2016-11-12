@@ -15,6 +15,7 @@ private:
     string pathToLevelCoachesFile;
     string pathToLevelMatchesFile;
     string yearOfSeason;
+
     unsigned int lastMatchId;
     vector<Match*> levelMatches;
 

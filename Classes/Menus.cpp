@@ -65,6 +65,15 @@ void initialInfo(string &clubName) {
         createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19")).c_str());
         createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors")).c_str());
         
+        
+        string teste = stringPath((path() + clubName + "/" + year + "/" + "U13" + "/Matches"));
+        
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U13" + "/Matches")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U15" + "/Matches")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U17" + "/Matches")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19" + "/Matches")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors" + "/Matches")).c_str());
+        
         //create info files for levels
         ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();

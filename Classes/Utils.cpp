@@ -437,7 +437,7 @@ Table::Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int
 
 		for (unsigned int i = 0; i < numColumnsV; i++) {
 
-			int dif = spacesForColumn.at(i) - tableVector.at(x).at(i).length(); //espaços a mais
+			int dif = spacesForColumn.at(i) - (unsigned int)tableVector.at(x).at(i).length(); //espaços a mais
 			string temporario;
 			if (dif > 0) {
 				temporario = string(spacesForColumn.at(i) - tableVector.at(x).at(i).length(), ' ');
@@ -637,7 +637,7 @@ void Fraction::reduce() {
 //  Operations as fractions
 
 Fraction Fraction::operator+(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 	
 	Fraction  result;
@@ -648,7 +648,7 @@ Fraction Fraction::operator+(Fraction value) const {
 }
 
 void Fraction::operator+=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
@@ -656,7 +656,7 @@ void Fraction::operator+=(Fraction &value) {
 }
 
 Fraction Fraction::operator-(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction  result;
@@ -666,7 +666,7 @@ Fraction Fraction::operator-(Fraction value) const {
 }
 
 void Fraction::operator-=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
@@ -674,7 +674,7 @@ void Fraction::operator-=(Fraction &value) {
 }
 
 Fraction Fraction::operator*(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction result;
@@ -684,7 +684,7 @@ Fraction Fraction::operator*(Fraction value) const {
 }
 
 void Fraction::operator*=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 
 	this->numerator = numerator * value.numerator;
@@ -692,7 +692,7 @@ void Fraction::operator*=(Fraction &value) {
 }
 
 Fraction Fraction::operator/(Fraction value) const {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return *this;
 
 	Fraction result;
@@ -702,7 +702,7 @@ Fraction Fraction::operator/(Fraction value) const {
 }
 
 void Fraction::operator/=(Fraction &value) {
-	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+	if ((numerator == 0 && denominator == 0) | (value.numerator == 0 && value.denominator == 0))
 		return;
 	
 	this->numerator = numerator * value.denominator;
