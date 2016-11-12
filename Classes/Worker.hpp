@@ -97,6 +97,7 @@ public:
     Date getBirthdate() const;
     
     virtual Info* getInfo() const { Info* res = new Info(); return res;};
+    
     virtual void addInfo(Info* moreInfo){};
     
     friend ostream& operator<<(ostream& out, const Worker &worker);

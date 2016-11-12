@@ -47,13 +47,17 @@ public:
     
     void scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type);
     
-    //registar jogo já agendado
+    //registar jogo já agendado com performance de jogadores (para mais tarde)
     void registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
     
-    //registar jogo não agendado
+    //registar jogo não agendado com performance de jogadores (para mais tarde)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
     
     
+    //registar jogo já agendado sem performance de jogadores (para já)
+    void registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
     
+    //registar jogo não agendado sem performance de jogadores (para já)
+    void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
     
 };

@@ -33,7 +33,9 @@ int main(int argc, const char * argv[]) {
         initialInfo(clubName);
 		Club currentClubInProgram(clubName);
                 
-        currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
+        //currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
+        //vector<unsigned int> matchPlayers;
+        //currentClubInProgram.registerMatch("Seniors3", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
         
         currentClubInProgram.saveChanges();
         initialOptions(currentClubInProgram);
@@ -54,7 +56,7 @@ int main(int argc, const char * argv[]) {
         
     }
 	catch (...) {
-		cout << "Qualquer excepcao";
+		cout << "Something went wrong.";
 	}
 	return 0;
 }

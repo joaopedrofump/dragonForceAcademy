@@ -491,6 +491,17 @@ void Club::saveChanges() {
                 
             }
             
+            vector<Match*> levelMatches = (*i)->getLevels().at(iteLevels)->getAllLevelMatches();
+            string pathToCurrentLevelFolder = (*i)->getLevels().at(iteLevels)->getPathToLevelFolder();
+            
+            for (size_t i = 0; i < levelMatches.size(); i++) {
+                
+                
+                
+            }
+            
+            
+            
             athletesOStream.close();
             coachesOStream.close();
             matchesOStream.close();
@@ -589,11 +600,19 @@ void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, Matc
 
 void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers) {
     
-    
     vector<Match*> listOfLevelMatches = level->getAllLevelMatches();
-    Match tmpMatch(matchId);
+    vector<Match*>::const_iterator matchToRegister = listOfLevelMatches.begin();
+    while (matchToRegister != listOfLevelMatches.end()) {
+        
+        if ((*matchToRegister)->getId() == matchId) {
+            
+            break;
+            
+        }
+        matchToRegister++;
+        
+    }
     
-    vector<Match*>::iterator matchToRegister = find(listOfLevelMatches.begin(), listOfLevelMatches.end(), tmpMatch);
     
     if(matchToRegister == listOfLevelMatches.end()) {
         
@@ -601,9 +620,133 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
         
     }
     
-    (*matchToRegister)->setHomeTeamScore(homeTeamScore);
-    (*matchToRegister)->setAwayTeamScore(awayTeamScore);
+    (*matchToRegister)->registerMatch(homeTeamScore, awayTeamScore, matchPlayers);
     
+    for (map<unsigned int, Info*>::iterator iteratorInfoPlayer = matchPlayers.begin(); iteratorInfoPlayer != matchPlayers.end(); iteratorInfoPlayer++) {
+        
+        *(level->getMapInfoPlayers().at(iteratorInfoPlayer->first)) += iteratorInfoPlayer->second;
+        this->allWorkers.at(iteratorInfoPlayer->first)->addInfo(iteratorInfoPlayer->second);
+    }
     
 }
 
+void Club::registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers) {
+    
+    Club* opponent = new Club(opponentClub, true);
+    level->updateLastMatchId();
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    
+    matchToAdd->registerMatch(homeTeamScore, awayTeamScore, matchPlayers);
+    level->addMatchToLevel(matchToAdd);
+    
+    for (map<unsigned int, Info*>::iterator iteratorInfoPlayer = matchPlayers.begin(); iteratorInfoPlayer != matchPlayers.end(); iteratorInfoPlayer++) {
+        
+        *(level->getMapInfoPlayers().at(iteratorInfoPlayer->first)) += iteratorInfoPlayer->second;
+        this->allWorkers.at(iteratorInfoPlayer->first)->addInfo(iteratorInfoPlayer->second);
+    }
+    
+}
+
+void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers) {
+    
+    vector<Match*> listOfLevelMatches = level->getAllLevelMatches();
+    vector<Match*>::const_iterator matchToRegister = listOfLevelMatches.begin();
+    while (matchToRegister != listOfLevelMatches.end()) {
+        
+        if ((*matchToRegister)->getId() == matchId) {
+            
+            break;
+            
+        }
+        matchToRegister++;
+        
+    }
+    
+    
+    if(matchToRegister == listOfLevelMatches.end()) {
+        
+        throw string("jogo não agendado");
+        
+    }
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
+    
+    if (matchPlayers.size() == 0) {
+        
+        
+        for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
+            
+            filteredVector.push_back(levelPlayersIterator->first);
+            
+        }
+        
+    }
+    
+    else {
+        
+        for (size_t i = 0; i < matchPlayers.size(); i++) {
+            
+            map<unsigned int, Info*>::const_iterator existsInLevel = levelPlayers.find(matchPlayers.at(i));
+            
+            if (existsInLevel != levelPlayers.end()) {
+                
+                filteredVector.push_back(matchPlayers.at(i));
+                
+            }
+            
+        }
+        
+    }
+    
+    (*matchToRegister)->setPlayers(filteredVector);
+    map<unsigned int, Info *> infoPlayersEmpty;
+    (*matchToRegister)->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
+    
+}
+
+void Club::registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers) {
+    
+    
+    Club* opponent = new Club(opponentClub, true);
+    level->updateLastMatchId();
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
+    
+    if (matchPlayers.size() == 0) {
+        
+        
+        for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
+            
+            filteredVector.push_back(levelPlayersIterator->first);
+            
+        }
+        
+    }
+    
+    else {
+        
+        for (size_t i = 0; i < matchPlayers.size(); i++) {
+            
+            map<unsigned int, Info*>::const_iterator existsInLevel = levelPlayers.find(matchPlayers.at(i));
+            
+            if (existsInLevel != levelPlayers.end()) {
+                
+                filteredVector.push_back(matchPlayers.at(i));
+                
+            }
+            
+        }
+        
+    }
+    
+    matchToAdd->setPlayers(filteredVector);
+    map<unsigned int, Info *> infoPlayersEmpty;
+    matchToAdd->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
+    
+
+    level->addMatchToLevel(matchToAdd);
+     
+}

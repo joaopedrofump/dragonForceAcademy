@@ -233,6 +233,7 @@ ostream& operator<<(ostream& out, Match match) {
     
 }
 
+
 bool Match::operator==(const Match &compareMatch) const {
     return this->id == compareMatch.getId();
 }
