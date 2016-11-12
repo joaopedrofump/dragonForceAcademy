@@ -21,6 +21,10 @@ void initialOptions(Club & footballClub);
 
 unsigned short int mainMenu();
 
+void printAddAthleteMenu();
+
+void printAthletesMenu();
+
 void showMainMenu(unsigned short int optionChosen = 0);
 
 void optionsAthletesManagement(Club & footballClubo);

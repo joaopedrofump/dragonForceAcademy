@@ -140,12 +140,21 @@ void initialOptions(Club &mainClub) {
 }
 
 unsigned short int mainMenu() {
-    unsigned short int option = 0;
+    unsigned int option = 0;
     bool control = false;
 	Table closeProgram({ "Are you sure you want to quit the program?" });
+
+	showMainMenu(0);
+
     while (!control) {
-        showMainMenu(0);
-        control = readUnsignedShortInt(option, 0, 4);
+		try {
+			control = readUnsignedInt(option, 0, 4);
+		}
+		catch (InvalidInput e) {
+			showMainMenu();
+
+			cout << Table({ e.getMessage() });
+		}
     }
 
 	if (option == 0 && !confirm(closeProgram.getTableVector(), closeProgram.getBlocks(), closeProgram.getColumsWidth(), closeProgram.getIndentacao())) {
@@ -203,7 +212,7 @@ void printAddAthleteMenu() {
 	menuAthletes.addNewLine({ "2 - See an Athlete     " });
 	menuAthletes.addNewLine({ "3 - Add Athlete" });
 
-	Table addAthlete({ "1 - Goalkeeper" }, 28);
+	Table addAthlete({ "1 - Goalkeeper" }, 9);
 	addAthlete.addNewLine({ "2 - Defender" });
 	addAthlete.addNewLine({ "3 - Midfielder" });
 	addAthlete.addNewLine({ "4 - Forward" });
@@ -216,12 +225,19 @@ void printAddAthleteMenu() {
 
 
 unsigned short int menuAthletesManagement() {
-    unsigned short int option;
+    unsigned int option;
     bool control = false;
-    do {
-		printAthletesMenu();
-        control = readUnsignedShortInt(option, 0, 5);
-    } while (!control);
+	printAthletesMenu();
+
+	while (!control) {
+		try {
+			control = readUnsignedInt(option, 0, 5);
+		}
+		catch (InvalidInput e) {
+			printAthletesMenu();
+			cout << Table({ e.getMessage() });
+		}
+    }
     return option;
 }
 
@@ -239,20 +255,13 @@ void  optionsAthletesManagement(Club &mainClub) {
 		Table showInformation({ "Information" , "Data" });
 		Table confirmAdd({ "Are you sure you want to add the athlete?" });
 		Table confirmRemove({ "Are you sure you want to remove the athlete?" });
-		Table confirmReativate({ "Are you sure you want to reativate the athlete?" });
+		
 
-
-		string newAthleteName;
-		string newAthleteBirthDateStr;
-		Date newAthleteBirthDate;
-		string newAthleteHeight;
-		string newAthleteCivilId;
 		Date today;
 
         switch (option) {
             case 1:           //=========== SHOW ATHLETES ==============
                 
-				clearScreen();
 				showMainMenu(0);
 
                 if (mainClub.getAthletes().size() == 0) {
@@ -266,440 +275,410 @@ void  optionsAthletesManagement(Club &mainClub) {
                 
                 mainClub.showAthletes();
                 ignoreLine(false);
-                break;/*
-            case 2:          //============ MOSTRAR UM CLIENTE ============
+                break;
+            case 2:          //============ SHOW ONE ATHLETE ============
                 
-                if (supermercado.getMapIDtoCliente().size() == 0) {
+                if (mainClub.getAthletes().size() == 0) {
                     
-                    clearScreen();
 					showMainMenu();
-                    cout << Table({"Nao existem clientes."});
+                    cout << Table({"There are no Athletes."});
                     ignoreLine(false);
                     break;
                 }
                 
-                do {
-                    clearScreen();
-					showMainMenu(0);
-					supermercado.listarClientesOrdemAlfa();
-                    Table introIdNome({ "Introduza o ID ou o NOME do cliente." });
-                    cout << introIdNome << endl;
-                    getline(cin, input);
-                    if (stringVazia(input)) {
-                        break;
-                    }
-                    trimString(input);
-                    if (isdigit(input.at(0))) {
-                        idCliente = stoi(input);
-                        clearScreen();
+				showMainMenu(0);
+				mainClub.showAthletes();
+                
+
+				control = false;
+				while (!control) {
+					try {
+						cout << Table({ "Please, enter the athlete's ID" }) << endl;
+						control = readUnsignedInt(idWorker, 1, Worker::getLastId(), "Invalid ID.");
+
+						if (!idWorker) {
+							exitSwitch = true;
+							break;
+						}
+
 						showMainMenu(0);
-                        control = supermercado.mostraInformacaoCliente(idCliente);
-                        ignoreLine(false);
-                    }
-                    else {
-                        clearScreen();
+
+						control = false;
+						control = mainClub.showAthlete(idWorker);
+						ignoreLine(false);
+					}
+					catch (InvalidInput e) {
+
 						showMainMenu(0);
-                        control = supermercado.mostraInformacaoCliente(input);
-                        ignoreLine(false);
-                    }
-                } while (!control);
-                break;*/
+						mainClub.showAthletes();
+
+						cout << Table({ e.getMessage() });
+					}
+                }
+
+
+				// If user push ENTER
+				if (exitSwitch) break;
+
+                break;
             case 3:            //=========== ADD ATHLETE ================
-                
-				
-				do {
-					printAddAthleteMenu();
-					
+			{
+				printAddAthleteMenu();
 
-					unsigned short int position;
 
-					control = false;
-					while (!control) {
-						try {
-							control = readUnsignedShortInt(position, 0, 4);
-						}
-						catch (InvalidInput e) {
-							printAddAthleteMenu();
+				unsigned int position;
 
-							cout << Table({ e.getMessage() });
-
-						}
+				control = false;
+				while (!control) {
+					try {
+						control = readUnsignedInt(position, 0, 4);
 					}
-					
+					catch (InvalidInput e) {
+						printAddAthleteMenu();
 
-					// If user push Enter or 0
-					if (!position) {
-						exitSwitch = true;
-						break;
+						cout << Table({ e.getMessage() });
+
 					}
+				}
 
 
-					// Read Athlete's Name
-					clearScreen();
-					showMainMenu(0);
-
-					control = false;
-					while (!control) {
-						try {
-
-							cout << Table({ "Please, enter the athlete's NAME." }) << endl;
-
-							getline(cin, newAthleteName);
-
-							if (emptyString(newAthleteName)) {
-								exitSwitch = true;
-								break;
-							}
-
-							control = validateName(newAthleteName);
+				// If user push Enter or 0
+				if (!position) {
+					exitSwitch = true;
+					break;
+				}
 
 
+				// Read Athlete's Name
+				clearScreen();
+				showMainMenu(0);
+
+				string newAthleteName;
+
+				control = false;
+				while (!control) {
+					try {
+
+						cout << Table({ "Please, enter the athlete's NAME." }) << endl;
+
+						getline(cin, newAthleteName);
+
+						if (emptyString(newAthleteName)) {
+							exitSwitch = true;
+							break;
 						}
-						catch (InvalidInput e) {
-							clearScreen();
-							showMainMenu(0);
 
-							Table printErrorMessage({ e.getMessage() });
-							cout << printErrorMessage;
+						control = validateName(newAthleteName);
 
-						}
+
 					}
+					catch (InvalidInput e) {
+						clearScreen();
+						showMainMenu(0);
 
-					//If user push ENTER
-					if (exitSwitch) break;
+						Table printErrorMessage({ e.getMessage() });
+						cout << printErrorMessage;
 
-					//==========================
-
-					// Read Athlete's Birth Date
-					clearScreen();
-					showMainMenu(0);
-
-					control = false;
-					while (!control) {
-						try {
-
-
-							Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
-							cout << introBirthDate << endl;
-
-
-							getline(cin, newAthleteBirthDateStr);
-
-							if (emptyString(newAthleteBirthDateStr)) {
-								exitSwitch = true;
-								break;
-							}
-
-							trimString(newAthleteBirthDateStr);
-
-							newAthleteBirthDate = Date(newAthleteBirthDateStr);
-
-							control = true;
-
-						}
-						catch (InvalidDate e) {
-							clearScreen();
-							showMainMenu(0);
-
-							Table printErrorMessage({ e.getMessage() });
-							cout << printErrorMessage;
-
-						}
 					}
+				}
 
-					//If user push ENTER
-					if (exitSwitch) break;
+				//If user push ENTER
+				if (exitSwitch) break;
 
-					//==========================
+				//==========================
 
-					// Read Athlete's Height
+				// Read Athlete's Birth Date
+				clearScreen();
+				showMainMenu(0);
 
-					clearScreen();
-					showMainMenu(0);
+				string newAthleteBirthDateStr;
 
-					unsigned short int heigth;
-
-					control = false;
-					while (!control) {
-						try {
-
-							Table introHeight({ "Please, enter the athlete's HEIGHT." });
-							cout << introHeight << endl;
-
-							control = readUnsignedShortInt(heigth, 100, 250, "Invalid heigth: This value must be between 100 and 250");
-
-							// ENTER
-							if (!heigth) {
-								exitSwitch = true;
-								break;
-							}
+				control = false;
+				while (!control) {
+					try {
 
 
-							
+						Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
+						cout << introBirthDate << endl;
+
+
+						getline(cin, newAthleteBirthDateStr);
+
+						if (emptyString(newAthleteBirthDateStr)) {
+							exitSwitch = true;
+							break;
 						}
-						catch (InvalidInput e) {
 
-							clearScreen();
-							showMainMenu(0);
+						trimString(newAthleteBirthDateStr);
 
-							cout << Table({ e.getMessage() });
+						control = true;
 
-						}
 					}
+					catch (InvalidDate e) {
+						clearScreen();
+						showMainMenu(0);
 
-					//If user push ENTER
-					if (exitSwitch) break;
+						Table printErrorMessage({ e.getMessage() });
+						cout << printErrorMessage;
 
-					//==========================
+					}
+				}
 
-                    // Read Athlete's Civil ID
-                    
-                    clearScreen();
-                    showMainMenu(0);
-                    
-                    Table introCivilID({ "Please, enter the athlete's CIVIL ID." });
-                    cout << introCivilID << endl;
-                    
-                    
-                    getline(cin, newAthleteCivilId);
-                    
-                    if (emptyString(newAthleteCivilId)) {
-                        exitSwitch = true;
-                        break;
-                    }
-                    
-                    trimString(newAthleteCivilId);
+				//If user push ENTER
+				if (exitSwitch) break;
 
-					mainClub.addPlayer((Position)position, newAthleteName, newAthleteBirthDate, stoi(newAthleteCivilId), heigth);
-					
-                    //control = validateName(input);
-                    //ignoreLine(false, "Cliente adicionado com sucesso");*/
-                } while (!control);
+				//==========================
 
-				if (exitSwitch) break;  //Teclar enter apenas, cancela a operacao
-				
-
-				//Mostrar resumo da operacao
-
-				showInformation.addNewLine({ "ID: " , to_string(Worker::getLastId() + 1) });  // Mostra o id
-                
-                showInformation.addNewLine({ "Civil ID: " , newAthleteCivilId }); // Mostra o Nome
-
-				showInformation.addNewLine({ "Name: " , newAthleteName }); // Mostra o Nome
-				
-				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDateStr });
-
-				showInformation.addNewLine({ "Level: " , getLevelFromAge(newAthleteBirthDate) });
+				// Read Athlete's Height
 
 				clearScreen();
 				showMainMenu(0);
-								
+
+				unsigned int heigth;
+
+				control = false;
+				while (!control) {
+					try {
+
+						Table introHeight({ "Please, enter the athlete's HEIGHT." });
+						cout << introHeight << endl;
+
+						control = readUnsignedInt(heigth, 100, 250, "Invalid heigth: This value must be between 100 and 250");
+
+						// ENTER
+						if (!heigth) {
+							exitSwitch = true;
+							break;
+						}
+
+
+
+					}
+					catch (InvalidInput e) {
+
+						clearScreen();
+						showMainMenu(0);
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				//If user push ENTER
+				if (exitSwitch) break;
+
+				//==========================
+
+				// Read Athlete's Civil ID
+
+				clearScreen();
+				showMainMenu(0);
+
+				unsigned int CivilID;
+
+				control = false;
+				while (!control) {
+					try {
+
+						Table introCivilID({ "Please, enter the athlete's CIVIL ID." });
+						cout << introCivilID << endl;
+
+						control = readUnsignedInt(CivilID, 10000000, 99999999, "Invalid Civil ID: This value must to have 8 digits.");
+
+						// ENTER
+						if (!CivilID) {
+							exitSwitch = true;
+							break;
+						}
+
+
+
+					}
+					catch (InvalidInput e) {
+
+						clearScreen();
+						showMainMenu(0);
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				//If user push ENTER
+				if (exitSwitch) break;
+				//==========================
+
+
+				//Mostrar resumo da operacao
+
+				showInformation.addNewLine({ "ID: " , to_string(Worker::getLastId() + 1) });
+
+				showInformation.addNewLine({ "Civil ID: " , to_string(CivilID) });
+
+				showInformation.addNewLine({ "Name: " , newAthleteName });
+
+				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDateStr });
+
+				showInformation.addNewLine({ "Level: " , getLevelFromAge(Date(newAthleteBirthDateStr)) });
+
+				clearScreen();
+				showMainMenu(0);
+
 				cout << confirmAdd;
 
 				if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
 					break;
 				}
 				ignoreLine(false, "Athlete correctly added!");
-                mainClub.saveChanges();
-                break;
-            case 5:            //============  REMOVE ATHLETES ================
-                
-                if (mainClub.getAthletes().size() == 0) {
-                    
-                    clearScreen();
-                    showMainMenu();
-                    cout << Table({"There are no Athletes."});
-                    ignoreLine(false);
-                    break;
-                }
-                
-                if (mainClub.getAthletes(true).size() == 0) {
-                    
-                    clearScreen();
-                    showMainMenu();
-                    cout << Table({"There are no active Athletes."});
-                    ignoreLine(false);
-                    break;
-                    
-                }
-                
-                do {
-                    clearScreen();
-                    showMainMenu(0);
-					mainClub.showAthletes(true);
-                    Table introIdNome({ "Please enter the athlete's id to remove." });
-                    cout << introIdNome << endl;
-                    getline(cin, input);
-                    if (emptyString(input)) {
-                        break;
-                    }
 
-                    trimString(input);
-                    
-					idWorker = stoi(input);
+				mainClub.addPlayer((Position)position, newAthleteName, Date(newAthleteBirthDateStr), CivilID, heigth);
 
-					if (!mainClub.getAthletes().at(idWorker)->isActive()) {
-						cout << Table({ "This Athlete was already remove." });
-						ignoreLine(false);
-						continue;
-					}
-
-
-					// Show operation summary
-
-					showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
-
-					showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
-
-					showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName()}); // Show Name
-
-					showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
-
-					showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
-
-					clearScreen();
-					showMainMenu(0);
-
-
-					cout << confirmRemove;
-
-					if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
-						break;
-					}
-
-					ignoreLine(false, "Athlete removed correctly");
-
-					control = mainClub.removeAthlete(idWorker);
-
-                } while (!control);
-                mainClub.saveChanges();
-                break;
-			/*case 4:  //================ REATIVAR CLIENTE ==================
-				
-                if (supermercado.getMapIDtoCliente().size() == 0) {
-                    
-                    clearScreen();
-                    mostrarMenuInicial();
-                    cout << Table({"Nao existem clientes."});
-                    ignoreLine(false);
-                    break;
-                }
-                
-                
-                if (!supermercado.existemClientesInactivos()) {
-                    
-                    clearScreen();
-                    mostrarMenuInicial();
-                    cout << Table({"Nao existem clientes inactivos."});
-                    ignoreLine(false);
-                    break;
-                    
-                }
-                
-                
-                do {
-					clearScreen();
-					mostrarMenuInicial(0);
-					supermercado.listarClientesOrdemAlfaInactivos();
-					Table introIdNome({ "Introduza o ID ou o NOME do cliente." });
-					cout << introIdNome << endl;
-					getline(cin, input);
-					if (stringVazia(input)) {
-						break;
-					}
-					trimString(input);
-					if (isdigit(input.at(0))) { //  REATIVAR PELO ID
-						idCliente = stoi(input);
-                        
-                        if (supermercado.getMapIDtoCliente().at(idCliente).getStatus()) {
-                            cout << Table({"O cliente ja se encontra activo."});
-                            ignoreLine(false);
-                            continue;
-                        }
-                        
-						clearScreen();
-						mostrarMenuInicial(0);
-						control = supermercado.reactivarCliente(idCliente);
-						
-						//Mostrar resumo da operacao
-
-						ss << idCliente;
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Id de Cliente: " , str });  // Mostra o id
-
-						ss.str("");
-						ss << supermercado.getMapIDtoCliente().at(idCliente).getNome();
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Nome do Cliente: " , str }); // Mostra o Nome
-
-						ss.str("");
-						ss << hoje.mostrarData();
-						str = ss.str();
-
-
-						mostrarCliente.addNewLine({ "Cartao de Cliente: " , str });
-
-						clearScreen();
-						mostrarMenuInicial(0);
-
-
-						cout << confirmarReativar;
-
-						if (!confirmar(mostrarCliente.getTableVector(), mostrarCliente.getBlocks(), mostrarCliente.getColumsWidth(), mostrarCliente.getIndentacao())) {
-							break;
-						}
-						ignoreLine(false, "Cliente reativado com sucesso");
-					}
-					else {  //  REATIVAR PELO NOME
-                        
-                        if (supermercado.getMapNametoCliente().at(input).getStatus()) {
-                            cout << Table({"O cliente ja se encontra activo."});
-                            ignoreLine(false);
-                            continue;
-                        }
-                        
-						clearScreen();
-						mostrarMenuInicial(0);
-						control = supermercado.reactivarCliente(input);
-						
-						//Mostrar resumo da operacao
-
-						ss << supermercado.getMapNametoCliente().at(input);
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Id de Cliente: " , str });  // Mostra o id
-
-						ss.str("");
-						ss << input;
-						str = ss.str();
-
-						mostrarCliente.addNewLine({ "Nome do Cliente: " , str }); // Mostra o Nome
-
-						ss.str("");
-						ss << hoje.mostrarData();
-						str = ss.str();
-
-
-						mostrarCliente.addNewLine({ "Cartao de Cliente: " , str });
-
-						clearScreen();
-						mostrarMenuInicial(0);
-
-
-						cout << confirmarReativar;
-
-						if (!confirmar(mostrarCliente.getTableVector(), mostrarCliente.getBlocks(), mostrarCliente.getColumsWidth(), mostrarCliente.getIndentacao())) {
-							break;
-						}
-						ignoreLine(false, "Cliente reativado com sucesso");
-					}
-				} while (!control);
-                supermercado.saveChanges();
+				mainClub.saveChanges();
 				break;
+			}
+            case 5:            //============  REMOVE ATHLETES ================
+			{
+				if (mainClub.getAthletes().size() == 0) {
+
+					clearScreen();
+					showMainMenu();
+					cout << Table({ "There are no Athletes." });
+					ignoreLine(false);
+					break;
+				}
+
+				if (mainClub.getAthletes(true).size() == 0) {
+
+					clearScreen();
+					showMainMenu();
+					cout << Table({ "There are no active Athletes." });
+					ignoreLine(false);
+					break;
+
+				}
+
+				
+				showMainMenu(0);
+				mainClub.showAthletes(true);
+
+				while (!control) {
+					try {
+						cout << Table({ "Please enter the athlete's id to remove." }) << endl;
+						
+						control = readUnsignedInt(idWorker, 1, Worker::getLastId(), "Invalid ID.");
+
+						if (!idWorker) {
+							exitSwitch = true;
+							break;
+						}
+
+						if (!mainClub.getAthletes().at(idWorker)->isActive()) {
+							cout << Table({ "This Athlete was already remove." });
+							ignoreLine(false);
+							continue;
+						}
+
+					}
+					catch (InvalidInput e) {
+
+						showMainMenu(0);
+						mainClub.showAthletes(true);
+
+						cout << Table({ e.getMessage() });
+					}
+				}
+
+
+
+				// Show operation summary
+
+				showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
+
+				showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
+
+				showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName() }); // Show Name
+
+				showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
+
+				showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
+
+				showMainMenu(0);
+
+
+				cout << confirmRemove;
+
+				if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
+					break;
+				}
+				
+
+				ignoreLine(false, "Athlete removed correctly");
+
+				mainClub.removeAthlete(idWorker);
+
+				mainClub.saveChanges();
+				break;
+			}
+			/*case 4:  //================ REATIVATE ATHLETE ==================
+			{
+				if (mainClub.getAthletes().size() == 0) {
+
+					showMainMenu();
+					cout << Table({ "There are no Athletes." });
+					ignoreLine(false);
+					break;
+				}
+
+				if (mainClub.getInactives().size() == 0) {
+
+					showMainMenu();
+					cout << Table({ "There are no inactive Athletes." });
+					ignoreLine(false);
+					break;
+
+				}
+
+				showMainMenu(0);
+				mainClub.showAthletesInactives();
+
+				while (!control) {
+					try {
+						cout << Table({ "Please enter the athlete's id to reativate." }) << endl;
+
+						control = readUnsignedInt(idWorker, 1, Worker::getLastId(), "Invalid ID.");
+
+						if (!idWorker) {
+							exitSwitch = true;
+							break;
+						}
+
+						if (!mainClub.getAthletes().at(idWorker)->isActive()) {
+							cout << Table({ "This athlete is already active." });
+							ignoreLine(false);
+							continue;
+						}
+
+					}
+					catch (InvalidInput e) {
+
+						cout << Table({ e.getMessage() });
+					}
+				}
+
+
+
+				
+
+
+				ignoreLine(false, "Athlete removed correctly");
+
+				mainClub.reativateAthlete(idWorker);
+
+				mainClub.saveChanges();
+				break;
+			}*/
             case 0:
-                break;*/
+                break;
         }
     }
 }

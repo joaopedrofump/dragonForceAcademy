@@ -250,7 +250,7 @@ int GetCursorY();
 
 void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
 
-bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage = "Invalid Input");
+bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage = "Invalid Input");
 
 bool emptyString(string stringTest);
 

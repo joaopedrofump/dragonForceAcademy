@@ -331,6 +331,54 @@ bool Club::removeAthlete(unsigned int athleteId) {
 	return true;
 }
 
+/*bool Club::reativateAthlete(unsigned int athleteId) {
+
+	//Verify if the athlete exists
+
+	map<unsigned int, Worker*> tmpMap = this->getAthletes();
+	map<unsigned int, Worker*>::const_iterator it = tmpMap.find(athleteId);
+
+	if (it == tmpMap.end()) {
+
+		throw InvalidInput("The Athlete was not found.");
+		return false;
+
+	}
+
+	if (!it->second->isActive()) {
+
+		// Show operation summary
+		Table showInformation({ "Information" , "Data" });
+
+		showInformation.addNewLine({ "ID: " , to_string(this->getAthletes().at(athleteId)->getID()) });  // Show id
+
+		showInformation.addNewLine({ "Civil ID: " , to_string(this->getAthletes().at(athleteId)->getCivilID()) }); // Show Civil Id
+
+		showInformation.addNewLine({ "Name: " , this->getAthletes().at(athleteId)->getName() }); // Show Name
+
+		showInformation.addNewLine({ "Birth Date: " , this->getAthletes().at(athleteId)->getBirthdate().str() }); // Show Birth Date
+
+		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
+
+		showMainMenu(0);
+
+		cout << Table({ "Are you sure you want to reativate the athlete?" });;
+
+		if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
+			break;
+		}
+
+		this->allWorkers.at(athleteId)->setStatus(true);
+
+		cout << Table({ "The Athlete was correctly reativated." }) << endl;
+	}
+	else {
+
+		throw InvalidInput("The Athlete is already active.");
+	}
+	return true;
+}*/
+
 void Club::saveChanges() {
 
 	// Save Athletes
@@ -511,6 +559,60 @@ void Club::showAthletes(bool onlyActives) const {
     
     cout << athletesTable << endl;
     
+}
+
+void Club::showAthletesInactives() const {
+	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
+	map<unsigned int, Worker*>::const_iterator workersIterator;
+
+	bool firstInactive = false;
+		for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+			if (!workersIterator->second->isActive() && !firstInactive && workersIterator->second->isAthlete()) {
+
+				athletesTable.addNewLine(workersIterator->second->showInScreen());
+				firstInactive = true;
+				continue;
+			}
+
+			if (!workersIterator->second->isActive() && firstInactive && workersIterator->second->isAthlete()) {
+
+				athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+			}
+		}
+
+	cout << athletesTable << endl;
+}
+
+bool Club::showAthlete(unsigned int id) const {
+
+	if (allWorkers.find(id) == allWorkers.end()) {
+		throw InvalidInput("This ID is not atributted.");
+	}
+	else {
+		map<unsigned int, Worker*> athletes = getAthletes();
+		if (athletes.find(id) == athletes.end()) {
+			throw InvalidInput("This ID is does not belong to an Athlete.");
+		}
+	}
+
+	Worker* currentAthlete = this->allWorkers.at(id);
+
+	//Mostrar resumo da operacao
+	Table showInformation({ "Information" , "Data" });
+
+	showInformation.addNewLine({ "ID: " , to_string(currentAthlete->getID()) });
+
+	showInformation.addNewLine({ "Civil ID: " , to_string(currentAthlete->getCivilID()) });
+
+	showInformation.addNewLine({ "Name: " , currentAthlete->getName() });
+
+	showInformation.addNewLine({ "Birth Date: " , currentAthlete->getBirthdate().str() });
+
+	showInformation.addNewLine({ "Level: " , getLevelFromAge(currentAthlete->getBirthdate()) });
+
+	cout << showInformation;
+
+	return true;
 }
 
 int Club::findWorkerByCivilID(unsigned int civilID) {

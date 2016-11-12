@@ -26,12 +26,15 @@ public:
 
 	void addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height);
 	bool removeAthlete(unsigned int athleteId);
+	bool reativateAthlete(unsigned int athleteId);
 
 	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
 	map<unsigned int, Worker*> getInactives() const;
 	map<unsigned int, Worker*> getCoaches() const;
 
 	void showAthletes(bool onlyActives = false) const;
+	bool showAthlete(unsigned int id) const;
+	void showAthletesInactives() const;
 
 	void saveChanges();
     string getPathToClubFolder() const;

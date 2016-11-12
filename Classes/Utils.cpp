@@ -1000,7 +1000,7 @@ void ignoreLine(bool ignoreControl, string message) {
 
 }
 
-bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage) {
+bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage) {
 
 	string inputUser;
 	bool result = false;
@@ -1019,7 +1019,7 @@ bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, uns
 
 	while (!integersStream.eof()) {
 
-		unsigned short int currentInt;
+		unsigned int currentInt;
 		integersStream >> currentInt;
 
 		if (integersStream.fail()) {
