@@ -13,6 +13,7 @@ class Match{
     bool played;
 	
 public:
+    Match(string id);
 	Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played = false);
     Match(istringstream& iss);
     Match(istringstream& iss, Club* programClub, MatchType homeOrAway);
@@ -25,19 +26,24 @@ public:
 	Club* getAwayTeam() const;
 	vector<Worker*> getPlayers() const;
     map<unsigned int, Info*> getInfoPlayers() const;
+    string getId() const;
 
 	// SETTERS
 
 	void setMatchDay(Date newDay);
 	void setHomeTeam(Club* newHomeTeam);
 	void setAwayTeam(Club* newAwayTeam);
+    
+    void setHomeTeamScore(unsigned int newHomeTeamScore);
+    void setAwayTeamScore(unsigned int newAwayTeamScore);
+    
     void setPlayers(vector<unsigned int> playersIds);
     void registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> infoPlayers);
     
     //IO
     
     friend ostream& operator<<(ostream& out, Match match);
-    
+    bool operator==(const Match &compareMatch) const;
 };
 
 

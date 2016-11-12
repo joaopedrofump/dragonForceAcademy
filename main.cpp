@@ -27,16 +27,15 @@ int main(int argc, const char * argv[]) {
 
 	string clubName;
     
+    
     try {
         
         initialInfo(clubName);
-		
 		Club currentClubInProgram(clubName);
                 
-        currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(1), home);
+        currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
         
         currentClubInProgram.saveChanges();
-        
         initialOptions(currentClubInProgram);
         
         //currentClubInProgram.updateECG(1, true);

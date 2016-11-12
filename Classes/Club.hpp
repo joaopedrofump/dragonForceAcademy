@@ -33,6 +33,8 @@ public:
 	map<unsigned int, Worker*> getCoaches() const;
 
 	void showAthletes(bool onlyActives = false) const;
+    
+    bool isProgramClub() const;
 
 	void saveChanges();
     string getPathToClubFolder() const;
@@ -44,6 +46,14 @@ public:
     void updateECG(unsigned int athleteID, bool result);
     
     void scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type);
-    bool isProgramClub() const;
+    
+    //registar jogo já agendado
+    void registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
+    
+    //registar jogo não agendado
+    void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
+    
+    
+    
     
 };

@@ -587,3 +587,23 @@ void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, Matc
     
 }
 
+void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers) {
+    
+    
+    vector<Match*> listOfLevelMatches = level->getAllLevelMatches();
+    Match tmpMatch(matchId);
+    
+    vector<Match*>::iterator matchToRegister = find(listOfLevelMatches.begin(), listOfLevelMatches.end(), tmpMatch);
+    
+    if(matchToRegister == listOfLevelMatches.end()) {
+        
+        throw string("jogo não agendado");
+        
+    }
+    
+    (*matchToRegister)->setHomeTeamScore(homeTeamScore);
+    (*matchToRegister)->setAwayTeamScore(awayTeamScore);
+    
+    
+}
+

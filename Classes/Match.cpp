@@ -1,5 +1,7 @@
 #include "Match.hpp"
 
+Match::Match(string id):id(id){}
+
 Match::Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played)
 	: matchDay(matchDay), homeTeam(homeTeam), awayTeam(awayTeam), id(id){
     
@@ -90,6 +92,13 @@ Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     
 }
 
+void Match::setHomeTeamScore(unsigned int newHomeTeamScore) {
+    this->homeTeamScore = newHomeTeamScore;
+}
+void Match::setAwayTeamScore(unsigned int newAwayTeamScore) {
+    this->awayTeamScore = newAwayTeamScore;
+}
+
 // GETTERS
 
 Date Match::getMatchDay() const {
@@ -129,6 +138,10 @@ vector<Worker*> Match::getPlayers() const {
     
 }
 
+string Match::getId() const {
+    return this->id;
+}
+
 // SETTERS
 
 void Match::setMatchDay(Date newDay) {
@@ -146,10 +159,10 @@ void Match::setAwayTeam(Club* newAwayTeam) {
 void Match::setPlayers(vector<unsigned int> playersIds) {
 	
     Club* thisClub;
-    if(homeTeam->getSeasons().size() != 0) {
+    if(this->homeTeam->isProgramClub()) {
         thisClub = homeTeam;
     }
-    else if(awayTeam->getSeasons().size() != 0) {
+    else if(this->homeTeam->isProgramClub()) {
         thisClub = awayTeam;
     }
     else {
@@ -205,6 +218,9 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
         
     }
     
+    this->homeTeamScore = homeTeamScore;
+    this->awayTeamScore = awayTeamScore;
+    
     
 }
 
@@ -217,5 +233,7 @@ ostream& operator<<(ostream& out, Match match) {
     
 }
 
-
+bool Match::operator==(const Match &compareMatch) const {
+    return this->id == compareMatch.getId();
+}
 
