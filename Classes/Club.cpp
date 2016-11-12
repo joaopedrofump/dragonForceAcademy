@@ -310,8 +310,7 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 	if (it == tmpMap.end()) {
 
-		Table athleteNotFound({ "The Athlete was not found." });
-		cout << athleteNotFound << endl;
+		throw InvalidInput("The Athlete was not found.");
 		return false;
 
 	}
@@ -320,18 +319,16 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 		this->allWorkers.at(athleteId)->setStatus(false);
 
-		Table athleteCorrectlyRemoved({ "The Athlete was correctly removed." });
-		cout << athleteCorrectlyRemoved << endl;
+		cout << Table({ "The Athlete was correctly removed." }) << endl;
 	}
 	else {
 
-		Table athleteAlreadyRemoved({ "The Athlete was already removed." });
-		cout << athleteAlreadyRemoved << endl;
+		throw InvalidInput("The Athlete was already removed.");
 	}
 	return true;
 }
 
-/*bool Club::reativateAthlete(unsigned int athleteId) {
+bool Club::reativateAthlete(unsigned int athleteId) {
 
 	//Verify if the athlete exists
 
@@ -347,37 +344,14 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 	if (!it->second->isActive()) {
 
-		// Show operation summary
-		Table showInformation({ "Information" , "Data" });
-
-		showInformation.addNewLine({ "ID: " , to_string(this->getAthletes().at(athleteId)->getID()) });  // Show id
-
-		showInformation.addNewLine({ "Civil ID: " , to_string(this->getAthletes().at(athleteId)->getCivilID()) }); // Show Civil Id
-
-		showInformation.addNewLine({ "Name: " , this->getAthletes().at(athleteId)->getName() }); // Show Name
-
-		showInformation.addNewLine({ "Birth Date: " , this->getAthletes().at(athleteId)->getBirthdate().str() }); // Show Birth Date
-
-		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
-
-		showMainMenu(0);
-
-		cout << Table({ "Are you sure you want to reativate the athlete?" });;
-
-		if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
-			break;
-		}
-
 		this->allWorkers.at(athleteId)->setStatus(true);
-
-		cout << Table({ "The Athlete was correctly reativated." }) << endl;
 	}
 	else {
 
-		throw InvalidInput("The Athlete is already active.");
+		throw InvalidInput( "The Athlete is already active." );
 	}
 	return true;
-}*/
+}
 
 void Club::saveChanges() {
 

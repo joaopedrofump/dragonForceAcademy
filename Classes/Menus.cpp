@@ -92,13 +92,12 @@ void initialInfo(string &clubName) {
 
 }
 
-bool confirm(vector<vector<string>> confirmationMsg, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentation) {
+bool confirm(const Table &message) {
 
 	bool resultado = false;
 	string answer;
 	Table confirmar({ "Press Enter to confirm or any key to turn back." });
-	Table msg(confirmationMsg, blocks, spacesForColumn, indentation);
-	cout << msg << endl;
+	cout << message << endl;
 	cout << confirmar << endl;
 
 
@@ -157,7 +156,7 @@ unsigned short int mainMenu() {
 		}
     }
 
-	if (option == 0 && !confirm(closeProgram.getTableVector(), closeProgram.getBlocks(), closeProgram.getColumsWidth(), closeProgram.getIndentacao())) {
+	if (option == 0 && !confirm(closeProgram)) {
 		option = 5;
 	}
     return option;
@@ -391,25 +390,23 @@ void  optionsAthletesManagement(Club &mainClub) {
 				clearScreen();
 				showMainMenu(0);
 
-				string newAthleteBirthDateStr;
+				Date newAthleteBirthDate;
 
 				control = false;
 				while (!control) {
 					try {
 
 
-						Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
-						cout << introBirthDate << endl;
+						/*Table introBirthDate({ "Please, enter the athlete's BIRTH DATE." });
+						cout << introBirthDate << endl;*/
 
+						
+						control = readDate(newAthleteBirthDate, "Please, enter the athlete's BIRTH DATE.", "Invalid Date");
 
-						getline(cin, newAthleteBirthDateStr);
-
-						if (emptyString(newAthleteBirthDateStr)) {
+						if (newAthleteBirthDate == today) {
 							exitSwitch = true;
 							break;
 						}
-
-						trimString(newAthleteBirthDateStr);
 
 						control = true;
 
@@ -517,21 +514,21 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 				showInformation.addNewLine({ "Name: " , newAthleteName });
 
-				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDateStr });
+				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDate.str() });
 
-				showInformation.addNewLine({ "Level: " , getLevelFromAge(Date(newAthleteBirthDateStr)) });
+				showInformation.addNewLine({ "Level: " , getLevelFromAge(newAthleteBirthDate) });
 
 				clearScreen();
 				showMainMenu(0);
 
 				cout << confirmAdd;
 
-				if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
+				if (!confirm(showInformation)) {
 					break;
 				}
 				ignoreLine(false, "Athlete correctly added!");
 
-				mainClub.addPlayer((Position)position, newAthleteName, Date(newAthleteBirthDateStr), CivilID, heigth);
+				mainClub.addPlayer((Position)position, newAthleteName, newAthleteBirthDate, CivilID, heigth);
 
 				mainClub.saveChanges();
 				break;
@@ -573,9 +570,8 @@ void  optionsAthletesManagement(Club &mainClub) {
 						}
 
 						if (!mainClub.getAthletes().at(idWorker)->isActive()) {
-							cout << Table({ "This Athlete was already remove." });
-							ignoreLine(false);
-							continue;
+							
+							throw InvalidInput( "This Athlete was already removed." );							
 						}
 
 					}
@@ -585,6 +581,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 						mainClub.showAthletes(true);
 
 						cout << Table({ e.getMessage() });
+						control = false;
 					}
 				}
 
@@ -607,7 +604,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 
 				cout << confirmRemove;
 
-				if (!confirm(showInformation.getTableVector(), showInformation.getBlocks(), showInformation.getColumsWidth(), showInformation.getIndentacao())) {
+				if (!confirm(showInformation)) {
 					break;
 				}
 				
@@ -619,7 +616,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 				mainClub.saveChanges();
 				break;
 			}
-			/*case 4:  //================ REATIVATE ATHLETE ==================
+			case 4:  //================ REATIVATE ATHLETE ==================
 			{
 				if (mainClub.getAthletes().size() == 0) {
 
@@ -641,6 +638,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 				showMainMenu(0);
 				mainClub.showAthletesInactives();
 
+				control = false;
 				while (!control) {
 					try {
 						cout << Table({ "Please enter the athlete's id to reativate." }) << endl;
@@ -652,31 +650,65 @@ void  optionsAthletesManagement(Club &mainClub) {
 							break;
 						}
 
-						if (!mainClub.getAthletes().at(idWorker)->isActive()) {
-							cout << Table({ "This athlete is already active." });
-							ignoreLine(false);
-							continue;
+						if (mainClub.getAthletes().at(idWorker)->isActive()) {
+							
+							throw InvalidInput( "This athlete is already active." );
+							/*ignoreLine(false);
+							continue;*/
 						}
+
+						map<unsigned int, Worker*> tmpMap = mainClub.getAthletes();
+						if (tmpMap.find(idWorker) == tmpMap.end()) {
+							
+							throw InvalidInput( "This ID does not belong to an Athlete." );
+							/*ignoreLine(false);
+							continue;*/
+						}
+
+						// Show operation summary
+
+						showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
+
+						showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
+
+						showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName() }); // Show Name
+
+						showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
+
+						showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
+
+						showMainMenu(0);
+
+
+						cout << confirmRemove;
+
+						if (!confirm(showInformation)) {
+							exitSwitch = true;
+							break;
+						}
+
+
+						control = mainClub.reativateAthlete(idWorker);
+
+						ignoreLine(false, "Athlete reativated correctly");
 
 					}
 					catch (InvalidInput e) {
 
+						showMainMenu();
+						mainClub.showAthletesInactives();
+
 						cout << Table({ e.getMessage() });
+
+						control = false;
 					}
 				}
 
-
-
-				
-
-
-				ignoreLine(false, "Athlete removed correctly");
-
-				mainClub.reativateAthlete(idWorker);
+				if (exitSwitch) break;
 
 				mainClub.saveChanges();
 				break;
-			}*/
+			}
             case 0:
                 break;
         }

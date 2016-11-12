@@ -250,6 +250,10 @@ bool operator<(const Date &date1, const Date &date2) {
     return !(date1 >= date2);
 }
 
+bool operator==(const Date &date1, const Date &date2) {
+	return (!(date1 < date2) && !(date2 < date1));
+}
+
 void Date::save(ofstream &out) const {
     
     out << this;
@@ -1045,7 +1049,7 @@ bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, s
 	return result;
 }
 
-bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
+bool readDates(vector<Date> &resultVector, string message, string errorMessage) {
 
 
 	string dates;
@@ -1089,6 +1093,24 @@ bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
 
 	return resultBool;
 
+}
+
+bool readDate(Date &result, string message, string errorMessage) {
+
+	cout << Table({ message });
+	 
+	string input;
+
+	getline(cin, input);
+
+	if (input.size() == 0) {
+
+		return true;
+	}
+
+	result = Date(input);
+
+	return true;
 }
 
 
