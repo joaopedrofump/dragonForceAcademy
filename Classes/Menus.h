@@ -25,9 +25,17 @@ void printAddAthleteMenu();
 
 void printAthletesMenu();
 
+void printCoachesMenu();
+
 void showMainMenu(unsigned short int optionChosen = 0);
 
-void optionsAthletesManagement(Club & footballClubo);
+void optionsAthletesManagement(Club &footballClub);
+
+void optionsCoachesManagement(Club &footballClub);
+
+unsigned int menuAthletesManagement();
+
+unsigned int menuCoachesManagement();
 
 /*void listarClientesOrdemAlfabetica(VendeMaisMais & supermercado);
 

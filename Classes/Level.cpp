@@ -137,7 +137,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     string mainCoach;
     getline(inStreamLevel, mainCoach);
     
-    if(mainCoach.length() != 0) {
+    if(mainCoach.length() != 0 || stoi(mainCoach) == -1) {
         this->levelMainCoach = stoi(mainCoach);
     }
     else {
@@ -223,6 +223,18 @@ Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     return this;
     
 }
+
+Level* Level::addCoachToLevel(unsigned int idCoach, bool mainCoach) {
+
+	this->coachesIdsVector.push_back(idCoach);
+	if (mainCoach) {
+		this->levelMainCoach = idCoach;
+	}
+	return this;
+
+}
+
+
 
 string Level::getLevelName() const {
     

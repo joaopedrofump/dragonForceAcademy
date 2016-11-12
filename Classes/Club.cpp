@@ -305,6 +305,53 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
     
 }
 
+void Club::addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach){
+
+
+	if (this->findWorkerByCivilID(civilID) != -1) {
+		throw string("This coach is already registered");
+	}
+
+	Date currentDate;
+	Season* currentSeason = 0;
+	Coach* coachToAdd = 0;
+
+	try {
+		
+		coachToAdd = new Coach(name, birthdate, civilID, position);
+
+		allWorkers.insert(pair<unsigned int, Worker*>(coachToAdd->getID(), coachToAdd));
+
+
+		// Find current season
+		for (unsigned int i = 0; i < seasons.size(); i++)
+		{
+			if (currentDate.getYear() == seasons.at(i)->getYear())
+			{
+				currentSeason = seasons.at(i);
+				break;
+			}
+		}
+
+		// Add coach to level
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++) {
+
+			if (ageLevelMap.at(currentSeason->getLevels().at(i)->getLevelName()) == level){
+
+				currentSeason->getLevels().at(i)->addCoachToLevel(coachToAdd->getID(), mainCoach);
+			}
+		}
+
+	}
+	/*to be completed*/
+
+	catch (...) {
+		cout << "Erro ao criar treinador";
+		ignoreLine(false);
+	}
+
+}
+
 bool Club::removeAthlete(unsigned int athleteId) {
 
 	//Verify if the athlete exists
@@ -484,6 +531,7 @@ void Club::saveChanges() {
                     coachesOStream << endl;
                     
                 }
+
                 
             }
             
@@ -538,13 +586,14 @@ void Club::saveChanges() {
 void Club::showAthletes(bool onlyActives) const {
     
     Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
-    map<unsigned int, Worker*>::const_iterator workersIterator;
+    map<unsigned int, Worker*> athletes = this->getAthletes();
+	map<unsigned int, Worker*>::iterator workersIterator;
     
     if(onlyActives) {
         
         bool firstActive = false;
-        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
-            if (workersIterator->second->isActive() && !firstActive && workersIterator->second->isAthlete()) {
+        for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
+            if (workersIterator->second->isActive() && !firstActive) {
                 
                 athletesTable.addNewLine(workersIterator->second->showInScreen());
                 firstActive = true;
@@ -561,9 +610,9 @@ void Club::showAthletes(bool onlyActives) const {
     
     else {
         
-        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+        for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
             
-            if (workersIterator == this->allWorkers.begin()) {
+            if (workersIterator == athletes.begin()) {
                 
                 athletesTable.addNewLine(workersIterator->second->showInScreen());
             }
@@ -633,6 +682,52 @@ bool Club::showAthlete(unsigned int id) const {
 	return true;
 }
 
+
+void Club::showCoaches(bool onlyActives) const {
+
+	Table coachesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Position", "Status" });
+	map<unsigned int, Worker*> coaches = this->getCoaches();
+	map<unsigned int, Worker*>::iterator workersIterator;
+
+	if (onlyActives) {
+
+		bool firstActive = false;
+		for (workersIterator = coaches.begin(); workersIterator != coaches.end(); workersIterator++) {
+			if (workersIterator->second->isActive() && !firstActive) {
+
+				coachesTable.addNewLine(workersIterator->second->showInScreen());
+				firstActive = true;
+				continue;
+			}
+
+			if (workersIterator->second->isActive() && firstActive && workersIterator->second->isAthlete()) {
+
+				coachesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+			}
+		}
+
+	}
+
+	else {
+
+		for (workersIterator = coaches.begin(); workersIterator != coaches.end(); workersIterator++) {
+
+			if (workersIterator == coaches.begin()) {
+
+				coachesTable.addNewLine(workersIterator->second->showInScreen());
+			}
+			else {
+
+				coachesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+			}
+		}
+
+	}
+
+	cout << coachesTable << endl;
+
+}
+
 int Club::findWorkerByCivilID(unsigned int civilID) {
     
     map<unsigned int, Worker*>::const_iterator clientsIterator = this->allWorkers.begin();
@@ -661,6 +756,7 @@ void Club::updateECG(unsigned int athleteID, bool result) {
     allWorkers.find(athleteID)->second->updateECG(result);
     
 }
+
 bool Club::isProgramClub() const {
     return this->programClub;
 }
@@ -741,7 +837,7 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
     
     if(matchToRegister == listOfLevelMatches.end()) {
         
-        throw string("jogo não agendado");
+        throw string("Not scheduled match.");
         
     }
     

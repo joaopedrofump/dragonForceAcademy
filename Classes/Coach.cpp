@@ -4,37 +4,21 @@ Coach::Coach(string name, Date birthdate, unsigned int civilID, CoachType coachR
 
 	this->trainerPosition = coachRole;
 
-	if (id == 0)
-		this->id = ++workersCounter;
-	else
+	if (id != 0)
 		this->id = id;
 }
 
 Coach::Coach(string &newCoach) {
 
-	unsigned int newCoachId = atoi(newCoach.substr(0, newCoach.find(';', 0)).c_str());
+	this->id = stoi(readAndCut(newCoach));
+	if (this->id > workersCounter)
+		workersCounter = this->id;
 
-	newCoach = newCoach.substr(newCoach.find(';', 0) + 2);
-
-	string newCoachName = newCoach.substr(0, newCoach.find(';', 0));
-
-	newCoach = newCoach.substr(newCoach.find(';', 0) + 2);
-
-	Date newCoachBirthdate = Date(newCoach.substr(0, newCoach.find(';', 0)));
-
-	newCoach = newCoach.substr(newCoach.find(';', 0) + 2);
-
-	CoachType newCoachPosition = coachTypeMap.at(newCoach);
-    
-    newCoach = newCoach.substr(newCoach.find(';', 0) + 2);
-    
-    unsigned int newCoachCivilID = stoi(newCoach);
-
-	this->id = newCoachId;
-	this->name = newCoachName;
-	this->birthdate = newCoachBirthdate;
-	this->trainerPosition = newCoachPosition;
-    this->civilID = newCoachCivilID;
+	this->civilID = stoi(readAndCut(newCoach));
+	this->name = readAndCut(newCoach);
+	this->birthdate = Date(readAndCut(newCoach));
+	this->trainerPosition = (CoachType)stoi(readAndCut(newCoach));
+   
 
 }
 
@@ -67,16 +51,13 @@ vector<string> Coach::showInScreen() const {
     string coachType;
     switch (this->trainerPosition) {
         case HeadCoach:
-            coachType = "HeadCoach";
+            coachType = "Head Coach";
             break;
         case GoalkeeperCoach:
-            coachType = "Defender";
+            coachType = "Goalkeeper Coach";
             break;
         case PhysicalTrainer:
-            coachType = "Physio";
-            break;
-        case AssistantCoach:
-            coachType = "Assistant";
+            coachType = "Physical Trainer";
             break;
     }
     result.push_back(coachType);

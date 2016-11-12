@@ -7,6 +7,7 @@ class Match;
 class Level;
 
 extern const map<string, CoachType> coachTypeMap;
+extern const map<string, ageLevel> ageLevelMap;
 
 class Club {
 	string clubName;
@@ -36,6 +37,10 @@ public:
 	void showAthletes(bool onlyActives = false) const;
 	bool showAthlete(unsigned int id) const;
 	void showAthletesInactives() const;
+
+	void addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach = false);
+	void showCoaches(bool onlyActives = false) const;
+
     bool isProgramClub() const;
 
 	void saveChanges();

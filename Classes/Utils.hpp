@@ -36,10 +36,9 @@ string const FILE_SEPARATOR = "------------------------------------------------"
 
 enum CoachType {
     
-    HeadCoach,			// HDC
-    AssistantCoach,		// ASC
-    GoalkeeperCoach,	// GKC
-    PhysicalTrainer		// PHT
+    HeadCoach = 1,			// HDC
+    GoalkeeperCoach = 2,	// GKC
+    PhysicalTrainer = 3		// PHT
     
 };
 
@@ -256,7 +255,7 @@ int GetCursorX();
 
 int GetCursorY();
 
-void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
+void ignoreLine(bool ignoreControl = true, string message = "Press ENTER to continue.");
 
 bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage = "Invalid Input");
 

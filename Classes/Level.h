@@ -42,6 +42,7 @@ public:
     map<unsigned int, Info*> getMapInfoPlayers() const;
     vector<unsigned int> getCoaches() const;
     Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
+	Level* addCoachToLevel(unsigned int idCoach, bool mainCoach = false);
     string getLevelName() const;
     int getMainCoachId() const;
     
