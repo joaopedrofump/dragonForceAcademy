@@ -1,151 +1,155 @@
 #include "Club.hpp"
-
 #include "Season.hpp"
-//#include "Level.h"
+#include "Match.hpp"
+#include "Level.h"
 
-Club::Club(string clubName) {
-
-    this->clubName = clubName;
-	string pathtest = path();
-    this->pathToClubFolder = stringPath((pathtest + clubName));
-    this->pathToClubAthletesFile = stringPath(this->pathToClubFolder + "/athletes.txt");
-    this->pathToClubCoachesFile = stringPath(this->pathToClubFolder+ "/coaches.txt");
-    this->pathToClubInfoFile = stringPath(this->pathToClubFolder + "/club.txt");
-
-	// =============================
-	// ======  Read Coaches  ======
-	// =============================
-
-	ifstream inStreamCoaches;
-
-    inStreamCoaches.open(this->pathToClubCoachesFile);
-	
-	while (!inStreamCoaches.eof()) {
-
-		string tmpString;
-		getline(inStreamCoaches, tmpString);
-        
-		// Empty file
-        if(tmpString.length()==0) {
-            continue;
-        }
-
-		// New Coach
-		Worker* newCoach = new Coach(tmpString);
-
-		this->allWorkers.insert(pair<unsigned int, Worker*>(newCoach->getID(), newCoach));
-
-	}
-
-	inStreamCoaches.close();
-
-	// =============================
-	// ======  Read Athletes  ======
-	// =============================
-
-	ifstream inStreamAthletes;
-
-    inStreamAthletes.open(this->pathToClubAthletesFile);
-
-	while (!inStreamAthletes.eof()) {
-
-		string tmpString;
-		getline(inStreamAthletes, tmpString);
-        
-		// Empty file/line
-        if(tmpString.length()==0) {
-            continue;
-        }
-
-		//Read the last line of file that contains inactive athletes
-		if (tmpString == FILE_SEPARATOR) {
-			//string tmpString;
-			getline(inStreamAthletes, tmpString);
-
-			unsigned int athleteId;
-
-			stringstream inactiveClientsStream(tmpString);
-
-			while (!inactiveClientsStream.eof()) {
-
-				inactiveClientsStream >> athleteId;
-
-				if (inactiveClientsStream.fail()) {
-
-					break;
-				}
-
-				this->allWorkers.at(athleteId)->setStatus(false);
-			}
-			break;
-		}
-
-		// Read athlete informations:
-		
-		//ID
-		unsigned int newAthleteId = stoi(readAndCut(tmpString));
-        
-		//Civil ID
-        unsigned int newAthleteCivilId = stoi(readAndCut(tmpString));
-
-		//Position
-		unsigned int newAthletePosition = stoi(readAndCut(tmpString));
-
-		Worker* newAthlete = 0;
-
-		if (newAthletePosition == GoalkeeperPos) {
-			newAthlete = new Goalkeeper(tmpString);
-		}
-		else if (newAthletePosition == DefenderPos) {
-			newAthlete = new Defender(tmpString);
-		}
-		else if (newAthletePosition == MidfielderPos) {
-			newAthlete = new Midfielder(tmpString);
-		}
-		else if (newAthletePosition == ForwardPos) {
-			newAthlete = new Forward(tmpString);
-		}
-
-		newAthlete->setId(newAthleteId);
-        newAthlete->setCivilId(newAthleteCivilId);
-
-		this->allWorkers.insert(pair<unsigned int, Worker*>(newAthlete->getID(), newAthlete));
-
-	}
-
-	inStreamAthletes.close();
-
-	// ===========================================
-	// ===== Read informations from fileClub  ====
-	// ===========================================
-
-	ifstream inStreamClub;
-
-    inStreamClub.open(this->pathToClubInfoFile);
-
-	// Read the Name of the Club
-
-	if (!inStreamClub.eof()) {
-		getline(inStreamClub, this->clubName);
-	}
-
-	while (!inStreamClub.eof()) {
-        
-        string seasonName;
-        getline(inStreamClub, seasonName);
-        
-        if(seasonName.length() == 0) {
-            continue;
-        }
-        
-		Season* currentSeason = new Season(seasonName, this);
-
-		this->seasons.push_back(currentSeason);
-	}
+Club::Club(string clubName, bool empty) {
     
-    inStreamClub.close();
-
-	this->numberOfSeasons = (int)seasons.size();
+    this->clubName = clubName;
+    this->programClub = !empty;
+    if(!empty) {
+        
+        this->pathToClubFolder = stringPath((path() + clubName));
+        this->pathToClubAthletesFile = stringPath(this->pathToClubFolder + "/athletes.txt");
+        this->pathToClubCoachesFile = stringPath(this->pathToClubFolder+ "/coaches.txt");
+        this->pathToClubInfoFile = stringPath(this->pathToClubFolder + "/club.txt");
+        
+        // =============================
+        // ======  Read Coaches  ======
+        // =============================
+        
+        ifstream inStreamCoaches;
+        
+        inStreamCoaches.open(this->pathToClubCoachesFile);
+        
+        while (!inStreamCoaches.eof()) {
+            
+            string tmpString;
+            getline(inStreamCoaches, tmpString);
+            
+            // Empty file
+            if(tmpString.length()==0) {
+                continue;
+            }
+            
+            // New Coach
+            Worker* newCoach = new Coach(tmpString);
+            
+            this->allWorkers.insert(pair<unsigned int, Worker*>(newCoach->getID(), newCoach));
+            
+        }
+        
+        inStreamCoaches.close();
+        
+        // =============================
+        // ======  Read Athletes  ======
+        // =============================
+        
+        ifstream inStreamAthletes;
+        
+        inStreamAthletes.open(this->pathToClubAthletesFile);
+        
+        while (!inStreamAthletes.eof()) {
+            
+            string tmpString;
+            getline(inStreamAthletes, tmpString);
+            
+            // Empty file/line
+            if(tmpString.length()==0) {
+                continue;
+            }
+            
+            //Read the last line of file that contains inactive athletes
+            if (tmpString == FILE_SEPARATOR) {
+                //string tmpString;
+                getline(inStreamAthletes, tmpString);
+                
+                unsigned int athleteId;
+                
+                stringstream inactiveClientsStream(tmpString);
+                
+                while (!inactiveClientsStream.eof()) {
+                    
+                    inactiveClientsStream >> athleteId;
+                    
+                    if (inactiveClientsStream.fail()) {
+                        
+                        break;
+                    }
+                    
+                    this->allWorkers.at(athleteId)->setStatus(false);
+                }
+                break;
+            }
+            
+            // Read athlete informations:
+            
+            //ID
+            unsigned int newAthleteId = stoi(readAndCut(tmpString));
+            
+            //Civil ID
+            unsigned int newAthleteCivilId = stoi(readAndCut(tmpString));
+            
+            //Position
+            unsigned int newAthletePosition = stoi(readAndCut(tmpString));
+            
+            Worker* newAthlete = 0;
+            
+            if (newAthletePosition == GoalkeeperPos) {
+                newAthlete = new Goalkeeper(tmpString);
+            }
+            else if (newAthletePosition == DefenderPos) {
+                newAthlete = new Defender(tmpString);
+            }
+            else if (newAthletePosition == MidfielderPos) {
+                newAthlete = new Midfielder(tmpString);
+            }
+            else if (newAthletePosition == ForwardPos) {
+                newAthlete = new Forward(tmpString);
+            }
+            
+            newAthlete->setId(newAthleteId);
+            newAthlete->setCivilId(newAthleteCivilId);
+            
+            this->allWorkers.insert(pair<unsigned int, Worker*>(newAthlete->getID(), newAthlete));
+            
+        }
+        
+        inStreamAthletes.close();
+        
+        // ===========================================
+        // ===== Read informations from fileClub  ====
+        // ===========================================
+        
+        ifstream inStreamClub;
+        
+        inStreamClub.open(this->pathToClubInfoFile);
+        
+        // Read the Name of the Club
+        
+        if (!inStreamClub.eof()) {
+            getline(inStreamClub, this->clubName);
+        }
+        
+        while (!inStreamClub.eof()) {
+            
+            string seasonName;
+            getline(inStreamClub, seasonName);
+            
+            if(seasonName.length() == 0) {
+                continue;
+            }
+            
+            Season* currentSeason = new Season(seasonName, this);
+            
+            this->seasons.push_back(currentSeason);
+        }
+        
+        inStreamClub.close();
+        
+        this->numberOfSeasons = (int)seasons.size();
+        
+    }
     
 }
 
@@ -441,11 +445,13 @@ void Club::saveChanges() {
         
         ofstream athletesOStream;
         ofstream coachesOStream;
+        ofstream matchesOStream;
         
         for(unsigned int iteLevels = 0; iteLevels < (*i)->getLevels().size(); iteLevels++) {
             
             athletesOStream.open((*i)->getLevels().at(iteLevels)->getPathToLevelAthletesFile());
             coachesOStream.open((*i)->getLevels().at(iteLevels)->getPathToLevelCoachesFile());
+            matchesOStream.open((*i)->getLevels().at(iteLevels)->getPathToLevelMatchesFile());
             
             map<unsigned int, Info*> tempPlayersMap = (*i)->getLevels().at(iteLevels)->getMapInfoPlayers();
             
@@ -473,7 +479,7 @@ void Club::saveChanges() {
                 
                 coachesOStream << *iteratorCoaches;
                 
-                if (iteratorCoaches != (*i)->getLevels().at(iteLevels)->getCoaches().end()) {
+                if (iteratorCoaches != tmpVectorCoaches.end()) {
                     
                     coachesOStream << endl;
                     
@@ -481,8 +487,35 @@ void Club::saveChanges() {
                 
             }
             
+            matchesOStream << (*i)->getLevels().at(iteLevels)->getLastMatchId() << endl;
+            
+            vector<Match*> tmpVectorMatches = (*i)->getLevels().at(iteLevels)->getAllLevelMatches();
+            
+            for(vector<Match*>::const_iterator iteratorMatches = tmpVectorMatches.begin(); iteratorMatches != tmpVectorMatches.end(); iteratorMatches++) {
+                
+                if((*iteratorMatches)->getHomeTeam() == this) {
+                    
+                    matchesOStream << home << " ; ";
+                    
+                }
+                else {
+                    
+                    matchesOStream << away << " ; ";
+                }
+                        
+                matchesOStream << **iteratorMatches;
+                
+                if (iteratorMatches != tmpVectorMatches.end()) {
+                    
+                    matchesOStream << endl;
+                    
+                }
+                
+            }
+            
             athletesOStream.close();
             coachesOStream.close();
+            matchesOStream.close();
             
         }
         
@@ -615,6 +648,38 @@ void Club::updateECG(unsigned int athleteID, bool result) {
     }
     
     allWorkers.find(athleteID)->second->updateECG(result);
+    
+}
+bool Club::isProgramClub() const {
+    return this->programClub;
+}
+
+void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type) {
+    
+    Club* opponent = new Club(opponentClub, true);
+    level->updateLastMatchId();
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    level->addMatchToLevel(matchToAdd);
+    
+}
+
+void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers) {
+    
+    
+    vector<Match*> listOfLevelMatches = level->getAllLevelMatches();
+    Match tmpMatch(matchId);
+    
+    vector<Match*>::iterator matchToRegister = find(listOfLevelMatches.begin(), listOfLevelMatches.end(), tmpMatch);
+    
+    if(matchToRegister == listOfLevelMatches.end()) {
+        
+        throw string("jogo não agendado");
+        
+    }
+    
+    (*matchToRegister)->setHomeTeamScore(homeTeamScore);
+    (*matchToRegister)->setAwayTeamScore(awayTeamScore);
+    
     
 }
 
