@@ -1,4 +1,7 @@
-![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  # Dragon Force Academy Project # ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  
+![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png) ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  ![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  
+
+# Dragon Force Academy Project #
+
 
 ##Tema 1 – Formação de Atletas (Parte 1)
 
