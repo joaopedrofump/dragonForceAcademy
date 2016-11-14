@@ -1225,3 +1225,18 @@ string readAndCut(string &stringToCut) {
 
 	return result;
 }
+
+string normalizeId(unsigned int digits, unsigned int id) {
+    
+    string idString = to_string(id);
+    if (idString.length() >= digits) {
+        return idString;
+    }
+    size_t diff = digits - idString.length();
+    string tmp;
+    while (diff-- > 0) {
+        tmp += '0';
+    }
+    return tmp + idString;
+    
+}
