@@ -84,6 +84,7 @@ Club::Club(string clubName, bool empty) {
             
             // Read athlete informations:
             
+            
             //ID
             unsigned int newAthleteId = stoi(readAndCut(tmpString));
             
@@ -93,8 +94,8 @@ Club::Club(string clubName, bool empty) {
             //Position
             unsigned int newAthletePosition = stoi(readAndCut(tmpString));
             
-            Worker* newAthlete = 0;
-            
+            Athlete* newAthlete = 0;
+
             if (newAthletePosition == GoalkeeperPos) {
                 newAthlete = new Goalkeeper(tmpString);
             }
@@ -372,7 +373,7 @@ void Club::saveChanges() {
 			currentFile << i->second->getBirthdate() << " ; ";
 			currentFile << i->second->getHeight() << " ; ";
 
-			if (i->second->getECG()) {
+			if (i->second->getECG() != NULL) {
 				currentFile << (i->second->getECG()->getResultado() ? "VALID" : "INVALID") << " ; ";
 				currentFile << i->second->getECG()->getExpirationDate();
 			}
@@ -515,15 +516,27 @@ void Club::saveChanges() {
             
             vector<Match*> levelMatches = (*i)->getLevels().at(iteLevels)->getAllLevelMatches();
             string pathToCurrentLevelFolder = (*i)->getLevels().at(iteLevels)->getPathToLevelFolder();
+            string pathToCurrentLevelMatchesFolder = (*i)->getLevels().at(iteLevels)->getPathToLevelMatchesFolder();
             
             for (size_t i = 0; i < levelMatches.size(); i++) {
                 
-                
+                string pathToCurrentMatchFile = stringPath(pathToCurrentLevelMatchesFolder + "/" + levelMatches.at(i)->getId() + ".txt");
+                ofstream matchesFile(pathToCurrentMatchFile);
+                map<unsigned int, Info*> mapInfoPlayers = levelMatches.at(i)->getInfoPlayers();
+                for (map<unsigned int, Info*>::const_iterator matchMapInfoPlayersIterator = mapInfoPlayers.begin(); matchMapInfoPlayersIterator != mapInfoPlayers.end(); matchMapInfoPlayersIterator++) {
+                    
+                    matchesFile << matchMapInfoPlayersIterator->first << " ; ";
+                    matchesFile << this->allWorkers.at(matchMapInfoPlayersIterator->first)->getPosition() << " ; ";
+                    matchesFile << *(matchMapInfoPlayersIterator->second);
+                    
+                    if (matchMapInfoPlayersIterator != mapInfoPlayers.end()) {
+                        matchesFile << endl;
+                    }
+  
+                }
                 
             }
-            
-            
-            
+
             athletesOStream.close();
             coachesOStream.close();
             matchesOStream.close();
@@ -669,7 +682,10 @@ void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, Matc
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
-    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     level->addMatchToLevel(matchToAdd);
     
 }
@@ -710,7 +726,8 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
-    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     
     matchToAdd->registerMatch(homeTeamScore, awayTeamScore, matchPlayers);
     level->addMatchToLevel(matchToAdd);
@@ -786,7 +803,8 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
-    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, level->getLevelName() + to_string(level->getLastMatchId())) : new Match(matchDate, opponent, this, level->getLevelName() + to_string(level->getLastMatchId()));
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     
     vector<unsigned int> filteredVector;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();

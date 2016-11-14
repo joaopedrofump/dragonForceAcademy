@@ -26,6 +26,7 @@ public:
 	Club* getAwayTeam() const;
 	vector<Worker*> getPlayers() const;
     map<unsigned int, Info*> getInfoPlayers() const;
+    void addInfoPlayer(pair<unsigned int, Info*> newPlayer);
     string getId() const;
 
 	// SETTERS

@@ -85,6 +85,31 @@ Info::Info() {
 
 };
 
+Info::Info(istream &instream) {
+    
+    string separator;
+    string trainingFreq;
+    instream >> trainingFreq;
+    this->trainingFreq = Fraction(trainingFreq);
+    instream >> separator;
+    instream >> this->tackles;
+    instream >> separator;
+    instream >> this->fouls;
+    instream >> separator;
+    instream >> this->yellowCards;
+    instream >> separator;
+    instream >> this->redCards;
+    instream >> separator;
+    instream >> this->goalsScored;
+    instream >> separator;
+    instream >> this->assists;
+    instream >> separator;
+    string passAccuracy;
+    instream >> passAccuracy;
+    this->passAccuracy = Fraction(passAccuracy);
+    
+}
+
 Fraction Info::getTrainingFreq() const {
     
     return this->trainingFreq;
@@ -210,6 +235,16 @@ InfoGK::InfoGK() : Info() {
     this->goalsConceeded = 0;
 }
 
+InfoGK::InfoGK(istream &inStream) : Info(inStream) {
+    
+    string separator;
+    inStream >> separator;
+    inStream >> this->saves;
+    inStream >> separator;
+    inStream >> this->goalsConceeded;
+    
+}
+
 unsigned int InfoGK::getSaves() const {
     return this->saves;
 }
@@ -279,6 +314,21 @@ InfoDF::InfoDF() : Info() {
     
     vector<DefenderPosition> empty;
     this->positions = empty;
+    
+}
+
+InfoDF::InfoDF(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(defendersMap.at(tmpPos));
+        
+    }
     
 }
 
@@ -373,6 +423,21 @@ InfoMF::InfoMF() : Info() {
     
 }
 
+InfoMF::InfoMF(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(midfieldersMap.at(tmpPos));
+        
+    }
+    
+}
+
 vector<MidfielderPosition> InfoMF::getMidfielderSpecificPositions() const {
     
     return this->positions;
@@ -457,6 +522,21 @@ InfoFW::InfoFW() : Info() {
     
     vector<ForwardPosition> empty;
     this->positions = empty;
+    
+}
+
+InfoFW::InfoFW(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(forwardsMap.at(tmpPos));
+        
+    }
     
 }
 

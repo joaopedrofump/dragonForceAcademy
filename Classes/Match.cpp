@@ -117,6 +117,12 @@ map<unsigned int, Info*> Match::getInfoPlayers() const {
 	return this->mapInfoPlayers;
 }
 
+void Match::addInfoPlayer(pair<unsigned int, Info*> newPlayer) {
+    
+    this->mapInfoPlayers.insert(newPlayer);
+    
+}
+
 vector<Worker*> Match::getPlayers() const {
     
     vector<Worker*> result;
@@ -220,6 +226,7 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
     
     this->homeTeamScore = homeTeamScore;
     this->awayTeamScore = awayTeamScore;
+    this->played = true;
     
     
 }
