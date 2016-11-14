@@ -35,10 +35,10 @@ int main(int argc, const char * argv[]) {
         initialInfo(clubName);
 		Club currentClubInProgram(clubName);
                 
-        //currentClubInProgram.scheduleMatch("Benfica", Date("12/01/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
+        //currentClubInProgram.scheduleMatch("Sporting", Date("12/04/2017"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
         vector<unsigned int> matchPlayers;
         matchPlayers.push_back(1);
-        //currentClubInProgram.registerMatch("Seniors001|20170112", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
+        currentClubInProgram.registerMatch("Seniors002|20170412", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
         
         //currentClubInProgram.updateECG(1, true);
         

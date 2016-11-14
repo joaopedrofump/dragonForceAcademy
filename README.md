@@ -1,4 +1,6 @@
+![Use Cases](https://github.com/joaopedrofump/dragonForceAcademy/blob/master/Logo.png)  
 # Dragon Force Academy Project
+![Use Cases]("Logo.png") 
 
 ##Tema 1 – Formação de Atletas (Parte 1)
 
