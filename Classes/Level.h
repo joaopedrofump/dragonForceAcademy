@@ -46,6 +46,7 @@ public:
 	Level* addCoachToLevel(unsigned int idCoach, bool mainCoach = false);
     string getLevelName() const;
     int getMainCoachId() const;
+	string getYear() const;
     
     string getPathToLevelFolder() const;
     string getPathToLevelAthletesFile() const;

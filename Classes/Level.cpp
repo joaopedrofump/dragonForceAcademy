@@ -82,13 +82,9 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         }
 
 
-		unsigned int tmpAthleteId = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
+		unsigned int tmpAthleteId = stoi(readAndCut(tmpAthlete));
 
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		string tmpAthletePos = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
+		string tmpAthletePos = readAndCut(tmpAthlete);
 		
 
 		Info* infoTmpAthlete;
@@ -96,26 +92,26 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 		// Read Goalkeepers specific informations
 		if (stoi(tmpAthletePos) == GoalkeeperPos) {
 
-			infoTmpAthlete = new InfoGK(tmpAthlete);
+			infoTmpAthlete = new InfoGK(istringstream(tmpAthlete));
 
 		}
 
 		// Read Defenders specific informations
 		else if(stoi(tmpAthletePos) == DefenderPos){
 
-			infoTmpAthlete = new InfoDF(tmpAthlete);
+			infoTmpAthlete = new InfoDF(istringstream(tmpAthlete));
 		}
 
 		// Read Midfielders specific informations
 		else if(stoi(tmpAthletePos) == MidfielderPos) {
 
-			infoTmpAthlete = new InfoMF(tmpAthlete);
+			infoTmpAthlete = new InfoMF(istringstream(tmpAthlete));
 		}
 
 		// Read Forwards specific informations
 		else if (stoi(tmpAthletePos) == ForwardPos) {
 
-			infoTmpAthlete = new InfoFW(tmpAthlete);
+			infoTmpAthlete = new InfoFW(istringstream(tmpAthlete));
 		}
 			
 
@@ -270,6 +266,10 @@ map<unsigned int, Info*> Level::getMapInfoPlayers() const{
     
     return this->mapInfoPlayers;
     
+}
+
+string Level::getYear() const {
+	return this->yearOfSeason;
 }
 
 Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {

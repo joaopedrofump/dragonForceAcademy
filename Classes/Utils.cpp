@@ -1223,6 +1223,16 @@ string getLevelFromAge(Date birthDate) {
 
 string readAndCut(string &stringToCut) {
 
+	/*stringstream ss(stringToCut);
+
+	string result;
+	string separator;
+
+	ss >> result;
+	ss >> separator;
+
+	stringToCut = ss.str();*/
+
 	string result = stringToCut.substr(0, stringToCut.find(';', 0) - 1);
 
 	stringToCut = stringToCut.substr(stringToCut.find(';', 0) + 2);

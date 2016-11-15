@@ -425,7 +425,7 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to remove the athlete?" });;
@@ -476,7 +476,7 @@ bool Club::removeCoach(unsigned int coachId) {
 
 		showInformation.addNewLine({ "Age: " , to_string(this->getCoaches().at(coachId)->getAge()) }); // Show Age
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to remove the coach?" });
@@ -554,7 +554,7 @@ bool Club::reativateCoach(unsigned int coachId) {
 
 		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getCoaches().at(coachId)->getBirthdate()) }); // Show Level
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to reativate the coach?" });;
