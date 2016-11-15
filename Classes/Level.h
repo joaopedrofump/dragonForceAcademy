@@ -7,7 +7,7 @@ class Club;
 
 class Level {
 private:
-	
+	Club* parentClub;
 	ageLevel levelEnum;
     string levelName;
     string pathToLevelFolder;
@@ -59,5 +59,7 @@ public:
     
     vector<Match*> getAllLevelMatches() const;
     void addMatchToLevel(Match*);
+
+	Table showAthletesOfLevel() const;
 
 };

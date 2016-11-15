@@ -223,7 +223,7 @@ void showMainMenu(unsigned short int opcaoChosen, string seasonName) {
 			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - U13", "4 - U15", "5 - U17", "6 - U19" + string(25, ' '), "7 - Seniors", "8 - Change Season", "0 - Exit" };
 			break;
 		case 7:
-			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - U13", "4 - U15", "5 - U17", "6 - U19", "7 - Seniors" + string(25, ' '), "8 - Change Season", "0 - Exit" };
+			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - U13", "4 - U15", "5 - U17", "6 - U19", "7 - Seniors" + string(21, ' '), "8 - Change Season", "0 - Exit" };
 			break;
 		case 8:
 			headerMenu = { "1 - Athletes", "2 - Coaches", "3 - U13", "4 - U15", "5 - U17", "6 - U19", "7 - Seniors", "8 - Change Season" + string(10, ' '), "0 - Exit" };
@@ -446,7 +446,9 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 						cout << introBirthDate << endl;*/
 
 						
-						control = readDate(newAthleteBirthDate, "Please, enter the athlete's BIRTH DATE.", "Invalid Date");
+						control = readDate(newAthleteBirthDate, Date(today.getDay(), today.getMonth(), today.getYear() - 11), 
+																Date(today.getDay(), today.getMonth(), today.getYear() - 45), 
+																"Please, enter the athlete's BIRTH DATE.", "Invalid Date");
 
 						if (newAthleteBirthDate == today) {
 							exitSwitch = true;
@@ -883,7 +885,9 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 			while (!control) {
 				try {
 
-					control = readDate(newCoachBirthDate, "Please, enter the athlete's BIRTH DATE.", "Invalid Date");
+					control = readDate(newCoachBirthDate, Date(today.getDay(), today.getMonth(), today.getYear() - 18), 
+														  Date(1, 1, 1900) ,
+														  "Please, enter the athlete's BIRTH DATE.", "Invalid Date");
 
 					if (newCoachBirthDate == today) {
 						exitSwitch = true;
@@ -1214,10 +1218,220 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 		Date today;
 
 		switch (option) {
-		case 1:             //=========== SHOW MATCHES    ==============
+		case 1:             //=========== SHOW CALENDAR   ==============
 		{
 
 		}
+		case 2:           //=========== SCHEDULE FRIENDLY MATCH   ==============
+		{
+			// Read Oponent Name
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			string newOponentName;
+
+			control = false;
+			while (!control) {
+				try {
+
+					cout << Table({ "Please, enter the oponent NAME." }) << endl;
+
+					getline(cin, newOponentName);
+
+					if (emptyString(newOponentName)) {
+						exitSwitch = true;
+						break;
+					}
+
+					control = validateName(newOponentName);
+
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			//If user push ENTER
+			if (exitSwitch) break;
+
+			//==========================
+			// Read Match Date
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			Date newMatchDate;
+
+			control = false;
+			while (!control) {
+				try {
+
+					control = readDate(newMatchDate, today, Date(31,12,2100), "Please, enter the MATCH DATE.", "Invalid Date");
+
+					if (newMatchDate == today) {
+						exitSwitch = true;
+						break;
+					}
+
+					control = true;
+
+				}
+				catch (InvalidDate e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			//If user push ENTER
+			if (exitSwitch) break;
+
+			//==========================
+			// Read Match Type
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			unsigned int homeOrAway;
+
+			control = false;
+			while (!control) {
+				try {
+
+					cout << Table({ "This Match will be Home or Away?" }) << endl;
+
+					cout << Table({ "1. HOME", "2. AWAY" });
+
+					control = readUnsignedInt(homeOrAway, 0, 2);
+
+					// ENTER
+					if (!homeOrAway) {
+						exitSwitch = true;
+						break;
+					}
+
+
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			//If user push ENTER
+			if (exitSwitch) break;
+
+			//==========================
+
+			//Mostrar resumo da operacao
+ 
+			showInformation.addNewLine({ "Match: " , homeOrAway == 1 ? (mainClub.getName() + " vs " + newOponentName) : (newOponentName + " vs " + mainClub.getName()) });
+
+			showInformation.addNewLine({ "Date: " , newMatchDate.str() });
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			cout << Table({ "Are you sure you want to schedule this match?" });;
+
+			if (!confirm(showInformation)) {
+				break;
+			}
+			ignoreLine(false, "Match correctly scheduled!");
+
+			// Ask to Call-up players
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			unsigned int callUpPlayers;
+
+			control = false;
+			while (!control) {
+				try {
+
+					cout << Table({ "Do you want to call-up the players for this match, right now?" }) << endl;
+
+					cout << Table({ "1. YES", "2. NO" });
+
+					control = readUnsignedInt(callUpPlayers, 0, 2);
+					
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			if (callUpPlayers == 0 || callUpPlayers == 2) {
+				mainClub.scheduleMatch(newOponentName, newMatchDate, currentLevel, homeOrAway == 1 ? MatchType::home : MatchType::away);
+			}
+			else if (callUpPlayers == 1) {
+
+				// Read players to call-up
+
+				showMainMenu(0, currentSeason->getSeasonName());
+
+				string playersToCallUp;
+				vector<unsigned int> playersToCallUpVector;
+
+				//Show players
+				currentLevel->showAthletesOfLevel();
+
+				control = false;
+				while (!control) {
+					try {
+
+						cout << Table({ "Please, enter the athletes ids to call-up in this match. (Eg: 1 4 7)" }) << endl;
+
+						getline(cin, playersToCallUp);
+
+						if (playersToCallUp.length() == 0)
+							break;
+
+						stringstream ssPlayers(playersToCallUp);
+
+						while (!ssPlayers.eof()) {
+							unsigned int idPlayer;
+							ssPlayers >> idPlayer;
+
+							if(!ssPlayers.fail())
+								playersToCallUpVector.push_back(idPlayer);
+
+						}
+
+					}
+					catch (InvalidInput e) {
+
+						showMainMenu(0, currentSeason->getSeasonName());
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				if(playersToCallUp.length() == 0)
+					mainClub.scheduleMatch(newOponentName, newMatchDate, currentLevel, homeOrAway == 1 ? MatchType::home : MatchType::away);
+
+				mainClub.callUpPlayers(newOponentName, newMatchDate, currentLevel, homeOrAway == 1 ? MatchType::home : MatchType::away, playersToCallUpVector);
+
+			}
+
+
+			mainClub.saveChanges();
+			break;
+		}
+		
 		case 0:
 			break;
 		}

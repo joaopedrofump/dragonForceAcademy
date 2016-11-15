@@ -6,6 +6,7 @@ class Match;
 
 Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, Club* parentClub) {
     
+	this->parentClub = parentClub;
     this->yearOfSeason = yearOfSeason;
     this->levelName = levelName;
     this->pathToLevelFolder = stringPath(pathToSeasonFolder + "/" + this->levelName);
@@ -336,5 +337,28 @@ vector<Match*> Level::getAllLevelMatches() const {
 
 void Level::addMatchToLevel(Match* newMatch) {
     this->levelMatches.push_back(newMatch);
+}
+
+Table Level::showAthletesOfLevel() const {
+	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
+	map<unsigned int, Info*> athletes = this->getMapInfoPlayers();
+	map<unsigned int, Info*>::iterator workersIterator;
+
+	bool firstActive = false;
+	for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
+		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && !firstActive) {
+
+			athletesTable.addNewLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
+			firstActive = true;
+			continue;
+		}
+
+		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && firstActive && parentClub->getAthletes().at(workersIterator->first)->isAthlete()) {
+
+			athletesTable.addDataInSameLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
+		}
+	}
+
+	return athletesTable;
 }
 

@@ -262,6 +262,7 @@ bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, s
 bool readDates(vector<Date> &resultVector, string message, string errorMessage);
 
 bool readDate(Date &result, string message, string errorMessage);
+bool readDate(Date &result, Date min, Date max, string message, string errorMessage);
 
 bool emptyString(string stringTest);
 
