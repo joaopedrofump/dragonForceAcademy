@@ -21,11 +21,13 @@ Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned cha
 Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 
 	this->name = readAndCut(newAthlete);
+    this->ecg = NULL;
 	this->birthdate = Date(readAndCut(newAthlete));
 	this->height = stoi(readAndCut(newAthlete));
 
 	if(newAthlete != "NONE")
 		this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
+    
 }
 
 

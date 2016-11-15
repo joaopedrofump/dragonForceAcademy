@@ -14,6 +14,7 @@ private:
     string pathToLevelAthletesFile;
     string pathToLevelCoachesFile;
     string pathToLevelMatchesFile;
+    string pathToLevelMatchesFolder;
     string yearOfSeason;
 
     unsigned int lastMatchId;
@@ -50,6 +51,7 @@ public:
     string getPathToLevelAthletesFile() const;
     string getPathToLevelCoachesFile() const;
     string getPathToLevelMatchesFile() const;
+    string getPathToLevelMatchesFolder() const;
     
     unsigned int getLastMatchId() const;
     void updateLastMatchId();

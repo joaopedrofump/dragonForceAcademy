@@ -275,4 +275,6 @@ string getLevelFromAge(Date birthDate);
 
 string readAndCut(string &stringToCut);
 
+string normalizeId(unsigned int digits, unsigned int id);
+
 #endif /* Utils_hpp */

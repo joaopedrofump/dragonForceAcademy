@@ -12,6 +12,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     this->pathToLevelAthletesFile = stringPath(this->pathToLevelFolder + "/Athletes.txt");
     this->pathToLevelCoachesFile = stringPath(this->pathToLevelFolder + "/Coaches.txt");
     this->pathToLevelMatchesFile = stringPath(this->pathToLevelFolder + "/Matches.txt");
+    this->pathToLevelMatchesFolder = stringPath(this->pathToLevelFolder + "/Matches");
     this->lastMatchId = 0;
     
     if(levelName == "U13") {
@@ -192,6 +193,58 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     
     
     inStreamLevel.close();
+    
+    //ler informação especifica do ficheiro de cada jogo
+    for (size_t i = 0; i < this->levelMatches.size(); i++) {
+        
+        string pathToCurrentMatchFile = stringPath(this->getPathToLevelMatchesFolder() + "/" + this->levelMatches.at(i)->getId() + ".txt");
+        ifstream currentMatchFileStream(pathToCurrentMatchFile);
+        
+        while (!currentMatchFileStream.eof()) {
+            
+            string currentPlayerLine;
+            getline(currentMatchFileStream, currentPlayerLine);
+            
+            if (currentPlayerLine.size() != 0) {
+                
+                istringstream inStreamAthlete(currentPlayerLine);
+                string separator;
+                unsigned int id;
+                unsigned int pos;
+                Info* currentPlayerInfo;
+                inStreamAthlete >> id;
+                inStreamAthlete >> separator;
+                inStreamAthlete >> pos;
+                inStreamAthlete >> separator;
+                
+                switch (pos) {
+                    case 1:
+                        currentPlayerInfo = new InfoGK(inStreamAthlete);
+                        break;
+                    case 2:
+                        currentPlayerInfo = new InfoDF(inStreamAthlete);
+                        break;
+                    case 3:
+                        currentPlayerInfo = new InfoMF(inStreamAthlete);
+                        break;
+                    case 4:
+                        currentPlayerInfo = new InfoFW(inStreamAthlete);
+                        break;
+                        
+                }
+                
+                levelMatches.at(i)->addInfoPlayer(make_pair(pos, currentPlayerInfo));
+                
+            }
+            
+            
+        }
+        currentMatchFileStream.close();
+        
+        
+    }
+    
+    
 
 }
 
@@ -260,6 +313,9 @@ string Level::getPathToLevelCoachesFile() const {
 }
 string Level::getPathToLevelMatchesFile() const {
     return this->pathToLevelMatchesFile;
+}
+string Level::getPathToLevelMatchesFolder() const {
+    return this->pathToLevelMatchesFolder;
 }
 
 unsigned int Level::getLastMatchId() const {
