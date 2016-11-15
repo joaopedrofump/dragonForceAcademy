@@ -34,7 +34,6 @@ public:
 	void setMatchDay(Date newDay);
 	void setHomeTeam(Club* newHomeTeam);
 	void setAwayTeam(Club* newAwayTeam);
-    
     void setHomeTeamScore(unsigned int newHomeTeamScore);
     void setAwayTeamScore(unsigned int newAwayTeamScore);
     

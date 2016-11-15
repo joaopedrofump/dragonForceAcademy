@@ -1103,7 +1103,6 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
         
     }
     
-    
     if(matchToRegister == listOfLevelMatches.end()) {
         
         throw string("jogo não agendado");
@@ -1279,4 +1278,91 @@ void Club::callUpPlayers(string opponentClub, Date matchDate, Level* level, Matc
     matchToAdd->setPlayers(matchPlayers);
     level->addMatchToLevel(matchToAdd);
 
+}
+
+void Club::scheduleTraining(Date trainingDate, Level* level) {
+    
+    vector<unsigned int> players;
+    Training* trainingToAdd = new Training(trainingDate, players);
+    level->addTrainingToLevel(trainingToAdd);
+    
+}
+
+void registerTraining(unsigned int trainingId, Level* level, vector<unsigned int> missingPlayers) {
+    
+    vector<Training*> listOfLevelTrainings = level->getAllLevelTrainings();
+    vector<Training*>::const_iterator trainingToRegister = listOfLevelTrainings.begin();
+    while (trainingToRegister != listOfLevelTrainings.end()) {
+        
+        if ((*trainingToRegister)->getId() == trainingId) {
+            
+            break;
+            
+        }
+        trainingToRegister++;
+        
+    }
+    
+    
+    if(trainingToRegister == listOfLevelTrainings.end()) {
+        
+        throw string("Error: Training not found.");
+        
+    }
+    
+    
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> mapLevelPLayers = level->getMapInfoPlayers();
+
+    for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
+        
+        if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
+            
+            mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
+            missingPlayersIterator--;
+            
+        }
+    }
+    
+    for (map<unsigned int, Info*>::const_iterator iteratorPlayersMap = mapLevelPLayers.begin(); iteratorPlayersMap != mapLevelPLayers.end(); iteratorPlayersMap++) {
+        
+        filteredVector.push_back(iteratorPlayersMap->first);
+        
+    }
+    
+    (*trainingToRegister)->setPlayers(filteredVector);
+    
+    
+}
+
+
+void Club::registerTraining(Date trainingDate, Level* level, vector<unsigned int> missingPlayers) {
+    
+    vector<unsigned int> players;
+    Training* trainingToAdd = new Training(trainingDate, players);
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> mapLevelPLayers = level->getMapInfoPlayers();
+    
+    for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
+        
+        if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
+            
+            mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
+            missingPlayersIterator--;
+            
+        }
+    }
+    
+    for (map<unsigned int, Info*>::const_iterator iteratorPlayersMap = mapLevelPLayers.begin(); iteratorPlayersMap != mapLevelPLayers.end(); iteratorPlayersMap++) {
+        
+        filteredVector.push_back(iteratorPlayersMap->first);
+        
+    }
+    
+    trainingToAdd->setPlayers(filteredVector);
+    level->addTrainingToLevel(trainingToAdd);
+
+    
 }

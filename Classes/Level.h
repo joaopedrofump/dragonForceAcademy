@@ -2,8 +2,10 @@
 
 #include "Goalkeeper.hpp"
 #include "Match.hpp"
+#include "Training.hpp"
 
 class Club;
+class Training;
 
 class Level {
 private:
@@ -19,6 +21,7 @@ private:
 
     unsigned int lastMatchId;
     vector<Match*> levelMatches;
+    vector<Training*> levelTrainings;
 
     int levelMainCoach;
 	vector<unsigned int> coachesIdsVector;
@@ -30,8 +33,6 @@ private:
 	char minHeight;
 
 	//vector<Tournament> tournaments;
-	//vector<Training> trainings;
-	//vector<Match> friendlys;
 
 public:
 
@@ -44,6 +45,7 @@ public:
     vector<unsigned int> getCoaches() const;
     Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
 	Level* addCoachToLevel(unsigned int idCoach, bool mainCoach = false);
+    
     string getLevelName() const;
     int getMainCoachId() const;
     
@@ -57,6 +59,7 @@ public:
     void updateLastMatchId();
     
     vector<Match*> getAllLevelMatches() const;
-    void addMatchToLevel(Match*);
-
+    vector<Training*> getAllLevelTrainings() const;
+    Level* addMatchToLevel(Match* newMatch);
+    Level* addTrainingToLevel(Training* newTraining);
 };

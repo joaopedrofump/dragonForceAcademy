@@ -334,7 +334,16 @@ vector<Match*> Level::getAllLevelMatches() const {
     
 }
 
-void Level::addMatchToLevel(Match* newMatch) {
-    this->levelMatches.push_back(newMatch);
+vector<Training*> Level::getAllLevelTrainings() const {
+    return this->levelTrainings;
 }
 
+Level* Level::addMatchToLevel(Match* newMatch) {
+    this->levelMatches.push_back(newMatch);
+    return this;
+}
+
+Level* Level::addTrainingToLevel(Training* newTraining) {
+    this->levelTrainings.push_back(newTraining);
+    return this;
+}
