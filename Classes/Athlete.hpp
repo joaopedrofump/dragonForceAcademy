@@ -39,6 +39,10 @@ public:
     string generateInfo() const;
     
     vector<string> showInScreen() const;
+    
+    void setBirthDate(Date newBirthdate);
+    
+    void setHeight(unsigned int newHeight);
 };
 
 #endif /* Athlete_hpp */

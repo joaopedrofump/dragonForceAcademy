@@ -66,3 +66,13 @@ vector<string> Coach::showInScreen() const {
     return result;
     
 }
+
+void Coach::setBirthDate(Date newBirthdate) {
+    
+    this->birthdate = newBirthdate;
+    
+}
+
+void Coach::setCoachType(CoachType newType) {
+    this->trainerPosition = newType;
+}

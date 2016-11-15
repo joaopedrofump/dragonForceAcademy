@@ -24,4 +24,7 @@ public:
     string generateInfo() const;
     
     vector<string> showInScreen() const;
+    
+    void setBirthDate(Date newBirthdate);
+    void setCoachType(CoachType newType);
 };
