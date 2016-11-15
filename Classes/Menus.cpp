@@ -278,21 +278,22 @@ void  optionsAthletesManagement(Club &mainClub) {
 
         switch (option) {
             case 1:           //=========== SHOW ATHLETES ==============
-                
+			{
 				showMainMenu(0);
 
-                if (mainClub.getAthletes().size() == 0) {
-                    
-                    cout << Table({"There are no athletes."});
-                    ignoreLine(false);
-                    break;
-                }
+				if (mainClub.getAthletes().size() == 0) {
+
+					cout << Table({ "There are no athletes." });
+					ignoreLine(false);
+					break;
+				}
 
 
-                
-                mainClub.showAthletes();
-                ignoreLine(false);
-                break;
+
+				mainClub.showAthletes();
+				ignoreLine(false);
+				break;
+			}
             case 2:          //============ SHOW ONE ATHLETE ============
 			{
 				if (mainClub.getAthletes().size() == 0) {
@@ -577,6 +578,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 				showMainMenu(0);
 				mainClub.showAthletes(true);
 
+				control = false;
 				while (!control) {
 					try {
 						cout << Table({ "Please enter the athlete's id to remove." }) << endl;
@@ -587,12 +589,10 @@ void  optionsAthletesManagement(Club &mainClub) {
 							exitSwitch = true;
 							break;
 						}
-
-						if (!mainClub.getAthletes().at(idWorker)->isActive()) {
-							
-							throw InvalidInput( "This Athlete was already removed." );							
-						}
-
+						
+						control = mainClub.removeAthlete(idWorker);
+						if (!control)
+							break;
 					}
 					catch (InvalidInput e) {
 
@@ -605,32 +605,8 @@ void  optionsAthletesManagement(Club &mainClub) {
 				}
 
 
-
-				// Show operation summary
-
-				showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
-
-				showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
-
-				showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName() }); // Show Name
-
-				showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
-
-				showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
-
-				showMainMenu(0);
-
-
-				cout << Table({ "Are you sure you want to remove the athlete?" });;
-
-				if (!confirm(showInformation)) {
-					break;
-				}
-				
-
-				ignoreLine(false, "Athlete removed correctly");
-
-				mainClub.removeAthlete(idWorker);
+				//If user push ENTER
+				if (exitSwitch) break;
 
 				mainClub.saveChanges();
 				break;
@@ -645,7 +621,7 @@ void  optionsAthletesManagement(Club &mainClub) {
 					break;
 				}
 
-				if (mainClub.getInactives().size() == 0) {
+				if (mainClub.getInactives(1).size() == 0) {
 
 					showMainMenu();
 					cout << Table({ "There are no inactive Athletes." });
@@ -753,7 +729,7 @@ void printCoachesMenu() {
 void printAddCoachMenu() {
 
 	showMainMenu(2);
-	Table menuCoaches({ "1 - Show all Coaches" }, 17);
+	Table menuCoaches({ "1 - Show all Coaches " }, 17);
 	menuCoaches.addNewLine({ "2 - Add Coach" });
 
 	Table addCoach({ "1 - Head Coach" }, 26);
@@ -798,7 +774,7 @@ void optionsCoachesManagement(Club &mainClub) {
 		Date today;
 
 		switch (option) {
-		case 1:           //=========== SHOW COACHES ==============
+		case 1:             //=========== SHOW COACHES    ==============
 		{
 			showMainMenu(0);
 
@@ -815,7 +791,7 @@ void optionsCoachesManagement(Club &mainClub) {
 			ignoreLine(false);
 			break;
 		}
-		case 2:            //=========== ADD COACH ================
+		case 2:             //=========== ADD COACH       ==============
 		{
 
 			//Read Coach's position
@@ -1056,22 +1032,21 @@ void optionsCoachesManagement(Club &mainClub) {
 			mainClub.saveChanges();
 			break;
 		}
-		case 5:            //============  REMOVE ATHLETES ================
+		case 4:             //=========== REMOVE COACH    ==============
 		{
-			if (mainClub.getAthletes().size() == 0) {
+			if (mainClub.getCoaches().size() == 0) {
 
 				clearScreen();
 				showMainMenu();
-				cout << Table({ "There are no Athletes." });
+				cout << Table({ "There are no Coaches." });
 				ignoreLine(false);
 				break;
 			}
 
-			if (mainClub.getAthletes(true).size() == 0) {
+			if (mainClub.getCoaches(true).size() == 0) {
 
-				clearScreen();
 				showMainMenu();
-				cout << Table({ "There are no active Athletes." });
+				cout << Table({ "There are no active Coaches." });
 				ignoreLine(false);
 				break;
 
@@ -1079,11 +1054,12 @@ void optionsCoachesManagement(Club &mainClub) {
 
 
 			showMainMenu(0);
-			mainClub.showAthletes(true);
+			mainClub.showCoaches(true);
 
+			control = false;
 			while (!control) {
 				try {
-					cout << Table({ "Please enter the athlete's id to remove." }) << endl;
+					cout << Table({ "Please enter the coach's id to remove." }) << endl;
 
 					control = readUnsignedInt(idWorker, 1, Worker::getLastId(), "Invalid ID.");
 
@@ -1091,17 +1067,16 @@ void optionsCoachesManagement(Club &mainClub) {
 						exitSwitch = true;
 						break;
 					}
+					
+					control = mainClub.removeCoach(idWorker);
 
-					if (!mainClub.getAthletes().at(idWorker)->isActive()) {
-
-						throw InvalidInput("This Athlete was already removed.");
-					}
-
+					if (!control)
+						break;
 				}
 				catch (InvalidInput e) {
 
 					showMainMenu(0);
-					mainClub.showAthletes(true);
+					mainClub.showCoaches(true);
 
 					cout << Table({ e.getMessage() });
 					control = false;
@@ -1109,62 +1084,35 @@ void optionsCoachesManagement(Club &mainClub) {
 			}
 
 
-
-			// Show operation summary
-
-			showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
-
-			showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
-
-			showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName() }); // Show Name
-
-			showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
-
-			showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
-
-			showMainMenu(0);
-
-
-			cout << Table({ "Are you sure you want to remove the athlete?" });;
-
-			if (!confirm(showInformation)) {
-				break;
-			}
-
-
-			ignoreLine(false, "Athlete removed correctly");
-
-			mainClub.removeAthlete(idWorker);
-
 			mainClub.saveChanges();
 			break;
 		}
-		case 4:  //================ REATIVATE ATHLETE ==================
+		case 3:				//=========== REATIVATE COACH ==============
 		{
-			if (mainClub.getAthletes().size() == 0) {
+			if (mainClub.getCoaches().size() == 0) {
 
 				showMainMenu();
-				cout << Table({ "There are no Athletes." });
+				cout << Table({ "There are no Coaches." });
 				ignoreLine(false);
 				break;
 			}
 
-			if (mainClub.getInactives().size() == 0) {
+			if (mainClub.getInactives(2).size() == 0) {
 
 				showMainMenu();
-				cout << Table({ "There are no inactive Athletes." });
+				cout << Table({ "There are no inactive Coaches." });
 				ignoreLine(false);
 				break;
 
 			}
 
 			showMainMenu(0);
-			mainClub.showAthletesInactives();
+			mainClub.showCoachesInactives();
 
 			control = false;
 			while (!control) {
 				try {
-					cout << Table({ "Please enter the athlete's id to reativate." }) << endl;
+					cout << Table({ "Please enter the coach's id to reativate." }) << endl;
 
 					control = readUnsignedInt(idWorker, 1, Worker::getLastId(), "Invalid ID.");
 
@@ -1173,53 +1121,27 @@ void optionsCoachesManagement(Club &mainClub) {
 						break;
 					}
 
-					if (mainClub.getAthletes().at(idWorker)->isActive()) {
+					/*map<unsigned int, Worker*> tmpMap = mainClub.getWorkers();
+					if (tmpMap.find(idWorker)->second->isAthlete() || tmpMap.find(idWorker) == tmpMap.end()) {
 
-						throw InvalidInput("This athlete is already active.");
-						/*ignoreLine(false);
-						continue;*/
+						throw InvalidInput("This ID does not belong to a Coach.");
+
 					}
 
-					map<unsigned int, Worker*> tmpMap = mainClub.getAthletes();
-					if (tmpMap.find(idWorker) == tmpMap.end()) {
+					if (mainClub.getCoaches().at(idWorker)->isActive()) {
 
-						throw InvalidInput("This ID does not belong to an Athlete.");
-						/*ignoreLine(false);
-						continue;*/
-					}
+						throw InvalidInput("This coach is already active.");
+						
+					}*/
 
-					// Show operation summary
-
-					showInformation.addNewLine({ "ID: " , to_string(mainClub.getAthletes().at(idWorker)->getID()) });  // Show id
-
-					showInformation.addNewLine({ "Civil ID: " , to_string(mainClub.getAthletes().at(idWorker)->getCivilID()) }); // Show Civil Id
-
-					showInformation.addNewLine({ "Name: " , mainClub.getAthletes().at(idWorker)->getName() }); // Show Name
-
-					showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
-
-					showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
-
-					showMainMenu(0);
-
-
-					cout << Table({ "Are you sure you want to reativate the athlete?" });;
-
-					if (!confirm(showInformation)) {
-						exitSwitch = true;
-						break;
-					}
-
-
-					control = mainClub.reativateAthlete(idWorker);
-
-					ignoreLine(false, "Athlete reativated correctly");
+					control = mainClub.reativateCoach(idWorker);
+					
 
 				}
 				catch (InvalidInput e) {
 
 					showMainMenu();
-					mainClub.showAthletesInactives();
+					mainClub.showCoachesInactives();
 
 					cout << Table({ e.getMessage() });
 

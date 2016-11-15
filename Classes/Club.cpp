@@ -31,6 +31,29 @@ Club::Club(string clubName, bool empty) {
             if(tmpString.length()==0) {
                 continue;
             }
+
+			//Read the last line of file that contains inactive coaches
+			if (tmpString == FILE_SEPARATOR) {
+
+				getline(inStreamCoaches, tmpString);
+
+				unsigned int coachId;
+
+				stringstream inactiveCoachesStream(tmpString);
+
+				while (!inactiveCoachesStream.eof()) {
+
+					inactiveCoachesStream >> coachId;
+
+					if (inactiveCoachesStream.fail()) {
+
+						break;
+					}
+
+					this->allWorkers.at(coachId)->setStatus(false);
+				}
+				break;
+			}
             
             // New Coach
             Worker* newCoach = new Coach(tmpString);
@@ -61,18 +84,18 @@ Club::Club(string clubName, bool empty) {
             
             //Read the last line of file that contains inactive athletes
             if (tmpString == FILE_SEPARATOR) {
-                //string tmpString;
+
                 getline(inStreamAthletes, tmpString);
                 
                 unsigned int athleteId;
                 
-                stringstream inactiveClientsStream(tmpString);
+                stringstream inactiveAthletesStream(tmpString);
                 
-                while (!inactiveClientsStream.eof()) {
+                while (!inactiveAthletesStream.eof()) {
                     
-                    inactiveClientsStream >> athleteId;
+					inactiveAthletesStream >> athleteId;
                     
-                    if (inactiveClientsStream.fail()) {
+                    if (inactiveAthletesStream.fail()) {
                         
                         break;
                     }
@@ -186,7 +209,7 @@ map<unsigned int, Worker*> Club::getAthletes(bool onlyActives) const {
 	return result;
 }
 
-map<unsigned int, Worker*> Club::getInactives() const {
+map<unsigned int, Worker*> Club::getInactives(unsigned char workersType) const {
 
 	map<unsigned int, Worker*> result;
 
@@ -195,19 +218,40 @@ map<unsigned int, Worker*> Club::getInactives() const {
 
 	while (workersIterator != workersEnd) {
 
-		if (workersIterator->second->isAthlete() && !(workersIterator->second->isActive())) {
+		switch (workersType) {
+		case 0:
+			if (!(workersIterator->second->isActive())) {
 
-			result.insert(*workersIterator);
+				result.insert(*workersIterator);
 
+			}
+			workersIterator++;
+			break;
+		case 1:
+			if (!(workersIterator->second->isActive()) && workersIterator->second->isAthlete()) {
+
+				result.insert(*workersIterator);
+
+			}
+			workersIterator++;
+			break;
+		case 2:
+			if (!(workersIterator->second->isActive()) && !workersIterator->second->isAthlete()) {
+
+				result.insert(*workersIterator);
+
+			}
+			workersIterator++;
+			break;
 		}
-		workersIterator++;
+		
 
 	}
 
 	return result;
 }
 
-map<unsigned int, Worker*> Club::getCoaches() const {
+map<unsigned int, Worker*> Club::getCoaches(bool onlyActives) const {
 
     map<unsigned int, Worker*> result;
     
@@ -216,7 +260,7 @@ map<unsigned int, Worker*> Club::getCoaches() const {
     
     while(workersIterator != workersEnd) {
         
-        if(!workersIterator->second->isAthlete()) {
+        if(!workersIterator->second->isAthlete() && (onlyActives ? workersIterator->second->isActive() : true)) {
             
             result.insert(*workersIterator);
             
@@ -290,7 +334,7 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
         
 		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++) {
 
-			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() <= currentSeason->getLevels().at(i)->getMaxAge()))
+			if ((athleteToAdd->getAge() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getAge() <= currentSeason->getLevels().at(i)->getMaxAge()))
 			{
                 currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
 			}
@@ -367,16 +411,92 @@ bool Club::removeAthlete(unsigned int athleteId) {
 	}
 
 	if (it->second->isActive()) {
+		// Show operation summary
+		Table showInformation({ "Information" , "Data" });
+
+		showInformation.addNewLine({ "ID: " , to_string(this->getAthletes().at(athleteId)->getID()) });  // Show id
+
+		showInformation.addNewLine({ "Civil ID: " , to_string(this->getAthletes().at(athleteId)->getCivilID()) }); // Show Civil Id
+
+		showInformation.addNewLine({ "Name: " , this->getAthletes().at(athleteId)->getName() }); // Show Name
+
+		showInformation.addNewLine({ "Birth Date: " , this->getAthletes().at(athleteId)->getBirthdate().str() }); // Show Birth Date
+
+		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
+
+		showMainMenu(0);
+
+
+		cout << Table({ "Are you sure you want to remove the athlete?" });;
+
+		if (!confirm(showInformation)) {
+			return false;
+		}
+
+
+		ignoreLine(false, "Athlete removed correctly");
 
 		this->allWorkers.at(athleteId)->setStatus(false);
 
-		cout << Table({ "The Athlete was correctly removed." }) << endl;
 	}
 	else {
 
 		throw InvalidInput("The Athlete was already removed.");
 	}
 	return true;
+}
+
+bool Club::removeCoach(unsigned int coachId) {
+	//Verify if the athlete exists
+
+	map<unsigned int, Worker*> tmpMap = this->getCoaches();
+	map<unsigned int, Worker*>::const_iterator it = tmpMap.find(coachId);
+
+	if (it == tmpMap.end()) {
+
+		throw InvalidInput("The Coach was not found.");
+		return false;
+
+	}
+
+	if (it->second->isActive()) {
+
+		// Show operation summary
+
+		Table showInformation({ "Information" , "Data" });
+
+		showInformation.addNewLine({ "ID: " , to_string(this->getCoaches().at(coachId)->getID()) });  // Show id
+
+		showInformation.addNewLine({ "Civil ID: " , to_string(this->getCoaches().at(coachId)->getCivilID()) }); // Show Civil Id
+
+		showInformation.addNewLine({ "Name: " , this->getCoaches().at(coachId)->getName() }); // Show Name
+
+		showInformation.addNewLine({ "Birth Date: " , this->getCoaches().at(coachId)->getBirthdate().str() }); // Show Birth Date
+
+		showInformation.addNewLine({ "Age: " , to_string(this->getCoaches().at(coachId)->getAge()) }); // Show Age
+
+		showMainMenu(0);
+
+
+		cout << Table({ "Are you sure you want to remove the coach?" });
+
+		if (!confirm(showInformation)) {
+			return false;
+		}
+
+
+		ignoreLine(false, "Coach removed correctly");
+
+		this->allWorkers.at(coachId)->setStatus(false);
+
+	}
+	else {
+
+		throw InvalidInput("The Coach was already removed.");
+	}
+
+	return true;
+
 }
 
 bool Club::reativateAthlete(unsigned int athleteId) {
@@ -400,6 +520,57 @@ bool Club::reativateAthlete(unsigned int athleteId) {
 	else {
 
 		throw InvalidInput( "The Athlete is already active." );
+	}
+	return true;
+}
+
+bool Club::reativateCoach(unsigned int coachId) {
+
+	//Verify if the coach exists
+
+	map<unsigned int, Worker*> tmpMap = this->getCoaches();
+	map<unsigned int, Worker*>::const_iterator it = tmpMap.find(coachId);
+
+	if (it == tmpMap.end()) {
+
+		throw InvalidInput("The Coach was not found.");
+		return false;
+
+	}
+
+	if (!it->second->isActive()) {
+
+		// Show operation summary
+		Table showInformation({ "Information" , "Data" });
+
+		showInformation.addNewLine({ "ID: " , to_string(this->getCoaches().at(coachId)->getID()) });  // Show id
+
+		showInformation.addNewLine({ "Civil ID: " , to_string(this->getCoaches().at(coachId)->getCivilID()) }); // Show Civil Id
+
+		showInformation.addNewLine({ "Name: " , this->getCoaches().at(coachId)->getName() }); // Show Name
+
+		showInformation.addNewLine({ "Birth Date: " , this->getCoaches().at(coachId)->getBirthdate().str() }); // Show Birth Date
+
+		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getCoaches().at(coachId)->getBirthdate()) }); // Show Level
+
+		showMainMenu(0);
+
+
+		cout << Table({ "Are you sure you want to reativate the coach?" });;
+
+		if (!confirm(showInformation)) {
+			return false;
+		}
+
+
+		ignoreLine(false, "Coach reativated correctly");
+
+
+		this->allWorkers.at(coachId)->setStatus(true);
+	}
+	else {
+
+		throw InvalidInput("The Coach is already active.");
 	}
 	return true;
 }
@@ -440,7 +611,7 @@ void Club::saveChanges() {
 
 	for (map<unsigned int, Worker*>::const_iterator i = tmpMap.begin(); i != tmpMap.end(); i++) {
 
-		if (!(i->second->isActive())) {
+		if (i->second->isAthlete() && !(i->second->isActive())) {
 
 			currentFile << i->second->getID();
 			currentFile << " ";
@@ -466,6 +637,23 @@ void Club::saveChanges() {
 			if (i != allWorkers.end())
 				currentFile << endl;
 		}
+	}
+
+	currentFile << FILE_SEPARATOR << endl;
+
+	// Save Inactive Coaches
+
+	tmpMap = getInactives();
+
+	for (map<unsigned int, Worker*>::const_iterator i = tmpMap.begin(); i != tmpMap.end(); i++) {
+
+		if (!i->second->isAthlete() && !(i->second->isActive())) {
+
+			currentFile << i->second->getID();
+			currentFile << " ";
+
+		}
+
 	}
 
 	currentFile.close();
@@ -700,7 +888,7 @@ void Club::showCoaches(bool onlyActives) const {
 				continue;
 			}
 
-			if (workersIterator->second->isActive() && firstActive && workersIterator->second->isAthlete()) {
+			if (workersIterator->second->isActive() && firstActive && !workersIterator->second->isAthlete()) {
 
 				coachesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
 			}
@@ -726,6 +914,30 @@ void Club::showCoaches(bool onlyActives) const {
 
 	cout << coachesTable << endl;
 
+}
+
+void Club::showCoachesInactives() const {
+
+	Table coachesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Position", "Status" });
+	map<unsigned int, Worker*> coaches = this->getCoaches();
+	map<unsigned int, Worker*>::iterator workersIterator;
+
+	bool firstActive = false;
+	for (workersIterator = coaches.begin(); workersIterator != coaches.end(); workersIterator++) {
+		if (!workersIterator->second->isActive() && !firstActive) {
+
+			coachesTable.addNewLine(workersIterator->second->showInScreen());
+			firstActive = true;
+			continue;
+		}
+
+		if (!workersIterator->second->isActive() && firstActive && !workersIterator->second->isAthlete()) {
+
+			coachesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+		}
+	}
+
+	cout << coachesTable << endl;
 }
 
 int Club::findWorkerByCivilID(unsigned int civilID) {
