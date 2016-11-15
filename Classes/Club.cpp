@@ -390,8 +390,8 @@ void Club::addCoach(CoachType position, string name, Date birthdate, unsigned in
 	}
 	/*to be completed*/
 
-	catch (...) {
-		cout << "Erro ao criar treinador";
+	catch (string s) {
+		cout << s;
 		ignoreLine(false);
 	}
 
@@ -445,6 +445,96 @@ bool Club::removeAthlete(unsigned int athleteId) {
 		throw InvalidInput("The Athlete was already removed.");
 	}
 	return true;
+}
+
+void Club::editPlayer(unsigned int athleteId, string newName, Date newBirthDate, unsigned int newHeight, unsigned int newCivilID) {
+    
+    map<unsigned int, Worker*> athletesMap = this->getAthletes();
+    
+    if (athletesMap.find(athleteId) != athletesMap.end()) {
+        
+        unsigned int newCivilIdParsed = !newCivilID ? athletesMap.at(athleteId)->getCivilID() : newCivilID;
+        string newNameParsed = newName.length() == 0 ? athletesMap.at(athleteId)->getName() : newName;
+        Date newBirthDateParsed = newBirthDate == Date() ? athletesMap.at(athleteId)->getBirthdate() : newBirthDate;
+        unsigned int newHeightParsed = !newHeight ? athletesMap.at(athleteId)->getHeight() : newHeight;
+        
+        try {
+            
+            athletesMap.at(athleteId)->setName(newNameParsed);
+            athletesMap.at(athleteId)->setBirthDate(newBirthDateParsed);
+            athletesMap.at(athleteId)->setHeight(newHeightParsed);
+            
+            if (newCivilID && findWorkerByCivilID(newCivilID) != -1) {
+                
+                throw string("Civil ID already assigned to other player");
+                
+            }
+            athletesMap.at(athleteId)->setCivilId(newCivilIdParsed);
+            
+        }
+        
+        catch(string s) {
+            cout << s << endl;
+        }
+        
+        catch(...) {
+            cout << "something went wrong." << endl;
+        }
+        
+    }
+    throw string("Athlete does not exist");
+
+}
+
+void Club::editCoach(unsigned int coachId, string newName, Date newBirthDate, unsigned int newCivilID, unsigned int newCoachType) {
+    
+    map<unsigned int, Worker*> coachesMap = this->getCoaches();
+    
+    if (coachesMap.find(coachId) != coachesMap.end()) {
+        
+        unsigned int newCivilIdParsed = !newCivilID ? coachesMap.at(coachId)->getCivilID() : newCivilID;
+        string newNameParsed = newName.length() == 0 ? coachesMap.at(coachId)->getName() : newName;
+        Date newBirthDateParsed = newBirthDate == Date() ? coachesMap.at(coachId)->getBirthdate() : newBirthDate;
+        
+        try {
+            
+            coachesMap.at(coachId)->setName(newNameParsed);
+            coachesMap.at(coachId)->setBirthDate(newBirthDateParsed);
+            switch (newCoachType) {
+                case 1:
+                    coachesMap.at(coachId)->setCoachType(HeadCoach);
+                    break;
+                case 2:
+                    coachesMap.at(coachId)->setCoachType(GoalkeeperCoach);
+                    break;
+                case 3:
+                    coachesMap.at(coachId)->setCoachType(PhysicalTrainer);
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            if (newCivilID && findWorkerByCivilID(newCivilID) != -1) {
+                
+                throw string("Civil ID already assigned to other worker");
+                
+            }
+            coachesMap.at(coachId)->setCivilId(newCivilIdParsed);
+            
+        }
+        
+        catch(string s) {
+            cout << s << endl;
+        }
+        
+        catch(...) {
+            cout << "something went wrong." << endl;
+        }
+        
+    }
+    throw string("Coach does not exist");
+    
 }
 
 bool Club::removeCoach(unsigned int coachId) {
@@ -1073,7 +1163,7 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
     vector<unsigned int> filteredVector;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
-    if (matchPlayers.size() == 0) {
+    if (matchPlayers.size() == 0 && (*matchToRegister)->getInfoPlayers().size() == 0) {
         
         
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
@@ -1117,7 +1207,7 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     vector<unsigned int> filteredVector;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
-    if (matchPlayers.size() == 0) {
+    if (matchPlayers.size()) {
         
         
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
@@ -1151,4 +1241,42 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
 
     level->addMatchToLevel(matchToAdd);
      
+}
+
+void Club::callUpPlayers(string matchId, vector<unsigned int> matchPlayers, Level* level) {
+    
+    vector<Match*> listOfLevelMatches = level->getAllLevelMatches();
+    vector<Match*>::const_iterator matchToRegister = listOfLevelMatches.begin();
+    while (matchToRegister != listOfLevelMatches.end()) {
+        
+        if ((*matchToRegister)->getId() == matchId) {
+            
+            break;
+            
+        }
+        matchToRegister++;
+        
+    }
+    
+    
+    if(matchToRegister == listOfLevelMatches.end()) {
+        
+        throw string("Not scheduled match.");
+        
+    }
+    
+    (*matchToRegister)->setPlayers(matchPlayers);
+    
+}
+void Club::callUpPlayers(string opponentClub, Date matchDate, Level* level, MatchType type, vector<unsigned int> matchPlayers) {
+    
+    Club* opponent = new Club(opponentClub, true);
+    level->updateLastMatchId();
+    
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
+    matchToAdd->setPlayers(matchPlayers);
+    level->addMatchToLevel(matchToAdd);
+
 }

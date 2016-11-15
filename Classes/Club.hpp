@@ -33,6 +33,7 @@ public:
 	void addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height);
 	bool removeAthlete(unsigned int athleteId);
 	bool reativateAthlete(unsigned int athleteId);
+    void editPlayer(unsigned int athleteId, string newName, Date newBirthDate, unsigned int newHeight, unsigned int newCivilID);
 
 	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
 	map<unsigned int, Worker*> getInactives(unsigned char workersType = 0) const;
@@ -47,6 +48,7 @@ public:
 	bool reativateCoach(unsigned int coachId);
 	void showCoaches(bool onlyActives = false) const;
 	void showCoachesInactives() const;
+    void editCoach(unsigned int coachId, string newName, Date newBirthDate, unsigned int newCivilID, unsigned int newCoachType);
 
     bool isProgramClub() const;
 
@@ -61,12 +63,17 @@ public:
     
     void scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type);
     
+    //convocar jogadores para jogo agendado
+    void callUpPlayers(string matchId, vector<unsigned int> matchPlayers, Level* level);
+    
+    //convocar jogadores para jogo não agendado
+    void callUpPlayers(string opponentClub, Date matchDate, Level* level, MatchType type, vector<unsigned int> matchPlayers);
+    
     //registar jogo já agendado com performance de jogadores (para mais tarde)
     void registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
     
     //registar jogo não agendado com performance de jogadores (para mais tarde)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> matchPlayers);
-    
     
     //registar jogo já agendado sem performance de jogadores (para já)
     void registerMatch(string matchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
