@@ -7,6 +7,11 @@ class Match;
 class Level;
 
 extern const map<string, CoachType> coachTypeMap;
+extern const map<string, ageLevel> ageLevelMap;
+
+extern bool confirm(const Table &message);
+
+extern void showMainMenu(unsigned short int optionChosen);
 
 class Club {
 	string clubName;
@@ -30,12 +35,19 @@ public:
 	bool reativateAthlete(unsigned int athleteId);
 
 	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
-	map<unsigned int, Worker*> getInactives() const;
-	map<unsigned int, Worker*> getCoaches() const;
+	map<unsigned int, Worker*> getInactives(unsigned char workersType = 0) const;
+	map<unsigned int, Worker*> getCoaches(bool onlyActives = false) const;
 
 	void showAthletes(bool onlyActives = false) const;
 	bool showAthlete(unsigned int id) const;
 	void showAthletesInactives() const;
+
+	void addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach = false);
+	bool removeCoach(unsigned int coachId);
+	bool reativateCoach(unsigned int coachId);
+	void showCoaches(bool onlyActives = false) const;
+	void showCoachesInactives() const;
+
     bool isProgramClub() const;
 
 	void saveChanges();

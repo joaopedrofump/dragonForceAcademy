@@ -159,6 +159,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 
 	inStreamLevel.close();
     
+	// Read information of matches
+
     inStreamLevel.open(this->pathToLevelMatchesFile);
     
     string lastMatchIdString;
@@ -276,6 +278,18 @@ Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     return this;
     
 }
+
+Level* Level::addCoachToLevel(unsigned int idCoach, bool mainCoach) {
+
+	this->coachesIdsVector.push_back(idCoach);
+	if (mainCoach) {
+		this->levelMainCoach = idCoach;
+	}
+	return this;
+
+}
+
+
 
 string Level::getLevelName() const {
     

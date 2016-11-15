@@ -92,7 +92,7 @@ public:
     ~Worker();
 
 	//====== GETTERS =============
-	unsigned int getIdade() const;
+	unsigned int getAge() const;
     
     Date getBirthdate() const;
     

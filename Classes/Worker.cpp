@@ -80,7 +80,7 @@ void Worker::setStatus(bool newStatus) {
 
 }
 
-unsigned int Worker::getIdade() const {
+unsigned int Worker::getAge() const {
 	
     return Date() - this->birthdate;
 
@@ -116,7 +116,7 @@ vector<string> Worker::showInScreen() const {
     output.push_back(to_string(this->civilID));
     output.push_back(this->name);
     output.push_back(this->birthdate.showDate());
-    output.push_back(to_string(this->getIdade()));
+    output.push_back(to_string(this->getAge()));
     return output;
     
 }

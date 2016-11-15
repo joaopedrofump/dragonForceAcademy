@@ -1125,9 +1125,13 @@ bool emptyString(string stringTest) {
 // ===========================================
 // ===========  ENUMS & MAPS =================
 // ===========================================
+extern const map<string, ageLevel> ageLevelMap = { { "Seniors", Seniors },
+{ "U13", U13 },
+{ "U15", U15 },
+{ "U17", U17 },
+{ "U19", U19 } };
 
 extern const map<string, CoachType> coachTypeMap = { { "HDC", HeadCoach },
-{ "ASC", AssistantCoach },
 { "GKC", GoalkeeperCoach },
 { "PHT", PhysicalTrainer } };
 
