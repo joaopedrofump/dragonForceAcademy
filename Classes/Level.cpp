@@ -138,7 +138,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     string mainCoach;
     getline(inStreamLevel, mainCoach);
     
-    if(mainCoach.length() != 0 || stoi(mainCoach) == -1) {
+    if(mainCoach.length() != 0) {
         this->levelMainCoach = stoi(mainCoach);
     }
     else {
@@ -159,6 +159,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 
 	inStreamLevel.close();
     
+	// Read information of matches
+
     inStreamLevel.open(this->pathToLevelMatchesFile);
     
     string lastMatchIdString;

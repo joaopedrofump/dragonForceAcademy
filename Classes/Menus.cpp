@@ -1080,6 +1080,7 @@ void optionsCoachesManagement(Club &mainClub) {
 				}
 			}
 
+			if (exitSwitch) break;
 
 			mainClub.saveChanges();
 			break;
@@ -1118,18 +1119,6 @@ void optionsCoachesManagement(Club &mainClub) {
 						break;
 					}
 
-					/*map<unsigned int, Worker*> tmpMap = mainClub.getWorkers();
-					if (tmpMap.find(idWorker)->second->isAthlete() || tmpMap.find(idWorker) == tmpMap.end()) {
-
-						throw InvalidInput("This ID does not belong to a Coach.");
-
-					}
-
-					if (mainClub.getCoaches().at(idWorker)->isActive()) {
-
-						throw InvalidInput("This coach is already active.");
-						
-					}*/
 
 					control = mainClub.reativateCoach(idWorker);
 					
