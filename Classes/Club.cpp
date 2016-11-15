@@ -1268,6 +1268,7 @@ void Club::callUpPlayers(string matchId, vector<unsigned int> matchPlayers, Leve
     (*matchToRegister)->setPlayers(matchPlayers);
     
 }
+
 void Club::callUpPlayers(string opponentClub, Date matchDate, Level* level, MatchType type, vector<unsigned int> matchPlayers) {
     
     Club* opponent = new Club(opponentClub, true);
