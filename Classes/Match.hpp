@@ -42,7 +42,8 @@ public:
     
     //IO
     
-    friend ostream& operator<<(ostream& out, Match match);
+
+    friend ostream& operator<<(ostream& out, Match &match);
     bool operator==(const Match &compareMatch) const;
 };
 

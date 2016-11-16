@@ -32,6 +32,7 @@ Match::~Match() {
             
             delete iteratorMapInfo->second;
             
+  
         }
 
     }
@@ -48,10 +49,9 @@ Match::Match(istringstream& iss) {
     iss >> separator;
     iss >> date;
     iss >> separator;
-    iss >> homeTeam;
-    iss >> separator;
-    iss >> awayTeam;
-    iss >> separator;
+    
+    getline(iss, homeTeam, ';');
+    getline(iss, awayTeam, ';');
     iss >> this->homeTeamScore;
     iss >> separator;
     iss >> this->awayTeamScore;
@@ -59,6 +59,9 @@ Match::Match(istringstream& iss) {
     iss >> this->played;
     
     this->matchDay = Date(date);
+    
+    trimString(homeTeam);
+    trimString(awayTeam);
     this->homeTeam = new Club(homeTeam,true);
     this->awayTeam = new Club(awayTeam,true);
     
@@ -75,15 +78,16 @@ Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     iss >> separator;
     iss >> date;
     iss >> separator;
-    iss >> homeTeam;
-    iss >> separator;
-    iss >> awayTeam;
-    iss >> separator;
+    getline(iss, homeTeam, ';');
+    getline(iss, awayTeam, ';');
     iss >> this->homeTeamScore;
     iss >> separator;
     iss >> this->awayTeamScore;
     iss >> separator;
     iss >> played;
+    
+    trimString(homeTeam);
+    trimString(awayTeam);
     
     this->matchDay = Date(date);
     this->homeTeam = (homeOrAway == home) ? programClub : new Club(awayTeam,true);
@@ -168,7 +172,7 @@ void Match::setPlayers(vector<unsigned int> playersIds) {
     if(this->homeTeam->isProgramClub()) {
         thisClub = homeTeam;
     }
-    else if(this->homeTeam->isProgramClub()) {
+    else if(this->awayTeam->isProgramClub()) {
         thisClub = awayTeam;
     }
     else {
@@ -231,8 +235,8 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
     
 }
 
+ostream& operator<<(ostream& out, Match &match) {
 
-ostream& operator<<(ostream& out, Match match) {
     
     out << match.id << " ; " << match.matchDay << " ; " << match.homeTeam->getName() << " ; " << match.awayTeam->getName() << " ; " << match.homeTeamScore << " ; " << match.awayTeamScore << " ; " << match.played;
     

@@ -37,3 +37,15 @@ vector<unsigned int> Training::getPlayers() const {
 void Training::setPlayers(vector<unsigned int> playersTrained) {
     this->playersTrained = playersTrained;
 }
+
+ostream& operator<<(ostream& outStream, Training& trainingToSave) {
+    
+    outStream << trainingToSave.id << " ; " << trainingToSave.trainingDate;
+    
+    for (vector<unsigned int>::const_iterator iteratorPlayer = trainingToSave.getPlayers().begin() ; iteratorPlayer != trainingToSave.getPlayers().end(); iteratorPlayer++) {
+        
+        outStream << " ; " << *iteratorPlayer;
+        
+    }
+    return outStream;
+}

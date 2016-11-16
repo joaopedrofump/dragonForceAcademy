@@ -13,29 +13,35 @@ Leonardo Teixeira
 
 using namespace std;
 
+class Season;
+
 void initialInfo(string& clubName);
 
 bool confirm(const Table &message);
 
 void initialOptions(Club & footballClub);
 
-unsigned short int mainMenu();
+unsigned short int mainMenu(string seasonName);
 
-void printAddAthleteMenu();
+void printAddAthleteMenu(string seasonName);
 
-void printAthletesMenu();
+void printAthletesMenu(string seasonName);
 
-void printCoachesMenu();
+void printCoachesMenu(string seasonName);
 
-void showMainMenu(unsigned short int optionChosen = 0);
+void showMainMenu(unsigned short int optionChosen = 0, string seasonName = "Main Menu");
 
-void optionsAthletesManagement(Club &footballClub);
+void optionsAthletesManagement(Club &footballClub, string seasonName = to_string(Date().getYear()));
 
-void optionsCoachesManagement(Club &footballClub);
+void optionsCoachesManagement(Club &footballClub, string seasonName = to_string(Date().getYear()));
 
-unsigned int menuAthletesManagement();
+void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* currentLevel);
 
-unsigned int menuCoachesManagement();
+unsigned int menuAthletesManagement(string seasonName);
+
+unsigned int menuCoachesManagement(string seasonName);
+
+unsigned short int menuLevelsManagement(Level* currentLevel);
 
 /*void listarClientesOrdemAlfabetica(VendeMaisMais & supermercado);
 

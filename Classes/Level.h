@@ -9,7 +9,7 @@ class Training;
 
 class Level {
 private:
-	
+	Club* parentClub;
 	ageLevel levelEnum;
     string levelName;
     string pathToLevelFolder;
@@ -48,6 +48,7 @@ public:
     
     string getLevelName() const;
     int getMainCoachId() const;
+	string getYear() const;
     
     string getPathToLevelFolder() const;
     string getPathToLevelAthletesFile() const;
@@ -59,6 +60,8 @@ public:
     void updateLastMatchId();
     
     vector<Match*> getAllLevelMatches() const;
+
+	Table showAthletesOfLevel() const;
     vector<Training*> getAllLevelTrainings() const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
