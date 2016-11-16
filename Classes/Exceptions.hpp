@@ -35,8 +35,10 @@ private:
     int month;
     int year;
     DateExceptionType type;
+	string exceptionMessage;
 public:
 	InvalidDate(DateExceptionType type, int day, int month ,int year);
+	InvalidDate(string exceptionMessage, int day, int month, int year);
     string getMessage();
 };
 

@@ -6,6 +6,7 @@ class Match;
 
 Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, Club* parentClub) {
     
+	this->parentClub = parentClub;
     this->yearOfSeason = yearOfSeason;
     this->levelName = levelName;
     this->pathToLevelFolder = stringPath(pathToSeasonFolder + "/" + this->levelName);
@@ -82,13 +83,9 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         }
 
 
-		unsigned int tmpAthleteId = atoi(tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1).c_str());
+		unsigned int tmpAthleteId = stoi(readAndCut(tmpAthlete));
 
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
-
-		string tmpAthletePos = tmpAthlete.substr(0, tmpAthlete.find(';', 0) - 1);
-
-		tmpAthlete = tmpAthlete.substr(tmpAthlete.find(';', 0) + 2);
+		string tmpAthletePos = readAndCut(tmpAthlete);
 		
 
 		Info* infoTmpAthlete;
@@ -96,26 +93,31 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 		// Read Goalkeepers specific informations
 		if (stoi(tmpAthletePos) == GoalkeeperPos) {
 
-			infoTmpAthlete = new InfoGK(tmpAthlete);
+            istringstream inStream(tmpAthlete);
+			infoTmpAthlete = new InfoGK(inStream);
 
+            
 		}
 
 		// Read Defenders specific informations
 		else if(stoi(tmpAthletePos) == DefenderPos){
 
-			infoTmpAthlete = new InfoDF(tmpAthlete);
+            istringstream inStream(tmpAthlete);
+			infoTmpAthlete = new InfoDF(inStream);
 		}
 
 		// Read Midfielders specific informations
 		else if(stoi(tmpAthletePos) == MidfielderPos) {
 
-			infoTmpAthlete = new InfoMF(tmpAthlete);
+            istringstream inStream(tmpAthlete);
+            infoTmpAthlete = new InfoMF(inStream);
 		}
 
 		// Read Forwards specific informations
 		else if (stoi(tmpAthletePos) == ForwardPos) {
 
-			infoTmpAthlete = new InfoFW(tmpAthlete);
+            istringstream inStream(tmpAthlete);
+            infoTmpAthlete = new InfoFW(inStream);
 		}
 			
 
@@ -272,6 +274,10 @@ map<unsigned int, Info*> Level::getMapInfoPlayers() const{
     
 }
 
+string Level::getYear() const {
+	return this->yearOfSeason;
+}
+
 Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     
     this->mapInfoPlayers.insert(playerInfo);
@@ -341,6 +347,29 @@ vector<Training*> Level::getAllLevelTrainings() const {
 Level* Level::addMatchToLevel(Match* newMatch) {
     this->levelMatches.push_back(newMatch);
     return this;
+}
+
+Table Level::showAthletesOfLevel() const {
+	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
+	map<unsigned int, Info*> athletes = this->getMapInfoPlayers();
+	map<unsigned int, Info*>::iterator workersIterator;
+
+	bool firstActive = false;
+	for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
+		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && !firstActive) {
+
+			athletesTable.addNewLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
+			firstActive = true;
+			continue;
+		}
+
+		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && firstActive && parentClub->getAthletes().at(workersIterator->first)->isAthlete()) {
+
+			athletesTable.addDataInSameLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
+		}
+	}
+
+	return athletesTable;
 }
 
 Level* Level::addTrainingToLevel(Training* newTraining) {

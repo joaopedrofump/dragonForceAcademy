@@ -1113,6 +1113,33 @@ bool readDate(Date &result, string message, string errorMessage) {
 	return true;
 }
 
+bool readDate(Date &result, Date min, Date max, string message, string errorMessage) {
+
+	cout << Table({ message });
+
+	string input;
+
+	getline(cin, input);
+
+	if (input.size() == 0) {
+
+		return true;
+	}
+	trimString(input);
+	if (Date(input) < min) {
+		throw InvalidDate("The date cannot be earlier than " + min.str(), min.getDay(), min.getMonth(), min.getYear());
+	}
+	if (max < Date(input)) {
+		throw InvalidDate("The date cannot be later than " + max.str(), max.getDay(), max.getMonth(), max.getYear());
+	}
+
+
+
+	result = Date(input);
+
+	return true;
+}
+
 
 bool emptyString(string stringTest) {
 
@@ -1222,6 +1249,16 @@ string getLevelFromAge(Date birthDate) {
 }
 
 string readAndCut(string &stringToCut) {
+
+	/*stringstream ss(stringToCut);
+
+	string result;
+	string separator;
+
+	ss >> result;
+	ss >> separator;
+
+	stringToCut = ss.str();*/
 
 	string result = stringToCut.substr(0, stringToCut.find(';', 0) - 1);
 

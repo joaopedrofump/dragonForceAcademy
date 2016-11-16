@@ -11,7 +11,7 @@ extern const map<string, ageLevel> ageLevelMap;
 
 extern bool confirm(const Table &message);
 
-extern void showMainMenu(unsigned short int optionChosen);
+extern void showMainMenu(unsigned short int optionChosen, string seasonName);
 
 class Club {
 	string clubName;

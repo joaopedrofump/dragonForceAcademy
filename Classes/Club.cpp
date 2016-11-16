@@ -425,7 +425,7 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to remove the athlete?" });;
@@ -566,7 +566,7 @@ bool Club::removeCoach(unsigned int coachId) {
 
 		showInformation.addNewLine({ "Age: " , to_string(this->getCoaches().at(coachId)->getAge()) }); // Show Age
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to remove the coach?" });
@@ -644,7 +644,7 @@ bool Club::reativateCoach(unsigned int coachId) {
 
 		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getCoaches().at(coachId)->getBirthdate()) }); // Show Level
 
-		showMainMenu(0);
+		showMainMenu(0, to_string(Date().getYear()));
 
 
 		cout << Table({ "Are you sure you want to reativate the coach?" });;
@@ -847,7 +847,8 @@ void Club::saveChanges() {
             for (size_t i = 0; i < levelMatches.size(); i++) {
                 
                 string pathToCurrentMatchFile = stringPath(pathToCurrentLevelMatchesFolder + "/" + levelMatches.at(i)->getId() + ".txt");
-                ofstream matchesFile(pathToCurrentMatchFile);
+                ofstream matchesFile;
+				matchesFile.open(pathToCurrentMatchFile);
                 map<unsigned int, Info*> mapInfoPlayers = levelMatches.at(i)->getInfoPlayers();
                 for (map<unsigned int, Info*>::const_iterator matchMapInfoPlayersIterator = mapInfoPlayers.begin(); matchMapInfoPlayersIterator != mapInfoPlayers.end(); matchMapInfoPlayersIterator++) {
                     
@@ -1081,7 +1082,7 @@ void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, Matc
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
     
-    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "-" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
     
     Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     level->addMatchToLevel(matchToAdd);
@@ -1123,7 +1124,7 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
-    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "-" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
     Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     
     matchToAdd->registerMatch(homeTeamScore, awayTeamScore, matchPlayers);
@@ -1200,7 +1201,7 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
-    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "-" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
     Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     
     vector<unsigned int> filteredVector;
@@ -1267,12 +1268,13 @@ void Club::callUpPlayers(string matchId, vector<unsigned int> matchPlayers, Leve
     (*matchToRegister)->setPlayers(matchPlayers);
     
 }
+
 void Club::callUpPlayers(string opponentClub, Date matchDate, Level* level, MatchType type, vector<unsigned int> matchPlayers) {
     
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
     
-    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "|" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
+    string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "-" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
     
     Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
     matchToAdd->setPlayers(matchPlayers);
