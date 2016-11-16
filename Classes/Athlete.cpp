@@ -76,7 +76,7 @@ bool Athlete::isAthlete() const {
 }
 
 unsigned int Athlete::getPosition() const {
-	return position;
+	return this->position;
 }
 
 unsigned int Athlete::getHeight() const {

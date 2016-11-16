@@ -840,20 +840,20 @@ void Club::saveChanges() {
                 
             }
             
-            vector<Match*> levelMatches = (*i)->getLevels().at(iteLevels)->getAllLevelMatches();
+            vector<Match*> levelMatchesTmp = (*i)->getLevels().at(iteLevels)->getAllLevelMatches();
             string pathToCurrentLevelFolder = (*i)->getLevels().at(iteLevels)->getPathToLevelFolder();
             string pathToCurrentLevelMatchesFolder = (*i)->getLevels().at(iteLevels)->getPathToLevelMatchesFolder();
             
-            for (size_t i = 0; i < levelMatches.size(); i++) {
+            for (size_t i = 0; i < levelMatchesTmp.size(); i++) {
                 
-                string pathToCurrentMatchFile = stringPath(pathToCurrentLevelMatchesFolder + "/" + levelMatches.at(i)->getId() + ".txt");
+                string pathToCurrentMatchFile = stringPath(pathToCurrentLevelMatchesFolder + "/" + levelMatchesTmp.at(i)->getId() + ".txt");
                 ofstream matchesFile;
 				matchesFile.open(pathToCurrentMatchFile);
-                map<unsigned int, Info*> mapInfoPlayers = levelMatches.at(i)->getInfoPlayers();
+                map<unsigned int, Info*> mapInfoPlayers = levelMatchesTmp.at(i)->getInfoPlayers();
                 for (map<unsigned int, Info*>::const_iterator matchMapInfoPlayersIterator = mapInfoPlayers.begin(); matchMapInfoPlayersIterator != mapInfoPlayers.end(); matchMapInfoPlayersIterator++) {
                     
                     matchesFile << matchMapInfoPlayersIterator->first << " ; ";
-                    matchesFile << this->allWorkers.at(matchMapInfoPlayersIterator->first)->getPosition() << " ; ";
+                    matchesFile << this->allWorkers.at(matchMapInfoPlayersIterator->first)->getID() << " ; ";
                     matchesFile << *(matchMapInfoPlayersIterator->second);
                     
                     if (matchMapInfoPlayersIterator != mapInfoPlayers.end()) {
