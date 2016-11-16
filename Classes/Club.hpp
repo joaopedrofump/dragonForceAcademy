@@ -81,4 +81,14 @@ public:
     //registar jogo não agendado sem performance de jogadores (para já)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
     
+    
+    void scheduleTraining(Date trainingDate, Level* level);
+    
+    //registar treino já agendado
+    void registerTraining(unsigned int trainingId, Level* level, vector<unsigned int> missingPlayers);
+    
+    //registar treino não agendado
+    void registerTraining(Date trainingDate, Level* level, vector<unsigned int> missingPlayers);
+    
+    
 };

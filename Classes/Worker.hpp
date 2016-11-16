@@ -88,7 +88,7 @@ public:
     virtual void updateECG(bool resultado, Date expirationDate = Date(Date().getDay(), Date().getMonth(),Date().getYear()+1));
     
     void setName(string newName);
-    virtual void setBirthDate(Date newBirthdate);
+    virtual void setBirthDate(Date newBirthdate){};
     virtual void setHeight(unsigned int newHeight){};
     virtual void setCoachType(CoachType newType) {};
 	
