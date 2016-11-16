@@ -168,7 +168,7 @@ void Match::setPlayers(vector<unsigned int> playersIds) {
     if(this->homeTeam->isProgramClub()) {
         thisClub = homeTeam;
     }
-    else if(this->homeTeam->isProgramClub()) {
+    else if(this->awayTeam->isProgramClub()) {
         thisClub = awayTeam;
     }
     else {
