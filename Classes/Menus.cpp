@@ -456,8 +456,8 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 						cout << introBirthDate << endl;*/
 
 						
-						control = readDate(newAthleteBirthDate, Date(today.getDay(), today.getMonth(), today.getYear() - 11), 
-																Date(today.getDay(), today.getMonth(), today.getYear() - 45), 
+						control = readDate(newAthleteBirthDate, Date(today.getDay(), today.getMonth(), today.getYear() - 45), 
+																Date(today.getDay(), today.getMonth(), today.getYear() - 11), 
 																"Please, enter the athlete's BIRTH DATE.", "Invalid Date");
 
 						if (newAthleteBirthDate == today) {
@@ -1396,7 +1396,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 				vector<unsigned int> playersToCallUpVector;
 
 				//Show players
-				currentLevel->showAthletesOfLevel();
+				cout << currentLevel->showAthletesOfLevel();
 
 				control = false;
 				while (!control) {
@@ -1419,6 +1419,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 								playersToCallUpVector.push_back(idPlayer);
 
 						}
+						control = true;
 
 					}
 					catch (InvalidInput e) {

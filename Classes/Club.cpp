@@ -861,6 +861,7 @@ void Club::saveChanges() {
                     }
   
                 }
+				matchesFile.close();
                 
             }
 

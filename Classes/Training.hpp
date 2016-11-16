@@ -20,6 +20,6 @@ public:
     
     void setPlayers(vector<unsigned int> playersTrained);
     void setDate(Date newDate);
-    friend ostream& operator<<(ostream& outStream, Training trainingToSave);
+    friend ostream& operator<<(ostream& outStream, Training& trainingToSave);
     
 };

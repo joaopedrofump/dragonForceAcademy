@@ -38,7 +38,7 @@ void Training::setPlayers(vector<unsigned int> playersTrained) {
     this->playersTrained = playersTrained;
 }
 
-ostream& operator<<(ostream& outStream, Training trainingToSave) {
+ostream& operator<<(ostream& outStream, Training& trainingToSave) {
     
     outStream << trainingToSave.id << " ; " << trainingToSave.trainingDate;
     

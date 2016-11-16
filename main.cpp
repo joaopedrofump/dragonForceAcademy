@@ -42,9 +42,9 @@ int main(int argc, const char * argv[]) {
         //currentClubInProgram.registerMatch("Seniors002|20170412", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
         //currentClubInProgram.updateECG(1, true);*/
         
-        currentClubInProgram.saveChanges();
-        initialOptions(currentClubInProgram);
         
+        initialOptions(currentClubInProgram);
+        currentClubInProgram.saveChanges();
         //currentClubInProgram.updateECG(1, true);
         
     }

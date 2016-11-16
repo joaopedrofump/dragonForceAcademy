@@ -32,6 +32,7 @@ Match::~Match() {
             
             delete iteratorMapInfo->second;
             
+  
         }
 
     }
@@ -168,7 +169,7 @@ void Match::setPlayers(vector<unsigned int> playersIds) {
     if(this->homeTeam->isProgramClub()) {
         thisClub = homeTeam;
     }
-    else if(this->homeTeam->isProgramClub()) {
+    else if(this->awayTeam->isProgramClub()) {
         thisClub = awayTeam;
     }
     else {
@@ -232,7 +233,7 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
 }
 
 
-ostream& operator<<(ostream& out, Match match) {
+ostream& operator<<(ostream& out, Match& match) {
     
     out << match.id << " ; " << match.matchDay << " ; " << match.homeTeam->getName() << " ; " << match.awayTeam->getName() << " ; " << match.homeTeamScore << " ; " << match.awayTeamScore << " ; " << match.played;
     
