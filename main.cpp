@@ -41,9 +41,9 @@ int main(int argc, const char * argv[]) {
         //matchPlayers.push_back(1);
         //currentClubInProgram.registerMatch("Seniors002|20170412", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
         //currentClubInProgram.updateECG(1, true);*/
-        
+
+		initialOptions(currentClubInProgram);
         currentClubInProgram.saveChanges();
-        initialOptions(currentClubInProgram);
         
         //currentClubInProgram.updateECG(1, true);
         

@@ -232,7 +232,7 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
 }
 
 
-ostream& operator<<(ostream& out, Match match) {
+ostream& operator<<(ostream& out, Match &match) {
     
     out << match.id << " ; " << match.matchDay << " ; " << match.homeTeam->getName() << " ; " << match.awayTeam->getName() << " ; " << match.homeTeamScore << " ; " << match.awayTeamScore << " ; " << match.played;
     
