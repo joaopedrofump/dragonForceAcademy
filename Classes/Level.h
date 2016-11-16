@@ -65,4 +65,7 @@ public:
     vector<Training*> getAllLevelTrainings() const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
+
+	void showCalendar(bool onlyNotPlayed = false);
+
 };

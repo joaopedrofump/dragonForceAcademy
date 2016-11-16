@@ -19,6 +19,7 @@
 #include <vector>
 #include <map>
 #include <ctime>
+#include <algorithm>
 #include "Exceptions.hpp"
 #ifdef __llvm__
 #include <sys/stat.h>

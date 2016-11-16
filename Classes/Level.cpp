@@ -371,3 +371,20 @@ Level* Level::addTrainingToLevel(Training* newTraining) {
     this->levelTrainings.push_back(newTraining);
     return this;
 }
+
+
+void Level::showCalendar(bool onlyNotPlayed) {
+
+	Table matchesTable({ "ID", "Date", "Home Team", "Score", "Away Team" });
+
+	vector<Match*> tmpVector = this->getAllLevelMatches();
+	sort(tmpVector.begin(), tmpVector.end());
+
+	for (vector<Match*>::iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
+		if (!onlyNotPlayed || (*it)->getPlayed()) {
+			matchesTable.addNewLine((*it)->showInScreen());
+		}
+	}
+
+	cout << matchesTable;
+}

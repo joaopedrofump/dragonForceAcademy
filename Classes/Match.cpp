@@ -48,10 +48,13 @@ Match::Match(istringstream& iss) {
     iss >> separator;
     iss >> date;
     iss >> separator;
-    iss >> homeTeam;
-    iss >> separator;
-    iss >> awayTeam;
-    iss >> separator;
+
+	getline(iss, homeTeam, ';');
+	trimString(homeTeam);
+
+	getline(iss, awayTeam, ';');
+	trimString(awayTeam);
+
     iss >> this->homeTeamScore;
     iss >> separator;
     iss >> this->awayTeamScore;
@@ -75,10 +78,13 @@ Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     iss >> separator;
     iss >> date;
     iss >> separator;
-    iss >> homeTeam;
-    iss >> separator;
-    iss >> awayTeam;
-    iss >> separator;
+
+	getline(iss, homeTeam, ';');
+	trimString(homeTeam);
+
+	getline(iss, awayTeam, ';');
+	trimString(awayTeam);
+
     iss >> this->homeTeamScore;
     iss >> separator;
     iss >> this->awayTeamScore;
@@ -111,6 +117,10 @@ Club* Match::getHomeTeam() const {
 
 Club* Match::getAwayTeam() const {
 	return awayTeam;
+}
+
+pair<unsigned int, unsigned int> Match::getScore() const {
+	return { this->homeTeamScore, this->awayTeamScore };
 }
 
 map<unsigned int, Info*> Match::getInfoPlayers() const {
@@ -147,7 +157,9 @@ vector<Worker*> Match::getPlayers() const {
 string Match::getId() const {
     return this->id;
 }
-
+bool Match::getPlayed() const {
+	return this->played;
+}
 // SETTERS
 
 void Match::setMatchDay(Date newDay) {
@@ -231,6 +243,9 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
     
 }
 
+bool Match::operator<(const Match& match1) {
+	return this->getMatchDay() < match1.getMatchDay();
+}
 
 ostream& operator<<(ostream& out, Match &match) {
     
@@ -245,3 +260,20 @@ bool Match::operator==(const Match &compareMatch) const {
     return this->id == compareMatch.getId();
 }
 
+vector<string> Match::showInScreen() const {
+
+	vector<string> result;
+
+	result.push_back(this->getId());
+
+	result.push_back(this->getMatchDay().str());
+
+	result.push_back(this->getHomeTeam()->getName());
+
+	result.push_back((this->getPlayed() ? to_string(this->getScore().first) : "X") + " - " + (this->getPlayed() ? to_string(this->getScore().second) : "X"));
+	
+	result.push_back(this->getAwayTeam()->getName());
+
+	return result;
+
+}

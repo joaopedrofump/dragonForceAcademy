@@ -24,10 +24,14 @@ public:
 	Date getMatchDay() const;
 	Club* getHomeTeam() const;
 	Club* getAwayTeam() const;
+
+	pair<unsigned int, unsigned int> getScore() const;
+
 	vector<Worker*> getPlayers() const;
     map<unsigned int, Info*> getInfoPlayers() const;
     void addInfoPlayer(pair<unsigned int, Info*> newPlayer);
     string getId() const;
+	bool getPlayed() const;
 
 	// SETTERS
 
@@ -41,9 +45,13 @@ public:
     void registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> infoPlayers);
     
     //IO
-    
     friend ostream& operator<<(ostream& out, Match &match);
+	vector<string> showInScreen() const;
+
+	//COMPARES
+	bool operator<(const Match& match1);
     bool operator==(const Match &compareMatch) const;
+
 };
 
 

@@ -1220,7 +1220,18 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 		switch (option) {
 		case 1:             //=========== SHOW CALENDAR   ==============
 		{
+			showMainMenu(0, currentSeason->getSeasonName());
 
+			if (currentLevel->getAllLevelMatches().size() == 0) {
+
+				cout << Table({ "There are no Matches." });
+				ignoreLine(false);
+				break;
+			}
+
+			currentLevel->showCalendar();
+			ignoreLine(false);
+			break;
 		}
 		case 2:           //=========== SCHEDULE FRIENDLY MATCH   ==============
 		{
