@@ -32,6 +32,7 @@ Match::~Match() {
             
             delete iteratorMapInfo->second;
             
+  
         }
 
     }
@@ -49,11 +50,8 @@ Match::Match(istringstream& iss) {
     iss >> date;
     iss >> separator;
 
-	getline(iss, homeTeam, ';');
-	trimString(homeTeam);
-
-	getline(iss, awayTeam, ';');
-	trimString(awayTeam);
+    getline(iss, homeTeam, ';');
+    getline(iss, awayTeam, ';');
 
     iss >> this->homeTeamScore;
     iss >> separator;
@@ -62,6 +60,9 @@ Match::Match(istringstream& iss) {
     iss >> this->played;
     
     this->matchDay = Date(date);
+    
+    trimString(homeTeam);
+    trimString(awayTeam);
     this->homeTeam = new Club(homeTeam,true);
     this->awayTeam = new Club(awayTeam,true);
     
@@ -79,17 +80,17 @@ Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     iss >> date;
     iss >> separator;
 
-	getline(iss, homeTeam, ';');
-	trimString(homeTeam);
-
-	getline(iss, awayTeam, ';');
-	trimString(awayTeam);
+    getline(iss, homeTeam, ';');
+    getline(iss, awayTeam, ';');
 
     iss >> this->homeTeamScore;
     iss >> separator;
     iss >> this->awayTeamScore;
     iss >> separator;
     iss >> played;
+    
+    trimString(homeTeam);
+    trimString(awayTeam);
     
     this->matchDay = Date(date);
     this->homeTeam = (homeOrAway == home) ? programClub : new Club(awayTeam,true);
@@ -248,6 +249,7 @@ bool Match::operator<(const Match& match1) {
 }
 
 ostream& operator<<(ostream& out, Match &match) {
+
     
     out << match.id << " ; " << match.matchDay << " ; " << match.homeTeam->getName() << " ; " << match.awayTeam->getName() << " ; " << match.homeTeamScore << " ; " << match.awayTeamScore << " ; " << match.played;
     

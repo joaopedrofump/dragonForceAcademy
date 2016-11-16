@@ -625,7 +625,6 @@ void Club::addCoach(CoachType position, string name, Date birthdate, unsigned in
 
 		allWorkers.insert(pair<unsigned int, Worker*>(coachToAdd->getID(), coachToAdd));
 
-
 		// Find current season
 		for (unsigned int i = 0; i < seasons.size(); i++)
 		{

@@ -360,7 +360,7 @@ void Date::setCurrentDate() {
 }
 
 string Date::str() const {
-	return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
+    return this->showDate();
 }
 
 

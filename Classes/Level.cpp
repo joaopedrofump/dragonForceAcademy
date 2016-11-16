@@ -93,26 +93,31 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 		// Read Goalkeepers specific informations
 		if (stoi(tmpAthletePos) == GoalkeeperPos) {
 
-			infoTmpAthlete = new InfoGK(istringstream(tmpAthlete));
+            istringstream inStream(tmpAthlete);
+			infoTmpAthlete = new InfoGK(inStream);
 
+            
 		}
 
 		// Read Defenders specific informations
 		else if(stoi(tmpAthletePos) == DefenderPos){
 
-			infoTmpAthlete = new InfoDF(istringstream(tmpAthlete));
+            istringstream inStream(tmpAthlete);
+			infoTmpAthlete = new InfoDF(inStream);
 		}
 
 		// Read Midfielders specific informations
 		else if(stoi(tmpAthletePos) == MidfielderPos) {
 
-			infoTmpAthlete = new InfoMF(istringstream(tmpAthlete));
+            istringstream inStream(tmpAthlete);
+            infoTmpAthlete = new InfoMF(inStream);
 		}
 
 		// Read Forwards specific informations
 		else if (stoi(tmpAthletePos) == ForwardPos) {
 
-			infoTmpAthlete = new InfoFW(istringstream(tmpAthlete));
+            istringstream inStream(tmpAthlete);
+            infoTmpAthlete = new InfoFW(inStream);
 		}
 			
 
