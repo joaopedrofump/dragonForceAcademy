@@ -14,15 +14,37 @@
 
 class Defender : public Athlete {
 private:
-    Info* generalInfo;
+    Info* generalInfo; //defender's general info
     
 public:
-    Defender(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int = 0);
+    //! Defender's constructor
+	/*!
+	*	This is the constructor that creates a defender using his name, birthdate, civilID and height. The id is set automatically
+	*/
+	Defender(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int = 0);
+	
+	/*!
+	*	This is the constructor that creates a defender using his defending position
+	*/
 	Defender(string &newDF);
-    ~Defender();
-    unsigned int getID() const;
-    Info* getInfo() const;
-    void addInfo(Info* moreInfo);
+    
+	//! Defender's destructor
+	~Defender();
+    
+	/*!
+	*	This is the method that gets the defender's id
+	*/
+	unsigned int getID() const;
+    
+	/*!
+	*	This is the method that gets the defender's performance information 
+	*/
+	Info* getInfo() const;
+    
+	/*!
+	*	This is the method that adds information to the defender
+	*/
+	void addInfo(Info* moreInfo);
     
 };
     

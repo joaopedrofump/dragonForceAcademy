@@ -153,4 +153,3 @@ void Athlete::setHeight(unsigned int newHeight) {
     this->height= newHeight;
 }
 
-

@@ -94,8 +94,10 @@ public:
 	
 
     ~Worker();
+	unsigned int getIdade() const;
 
 	//====== GETTERS =============
+
 	unsigned int getAge() const;
     
     Date getBirthdate() const;
@@ -117,7 +119,7 @@ public:
 	*/
 	virtual unsigned int getHeight() const = 0;
 	/*!
-	This is an abstract method to get the athlete height
+	This is an abstract method to get the athlete's ECG
 	*/
 	virtual ECG* getECG() const;
 

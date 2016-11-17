@@ -61,14 +61,12 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         
     }
     
-    
-    
 	// Read information of this level
-    ifstream inStreamLevel;
+	ifstream inStreamLevel;
 
 	//Read information of athletes
-    
-    inStreamLevel.open(this->pathToLevelAthletesFile);
+
+	inStreamLevel.open(this->pathToLevelAthletesFile);
 
 	while (!inStreamLevel.eof()) {
 
@@ -77,17 +75,16 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 
 		if (tmpAthlete == FILE_SEPARATOR)
 			break;
-        
-        if(tmpAthlete.length() == 0) {
-            continue;
-        }
+
+		if (tmpAthlete.length() == 0) {
+			continue;
+		}
 
 
 		unsigned int tmpAthleteId = stoi(readAndCut(tmpAthlete));
 
 		string tmpAthletePos = readAndCut(tmpAthlete);
-		
-
+	
 		Info* infoTmpAthlete;
 
 		// Read Goalkeepers specific informations
@@ -100,14 +97,14 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 		}
 
 		// Read Defenders specific informations
-		else if(stoi(tmpAthletePos) == DefenderPos){
+		else if (stoi(tmpAthletePos) == DefenderPos) {
 
             istringstream inStream(tmpAthlete);
 			infoTmpAthlete = new InfoDF(inStream);
 		}
 
 		// Read Midfielders specific informations
-		else if(stoi(tmpAthletePos) == MidfielderPos) {
+		else if (stoi(tmpAthletePos) == MidfielderPos) {
 
             istringstream inStream(tmpAthlete);
             infoTmpAthlete = new InfoMF(inStream);
@@ -119,15 +116,15 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
             istringstream inStream(tmpAthlete);
             infoTmpAthlete = new InfoFW(inStream);
 		}
-			
+
 
 		this->mapInfoPlayers.insert({ tmpAthleteId, infoTmpAthlete });
-        
-        map<unsigned int, Worker*> tmpMap =  parentClub->getAthletes();
-        
-        Worker* thisWorker = parentClub->getAthletes().at(tmpAthleteId);
-        
-        thisWorker->addInfo(infoTmpAthlete);
+
+		map<unsigned int, Worker*> tmpMap = parentClub->getAthletes();
+
+		Worker* thisWorker = parentClub->getAthletes().at(tmpAthleteId);
+
+		thisWorker->addInfo(infoTmpAthlete);
 
 	}
 
@@ -136,25 +133,25 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
 	// Read information of coaches
 
 	inStreamLevel.open(pathToLevelCoachesFile);
-    
-    string mainCoach;
-    getline(inStreamLevel, mainCoach);
-    
-    if(mainCoach.length() != 0) {
-        this->levelMainCoach = stoi(mainCoach);
-    }
-    else {
-        this->levelMainCoach = -1;
-    }
-    
+
+	string mainCoach;
+	getline(inStreamLevel, mainCoach);
+
+	if (mainCoach.length() != 0) {
+		this->levelMainCoach = stoi(mainCoach);
+	}
+	else {
+		this->levelMainCoach = -1;
+	}
+
 	while (!inStreamLevel.eof()) {
 
 		string tmpCoach;
 		getline(inStreamLevel, tmpCoach);
-        
-        if(tmpCoach.length() == 0) {
-            continue;
-        }
+
+		if (tmpCoach.length() == 0) {
+			continue;
+		}
 
 		coachesIdsVector.push_back(stoi(tmpCoach));
 	}
@@ -249,9 +246,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         
         
     }
-    
-    
 
+	inStreamLevel.close();
 }
 
 unsigned int Level::getMinAge() const
@@ -267,7 +263,6 @@ unsigned int Level::getMaxAge() const
 char Level::getMinHeight() const
 {
 	return minHeight;
-
 }
 
 map<unsigned int, Info*> Level::getMapInfoPlayers() const{

@@ -10,11 +10,23 @@ private:
     vector<unsigned int> playersTrained;
 
 public:
+	//! Training's constructor
+	/*!
+	* This is a constructor that creates a new training using the training's date and training's id
+	*/
     Training(Date trainingDate, vector<unsigned int> playersIds, unsigned int id = 0);
+
     Training(istream& iss);
     static void resetID(unsigned int newId);
-    
+	
+	/*!
+	*	This is a method that gets the training's date
+	*/
 	Date getTrainingDate() const;
+	
+	/*!
+	*	This is a method that the training's id
+	*/
 	unsigned int getId() const;
     vector<unsigned int> getPlayers() const;
     

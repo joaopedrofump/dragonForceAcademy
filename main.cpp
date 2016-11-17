@@ -68,4 +68,7 @@ int main(int argc, const char * argv[]) {
 		cout << "Something went wrong.";
 	}
 	return 0;
+
+	cout << endl;
+	system("pause");
 }

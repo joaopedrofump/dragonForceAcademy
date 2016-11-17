@@ -43,3 +43,4 @@ string Season::getPathToSeasonFolder() const {
 string Season::getSeasonName() const {
     return this->seasonName;
 }
+
