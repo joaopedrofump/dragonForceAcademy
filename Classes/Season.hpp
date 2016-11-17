@@ -2,21 +2,20 @@
 
 #include "Level.h"
 
-//#include "Goalkeeper.hpp"
-
-
 class Club;
 class Season {
 	unsigned int year;
-
 	vector<Level*> levels;
-	
-	string fileName;
+	string pathToSeasonFolder;
+    string seasonName;
 
 public:
 	Season(unsigned int year, vector<Level*> levelsVector);
-	Season(ifstream &in, string fileClub, Club* club);
-
+	Season(string seasonName, Club* parentClub);
 	unsigned int getYear() const;
 	vector<Level*> getLevels() const;
+    string getPathToSeasonFolder() const;
+    string getSeasonName() const;
 };
+
+

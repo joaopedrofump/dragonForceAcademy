@@ -9,17 +9,35 @@
 
 #ifndef ECG_hpp
 #define ECG_hpp
+#include "InfoAthletes.hpp"
 
 class ECG {
 
 private:
-    bool resultado;
-	Date expirationDate;
+    bool resultado; //ECG's result
+	Date expirationDate; //ECG's expiration date
 
 public:
-    ECG(bool resultado);
-    ECG& setResultado(bool resultado);
-    bool getResultado() const;
+	//! ECG's constructor
+	/*!
+	*	Creates a new ECG using result and expiration date
+	*/
+	ECG(bool resultado, Date expirationDate);
+    
+	/*!
+	*	This is a method that gets the ECG's result
+	*/
+	bool getResultado() const;
+    
+	/*!
+	*	This is a method that gets the ECG's expiration date
+	*/
+	Date getExpirationDate() const;
+	
+	/*!
+		This is a method that shows all the ECG's information on the screen
+	*/
+	string showInScreen() const;
 };
 
 #endif /* ECG_hpp */

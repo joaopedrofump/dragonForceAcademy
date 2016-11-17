@@ -5,27 +5,56 @@
 //  Created by Joao Furriel on 12/10/16.
 //  Copyright © 2016 João Furriel Pinheiro. All rights reserved.
 //
+#ifdef __llvm__
 
 #include "Menus.h"
 
-int main(int argc, const char * argv[]) {
+#elif _MSC_VER
 
+#include "Classes\Menus.h"
+
+#endif
+
+int main(int argc, const char * argv[]) {
 
 	//Ask the user if there is already a club, or if it will be created.
 
-	string club;
-
-	if (!initialInfo(club)) {
-		cout << Table({ "Could not read all the files. Please check the files." }) << endl;
-		ignoreLine(false);
-		return(1);
+	string clubName;
+    
+    try {
+        
+        initialInfo(clubName);
+		
+		Club currentClubInProgram(clubName);
+        
+        currentClubInProgram.saveChanges();
+        
+        
+        
+        initialOptions(currentClubInProgram);
+        
+        //currentClubInProgram.updateECG(1, true);
+        
+        
+    
+    }
+    
+    catch(InvalidDate e) {
+        
+        cout << e.getMessage() << endl;
+        
+    }
+    
+    catch(InvalidStream invalidStream) {
+        
+        cout << invalidStream.getMessage() << endl;
+        
+    }
+	catch (...) {
+		cout << "Qualquer excepcao";
 	}
-
-	//Create the club of the current program running
-	Club currProgramClub(club);
-
-	initialOptions(currProgramClub);
-
-	system("PAUSE");
 	return 0;
+
+	cout << endl;
+	system("pause");
 }

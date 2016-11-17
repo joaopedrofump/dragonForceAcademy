@@ -11,22 +11,63 @@
 #define Athlete_hpp
 
 #include "Coach.hpp"
-#include "ECG.hpp"
 
 class Athlete : public Worker {
     
 protected:
-    unsigned char height;
+    unsigned char height; //Athlete's height
     ECG* ecg; //apontador para ECG quando houver classe
-	Position position;
+	Position position; //Athlete's position
 
 public:
-    Athlete(string name, Date birthdate, unsigned char height, Position position);
-	Athlete(ifstream &in);
-    ~Athlete();
-    virtual Position getPosition() const = 0;
-    void addECG(bool resultado);
-	unsigned char getHeight() const;
+	/*!
+	* This is the constructor that creates an athleteuses name, birthdate, civilID, height. The id is set automatically
+	*/
+    Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id = 0);
+	
+	/*!
+	*	This is the constructor that uses his subposition passed by reference and his position
+	*/
+	Athlete(string &newAthlete, Position position);
+
+	//! Athlete's class destructor
+	 ~Athlete();
+	
+	 /*!
+	 * This is a method that gets the athlete's position
+	 */
+    unsigned int getPosition() const;
+
+	/*!
+	*	This is a method that gets the athlete's height
+	*/
+	unsigned int getHeight() const;
+
+	/*!
+	*	This is a method that return a pointer to the athlete's ECG  
+	*/
+	ECG* getECG() const;
+    
+	/*!
+	*	This is a method that updates the athlete's ECG (result and expiration date)
+	*/
+    void updateECG(bool resultado, Date expirationDate);
+
+	/*!
+	*	This is a method that checks if the worker is an athlete
+	*/
+	bool isAthlete() const;
+    
+	/*!
+	*	This is a method that generates the athlete's performance information
+	*/
+    string generateInfo() const;
+    
+	/*!
+		This is a method that shows all the athlete's informaton on the screen
+	*/
+    vector<string> showInScreen() const;
+
 };
 
 #endif /* Athlete_hpp */

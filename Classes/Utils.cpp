@@ -8,15 +8,28 @@
 
 #include "Utils.hpp"
 
+string path() {
+	
+#ifdef __llvm__
+
+	string path = "";
+
+#elif _MSC_VER
+
+	string path = "..\\Debug\\";
+
+#endif
+	return path;
+}
+
+
 // ===========================================
 // ==============  DATE  =====================
 // ===========================================
 
 // date in form DD/MM/YYYY
 
-Date::Date(bool currentDate) {
-    
-    if (currentDate) {
+Date::Date() {
         
 #ifdef __llvm__
         
@@ -26,32 +39,18 @@ Date::Date(bool currentDate) {
         this->day = timePtr->tm_mday;
         this->month = (timePtr->tm_mon) + 1;
         this->year = timePtr->tm_year + 1900;
-        this->valid = this->isValid();
         
 #elif _MSC_VER
         
         time_t t = time(NULL);
         struct tm timeInfo;
         localtime_s(&timeInfo, &t);
-        
         this->day = timeInfo.tm_mday;
         this->month= (timeInfo.tm_mon) + 1;
         this->year = timeInfo.tm_year + 1900;
-        this->valid = this->isValid();
         
 #endif
-        
-    }
     
-    else {
-        
-        this->day = 0;
-        this->month = 0;
-        this->year = 0;
-        this->valid = this->isValid();
-        
-        
-    }
     
 }
 
@@ -60,35 +59,45 @@ Date::Date(string dataStr) {
     stringstream dataStream(dataStr);
     char separator1;
     char separator2;
+    int tmpDay;
+    int tmpMonth;
+    int tmpYear;
     
-    dataStream >> this->day;
+    dataStream >> tmpDay;
     dataStream >> separator1;
-    dataStream >> this->month;
+    dataStream >> tmpMonth;
     dataStream >> separator2;
-    dataStream >> this->year;
+    dataStream >> tmpYear;
     
     if (separator1 != '/' || separator2 != '/') {
         
-        valid = false;
+        throw InvalidDate(InvalidSeparators,0,0,0);
         
     }
     
-    else {
-        
-        this->valid = isValid();
-        
-    }
-    
+    *this = Date(tmpDay,tmpMonth,tmpYear);
     
 }
 
 Date::Date(unsigned int day, unsigned int month, unsigned int year) {
     
+    if (year < 1900 || year > 2100) {
+        throw InvalidDate(InvalidYear, day, month, year);
+    }
+    
+    if (month <= 0 || month > 12) {
+        
+        throw InvalidDate(InvalidMonth, day, month, year);
+    }
+    
+    if ((day <= 0) || (day  > numDays(month, year))) {
+        
+        throw InvalidDate(InvalidDay, day, month, year);
+    }
+    
     this->day = day;
     this->month = month;
     this->year = year;
-    
-    this->valid = isValid();
     
 }
 
@@ -106,27 +115,53 @@ int Date::getYear() const {
 
 void Date::setDay(int day) {
     
+    if ((day <= 0) || (day  > numDays(this->month, this->year))) {
+        
+        throw InvalidDate(InvalidDay, day, this->month, this->year);
+    }
+    
     this->day = day;
     
 }
 
 void Date::setMonth(int month) {
+    
+    if (month <= 0 || month > 12) {
+        
+        throw InvalidDate(InvalidYear, this->day, month, this->year);
+    }
+    
+    if ((this->day <= 0) || (this->day  > numDays(month, this->year))) {
+        
+        throw InvalidDate(InvalidDay, this->day, month, this->year);
+    }
+    
     this->month = month;
 }
 
 void Date::setYear(int year) {
+    
+    if (year < 1900) {
+        throw InvalidDate(InvalidYear, this->day, this->month, year);
+    }
+    
+    if ((this->day <= 0) || (this->day  > numDays(this->month, year))) {
+        
+        throw InvalidDate(InvalidDay, day, this->month, year);
+    }
+    
     this->year = year;
 }
 
-bool Date::isLeap() const {
+bool Date::isLeap(int year) const {
     
-    if (this->year % 400 == 0) {
+    if (year % 400 == 0) {
         return true;
     }
     
     else {
         
-        if (this->year % 4 == 0 && this->year % 100 != 0) {
+        if (year % 4 == 0 && year % 100 != 0) {
             return true;
         }
         
@@ -136,14 +171,14 @@ bool Date::isLeap() const {
     }
 }
 
-int Date::numDays() const {
+int Date::numDays(int month, int year) const {
     
-    switch (this->year) {
+    switch (month) {
         case 4: case 6: case 9: case 11:
             return 30;
             break;
         case 2:
-            if (this->isLeap()) {
+            if (this->isLeap(year)) {
                 return 29;
             }
             else {
@@ -155,27 +190,6 @@ int Date::numDays() const {
             return 31;
             break;
     }
-}
-
-bool Date::isValid() {
-    
-    if (this->year < 1900) {
-        return false;
-    }
-    
-    if (this->month == 0 || this->year > 12) {
-        
-        return false;
-    }
-    
-    if ((this->day == 0) || (this->day  > numDays())) {
-        
-        return false;
-    }
-    
-    return true;
-    
-    
 }
 
 bool operator>=(const Date &date1, const Date date2) {
@@ -232,54 +246,43 @@ bool operator>=(const Date &date1, const Date date2) {
     
 }
 
+bool operator<(const Date &date1, const Date &date2) {
+    return !(date1 >= date2);
+}
+
 void Date::save(ofstream &out) const {
     
     out << this;
     
 }
 
-bool Date::getValid() const {
-    
-    return this->valid;
-    
-}
-
 ostream& operator<<(ostream& out, const Date &data) {
     
-    if (data.getValid()) {
-        out << data.getDay() << "/" << data.getMonth() << "/" << data.getYear();
-    }
-    
-    else {
-        
-        out << "Data Inválida";
-        
-    }
-    
+    out << data.getDay() << "/" << data.getMonth() << "/" << data.getYear();
     return out;
 }
 
-unsigned int operator-(const Date & date)
+int operator-(const Date &date1, const Date &date2)
 {
-	Date currentDate(true);
 	
-
-	if (date.getMonth() > currentDate.getMonth())
+	if (date2.getMonth() > date1.getMonth())
 	{
-		return (currentDate.getYear() - date.getYear() - 1);
+		return (date1.getYear() - date2.getYear() - 1);
 	}
 
-	if (date.getMonth() == currentDate.getMonth())
+	if (date2.getMonth() == date1.getMonth())
 	{
-		if (date.getDay() > currentDate.getDay())
+		if (date2.getDay() > date1.getDay())
 		{
-			return (currentDate.getYear() - date.getYear() - 1);
+			return (date1.getYear() - date2.getYear() - 1);
 		}
 		else
 		{
-			return (currentDate.getYear() - date.getYear());
+			return (date1.getYear() - date2.getYear());
 		}
 	}
+    
+    return date1.getYear() - date2.getYear();
 }
 
 string Date::showDate() const {
@@ -351,6 +354,12 @@ void Date::setCurrentDate() {
 #endif
     
 }
+
+string Date::str() const {
+	return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
+}
+
+
 
 
 // ===========================================
@@ -577,7 +586,7 @@ ostream& operator<<(ostream& out, const Table &tableToShow) {
 
 Fraction::Fraction() {
 	numerator = 0;
-	denominator = 1;
+	denominator = 0;
 }
 
 Fraction::Fraction(int newNumerator, int newDenominator) {
@@ -593,6 +602,9 @@ Fraction::Fraction(string fractionString) {
 }
 
 void Fraction::reduce() {
+
+	if (numerator == 0 && denominator == 0)
+		return;
 
 	int num = numerator;
 	int den = denominator;
@@ -621,6 +633,9 @@ void Fraction::reduce() {
 //  Operations as fractions
 
 Fraction Fraction::operator+(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+	
 	Fraction  result;
 	result.numerator = (numerator * value.denominator) + (value.numerator*denominator);
 	result.denominator = denominator * value.denominator;
@@ -629,11 +644,17 @@ Fraction Fraction::operator+(Fraction value) const {
 }
 
 void Fraction::operator+=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = (numerator * value.denominator) + (value.numerator*denominator);
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator-(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction  result;
 	result.numerator = (numerator * value.denominator) - (value.numerator*denominator);
 	result.denominator = denominator * value.denominator;
@@ -641,11 +662,17 @@ Fraction Fraction::operator-(Fraction value) const {
 }
 
 void Fraction::operator-=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = (numerator * value.denominator) - (value.numerator*denominator);
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator*(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction result;
 	result.numerator = numerator * value.numerator;
 	result.denominator = denominator * value.denominator;
@@ -653,11 +680,17 @@ Fraction Fraction::operator*(Fraction value) const {
 }
 
 void Fraction::operator*=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+
 	this->numerator = numerator * value.numerator;
 	this->denominator = denominator * value.denominator;
 }
 
 Fraction Fraction::operator/(Fraction value) const {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return *this;
+
 	Fraction result;
 	result.numerator = numerator * value.denominator;
 	result.denominator = denominator * value.numerator;
@@ -665,6 +698,9 @@ Fraction Fraction::operator/(Fraction value) const {
 }
 
 void Fraction::operator/=(Fraction &value) {
+	if (numerator == 0 && denominator == 0 | (value.numerator == 0 && value.denominator == 0))
+		return;
+	
 	this->numerator = numerator * value.denominator;
 	this->denominator = denominator * value.numerator;
 }
@@ -672,10 +708,21 @@ void Fraction::operator/=(Fraction &value) {
 //  Comparers
 
 bool Fraction::operator<(Fraction value) const {
+
+
 	double frac1;
 	double frac2;
-	frac1 = (numerator*1.0 / denominator);
-	frac2 = (value.numerator*1.0 / value.denominator);
+	if (denominator == 0)
+		frac1 = (numerator*1.0 / denominator + 1);
+	else
+		frac1 = (numerator*1.0 / denominator);
+
+	if (denominator == 0)
+		frac2 = (value.numerator*1.0 / value.denominator + 1);
+	else
+		frac2 = (value.numerator*1.0 / value.denominator);
+
+	
 	return frac1 < frac2;
 }
 
@@ -709,7 +756,7 @@ Fraction Fraction::operator|(Fraction value) const {
 
 }
 
-void Fraction::operator|=(Fraction &value) {
+void Fraction::operator|=(const Fraction &value) {
 	this->numerator = numerator + value.numerator;
 	this->denominator = denominator + value.denominator;
 }
@@ -760,6 +807,11 @@ void Fraction::printPercentage() const {
 	cout << fixed << setprecision(2) << 100 * number << "%";
 }
 
+string Fraction::getFrac() const {
+    
+    return (to_string(this->numerator) + "/" +  to_string(this->denominator));
+}
+
 // ===========================================
 // ==============  FUNCTIONS  ================
 // ===========================================
@@ -785,70 +837,66 @@ void trimString(string &inputString) {
 	}
 }
 
-bool validateName(string &nome) {
+bool validateName(string &name) {
 
-	trimString(nome);
+	trimString(name);
 
-	stringstream nomeStream(nome); //stringStream que contém o nome do cliente
-	vector<string> nomes; //vector com a lista de nomes do cliente
+	stringstream nomeStream(name); //stringStream that contains the name
+	vector<string> names; //vector with a list of names
 
-						  //verificar se contém digitos
+	//verify if it contains digits
 
-	for (size_t i = 0; i < nome.size(); i++) {
+	for (size_t i = 0; i < name.size(); i++) {
 
-		if (isdigit((int)nome.at(i))) {
+		if (isdigit((int)name.at(i))) {
 
-			cout << "O nome não pode conter digitos, apenas letras." << endl;
+			throw InvalidInput("The name cannot contain digits, only letters.");
 			return false;
 
 		}
 
 	}
 
-	//preencher o vector com os nomes
+	//fill the vector with the names
 
 	while (!nomeStream.eof()) {
-		string nomeActual;
-		getline(nomeStream, nomeActual, ' ');
-		nomes.push_back(nomeActual);
+		string currentName;
+		getline(nomeStream, currentName, ' ');
+		names.push_back(currentName);
 
 
 	}
 
-	//verificar se tem pelo menos dois nomes
+	//verify if it contains at least two names
 
-	if (nomes.size() < 2) {
+	if (names.size() < 2) {
 
-		cout << "O nome do cliente tem de ser constituído por pelo menos dois nomes" << endl;
+		throw InvalidInput("The name must be comprised of at least two names.");
 		return false;
 
 	}
 
-	//verificar que cada nome tem pelo menos 3 letras
+	//verify if each name contains at least two letters
 
-	for (size_t i = 0; i < nomes.size(); i++) {
+	for (size_t i = 0; i < names.size(); i++) {
 
-		if (nomes.at(i).size() < 2) {
+		if (names.at(i).size() < 2) {
 
-			cout << "Cada nome tem de conter pelo menos duas letras." << endl;
+			throw InvalidInput("Each name must contain at least two letters.");
 			return false;
 
 		}
 	}
 
-	nome.at(0) = (char)toupper(nome.at(0));
+	name.at(0) = (char)toupper(name.at(0));
 
 
+	for (size_t i = 0; i < name.size() - 1; i++) {
 
-	for (size_t i = 0; i < nome.size() - 1; i++) {
+		if (name.at(i) == ' ') {
 
-		if (nome.at(i) == ' ') {
-
-			nome.at(i + 1) = toupper(nome.at(i + 1));
-
+			name.at(i + 1) = toupper(name.at(i + 1));
 		}
-
-
 	}
 
 	return true;
@@ -952,62 +1000,105 @@ void ignoreLine(bool ignoreControl, string message) {
 
 }
 
-bool leUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string mensagemErro) {
+bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage) {
 
 	string inputUser;
-	bool resultadoBool = false;
+	bool result = false;
 
-	Table tabelaMensagemErro({ mensagemErro });
+	Table tableErrorMessage({ errorMessage });
 
 	getline(cin, inputUser);
-	stringstream inteirosStream(inputUser);
+	stringstream integersStream(inputUser);
 	trimString(inputUser);
 
 	if (inputUser.size() == 0) {
 
 		input = 0;
 		return true;
-
 	}
 
-	while (!inteirosStream.eof()) {
+	while (!integersStream.eof()) {
 
 		unsigned short int currentInt;
-		inteirosStream >> currentInt;
+		integersStream >> currentInt;
 
-		if (inteirosStream.fail()) {
+		if (integersStream.fail()) {
 
-			inteirosStream.clear();
-			inteirosStream.ignore(1);
-
-
+			integersStream.clear();
+			integersStream.ignore(1);
 		}
-
-		else {
-
+		else if (currentInt > max || currentInt < min) {
+			throw InvalidInput(errorMessage);
+		}
+		else{
 			input = currentInt;
-			resultadoBool = true;
+			result = true;
 			break;
+		}
+	}
+
+	if (!result) {
+
+		throw InvalidInput(errorMessage);
+	}
+
+	return result;
+}
+
+bool readDate(vector<Date> &resultVector, string message, string errorMessage) {
+
+
+	string dates;
+	bool resultBool = false;
+
+
+
+	Table tableMessage({ message });
+	Table tableErrorMessage({ errorMessage });
+	cout << tableMessage << endl;
+	getline(cin, dates);
+	stringstream datesStream(dates);
+	trimString(dates);
+
+	if (dates.size() == 0) {
+
+		return true;
+	}
+
+	while (!datesStream.eof()) {
+
+		string currentDateStr;
+		getline(datesStream, currentDateStr, ' ');
+
+		Date currentDate(currentDateStr);
+
+		resultVector.push_back(currentDate);
+		resultBool = true;
+
+		if (resultVector.size() == 2) {
+
+			resultBool = true;
 
 		}
-
-
 	}
 
-	if (!resultadoBool) {
+	if (!resultBool) {
 
-		cout << tabelaMensagemErro << endl;
-
-
+		cout << tableErrorMessage << endl;
 	}
 
-	return resultadoBool;
-
-
-
+	return resultBool;
 
 }
 
+
+bool emptyString(string stringTest) {
+
+	if (stringTest.size() == 0) {
+		return true;
+	}
+	return false;
+}
 
 // ===========================================
 // ===========  ENUMS & MAPS =================
@@ -1037,3 +1128,78 @@ extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
 { "CDM", CentreForward },
 { "CAM", RigthWinger },
 { "LM", LeftWinger } };
+
+
+int createDirectory(const char* path) {
+    
+#ifdef __llvm__
+    
+    mkdir(path, 0777);
+    return 0;
+
+#elif _MSC_VER
+    
+    _mkdir(path);
+    return 0;
+
+#endif
+    
+}
+
+string stringPath(string originalStr) {
+    
+#ifdef __llvm__
+    
+    return originalStr;
+#endif
+
+	string result = "";
+
+	for (size_t i = 0; i < originalStr.size(); i++) {
+
+		if (originalStr.at(i) == '/') {
+
+			result += "\\";
+
+		}
+		else {
+			result += originalStr.at(i);
+		}
+
+	}
+
+	return result;
+    
+}
+
+string getLevelFromAge(Date birthDate) {
+    
+    unsigned int age = Date() - birthDate;
+    
+    if (age < 13)
+        return "Under 13";
+    
+    else if (age >= 13 && age < 15)
+        return "Under 15";
+    
+    else if (age >= 15 && age < 17)
+        return "Under 17";
+    
+    else if (age >= 17 && age < 19)
+        return "Under 19";
+    
+    else if (age >= 19 && age < 45)
+        return "Seniors";
+    
+    else
+        return "No Level available";
+}
+
+string readAndCut(string &stringToCut) {
+
+	string result = stringToCut.substr(0, stringToCut.find(';', 0) - 1);
+
+	stringToCut = stringToCut.substr(stringToCut.find(';', 0) + 2);
+
+	return result;
+}

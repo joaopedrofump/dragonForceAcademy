@@ -2,19 +2,20 @@
 
 #include "Goalkeeper.hpp"
 
-using namespace std;
-
 class Club;
-class Level
-{
+
+class Level {
 private:
 	
-	ageLevel ageLevelName;
+	ageLevel levelEnum;
+    string levelName;
+    string pathToLevelFolder;
+    string pathToLevelAthletesFile;
+    string pathToLevelCoachesFile;
 
-	vector<Coach*> trainers;
-	map<Athlete*, Info*> mapInfoSeason;
-
-	Coach* mainCoach;
+    int levelMainCoach;
+	vector<unsigned int> coachesIdsVector;
+	map<unsigned int, Info*> mapInfoPlayers;
 
 	unsigned int minAge;
 	unsigned int maxAge;
@@ -28,13 +29,19 @@ private:
 public:
 
 	//Level(ageLevel ageLevelName, vector<Coach*> coachesVector, map<Athlete*, Info*> mapInfoSeason);
-	Level(ifstream &in, string yearOfSeason, string fileClub, Club* club); 
+	Level(string yearOfSeason, string pathToSeasonFolder, string levelName, Club* parentClub);
 	unsigned int getMinAge() const;
 	unsigned int getMaxAge() const;
 	char getMinHeight() const;
-	map<Athlete*, Info*> getMapInfoSeason() const;
-
-
+    map<unsigned int, Info*> getMapInfoPlayers() const;
+    vector<unsigned int> getCoaches() const;
+    Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
+    string getLevelName() const;
+    int getMainCoachId() const;
+    
+    string getPathToLevelFolder() const;
+    string getPathToLevelAthletesFile() const;
+    string getPathToLevelCoachesFile() const;
 
 
 

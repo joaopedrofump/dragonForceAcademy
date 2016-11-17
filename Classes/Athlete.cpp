@@ -8,13 +8,27 @@
 
 #include "Athlete.hpp"
 
-Athlete::Athlete(string name, Date birthdate, unsigned char height, Position position) : Worker(name, birthdate, id) {
+Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id) : Worker(name, birthdate, civilID, id) {
     
     this->height = height;
     this->ecg = NULL;
-	this->position = position;
-    
+
+	if (id != 0) {
+        this->id = id;
+    }
 }
+
+Athlete::Athlete(string &newAthlete, Position position) : position(position) {
+
+	this->name = readAndCut(newAthlete);
+	this->birthdate = Date(readAndCut(newAthlete));
+	this->height = stoi(readAndCut(newAthlete));
+
+	if(newAthlete != "NONE")
+		this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
+}
+
+
 
 Athlete::~Athlete() {
     
@@ -25,12 +39,86 @@ Athlete::~Athlete() {
     
 }
 
-void Athlete::addECG(bool resultado) {
+void Athlete::updateECG(bool resultado, Date expirationDate) {
     
-    this->ecg = new ECG(resultado);
+    ECG* tmpECG = 0;
+    try {
+        tmpECG = new ECG(resultado, expirationDate);
+    } catch (...) {
+        cout << "error adding new ECG, ECG invalid" << endl;
+    }
+    
+    if(!this->ecg) {
+        this->ecg = tmpECG;
+    }
+    else {
+        delete this->ecg;
+        this->ecg = tmpECG;
+    }
+    
 }
 
-unsigned char Athlete::getHeight() const
-{
+bool Athlete::isAthlete() const {
+
+	return true;
+
+}
+
+unsigned int Athlete::getPosition() const {
+	return position;
+}
+
+unsigned int Athlete::getHeight() const {
 	return height;
+}
+
+ECG* Athlete::getECG() const {
+	return this->ecg;
+}
+
+string Athlete::generateInfo() const {
+    
+    return (to_string(this->getID()) + " ; " + to_string(this->getPosition()) + " ; " + this->name + " ; " + this->getBirthdate().showDate() + " ; " + to_string(this->height));
+    
+}
+
+vector<string> Athlete::showInScreen() const {
+    vector<string> result = Worker::showInScreen();
+    
+    string playerHeight = to_string((float)this->height/100);
+    string playerHeightFinal;
+    for (size_t i = 0; i < 4; i++) {
+        playerHeightFinal+=playerHeight.at(i);
+    }
+    
+    result.push_back(playerHeightFinal + " m");
+    string playerPosition;
+    switch (this->position) {
+        case GoalkeeperPos:
+            playerPosition = "GoalKeeper";
+            break;
+        case DefenderPos:
+            playerPosition = "Defender";
+            break;
+        case MidfielderPos:
+            playerPosition = "Midfielder";
+            break;
+        case ForwardPos:
+            playerPosition = "Forward";
+            break;
+    }
+    result.push_back(playerPosition);
+
+    result.push_back(getLevelFromAge(this->birthdate));
+
+    string workerStatus = this->status ? "ACTIVE" : "INACTIVE";
+    result.push_back(workerStatus);
+
+	if (this->getECG())
+		result.push_back(this->getECG()->showInScreen());
+	else
+		result.push_back("NONE");
+
+	return result;
+    
 }

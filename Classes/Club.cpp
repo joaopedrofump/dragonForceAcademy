@@ -1,13 +1,16 @@
 #include "Club.hpp"
 
 #include "Season.hpp"
-#include "Level.h"
+//#include "Level.h"
 
-Club::Club(string name, vector<Season*> seasonsVector) : name(name), seasons(seasonsVector) {}
+Club::Club(string clubName) {
 
-Club::Club(string fileClub) {
-
-	this->fileName = fileClub + "\\club.txt";
+    this->clubName = clubName;
+	string pathtest = path();
+    this->pathToClubFolder = stringPath((pathtest + clubName));
+    this->pathToClubAthletesFile = stringPath(this->pathToClubFolder + "/athletes.txt");
+    this->pathToClubCoachesFile = stringPath(this->pathToClubFolder+ "/coaches.txt");
+    this->pathToClubInfoFile = stringPath(this->pathToClubFolder + "/club.txt");
 
 	// =============================
 	// ======  Read Coaches  ======
@@ -15,31 +18,22 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamCoaches;
 
-	inStreamCoaches.open(fileClub + string("\\Coaches.txt").c_str());
+    inStreamCoaches.open(this->pathToClubCoachesFile);
 	
 	while (!inStreamCoaches.eof()) {
 
 		string tmpString;
 		getline(inStreamCoaches, tmpString);
+        
+		// Empty file
+        if(tmpString.length()==0) {
+            continue;
+        }
 
-		unsigned int newCoachId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
+		// New Coach
+		Worker* newCoach = new Coach(tmpString);
 
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
-
-		string newCoachName = tmpString.substr(0, tmpString.find(';', 0));
-
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
-
-		Date newCoachBirthdate = Date(tmpString.substr(0, tmpString.find(';', 0)));
-
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
-
-		CoachType newCoachPosition = coachTypeMap.at(tmpString);
-
-
-		Worker* newCoach = new Coach(newCoachName, newCoachBirthdate, newCoachPosition, newCoachId);
-
-		this->allWokers.push_back(newCoach);
+		this->allWorkers.insert(pair<unsigned int, Worker*>(newCoach->getID(), newCoach));
 
 	}
 
@@ -51,45 +45,71 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamAthletes;
 
-	inStreamAthletes.open(fileClub + string("\\Athletes.txt").c_str());
+    inStreamAthletes.open(this->pathToClubAthletesFile);
 
 	while (!inStreamAthletes.eof()) {
 
 		string tmpString;
 		getline(inStreamAthletes, tmpString);
+        
+		// Empty file/line
+        if(tmpString.length()==0) {
+            continue;
+        }
 
-		unsigned int newAthleteId = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
+		//Read the last line of file that contains inactive athletes
+		if (tmpString == FILE_SEPARATOR) {
+			//string tmpString;
+			getline(inStreamAthletes, tmpString);
 
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+			unsigned int athleteId;
 
-		string newAthleteName = tmpString.substr(0, tmpString.find(';', 0));
+			stringstream inactiveClientsStream(tmpString);
 
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+			while (!inactiveClientsStream.eof()) {
 
-		Date newAthleteBirthdate = Date(tmpString.substr(0, tmpString.find(';', 0)));
+				inactiveClientsStream >> athleteId;
 
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+				if (inactiveClientsStream.fail()) {
 
-		unsigned int newAthleteHeigth = atoi(tmpString.substr(0, tmpString.find(';', 0)).c_str());
+					break;
+				}
 
-		tmpString = tmpString.substr(tmpString.find(';', 0) + 2);
+				this->allWorkers.at(athleteId)->setStatus(false);
+			}
+			break;
+		}
 
+		// Read athlete informations:
+		
+		//ID
+		unsigned int newAthleteId = stoi(readAndCut(tmpString));
+        
+		//Civil ID
+        unsigned int newAthleteCivilId = stoi(readAndCut(tmpString));
 
-		Position newAthletePosition = positionsMap.at(tmpString);
+		//Position
+		unsigned int newAthletePosition = stoi(readAndCut(tmpString));
 
-		Worker* newAthlete;
+		Worker* newAthlete = 0;
 
 		if (newAthletePosition == GoalkeeperPos) {
-			newAthlete = new Goalkeeper(newAthleteName, newAthleteBirthdate, newAthleteHeigth, newAthleteId);
+			newAthlete = new Goalkeeper(tmpString);
 		}
 		else if (newAthletePosition == DefenderPos) {
-			newAthlete = new Defender(newAthleteName, newAthleteBirthdate, newAthleteHeigth, newAthleteId);
+			newAthlete = new Defender(tmpString);
 		}
 		else if (newAthletePosition == MidfielderPos) {
-			newAthlete = new Midfielder(newAthleteName, newAthleteBirthdate, newAthleteHeigth, newAthleteId);
+			newAthlete = new Midfielder(tmpString);
+		}
+		else if (newAthletePosition == ForwardPos) {
+			newAthlete = new Forward(tmpString);
 		}
 
-		this->allWokers.push_back(newAthlete);
+		newAthlete->setId(newAthleteId);
+        newAthlete->setCivilId(newAthleteCivilId);
+
+		this->allWorkers.insert(pair<unsigned int, Worker*>(newAthlete->getID(), newAthlete));
 
 	}
 
@@ -101,94 +121,425 @@ Club::Club(string fileClub) {
 
 	ifstream inStreamClub;
 
-	inStreamClub.open(this->fileName.c_str());
+    inStreamClub.open(this->pathToClubInfoFile);
 
 	// Read the Name of the Club
 
 	if (!inStreamClub.eof()) {
-		getline(inStreamClub, this->name);
+		getline(inStreamClub, this->clubName);
 	}
 
 	while (!inStreamClub.eof()) {
-		
-		Season* actualSeason = new Season(inStreamClub, fileClub, this);
+        
+        string seasonName;
+        getline(inStreamClub, seasonName);
+        
+        if(seasonName.length() == 0) {
+            continue;
+        }
+        
+		Season* currentSeason = new Season(seasonName, this);
 
-		this->seasons.push_back(actualSeason);
+		this->seasons.push_back(currentSeason);
 	}
+    
+    inStreamClub.close();
 
-	this->numberOfSeasons = seasons.size();
-
-
+	this->numberOfSeasons = (int)seasons.size();
+    
 }
 
 string Club::getName() const {
-	return name;
+	return this->clubName;
 }
 
-vector<Worker*> Club::getWorkers() const {
-	return allWokers;
+map<unsigned int, Worker*> Club::getWorkers() const {
+	return allWorkers;
 }
 
 vector<Season*> Club::getSeasons() const {
 	return seasons;
 }
 
-void Club::addPlayer(Position pos, string name, Date birthdate, unsigned char height)
-{
-	Date currentDate(true);
-	Season* currentSeason;
-	Athlete* w;
+map<unsigned int, Worker*> Club::getAthletes(bool onlyActives) const {
 
-	try
-	{
+	map<unsigned int, Worker*> result;
+    
+    map<unsigned int, Worker*>::const_iterator workersIterator = this->allWorkers.begin();
+    map<unsigned int, Worker*>::const_iterator workersEnd = this->allWorkers.end();
+    
+    while(workersIterator != workersEnd) {
+        
+        if(workersIterator->second->isAthlete() && (onlyActives ? workersIterator->second->isActive() : true)) {
+            
+            result.insert(*workersIterator);
+            
+        }
+        workersIterator++;
+        
+    }
+
+	return result;
+}
+
+map<unsigned int, Worker*> Club::getInactives() const {
+
+	map<unsigned int, Worker*> result;
+
+	map<unsigned int, Worker*>::const_iterator workersIterator = this->allWorkers.begin();
+	map<unsigned int, Worker*>::const_iterator workersEnd = this->allWorkers.end();
+
+	while (workersIterator != workersEnd) {
+
+		if (workersIterator->second->isAthlete() && !(workersIterator->second->isActive())) {
+
+			result.insert(*workersIterator);
+
+		}
+		workersIterator++;
+
+	}
+
+	return result;
+}
+
+map<unsigned int, Worker*> Club::getCoaches() const {
+
+    map<unsigned int, Worker*> result;
+    
+    map<unsigned int, Worker*>::const_iterator workersIterator = this->allWorkers.begin();
+    map<unsigned int, Worker*>::const_iterator workersEnd = this->allWorkers.end();
+    
+    while(workersIterator != workersEnd) {
+        
+        if(!workersIterator->second->isAthlete()) {
+            
+            result.insert(*workersIterator);
+            
+        }
+        workersIterator++;
+        
+    }
+    
+    return result;
+}
+
+string Club::getPathToClubFolder() const {
+    return this->pathToClubFolder;
+}
+string Club::getPathToClubAthletesFile() const {
+    return this->pathToClubAthletesFile;
+}
+string Club::getPathToClubCoachesFile() const {
+    return this->pathToClubCoachesFile;
+}
+string Club::getPathToClubInfoFile() const {
+    return this->pathToClubInfoFile;
+}
+
+void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civilID, unsigned char height) {
+	
+    
+    if(this->findWorkerByCivilID(civilID) != -1) {
+        throw string("This player is already registered");
+    }
+    
+    Date currentDate;
+    Season* currentSeason = 0;
+    Athlete* athleteToAdd = 0;
+    Info* infoAthleteToAdd = 0;
+
+	try {
 		if (pos == 1)
 		{
-			w = new Goalkeeper(name, birthdate, height);
+			athleteToAdd = new Goalkeeper(name, birthdate, civilID, height);
+            infoAthleteToAdd = new InfoGK();
 			
 		}
 		else if (pos == 2)
 		{
-			w = new Defender(name, birthdate, height);
+			athleteToAdd = new Defender(name, birthdate, civilID, height);
+            infoAthleteToAdd = new InfoDF();
 		
 		}
 		else if (pos == 3)
 		{
-			w = new Midfielder(name, birthdate, height);
+			athleteToAdd = new Midfielder(name, birthdate, civilID, height);
+            infoAthleteToAdd = new InfoMF();
 		}
 		else if (pos == 4)
 		{
-			Worker* w = new Forward(name, birthdate, height);
+			athleteToAdd = new Forward(name, birthdate, civilID, height);
+            infoAthleteToAdd = new InfoFW();
 		}
 		
-		allWokers.push_back(w);
+		allWorkers.insert(pair<unsigned int, Worker*>(athleteToAdd->getID(), athleteToAdd));
 
 		for (unsigned int i = 0; i < seasons.size(); i++)
 		{
 			if (currentDate.getYear() == seasons.at(i)->getYear())
 			{
-				Season* currentSeason;
-				seasons.at(i) = currentSeason;
+				currentSeason = seasons.at(i);
 				break;
 			}
 		}
+        
+		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++) {
 
-		for (unsigned int i = 0; i < currentSeason->getLevels().size(); i++)
-		{
-			if (w->getIdade() > currentSeason->getLevels().at(i)->getMinAge() && w->getIdade() < currentSeason->getLevels().at(i)->getMaxAge())
+			if ((athleteToAdd->getIdade() > currentSeason->getLevels().at(i)->getMinAge()) && (athleteToAdd->getIdade() <= currentSeason->getLevels().at(i)->getMaxAge()))
 			{
-				if (w->getHeight() < currentSeason->getLevels().at(i)->getMinHeight())
-				{
-					currentSeason->getLevels().at(i)->getMapInfoSeason().insert(w);
-				}
+                currentSeason->getLevels().at(i)->addAthleteToLevel(make_pair(athleteToAdd->getID(), infoAthleteToAdd));
 			}
 		}
 	
 	}
-	catch (/*to be completed*/)
-	{
-		
+	/*to be completed*/
+    
+	catch (...)	{
+		cout << "Erro ao criar atleta";
+	}
+    
+}
+
+bool Club::removeAthlete(unsigned int athleteId) {
+
+	//Verify if the athlete exists
+
+	map<unsigned int, Worker*> tmpMap = this->getAthletes();
+	map<unsigned int, Worker*>::const_iterator it = tmpMap.find(athleteId);
+
+	if (it == tmpMap.end()) {
+
+		Table athleteNotFound({ "The Athlete was not found." });
+		cout << athleteNotFound << endl;
+		return false;
+
 	}
 
+	if (it->second->isActive()) {
+
+		this->allWorkers.at(athleteId)->setStatus(false);
+
+		Table athleteCorrectlyRemoved({ "The Athlete was correctly removed." });
+		cout << athleteCorrectlyRemoved << endl;
+	}
+	else {
+
+		Table athleteAlreadyRemoved({ "The Athlete was already removed." });
+		cout << athleteAlreadyRemoved << endl;
+	}
+	return true;
+}
+
+void Club::saveChanges() {
+
+	// Save Athletes
+	ofstream currentFile;
+	currentFile.open(this->pathToClubAthletesFile);
+
+	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
+		if (i->second->isAthlete()) {
+			currentFile << i->second->getID() << " ; ";
+			currentFile << i->second->getCivilID() << " ; ";
+			currentFile << i->second->getPosition() << " ; ";
+			currentFile << i->second->getName() << " ; ";
+			currentFile << i->second->getBirthdate() << " ; ";
+			currentFile << i->second->getHeight() << " ; ";
+
+			if (i->second->getECG()) {
+				currentFile << (i->second->getECG()->getResultado() ? "VALID" : "INVALID") << " ; ";
+				currentFile << i->second->getECG()->getExpirationDate();
+			}
+			else {
+				currentFile << "NONE";
+			}
+
+			if (i != allWorkers.end())
+				currentFile << endl;
+		}
+	}
+
+	currentFile << FILE_SEPARATOR << endl;
+
+	// Save Inactive Players
+
+	map<unsigned int, Worker*> tmpMap = getInactives();
+
+	for (map<unsigned int, Worker*>::const_iterator i = tmpMap.begin(); i != tmpMap.end(); i++) {
+
+		if (!(i->second->isActive())) {
+
+			currentFile << i->second->getID();
+			currentFile << " ";
+
+		}
+
+	}
+
+	currentFile.close();
+	// ================ // ====================
+
+	// Save Coaches
+	currentFile.open(stringPath(pathToClubCoachesFile));
+
+	for (map<unsigned int, Worker*>::const_iterator i = allWorkers.begin(); i != allWorkers.end(); i++) {
+		if (!i->second->isAthlete()) {
+            currentFile << i->second->getID() << " ; ";
+            currentFile << i->second->getCivilID() << " ; ";
+			currentFile << i->second->getName() << " ; ";
+			currentFile << i->second->getBirthdate() << " ; ";
+			currentFile << i->second->getPosition();
+
+			if (i != allWorkers.end())
+				currentFile << endl;
+		}
+	}
+
+	currentFile.close();
+	// ================ // ====================
+
+	// Save club.txt
+
+	currentFile.open(this->pathToClubInfoFile);
+
+	currentFile << this->clubName << endl;
+
+	for (vector<Season*>::iterator i = seasons.begin(); i != seasons.end(); i++) {
+		currentFile << (*i)->getYear();
+
+		if (i != seasons.end())
+			currentFile << endl;
+	}
+	currentFile.close();
+	// ================ // ====================
+
+	// Save Seasons
+
+	for(vector<Season*>::const_iterator i = this->seasons.begin(); i != this->seasons.end(); i++) {
+        
+        ofstream athletesOStream;
+        ofstream coachesOStream;
+        
+        for(unsigned int iteLevels = 0; iteLevels < (*i)->getLevels().size(); iteLevels++) {
+            
+            athletesOStream.open((*i)->getLevels().at(iteLevels)->getPathToLevelAthletesFile());
+            coachesOStream.open((*i)->getLevels().at(iteLevels)->getPathToLevelCoachesFile());
+            
+            map<unsigned int, Info*> tempPlayersMap = (*i)->getLevels().at(iteLevels)->getMapInfoPlayers();
+            
+            map<unsigned int, Info*>::const_iterator playersIterator = tempPlayersMap.begin();
+            
+            while(playersIterator != tempPlayersMap.end()) {
+                
+                athletesOStream << playersIterator->first << " ; ";
+                athletesOStream << this->allWorkers.at(playersIterator->first)->getPosition() << " ; ";
+                athletesOStream << *(playersIterator->second);
+                
+                if (playersIterator != tempPlayersMap.end()) {
+                    athletesOStream << endl;
+                }
+                
+                playersIterator++;
+                
+            }
+        
+            coachesOStream << (*i)->getLevels().at(iteLevels)->getMainCoachId() << endl;
+
+			vector<unsigned int> tmpVectorCoaches = (*i)->getLevels().at(iteLevels)->getCoaches();
+
+			for(vector<unsigned int>::iterator iteratorCoaches = tmpVectorCoaches.begin(); iteratorCoaches != tmpVectorCoaches.end(); iteratorCoaches++) {
+                
+                coachesOStream << *iteratorCoaches;
+                
+                if (iteratorCoaches != (*i)->getLevels().at(iteLevels)->getCoaches().end()) {
+                    
+                    coachesOStream << endl;
+                    
+                }
+                
+            }
+            
+            athletesOStream.close();
+            coachesOStream.close();
+            
+        }
+        
+        
+	}
+
+}
+
+void Club::showAthletes(bool onlyActives) const {
+    
+    Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
+    map<unsigned int, Worker*>::const_iterator workersIterator;
+    
+    if(onlyActives) {
+        
+        bool firstActive = false;
+        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+            if (workersIterator->second->isActive() && !firstActive && workersIterator->second->isAthlete()) {
+                
+                athletesTable.addNewLine(workersIterator->second->showInScreen());
+                firstActive = true;
+                continue;
+            }
+            
+            if (workersIterator->second->isActive() && firstActive && workersIterator->second->isAthlete()) {
+                
+                athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+            }
+        }
+        
+    }
+    
+    else {
+        
+        for (workersIterator = this->allWorkers.begin(); workersIterator != this->allWorkers.end(); workersIterator++) {
+            
+            if (workersIterator == this->allWorkers.begin()) {
+                
+                athletesTable.addNewLine(workersIterator->second->showInScreen());
+            }
+            else {
+                
+                athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
+            }
+        }
+        
+    }
+    
+    cout << athletesTable << endl;
+    
+}
+
+int Club::findWorkerByCivilID(unsigned int civilID) {
+    
+    map<unsigned int, Worker*>::const_iterator clientsIterator = this->allWorkers.begin();
+    while (clientsIterator != this->allWorkers.end()) {
+        
+        if ((clientsIterator->second)->getCivilID() == civilID) {
+            
+            return clientsIterator->first;
+            
+        }
+        clientsIterator++;
+        
+    }
+    return -1;
+    
+}
+
+void Club::updateECG(unsigned int athleteID, bool result) {
+    
+    if(this->allWorkers.find(athleteID) == allWorkers.end()) {
+        
+        throw string("Athlete not found");
+        
+    }
+    
+    allWorkers.find(athleteID)->second->updateECG(result);
+    
 }
 
 

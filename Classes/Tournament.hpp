@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Classes\Match.hpp"
-#include "Classes\Club.hpp"
+#include "Match.hpp"
+#include "Club.hpp"
+
 
 class Tournament
 {

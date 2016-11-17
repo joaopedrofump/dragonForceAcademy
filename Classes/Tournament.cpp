@@ -3,7 +3,8 @@
 Tournament::Tournament(Date tournamentStartingDate, Date tournamentEndingDate)
 {
 	this->tournamentStartingDate = tournamentStartingDate;
-	this->getTournamentEndingDate = tournamentEndingDate;
+
+	this->tournamentEndingDate = tournamentEndingDate;
 }
 
 Date Tournament::getTournamentStartingDate() const
