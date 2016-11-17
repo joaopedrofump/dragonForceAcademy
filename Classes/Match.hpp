@@ -28,6 +28,7 @@ public:
 	pair<unsigned int, unsigned int> getScore() const;
 
 	vector<Worker*> getPlayers() const;
+	vector<unsigned int> getPlayersIds() const;
     map<unsigned int, Info*> getInfoPlayers() const;
     void addInfoPlayer(pair<unsigned int, Info*> newPlayer);
     string getId() const;
@@ -46,10 +47,10 @@ public:
     
     //IO
     friend ostream& operator<<(ostream& out, Match &match);
-	vector<string> showInScreen() const;
+	vector<string> showInScreen(unsigned int tmpID) const;
 
 	//COMPARES
-	bool operator<(const Match& match1);
+	friend bool operator<(const Match& match1, const Match& match2);
     bool operator==(const Match &compareMatch) const;
 
 };

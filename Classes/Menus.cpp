@@ -1065,8 +1065,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 		{
 			if (mainClub.getCoaches().size() == 0) {
 
-				clearScreen();
-				showMainMenu();
+				showMainMenu(0, seasonName);
 				cout << Table({ "There are no Coaches." });
 				ignoreLine(false);
 				break;
@@ -1074,7 +1073,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 			if (mainClub.getCoaches(true).size() == 0) {
 
-				showMainMenu();
+				showMainMenu(0, seasonName);
 				cout << Table({ "There are no active Coaches." });
 				ignoreLine(false);
 				break;
@@ -1218,7 +1217,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 
 	while ((option = menuLevelsManagement(currentLevel))) {
 		string input;
-		unsigned int idWorker;
+		unsigned int idMatch;
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -1239,11 +1238,11 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 				break;
 			}
 
-			currentLevel->showCalendar();
+			currentLevel->showMatches(currentLevel->getAllLevelMatches());
 			ignoreLine(false);
 			break;
 		}
-		case 2:           //=========== SCHEDULE FRIENDLY MATCH   ==============
+		case 2:             //=======  SCHEDULE FRIENDLY MATCH   ======= 
 		{
 			// Read Oponent Name
 
@@ -1291,7 +1290,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 			while (!control) {
 				try {
 
-					control = readDate(newMatchDate, today, Date(31,12,2100), "Please, enter the MATCH DATE.", "Invalid Date");
+					control = readDate(newMatchDate, today, Date(31, 12, 2100), "Please, enter the MATCH DATE.", "Invalid Date");
 
 					if (newMatchDate == today) {
 						exitSwitch = true;
@@ -1354,7 +1353,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 			//==========================
 
 			//Mostrar resumo da operacao
- 
+
 			showInformation.addNewLine({ "Match: " , homeOrAway == 1 ? (mainClub.getName() + " vs " + newOponentName) : (newOponentName + " vs " + mainClub.getName()) });
 
 			showInformation.addNewLine({ "Date: " , newMatchDate.str() });
@@ -1383,7 +1382,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 					cout << Table({ "1. YES", "2. NO" });
 
 					control = readUnsignedInt(callUpPlayers, 0, 2);
-					
+
 				}
 				catch (InvalidInput e) {
 
@@ -1426,7 +1425,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 							unsigned int idPlayer;
 							ssPlayers >> idPlayer;
 
-							if(!ssPlayers.fail())
+							if (!ssPlayers.fail())
 								playersToCallUpVector.push_back(idPlayer);
 
 						}
@@ -1442,7 +1441,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 					}
 				}
 
-				if(playersToCallUp.length() == 0)
+				if (playersToCallUp.length() == 0)
 					mainClub.scheduleMatch(newOponentName, newMatchDate, currentLevel, homeOrAway == 1 ? MatchType::home : MatchType::away);
 
 				mainClub.callUpPlayers(newOponentName, newMatchDate, currentLevel, homeOrAway == 1 ? MatchType::home : MatchType::away, playersToCallUpVector);
@@ -1453,7 +1452,218 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 			mainClub.saveChanges();
 			break;
 		}
-		
+		case 3:				//=======  CALL UP PLAYERS   ======= 
+		{
+			if (currentLevel->getAllLevelMatches(true).size() == 0) {
+
+				showMainMenu(0, currentSeason->getSeasonName());
+				cout << Table({ "There are no uncoming Matches." });
+				ignoreLine(false);
+				break;
+			}
+
+
+			showMainMenu(0, currentSeason->getSeasonName());
+			currentLevel->showMatches(currentLevel->getAllLevelMatches(true));
+
+			control = false;
+			while (!control) {
+				try {
+					cout << Table({ "Please enter the MATCH ID to call-up players." }) << endl;
+
+					control = readUnsignedInt(idMatch, 1, currentLevel->getAllLevelMatches(true).size(), "Invalid Match ID.");
+
+					if (!idMatch) {
+						exitSwitch = true;
+						break;
+					}
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+					currentLevel->showMatches(currentLevel->getAllLevelMatches(true));
+
+					cout << Table({ e.getMessage() });
+					control = false;
+				}
+			}
+
+			if (exitSwitch) break;
+
+			//Read Players to Call-up
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			string playersToCallUp;
+			vector<unsigned int> playersToCallUpVector;
+
+			//Show players
+			cout << currentLevel->showAthletesOfLevel();
+
+			control = false;
+			while (!control) {
+				try {
+
+					cout << Table({ "Please, enter the ATHLETES IDs to call-up in this match. (Eg: 1 4 7)" }) << endl;
+
+					getline(cin, playersToCallUp);
+
+					if (playersToCallUp.length() == 0) {
+						exitSwitch = true;
+						break;
+					}
+
+					stringstream ssPlayers(playersToCallUp);
+
+					while (!ssPlayers.eof()) {
+						unsigned int idPlayer;
+						ssPlayers >> idPlayer;
+
+						if (!ssPlayers.fail())
+							playersToCallUpVector.push_back(idPlayer);
+
+					}
+					control = true;
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			if (exitSwitch)	break;
+
+
+			mainClub.callUpPlayers(currentLevel->getAllLevelMatches(true).at(idMatch-1)->getId(), playersToCallUpVector,currentLevel);
+
+
+			mainClub.saveChanges();
+			break;
+		}
+		case 4:				//=======  REGISTER SCHEDULED MATCH  ======= 
+		{
+			if (currentLevel->getAllLevelMatches(true).size() == 0) {
+
+				showMainMenu(0, currentSeason->getSeasonName());
+				cout << Table({ "There are no uncoming Matches." });
+				ignoreLine(false);
+				break;
+			}
+			else if (currentLevel->getMatchesReadyToPlay().size() == 0) {
+
+				showMainMenu(0, currentSeason->getSeasonName());
+				cout << Table({ "There are no Matches with called-up players." });
+				ignoreLine(false);
+				break;
+			}
+
+
+			showMainMenu(0, currentSeason->getSeasonName());
+			currentLevel->showMatches(currentLevel->getMatchesReadyToPlay());
+
+			control = false;
+			while (!control) {
+				try {
+					cout << Table({ "Please enter the MATCH ID to register." }) << endl;
+
+					control = readUnsignedInt(idMatch, 1, currentLevel->getMatchesReadyToPlay().size(), "Invalid Match ID.");
+
+					if (!idMatch) {
+						exitSwitch = true;
+						break;
+					}
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+					currentLevel->showMatches(currentLevel->getMatchesReadyToPlay());
+
+					cout << Table({ e.getMessage() });
+					control = false;
+				}
+			}
+
+			if (exitSwitch) break;
+
+			//Read Score of Match
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			string score;
+			unsigned int homeTeamScore;
+			unsigned int awayTeamScore;
+
+			control = false;
+			while (!control) {
+				try {
+					currentLevel->showMatches({ currentLevel->getMatchesReadyToPlay().at(idMatch - 1) });
+					cout << Table({ "Please, enter the SCORE of the Match. (Eg: 2 - 1)" }) << endl;
+
+					getline(cin, score);
+
+					if (score.length() == 0) {
+						exitSwitch = true;
+						break;
+					}
+
+					stringstream ssPlayers(score);
+
+					
+					ssPlayers >> homeTeamScore;
+
+					string separator;
+					ssPlayers >> separator;
+
+					ssPlayers >> awayTeamScore;
+
+					if (ssPlayers.fail())
+						throw InvalidInput("Invalid Score: " + score + " is not a valid score.");
+
+					control = true;
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			if (exitSwitch)	break;
+
+			//==========================
+
+			//Mostrar resumo da operacao
+
+			Table showInfoMatch({ "Date", "Home Team", "Score", "Away Team" });
+
+			showInfoMatch.addNewLine({ currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getMatchDay().str(),
+									   currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getHomeTeam()->getName(),
+									   to_string(homeTeamScore) + " - " + to_string(awayTeamScore),
+									   currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getAwayTeam()->getName() });
+
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			cout << Table({ "Are you sure you want to register this match?" });;
+
+			if (!confirm(showInfoMatch)) {
+				break;
+			}
+			
+			mainClub.registerMatch(currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getId(), currentLevel, homeTeamScore, awayTeamScore,
+								   currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getPlayersIds());
+			ignoreLine(false, "Match correctly registed!");
+
+			
+
+
+			mainClub.saveChanges();
+			break;
+		}
 		case 0:
 			break;
 		}

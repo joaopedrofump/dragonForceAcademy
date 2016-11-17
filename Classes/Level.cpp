@@ -185,7 +185,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
             issEachMatch >> type;
             string waste;
             issEachMatch >> waste;
-            Match *thisMatch;
+            Match* thisMatch;
             
             thisMatch = (type == 0) ? new Match(issEachMatch, parentClub, home) : thisMatch = new Match(issEachMatch, parentClub, away);
             this->levelMatches.push_back(thisMatch);
@@ -194,6 +194,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         
     
     }
+
+	sort(this->levelMatches.begin(), this->levelMatches.end(), [](Match* a, Match* b) { return *b < *a; });
     
     
     inStreamLevel.close();
@@ -334,10 +336,30 @@ void Level::updateLastMatchId() {
     this->lastMatchId++;
 }
 
-vector<Match*> Level::getAllLevelMatches() const {
+vector<Match*> Level::getAllLevelMatches(bool onlyNotPlayed) const {
     
+	vector<Match*> result;
+	for (vector<Match*>::const_iterator it = this->levelMatches.begin(); it != levelMatches.end(); it++) {
+		if (!onlyNotPlayed || (*it)->getPlayed()) {
+			result.push_back(*it);
+		}
+	}
     return this->levelMatches;
     
+}
+
+vector<Match*> Level::getMatchesReadyToPlay() const {
+
+	vector<Match*> tmpVector = this->getAllLevelMatches(true);
+
+	vector<Match*> result;
+	for (vector<Match*>::const_iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
+		if ((*it)->getInfoPlayers().size()/* > 18*/) {
+			result.push_back(*it);
+		}
+	}
+
+	return result;
 }
 
 vector<Training*> Level::getAllLevelTrainings() const {
@@ -346,6 +368,7 @@ vector<Training*> Level::getAllLevelTrainings() const {
 
 Level* Level::addMatchToLevel(Match* newMatch) {
     this->levelMatches.push_back(newMatch);
+	sort(levelMatches.begin(), levelMatches.end(), [](Match* a, Match* b) { return *b < *a; });
     return this;
 }
 
@@ -378,17 +401,13 @@ Level* Level::addTrainingToLevel(Training* newTraining) {
 }
 
 
-void Level::showCalendar(bool onlyNotPlayed) {
+void Level::showMatches(vector<Match*> matches) {
 
-	Table matchesTable({ "ID", "Date", "Home Team", "Score", "Away Team" });
+	unsigned int tmpID = 0;
+	Table matchesTable({ "ID", "Date", "Home Team", "Score", "Away Team", "Players Called-up" });
 
-	vector<Match*> tmpVector = this->getAllLevelMatches();
-	sort(tmpVector.begin(), tmpVector.end());
-
-	for (vector<Match*>::iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
-		if (!onlyNotPlayed || (*it)->getPlayed()) {
-			matchesTable.addNewLine((*it)->showInScreen());
-		}
+	for (vector<Match*>::iterator it = matches.begin(); it != matches.end(); it++) {
+		matchesTable.addNewLine((*it)->showInScreen(++tmpID));
 	}
 
 	cout << matchesTable;

@@ -59,13 +59,14 @@ public:
     unsigned int getLastMatchId() const;
     void updateLastMatchId();
     
-    vector<Match*> getAllLevelMatches() const;
+    vector<Match*> getAllLevelMatches(bool onlyNotPlayed = false) const;
+	vector<Match*> getMatchesReadyToPlay() const;
 
 	Table showAthletesOfLevel() const;
     vector<Training*> getAllLevelTrainings() const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
 
-	void showCalendar(bool onlyNotPlayed = false);
+	void showMatches(vector<Match*> matches);
 
 };
