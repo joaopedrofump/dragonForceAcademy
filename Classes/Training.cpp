@@ -10,10 +10,29 @@ Training::Training(Date trainingDate, vector<unsigned int> playersIds, unsigned 
 	else {
 		this->id = id;
 	}
-	this->trainingDate = trainingDate;
+    this->trainingDate = trainingDate;
 }
 
 Training::Training(istream& iss) {
+    
+    string separator;
+    string date;
+    
+    iss >> this->id;
+    iss >> separator;
+    iss >> date;
+    this->trainingDate = Date(date);
+    
+    while (!iss.eof()) {
+        
+        unsigned int currentPlayerId;
+        iss >> separator;
+        iss >> currentPlayerId;
+        this->playersTrained.push_back(currentPlayerId);
+        
+    }
+    
+    Training::trainingCounter = this->id > Training::trainingCounter ? this->id : Training::trainingCounter;
     
 }
 
@@ -31,6 +50,12 @@ unsigned int Training::getId() const {
 
 vector<unsigned int> Training::getPlayers() const {
     return this->playersTrained;
+    
+}
+
+bool Training::getTrainingGiven() const {
+    
+    return this->playersTrained.size() != 0;
     
 }
 

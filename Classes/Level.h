@@ -17,6 +17,7 @@ private:
     string pathToLevelCoachesFile;
     string pathToLevelMatchesFile;
     string pathToLevelMatchesFolder;
+    string pathToLevelTrainingsFile;
     string yearOfSeason;
 
     unsigned int lastMatchId;
@@ -65,4 +66,16 @@ public:
     vector<Training*> getAllLevelTrainings() const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
+    
+    void saveLevelTrainings() const;
+    
+    void scheduleTraining(Date trainingDate);
+    
+    //registar treino já agendado
+    void registerTraining(unsigned int trainingId, vector<unsigned int> missingPlayers);
+    
+    //registar treino não agendado
+    void registerTraining(Date trainingDate, vector<unsigned int> missingPlayers);
+    
+    
 };

@@ -17,6 +17,7 @@ public:
 	Date getTrainingDate() const;
 	unsigned int getId() const;
     vector<unsigned int> getPlayers() const;
+    bool getTrainingGiven() const;
     
     void setPlayers(vector<unsigned int> playersTrained);
     void setDate(Date newDate);

@@ -12,11 +12,12 @@ using namespace std;
 
 void initialInfo(string &clubName) {
 
+    clearScreen();
     ifstream inStreamClub;
     bool clubExists;
 	string clubNameFromUser;
-
-    cout << Table({ "Please, insert the name of the club" });
+    
+    cout << Table({ "Please, insert the name of the club or Enter to create a new one." });
     getline(cin, clubNameFromUser);
     
 	if (clubNameFromUser != "") {
@@ -36,12 +37,21 @@ void initialInfo(string &clubName) {
 		
 	else {
 		
+        clearScreen();
         string newClubName;
-        cout << Table({ "Ok. let's create the club. Please, insert the name for the new club" });
-        getline(cin, clubName);
+        cout << Table({ "Ok. Let's create the club. Please, insert the name for the new club or press Enter to close." });
+        getline(cin, newClubName);
         
-		clearScreen();
-
+        if (!newClubName.size()) {
+            
+            return;
+            
+        }
+        
+        clearScreen();
+        
+        clubName = newClubName;
+        
         if(!createDirectory((path() + clubName).c_str())) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
@@ -114,7 +124,7 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Trainings.txt").c_str());
         outfileInfoLevel.close();
         
-        newClubName = clubName;
+        
 	}
 
 }
