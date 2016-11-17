@@ -45,6 +45,7 @@ public:
 	*/
 	Info(string &newInfo);
 	Info();
+    Info(istream &inStream);
     Fraction getTrainingFreq() const;
     void addTraining(Fraction newTraining);
     unsigned int getYellowCards() const;
@@ -94,6 +95,7 @@ public:
     InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
 	InfoGK(string &newInfo);
     InfoGK();
+    InfoGK(istream &inStream);
     unsigned int getSaves() const;
     void addSaves(unsigned int saves);
     unsigned int  getGoalsConceeded() const;
@@ -110,6 +112,7 @@ public:
     InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
 	InfoDF(string &newInfo);
     InfoDF();
+    InfoDF(istream &inStream);
     vector<DefenderPosition> getDefenderSpecificPositions() const;
     void addDefenderSpecificPosition(DefenderPosition newPos);
     string generateString() const;
@@ -123,7 +126,7 @@ public:
     InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
 	InfoMF(string &newInfo);
     InfoMF();
-    
+    InfoMF(istream &inStream);
     //pass accuracy
     
     vector<MidfielderPosition> getMidfielderSpecificPositions() const;
@@ -140,6 +143,7 @@ public:
     InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
 	InfoFW(string &newInfo);
     InfoFW();
+    InfoFW(istream &inStream);
     vector<ForwardPosition> getForwardSpecificPositions() const;
     void addAttackerSpecificPosition(ForwardPosition newPos);
     string generateString() const;

@@ -10,6 +10,15 @@
 
 Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id) : Worker(name, birthdate, civilID, id) {
     
+
+    if(Date()-birthdate < 11 || Date() - birthdate > 45) {
+        throw string("Invalid Age");
+    }
+    
+    if(height < 100 || height > 250) {
+        throw string("Invalid Height");
+    }
+    
     this->height = height;
     this->ecg = NULL;
 
@@ -21,11 +30,13 @@ Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned cha
 Athlete::Athlete(string &newAthlete, Position position) : position(position) {
 
 	this->name = readAndCut(newAthlete);
+    this->ecg = NULL;
 	this->birthdate = Date(readAndCut(newAthlete));
 	this->height = stoi(readAndCut(newAthlete));
 
 	if(newAthlete != "NONE")
 		this->ecg = new ECG(readAndCut(newAthlete) == "VALID" ? true : false, Date(readAndCut(newAthlete)));
+    
 }
 
 
@@ -65,7 +76,7 @@ bool Athlete::isAthlete() const {
 }
 
 unsigned int Athlete::getPosition() const {
-	return position;
+	return this->position;
 }
 
 unsigned int Athlete::getHeight() const {
@@ -122,3 +133,23 @@ vector<string> Athlete::showInScreen() const {
 	return result;
     
 }
+
+void Athlete::setBirthDate(Date newBirthdate) {
+    
+
+    if(Date()-birthdate < 11 || Date() - birthdate > 45) {
+        throw string("Invalid Age");
+    }
+
+    this->birthdate = newBirthdate;
+    
+}
+
+void Athlete::setHeight(unsigned int newHeight) {
+    
+    if(height < 100 || height > 250) {
+        throw string("Invalid Height");
+    }
+    this->height= newHeight;
+}
+

@@ -61,4 +61,7 @@ public:
 	*	This is a method that show all the coach's information on the screen
 	*/
     vector<string> showInScreen() const;
+    
+    void setBirthDate(Date newBirthdate);
+    void setCoachType(CoachType newType);
 };

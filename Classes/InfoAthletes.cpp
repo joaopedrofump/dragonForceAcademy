@@ -23,44 +23,28 @@ Info::Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCard
 Info::Info(string &newInfo) {
 
 	// Training Assiduity
-	Fraction tmpAthleteAssiduity(newInfo.substr(0, newInfo.find(';', 0) - 1));
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	Fraction tmpAthleteAssiduity(readAndCut(newInfo));
 
 	// Tackles
-	unsigned int  tmpAthleteTackles = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int  tmpAthleteTackles = stoi(readAndCut(newInfo));
 
 	// Faults
-	unsigned int tmpAthleteFouls = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int tmpAthleteFouls = stoi(readAndCut(newInfo));
 
 	// Yellow Cards
-	unsigned int tmpAthleteYellowCards = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int tmpAthleteYellowCards = stoi(readAndCut(newInfo));
 
 	// Red Cards
-	unsigned int tmpAthleteRedCards = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int tmpAthleteRedCards = stoi(readAndCut(newInfo));
 
 	// Goals Scored
-	unsigned int tmpAthleteGoalsScored = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int tmpAthleteGoalsScored = stoi(readAndCut(newInfo));
 
 	// Assists made
-	unsigned int tmpAthleteAssistsMade = atoi(newInfo.substr(0, newInfo.find(';', 0) - 1).c_str());
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	unsigned int tmpAthleteAssistsMade = stoi(readAndCut(newInfo));
 
 	// Pass Acuracy
-	Fraction tmpAthletePassAccuracy(newInfo.substr(0, newInfo.find(';', 0) - 1));
-
-	newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+	Fraction tmpAthletePassAccuracy(readAndCut(newInfo));
 
 	this->trainingFreq = tmpAthleteAssiduity;
 	this->tackles = tmpAthleteTackles;
@@ -84,6 +68,31 @@ Info::Info() {
     this->passAccuracy = Fraction();
 
 };
+
+Info::Info(istream &instream) {
+    
+    string separator;
+    string trainingFreq;
+    instream >> trainingFreq;
+    this->trainingFreq = Fraction(trainingFreq);
+    instream >> separator;
+    instream >> this->tackles;
+    instream >> separator;
+    instream >> this->fouls;
+    instream >> separator;
+    instream >> this->yellowCards;
+    instream >> separator;
+    instream >> this->redCards;
+    instream >> separator;
+    instream >> this->goalsScored;
+    instream >> separator;
+    instream >> this->assists;
+    instream >> separator;
+    string passAccuracy;
+    instream >> passAccuracy;
+    this->passAccuracy = Fraction(passAccuracy);
+    
+}
 
 Fraction Info::getTrainingFreq() const {
     
@@ -210,6 +219,16 @@ InfoGK::InfoGK() : Info() {
     this->goalsConceeded = 0;
 }
 
+InfoGK::InfoGK(istream &inStream) : Info(inStream) {
+    
+    string separator;
+    inStream >> separator;
+    inStream >> this->saves;
+    inStream >> separator;
+    inStream >> this->goalsConceeded;
+    
+}
+
 unsigned int InfoGK::getSaves() const {
     return this->saves;
 }
@@ -255,9 +274,7 @@ InfoDF::InfoDF(string &newInfo) : Info(newInfo) {
     
     if(newInfo.size() != 0) {
         
-        string tmpAthletePositions = newInfo.substr(0, newInfo.find(';', 0) - 1);
-        
-        newInfo = newInfo.substr(newInfo.find(';', 0) + 2);
+        string tmpAthletePositions = readAndCut(newInfo);
         
         while (tmpAthletePositions != "") {
             
@@ -279,6 +296,21 @@ InfoDF::InfoDF() : Info() {
     
     vector<DefenderPosition> empty;
     this->positions = empty;
+    
+}
+
+InfoDF::InfoDF(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(defendersMap.at(tmpPos));
+        
+    }
     
 }
 
@@ -312,7 +344,7 @@ string InfoDF::generateString() const {
         
     }
     
-    return Info::generateString() + " ; " + positionsString;
+    return Info::generateString() + (positionsString.length() == 0 ? ""  : " ; " + positionsString);
 }
 
 void InfoDF::operator+=(const Info* info2) {
@@ -373,6 +405,21 @@ InfoMF::InfoMF() : Info() {
     
 }
 
+InfoMF::InfoMF(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(midfieldersMap.at(tmpPos));
+        
+    }
+    
+}
+
 vector<MidfielderPosition> InfoMF::getMidfielderSpecificPositions() const {
     
     return this->positions;
@@ -402,7 +449,7 @@ string InfoMF::generateString() const {
         
     }
     
-    return Info::generateString() + " ; " + positionsString;
+    return Info::generateString() + (positionsString.length() == 0 ? "" : " ; " + positionsString);
 }
 
 void InfoMF::operator+=(const Info* info2) {
@@ -460,6 +507,21 @@ InfoFW::InfoFW() : Info() {
     
 }
 
+InfoFW::InfoFW(istream &inStream) : Info(inStream) {
+    
+    
+    
+    while(!inStream.eof()) {
+        string separator;
+        inStream >> separator;
+        string tmpPos;
+        inStream >> tmpPos;
+        this->positions.push_back(forwardsMap.at(tmpPos));
+        
+    }
+    
+}
+
 vector<ForwardPosition> InfoFW::getForwardSpecificPositions() const {
     
     return this->positions;
@@ -488,7 +550,7 @@ string InfoFW::generateString() const {
         
     }
     
-    return Info::generateString() + " ; " + positionsString;
+    return Info::generateString() + (positionsString.length() == 0 ? "" : " ; " + positionsString);
 }
 
 void InfoFW::operator+=(const Info* info2) {

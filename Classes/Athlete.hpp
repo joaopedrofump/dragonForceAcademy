@@ -67,7 +67,10 @@ public:
 		This is a method that shows all the athlete's informaton on the screen
 	*/
     vector<string> showInScreen() const;
-
+    
+    void setBirthDate(Date newBirthdate);
+    
+    void setHeight(unsigned int newHeight);
 };
 
 #endif /* Athlete_hpp */
