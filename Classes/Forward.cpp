@@ -1,5 +1,6 @@
 #include "Forward.hpp"
 
+
 Forward::Forward(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id) : Athlete(name, birthdate, civilID, height, id) {
     
     if (id != 0) {
@@ -35,3 +36,4 @@ void Forward::addInfo(Info* moreInfo) {
     *(this->generalInfo) += moreInfo;
     
 }
+

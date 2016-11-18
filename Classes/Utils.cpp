@@ -1183,6 +1183,8 @@ extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
 { "LM", LeftWinger } };
 
 
+
+
 int createDirectory(const char* path) {
     
 #ifdef __llvm__

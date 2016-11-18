@@ -11,33 +11,43 @@
 
 #include "Utils.hpp"
 
-extern const map<string, CoachType> coachTypeMap;
+extern const map<string, CoachType> coachTypeMap; //map including the different types of coaches
 
-extern const map<string, Position> positionsMap;
+extern const map<string, Position> positionsMap; //map including the different positions of the athlete
 
-extern const map<string, DefenderPosition> defendersMap;
+extern const map<string, DefenderPosition> defendersMap; //map including the different positions of the defender		
 
-extern const map<string, MidfielderPosition> midfieldersMap;
+extern const map<string, MidfielderPosition> midfieldersMap; //map including the different positions of the midfielder
 
-extern const map<string, ForwardPosition> forwardsMap;
+extern const map<string, ForwardPosition> forwardsMap; //map including the different positiions of the forward
 
 class Info {
 protected:
-    Fraction trainingFreq;
-    unsigned int yellowCards;
-    unsigned int redCards;
-    unsigned int tackles;
-    unsigned int fouls;
-    unsigned int goalsScored;
-    unsigned int assists;
-    Fraction passAccuracy;
+    Fraction trainingFreq; //athlete's training frequency percentage
+    unsigned int yellowCards; //athlete's number of yellow cards
+    unsigned int redCards; //athlete's number of red cards
+    unsigned int tackles; //athlete's number of tackles
+    unsigned int fouls; //athlete's number of fouls commited
+    unsigned int goalsScored; //athlete's number of goals scored 
+    unsigned int assists; //athlete's number of assist made
+    Fraction passAccuracy; //athlete's pass accuracy percentage
 public:
-    Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
+    
+	//! Info constructors
+
+	/*!
+	*	This is a constructor that creates new athlete's performance information using training frequency, number of yellow cards, number of red cards, number of tackles, number of fouls commited, number of goals scored, number of assists, pass accuracy
+	*/
+	Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
+	
+	/*!
+	*	This is a constructor that creates new athlete's performance 
+	*/
 	Info(string &newInfo);
 	Info();
     Info(istream &inStream);
     Fraction getTrainingFreq() const;
-    void addTraining(Fraction newTraining);
+    void addTraining(Fraction newTraining = Fraction(1,1));
     unsigned int getYellowCards() const;
     unsigned int getRedCards() const;
     void addYellowCard();

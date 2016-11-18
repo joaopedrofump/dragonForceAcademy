@@ -106,6 +106,17 @@ enum MatchType {
     neutral
 };
 
+
+const map<Position, string> positionsMapPosString = {
+    
+    {GoalkeeperPos, "GK"},
+    {DefenderPos, "DF"},
+    {MidfielderPos, "MF"},
+    {ForwardPos, "FW"}
+    
+};
+
+
 // ===========================================
 // ===============  DATE  ====================
 // ===========================================
@@ -270,6 +281,7 @@ bool emptyString(string stringTest);
 string path();
 
 int createDirectory(const char* path);
+
 
 string stringPath(string originalStr);
 

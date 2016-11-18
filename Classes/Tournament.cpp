@@ -3,6 +3,7 @@
 Tournament::Tournament(Date tournamentStartingDate, Date tournamentEndingDate)
 {
 	this->tournamentStartingDate = tournamentStartingDate;
+
 	this->tournamentEndingDate = tournamentEndingDate;
 }
 
