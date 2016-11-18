@@ -47,7 +47,7 @@ public:
 	Info();
     Info(istream &inStream);
     Fraction getTrainingFreq() const;
-    void addTraining(Fraction newTraining);
+    void addTraining(Fraction newTraining = Fraction(1,1));
     unsigned int getYellowCards() const;
     unsigned int getRedCards() const;
     void addYellowCard();

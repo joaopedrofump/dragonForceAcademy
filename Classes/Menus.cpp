@@ -12,11 +12,12 @@ using namespace std;
 
 void initialInfo(string &clubName) {
 
+    clearScreen();
     ifstream inStreamClub;
     bool clubExists;
 	string clubNameFromUser;
-
-    cout << Table({ "Please, insert the name of the club" });
+    
+    cout << Table({ "Please, insert the name of the club or Enter to create a new one." });
     getline(cin, clubNameFromUser);
     
 	if (clubNameFromUser != "") {
@@ -36,12 +37,21 @@ void initialInfo(string &clubName) {
 		
 	else {
 		
+        clearScreen();
         string newClubName;
-        cout << Table({ "Ok. let's create the club. Please, insert the name for the new club" });
-        getline(cin, clubName);
+        cout << Table({ "Ok. Let's create the club. Please, insert the name for the new club or press Enter to close." });
+        getline(cin, newClubName);
         
-		clearScreen();
-
+        if (!newClubName.size()) {
+            
+            return;
+            
+        }
+        
+        clearScreen();
+        
+        clubName = newClubName;
+        
         if(!createDirectory((path() + clubName).c_str())) {
 			clearScreen();
 			cout << Table({ "Folder correctly created!" });
@@ -114,7 +124,7 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Trainings.txt").c_str());
         outfileInfoLevel.close();
         
-        newClubName = clubName;
+        
 	}
 
 }
@@ -123,7 +133,7 @@ bool confirm(const Table &message) {
 
 	bool resultado = false;
 	string answer;
-	Table confirmar({ "Press Enter to confirm or any key to turn back." });
+	Table confirmar({ "Press Enter to confirm or any key to go back." });
 	cout << message << endl;
 	cout << confirmar << endl;
 
@@ -162,22 +172,22 @@ void initialOptions(Club &mainClub) {
 
     while ((option = mainMenu(currentSeason->getSeasonName())))
         switch (option) {
-		case 1: optionsAthletesManagement(mainClub, currentSeason->getSeasonName());
+            case 1: optionsAthletesManagement(mainClub, currentSeason->getSeasonName());
                 break;
             case 2: optionsCoachesManagement(mainClub, currentSeason->getSeasonName());
                 break;
             case 3: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(0));
                 break;
             case 4: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(1));
-				break;
-			case 5: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(2));
-				break;
-			case 6: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(3));
-				break;
-			case 7: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(4));
-				break;
-			case 0:
-				break;
+                break;
+            case 5: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(2));
+                break;
+            case 6: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(3));
+                break;
+            case 7: optionsLevelsManagement(mainClub, currentSeason, currentSeason->getLevels().at(4));
+                break;
+            case 0:
+                break;
         }
     //supermercado.saveChanges();
 }
@@ -201,7 +211,7 @@ unsigned short int mainMenu(string seasonName) {
     }
 
 	if (option == 0 && !confirm(closeProgram)) {
-		option = 5;
+		option = 8;
 	}
     return option;
 }
@@ -1187,6 +1197,9 @@ void printLevelsMenu(ageLevel level) {
 	menuLevels.addNewLine({ "3 - Call-up Players" });
 	menuLevels.addNewLine({ "4 - Register Scheduled Match" });
 	menuLevels.addNewLine({ "5 - Register Not Scheduled Match" });
+    menuLevels.addNewLine({ "6 - Trainings Calendar"});
+    menuLevels.addNewLine({ "7 - Schedule Training"});
+    menuLevels.addNewLine({ "8 - Register Training"});
 	menuLevels.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuLevels;
 }

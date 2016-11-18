@@ -14,6 +14,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     this->pathToLevelCoachesFile = stringPath(this->pathToLevelFolder + "/Coaches.txt");
     this->pathToLevelMatchesFile = stringPath(this->pathToLevelFolder + "/Matches.txt");
     this->pathToLevelMatchesFolder = stringPath(this->pathToLevelFolder + "/Matches");
+    this->pathToLevelTrainingsFile = stringPath(this->pathToLevelFolder + "/Trainings.txt");
     this->lastMatchId = 0;
     
     if(levelName == "U13") {
@@ -240,14 +241,30 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
                 
             }
             
-            
         }
         currentMatchFileStream.close();
-        
         
     }
 
 	inStreamLevel.close();
+    
+    //read trainings info
+    
+    inStreamLevel.open(this->pathToLevelTrainingsFile);
+    
+    while (!inStreamLevel.eof()) {
+        
+        string eachTraining;
+        getline(inStreamLevel, eachTraining);
+        
+        if(eachTraining.length() != 0) {
+            istringstream issEachTraining(eachTraining);
+            Training* trainingToAdd = new Training(issEachTraining);
+            this->levelTrainings.push_back(trainingToAdd);
+            
+        }
+        
+    }
 }
 
 unsigned int Level::getMinAge() const
@@ -407,3 +424,293 @@ void Level::showMatches(vector<Match*> matches) {
 
 	cout << matchesTable;
 }
+
+void Level::saveLevelTrainings() const {
+    
+    ofstream saveToTrainingsFile(this->pathToLevelTrainingsFile);
+    
+    for (size_t i = 0; i < this->levelTrainings.size(); i++) {
+        
+        saveToTrainingsFile << *this->levelTrainings.at(i);
+        
+        if (i != (this->levelTrainings.size() - 1)) {
+            saveToTrainingsFile << endl;
+        }
+        
+    }
+    
+}
+
+void Level::scheduleTraining(Date trainingDate) {
+    
+    if (trainingDate < Date()) {
+        throw string("Can't schedule trainings for the past.");
+    }
+    
+    
+    vector<unsigned int> players;
+    Training* trainingToAdd = new Training(trainingDate, players);
+    this->addTrainingToLevel(trainingToAdd);
+    
+}
+
+void Level::registerTraining(unsigned int trainingId, vector<unsigned int> missingPlayers) {
+    
+    vector<Training*> listOfLevelTrainings = this->getAllLevelTrainings();
+    vector<Training*>::const_iterator trainingToRegister = listOfLevelTrainings.begin();
+    while (trainingToRegister != listOfLevelTrainings.end()) {
+        
+        if ((*trainingToRegister)->getId() == trainingId) {
+            
+            break;
+            
+        }
+        trainingToRegister++;
+        
+    }
+    
+    
+    if(trainingToRegister == listOfLevelTrainings.end()) {
+        
+        throw string("Error: Training not found.");
+        
+    }
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> mapLevelPLayers = this->getMapInfoPlayers();
+    
+    for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
+        
+        if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
+            
+            mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
+            missingPlayersIterator--;
+            
+        }
+    }
+    
+    for (map<unsigned int, Info*>::const_iterator iteratorPlayersMap = mapLevelPLayers.begin(); iteratorPlayersMap != mapLevelPLayers.end(); iteratorPlayersMap++) {
+        
+        filteredVector.push_back(iteratorPlayersMap->first);
+        
+    }
+    
+    (*trainingToRegister)->setPlayers(filteredVector);
+    (*trainingToRegister)->setRegistered();
+    
+    for (unsigned int i = 0; i < filteredVector.size(); i++) {
+        
+        this->mapInfoPlayers.at(filteredVector.at(i))->addTraining();
+        this->parentClub->getAthletes().at(filteredVector.at(i))->getInfo()->addTraining();
+        
+    }
+    
+    for (unsigned int i = 0; i < missingPlayers.size(); i++) {
+        
+        this->mapInfoPlayers.at(missingPlayers.at(i))->addTraining(Fraction(0,1));
+        this->parentClub->getAthletes().at(missingPlayers.at(i))->getInfo()->addTraining(Fraction(0,1));
+    }
+    
+    
+    
+}
+
+
+void Level::registerTraining(Date trainingDate, vector<unsigned int> missingPlayers) {
+    
+    vector<unsigned int> players;
+    Training* trainingToAdd = new Training(trainingDate, players);
+    
+    vector<unsigned int> filteredVector;
+    map<unsigned int, Info*> mapLevelPLayers = this->getMapInfoPlayers();
+    
+    for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
+        
+        if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
+            
+            mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
+            missingPlayersIterator--;
+            
+        }
+    }
+    
+    for (map<unsigned int, Info*>::const_iterator iteratorPlayersMap = mapLevelPLayers.begin(); iteratorPlayersMap != mapLevelPLayers.end(); iteratorPlayersMap++) {
+        
+        filteredVector.push_back(iteratorPlayersMap->first);
+        
+    }
+    
+    trainingToAdd->setPlayers(filteredVector);
+    trainingToAdd->setRegistered();
+    this->addTrainingToLevel(trainingToAdd);
+    
+    for (unsigned int i = 0; i < filteredVector.size(); i++) {
+        
+        this->mapInfoPlayers.at(filteredVector.at(i))->addTraining();
+        this->parentClub->getAthletes().at(filteredVector.at(i))->getInfo()->addTraining();
+        
+    }
+    
+    for (unsigned int i = 0; i < missingPlayers.size(); i++) {
+        
+        this->mapInfoPlayers.at(missingPlayers.at(i))->addTraining(Fraction(0,1));
+        this->parentClub->getAthletes().at(missingPlayers.at(i))->getInfo()->addTraining(Fraction(0,1));
+    }
+    
+    
+}
+
+vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder order, char listType) const {
+    
+    vector<vector<string>> result;
+    
+    vector<Training*> allTrainings;
+    
+    switch (listType) {
+        case 'a':
+            allTrainings = this->levelTrainings;
+            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
+            for (size_t i = 0; i < allTrainings.size(); i++) {
+                
+                vector<string> eachTraining;
+                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
+                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
+                string registed = allTrainings.at(i)->isRegistered() ? "Registed" : "Not Registed";
+                eachTraining.push_back(registed);
+                if (allTrainings.at(i)->isRegistered()) {
+                    
+                    string players = "";
+                    for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
+                        
+                        players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
+                        
+                        if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
+                            players += ", ";
+                        }
+                        
+                    }
+                    eachTraining.push_back(players);
+                    
+                }
+                
+                result.push_back(eachTraining);
+                
+            }
+            break;
+        case 'p':
+            for (size_t i = 0; i < this->levelTrainings.size(); i++) {
+                
+                if (!(Date() < this->levelTrainings.at(i)->getTrainingDate())) {
+                    
+                    allTrainings.push_back(this->levelTrainings.at(i));
+                    
+                }
+                
+            }
+            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
+            for (size_t i = 0; i < allTrainings.size(); i++) {
+                
+                vector<string> eachTraining;
+                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
+                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
+                string registed = allTrainings.at(i)->isRegistered() ? "Registed" : "Not Registed";
+                eachTraining.push_back(registed);
+                if (allTrainings.at(i)->isRegistered()) {
+                    
+                    string players = "";
+                    for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
+                        
+                        players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
+                        
+                        if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
+                            players += ", ";
+                        }
+                        
+                    }
+                    eachTraining.push_back(players);
+                    
+                }
+                result.push_back(eachTraining);
+                
+            }
+            
+            break;
+        case 'r':
+            for (size_t i = 0; i < this->levelTrainings.size(); i++) {
+                
+                if (!(Date() < this->levelTrainings.at(i)->getTrainingDate()) && this->levelTrainings.at(i)->isRegistered()) {
+                    
+                    allTrainings.push_back(this->levelTrainings.at(i));
+                    
+                }
+                
+            }
+            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
+            for (size_t i = 0; i < allTrainings.size(); i++) {
+                
+                vector<string> eachTraining;
+                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
+                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
+                string players = "";
+                for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
+                    
+                    players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
+                    
+                    if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
+                        players += ", ";
+                    }
+                    
+                }
+                eachTraining.push_back(players);
+                result.push_back(eachTraining);
+            }
+            break;
+        case 'n':
+            for (size_t i = 0; i < this->levelTrainings.size(); i++) {
+                
+                if (!(Date() < this->levelTrainings.at(i)->getTrainingDate()) && !this->levelTrainings.at(i)->isRegistered()) {
+                    
+                    allTrainings.push_back(this->levelTrainings.at(i));
+                    
+                }
+                
+            }
+            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
+            for (size_t i = 0; i < allTrainings.size(); i++) {
+                
+                vector<string> eachTraining;
+                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
+                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
+                result.push_back(eachTraining);
+                
+            }
+            break;
+        case 'f':
+            for (size_t i = 0; i < this->levelTrainings.size(); i++) {
+                
+                if ((Date() < this->levelTrainings.at(i)->getTrainingDate())) {
+                    
+                    allTrainings.push_back(this->levelTrainings.at(i));
+                    
+                }
+                
+            }
+            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
+            for (size_t i = 0; i < allTrainings.size(); i++) {
+                
+                vector<string> eachTraining;
+                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
+                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
+                result.push_back(eachTraining);
+                
+            }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+    
+}
+
