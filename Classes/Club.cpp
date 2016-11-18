@@ -1080,7 +1080,7 @@ bool Club::isProgramClub() const {
 }
 
 void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type) {
-    
+        
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
     

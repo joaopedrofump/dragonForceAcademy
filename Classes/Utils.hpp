@@ -105,6 +105,17 @@ enum MatchType {
     neutral
 };
 
+
+const map<Position, string> positionsMapPosString = {
+    
+    {GoalkeeperPos, "GK"},
+    {DefenderPos, "DF"},
+    {MidfielderPos, "MF"},
+    {ForwardPos, "FW"}
+    
+};
+
+
 // ===========================================
 // ===============  DATE  ====================
 // ===========================================

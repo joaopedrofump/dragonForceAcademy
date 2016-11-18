@@ -7,6 +7,9 @@
 class Club;
 class Training;
 
+
+
+
 class Level {
 private:
 	Club* parentClub;
@@ -67,6 +70,8 @@ public:
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
     
+    void sortTrainings();
+    
     void saveLevelTrainings() const;
     
     void scheduleTraining(Date trainingDate);
@@ -76,6 +81,17 @@ public:
     
     //registar treino não agendado
     void registerTraining(Date trainingDate, vector<unsigned int> missingPlayers);
+    
+    
+    //! Get the all the trainings of the level.
+    /*!
+     \param criteria criteria enum argument: id = sorted by id, date = sorted by date, numberOfPlayers = sorted by number of players who trained
+     \param order order enum argument: ascending = sorted ascending, descending = sorted descending
+     \param listType char argument: a = all trainings, p = past trainings, r = registed trainings, n = trainings not registered, f = future trainings
+     \return Returns a vector of string vectors where each string vector contains the list of trainings attributes
+     */
+    
+    vector<vector<string>> getTrainingsList(SortCriteria criteria, SortOrder order, char listType = 'a') const;
     
     
 };
