@@ -1312,7 +1312,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 void printLevelsMenu(ageLevel level) {
 
-	Table menuLevels({ "1 - Friendlys" }, 33 + 12*(level - 1));
+	Table menuLevels({ "1 - Friendlies" }, 33 + 12*(level - 1));
     menuLevels.addNewLine({ "2 - Trainings"});
     menuLevels.addNewLine({ "3 - Tournaments"});
 	menuLevels.addNewLine({ "0 - Back to Main Menu" });
@@ -1355,7 +1355,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 		Date today;
 
 		switch (option) {
-		case 1:             //=========== FRIENDLYS   ==============
+		case 1:             //=========== FRIENDLIES   ==============
 			optionsFriendlysManagement(mainClub, currentSeason, currentLevel);
 			break;
 		case 2:             //=======  TRAININGS   ======= 
@@ -1371,18 +1371,18 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 }
 
 /******************************************
-* Friendlys Management
+* Friendlies Management
 ******************************************/
 
 void printFriendlysMenu(ageLevel level) {
 
-	Table menuFriendlys({ "1 - Friendlys" + string(8, ' ') }, 33 + 12 * (level - 1));
+	Table menuFriendlys({ "1 - Friendlies" + string(8, ' ') }, 33 + 12 * (level - 1));
 
-	Table menuFriendlys2({ "1 - Friendlys Calendar" }, 33 + 12 * (level - 1) + 9);
+	Table menuFriendlys2({ "1 - Friendlies Calendar" }, 33 + 12 * (level - 1) + 9);
 	menuFriendlys2.addNewLine({ "2 - Schedule Friendly Match" });
 	menuFriendlys2.addNewLine({ "3 - Call-up Players" });
 	menuFriendlys2.addNewLine({ "4 - Register Scheduled Match" });
-	menuFriendlys2.addNewLine({ "5 - Register Not Scheduled Match" });
+	menuFriendlys2.addNewLine({ "5 - Register UnScheduled Match" });
 
 	Table menuFriendlys3({ "2 - Trainings" }, 33 + 12 * (level - 1));
 	menuFriendlys3.addNewLine({ "3 - Tournaments" });
@@ -2438,7 +2438,7 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 				ignoreLine(false, "Training correctly registed.");
 			}
 		}
-		case 4:				//=======  REGISTER NOT SCHEDULED MATCH  ======= 
+		case 4:				//=======  REGISTER UNSCHEDULED TRAINING  =======
 		{
 			// Read Training Date
 
@@ -2491,9 +2491,6 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 					getline(cin, playersMissed);
 
-					if (playersMissed.length() == 0)
-						break;
-
 					stringstream ssPlayers(playersMissed);
 
 					while (!ssPlayers.eof()) {
@@ -2516,7 +2513,6 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 				}
 
 				currentLevel->registerTraining(newTrainingDate, playersMissedVector);
-					;
 
 				ignoreLine(false, "Training correctly registed.");
 			}
@@ -3072,7 +3068,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 
 				break;
 			}
-
+			mainClub.saveChanges();
 			ignoreLine(false, "Tournament correcly created.");
 			break;
 			
