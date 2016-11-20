@@ -1,0 +1,212 @@
+\hypertarget{class_table}{}\section{Table Class Reference}
+\label{class_table}\index{Table@{Table}}
+
+
+{\ttfamily \#include $<$Utils.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_table_a80b23f471aa594c4d1a1db51a22fb6c4}{Table} (vector$<$ string $>$ components, unsigned int indentacao=0)
+\item 
+\hyperlink{class_table_a65aecaa868a14218cbecb86437f996c1}{Table} (vector$<$ string $>$ components, vector$<$ int $>$ spaces\+For\+Column, unsigned int indentacao=0)
+\item 
+\hyperlink{class_table_a9abee52d5b062c43f79bfe55c67b7759}{Table} (vector$<$ vector$<$ string $>$$>$ \hyperlink{class_table_a9052c218f9eae23950459720e8069e62}{table\+Vector}, vector$<$ bool $>$ \hyperlink{class_table_a733288d34b5fd55085572f212fbe0260}{blocks}, vector$<$ int $>$ spaces\+For\+Column, unsigned int indentacao=0)
+\item 
+\hyperlink{class_table_a49c13a4307cb192d0a449f948dda66e2}{Table} (vector$<$ vector$<$ string $>$$>$ \hyperlink{class_table_a9052c218f9eae23950459720e8069e62}{table\+Vector}, unsigned int indentation)
+\item 
+void \hyperlink{class_table_a3c9712fbea1a7101e5aa28adc42d50b5}{format\+Table} (char internal\+Char, char limiting\+Char, vector$<$ int $>$ spaces\+For\+Column, unsigned int indentacao\+FT=0)
+\item 
+vector$<$ int $>$ \hyperlink{class_table_ab6541bd5783a13f8958e7def259ad844}{get\+Colums\+Width} () const
+\item 
+unsigned int \hyperlink{class_table_aa6fd97bbceb82d9acddf1858f3dbfc14}{get\+Indentacao} () const
+\item 
+vector$<$ vector$<$ string $>$ $>$ \hyperlink{class_table_a4a3ecdc1ad22d0dadd116af3cda3a74d}{get\+Table\+Vector} () const
+\item 
+vector$<$ bool $>$ \hyperlink{class_table_aeefe34b1ca9fa483b3605f9d6adbfdb5}{get\+Blocks} () const
+\item 
+string \hyperlink{class_table_a695b8d8f464194e26bcf23e07cd216bd}{get\+Stream} () const
+\item 
+void \hyperlink{class_table_a8d1739ca805a00714d030303124c2927}{add\+New\+Line} (vector$<$ string $>$ components)
+\item 
+void \hyperlink{class_table_ac1fcf6cb33298c4fbfa5457e0b276738}{add\+Data\+In\+Same\+Line} (vector$<$ string $>$ components)
+\item 
+void \hyperlink{class_table_aee12cc19eef2f8d152d92c6c92011207}{adjust\+Columns\+Size} (vector$<$ int $>$ spaspaces\+For\+Column)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+stringstream \hyperlink{class_table_a9df4c1c33927ef0b7cd474d4420a7278}{table\+Stream}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ vector$<$ string $>$ $>$ \hyperlink{class_table_a9052c218f9eae23950459720e8069e62}{table\+Vector}
+\item 
+vector$<$ bool $>$ \hyperlink{class_table_a733288d34b5fd55085572f212fbe0260}{blocks}
+\item 
+unsigned int \hyperlink{class_table_a88a6ec978fe9116bbfed4e7aa066b5e2}{num\+Columns}
+\item 
+unsigned int \hyperlink{class_table_a0e4ed290246197725eee0c0a266b85d2}{num\+Lines}
+\item 
+vector$<$ int $>$ \hyperlink{class_table_a36e32fdefca7b32f938d0029496c4238}{columns\+Width}
+\item 
+vector$<$ string $>$ \hyperlink{class_table_a2e6a2cba72cb9975758d05507ded659e}{last\+Line\+Components}
+\item 
+unsigned int \hyperlink{class_table_a4e5eecbb3e6363585df871429381f433}{indent}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_table_af5e0f2c2e64aa1dc084c36859c54a289}{operator$<$$<$} (ostream \&out, const \hyperlink{class_table}{Table} \&table)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_table_a80b23f471aa594c4d1a1db51a22fb6c4}{}\label{class_table_a80b23f471aa594c4d1a1db51a22fb6c4} 
+\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Table\+::\+Table (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{components,  }\item[{unsigned int}]{indentacao = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_a65aecaa868a14218cbecb86437f996c1}{}\label{class_table_a65aecaa868a14218cbecb86437f996c1} 
+\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Table\+::\+Table (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{components,  }\item[{vector$<$ int $>$}]{spaces\+For\+Column,  }\item[{unsigned int}]{indentacao = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_a9abee52d5b062c43f79bfe55c67b7759}{}\label{class_table_a9abee52d5b062c43f79bfe55c67b7759} 
+\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Table\+::\+Table (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ string $>$$>$}]{table\+Vector,  }\item[{vector$<$ bool $>$}]{blocks,  }\item[{vector$<$ int $>$}]{spaces\+For\+Column,  }\item[{unsigned int}]{indentacao = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_a49c13a4307cb192d0a449f948dda66e2}{}\label{class_table_a49c13a4307cb192d0a449f948dda66e2} 
+\index{Table@{Table}!Table@{Table}}
+\index{Table@{Table}!Table@{Table}}
+\subsubsection{\texorpdfstring{Table()}{Table()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Table\+::\+Table (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ string $>$$>$}]{table\+Vector,  }\item[{unsigned int}]{indentation }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_table_ac1fcf6cb33298c4fbfa5457e0b276738}{}\label{class_table_ac1fcf6cb33298c4fbfa5457e0b276738} 
+\index{Table@{Table}!add\+Data\+In\+Same\+Line@{add\+Data\+In\+Same\+Line}}
+\index{add\+Data\+In\+Same\+Line@{add\+Data\+In\+Same\+Line}!Table@{Table}}
+\subsubsection{\texorpdfstring{add\+Data\+In\+Same\+Line()}{addDataInSameLine()}}
+{\footnotesize\ttfamily void Table\+::add\+Data\+In\+Same\+Line (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{components }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_a8d1739ca805a00714d030303124c2927}{}\label{class_table_a8d1739ca805a00714d030303124c2927} 
+\index{Table@{Table}!add\+New\+Line@{add\+New\+Line}}
+\index{add\+New\+Line@{add\+New\+Line}!Table@{Table}}
+\subsubsection{\texorpdfstring{add\+New\+Line()}{addNewLine()}}
+{\footnotesize\ttfamily void Table\+::add\+New\+Line (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{components }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_aee12cc19eef2f8d152d92c6c92011207}{}\label{class_table_aee12cc19eef2f8d152d92c6c92011207} 
+\index{Table@{Table}!adjust\+Columns\+Size@{adjust\+Columns\+Size}}
+\index{adjust\+Columns\+Size@{adjust\+Columns\+Size}!Table@{Table}}
+\subsubsection{\texorpdfstring{adjust\+Columns\+Size()}{adjustColumnsSize()}}
+{\footnotesize\ttfamily void Table\+::adjust\+Columns\+Size (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{spaspaces\+For\+Column }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_a3c9712fbea1a7101e5aa28adc42d50b5}{}\label{class_table_a3c9712fbea1a7101e5aa28adc42d50b5} 
+\index{Table@{Table}!format\+Table@{format\+Table}}
+\index{format\+Table@{format\+Table}!Table@{Table}}
+\subsubsection{\texorpdfstring{format\+Table()}{formatTable()}}
+{\footnotesize\ttfamily void Table\+::format\+Table (\begin{DoxyParamCaption}\item[{char}]{internal\+Char,  }\item[{char}]{limiting\+Char,  }\item[{vector$<$ int $>$}]{spaces\+For\+Column,  }\item[{unsigned int}]{indentacao\+FT = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\hypertarget{class_table_aeefe34b1ca9fa483b3605f9d6adbfdb5}{}\label{class_table_aeefe34b1ca9fa483b3605f9d6adbfdb5} 
+\index{Table@{Table}!get\+Blocks@{get\+Blocks}}
+\index{get\+Blocks@{get\+Blocks}!Table@{Table}}
+\subsubsection{\texorpdfstring{get\+Blocks()}{getBlocks()}}
+{\footnotesize\ttfamily vector$<$ bool $>$ Table\+::get\+Blocks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_table_ab6541bd5783a13f8958e7def259ad844}{}\label{class_table_ab6541bd5783a13f8958e7def259ad844} 
+\index{Table@{Table}!get\+Colums\+Width@{get\+Colums\+Width}}
+\index{get\+Colums\+Width@{get\+Colums\+Width}!Table@{Table}}
+\subsubsection{\texorpdfstring{get\+Colums\+Width()}{getColumsWidth()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Table\+::get\+Colums\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_table_aa6fd97bbceb82d9acddf1858f3dbfc14}{}\label{class_table_aa6fd97bbceb82d9acddf1858f3dbfc14} 
+\index{Table@{Table}!get\+Indentacao@{get\+Indentacao}}
+\index{get\+Indentacao@{get\+Indentacao}!Table@{Table}}
+\subsubsection{\texorpdfstring{get\+Indentacao()}{getIndentacao()}}
+{\footnotesize\ttfamily unsigned int Table\+::get\+Indentacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_table_a695b8d8f464194e26bcf23e07cd216bd}{}\label{class_table_a695b8d8f464194e26bcf23e07cd216bd} 
+\index{Table@{Table}!get\+Stream@{get\+Stream}}
+\index{get\+Stream@{get\+Stream}!Table@{Table}}
+\subsubsection{\texorpdfstring{get\+Stream()}{getStream()}}
+{\footnotesize\ttfamily string Table\+::get\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_table_a4a3ecdc1ad22d0dadd116af3cda3a74d}{}\label{class_table_a4a3ecdc1ad22d0dadd116af3cda3a74d} 
+\index{Table@{Table}!get\+Table\+Vector@{get\+Table\+Vector}}
+\index{get\+Table\+Vector@{get\+Table\+Vector}!Table@{Table}}
+\subsubsection{\texorpdfstring{get\+Table\+Vector()}{getTableVector()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ string $>$ $>$ Table\+::get\+Table\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_table_af5e0f2c2e64aa1dc084c36859c54a289}{}\label{class_table_af5e0f2c2e64aa1dc084c36859c54a289} 
+\index{Table@{Table}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Table@{Table}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_table}{Table} \&}]{table }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_table_a733288d34b5fd55085572f212fbe0260}{}\label{class_table_a733288d34b5fd55085572f212fbe0260} 
+\index{Table@{Table}!blocks@{blocks}}
+\index{blocks@{blocks}!Table@{Table}}
+\subsubsection{\texorpdfstring{blocks}{blocks}}
+{\footnotesize\ttfamily vector$<$bool$>$ Table\+::blocks\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a36e32fdefca7b32f938d0029496c4238}{}\label{class_table_a36e32fdefca7b32f938d0029496c4238} 
+\index{Table@{Table}!columns\+Width@{columns\+Width}}
+\index{columns\+Width@{columns\+Width}!Table@{Table}}
+\subsubsection{\texorpdfstring{columns\+Width}{columnsWidth}}
+{\footnotesize\ttfamily vector$<$int$>$ Table\+::columns\+Width\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a4e5eecbb3e6363585df871429381f433}{}\label{class_table_a4e5eecbb3e6363585df871429381f433} 
+\index{Table@{Table}!indent@{indent}}
+\index{indent@{indent}!Table@{Table}}
+\subsubsection{\texorpdfstring{indent}{indent}}
+{\footnotesize\ttfamily unsigned int Table\+::indent\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a2e6a2cba72cb9975758d05507ded659e}{}\label{class_table_a2e6a2cba72cb9975758d05507ded659e} 
+\index{Table@{Table}!last\+Line\+Components@{last\+Line\+Components}}
+\index{last\+Line\+Components@{last\+Line\+Components}!Table@{Table}}
+\subsubsection{\texorpdfstring{last\+Line\+Components}{lastLineComponents}}
+{\footnotesize\ttfamily vector$<$string$>$ Table\+::last\+Line\+Components\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a88a6ec978fe9116bbfed4e7aa066b5e2}{}\label{class_table_a88a6ec978fe9116bbfed4e7aa066b5e2} 
+\index{Table@{Table}!num\+Columns@{num\+Columns}}
+\index{num\+Columns@{num\+Columns}!Table@{Table}}
+\subsubsection{\texorpdfstring{num\+Columns}{numColumns}}
+{\footnotesize\ttfamily unsigned int Table\+::num\+Columns\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a0e4ed290246197725eee0c0a266b85d2}{}\label{class_table_a0e4ed290246197725eee0c0a266b85d2} 
+\index{Table@{Table}!num\+Lines@{num\+Lines}}
+\index{num\+Lines@{num\+Lines}!Table@{Table}}
+\subsubsection{\texorpdfstring{num\+Lines}{numLines}}
+{\footnotesize\ttfamily unsigned int Table\+::num\+Lines\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_table_a9df4c1c33927ef0b7cd474d4420a7278}{}\label{class_table_a9df4c1c33927ef0b7cd474d4420a7278} 
+\index{Table@{Table}!table\+Stream@{table\+Stream}}
+\index{table\+Stream@{table\+Stream}!Table@{Table}}
+\subsubsection{\texorpdfstring{table\+Stream}{tableStream}}
+{\footnotesize\ttfamily stringstream Table\+::table\+Stream}
+
+\hypertarget{class_table_a9052c218f9eae23950459720e8069e62}{}\label{class_table_a9052c218f9eae23950459720e8069e62} 
+\index{Table@{Table}!table\+Vector@{table\+Vector}}
+\index{table\+Vector@{table\+Vector}!Table@{Table}}
+\subsubsection{\texorpdfstring{table\+Vector}{tableVector}}
+{\footnotesize\ttfamily vector$<$vector$<$string$>$ $>$ Table\+::table\+Vector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_utils_8hpp}{Utils.\+hpp}\item 
+\hyperlink{_utils_8cpp}{Utils.\+cpp}\end{DoxyCompactItemize}

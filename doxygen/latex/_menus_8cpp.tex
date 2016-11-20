@@ -1,0 +1,459 @@
+\hypertarget{_menus_8cpp}{}\section{Menus.\+cpp File Reference}
+\label{_menus_8cpp}\index{Menus.\+cpp@{Menus.\+cpp}}
+{\ttfamily \#include \char`\"{}Menus.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Season.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_menus_8cpp_a17fff41a52f56b7415e17a9901aef3bd}{initial\+Info} (string \&club\+Name)
+\begin{DoxyCompactList}\small\item\em Initial information. \end{DoxyCompactList}\item 
+bool \hyperlink{_menus_8cpp_aba1d31da0cee422234dab65e959d075a}{confirm} (const \hyperlink{class_table}{Table} \&message)
+\begin{DoxyCompactList}\small\item\em Confirms the given message. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a6c9679e3924a7c2bc973c4d21489d7f9}{initial\+Options} (\hyperlink{class_club}{Club} \&main\+Club)
+\begin{DoxyCompactList}\small\item\em Displays initial options. \end{DoxyCompactList}\item 
+unsigned short int \hyperlink{_menus_8cpp_ad5d02bcfd5db07f50cbe5b6f7eaf1583}{main\+Menu} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Main menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a19a4edcd5cd802ee7c6bf50e34d5dc1f}{show\+Main\+Menu} (unsigned short int opcao\+Chosen, string season\+Name)
+\begin{DoxyCompactList}\small\item\em Shows the main menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a9f3c4b439a5f8ed7e98757ef4b75c801}{print\+Athletes\+Menu} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Print athletes menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a69e227cadc4edcc033a18d9c07024705}{print\+Add\+Athlete\+Menu} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Print add athlete menu. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{_menus_8cpp_a9bcfc196f990e60b8cabbb0ee548d178}{menu\+Athletes\+Management} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Displays the athletes management menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a61026bc1d06413a5b13c64175758b682}{options\+Athletes\+Management} (\hyperlink{class_club}{Club} \&main\+Club, string season\+Name)
+\begin{DoxyCompactList}\small\item\em Displays athletes management options. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_ac7e1de477c51eda2d53115a463204d03}{print\+Coaches\+Menu} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Print coaches menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_af6820edb9a6eb31af5d4580008276c96}{print\+Add\+Coach\+Menu} (string season\+Name)
+\item 
+unsigned int \hyperlink{_menus_8cpp_a422fbb588b855f19351d94531e202fea}{menu\+Coaches\+Management} (string season\+Name)
+\begin{DoxyCompactList}\small\item\em Displays the coaches management menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_ad19f96da69d9d0796b15938b0d2e0614}{options\+Coaches\+Management} (\hyperlink{class_club}{Club} \&main\+Club, string season\+Name)
+\begin{DoxyCompactList}\small\item\em Displays coaches management options. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_abe56e5460ba04b3bc9b05a17ce2f4522}{print\+Levels\+Menu} (\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} level)
+\item 
+unsigned int \hyperlink{_menus_8cpp_a4024915e96d2481729de5924a86b7363}{menu\+Levels\+Management} (\hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Displays the levels management menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_aba6aee8db113f1e9d96b04b931bcdaae}{options\+Levels\+Management} (\hyperlink{class_club}{Club} \&main\+Club, \hyperlink{class_season}{Season} $\ast$current\+Season, \hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Displays levels management options. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a9c0bdbf2607971bfa3af0dc659b346b4}{print\+Friendlys\+Menu} (\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} level)
+\begin{DoxyCompactList}\small\item\em Print friendly matches menu. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{_menus_8cpp_a46dfe2f8dd620d7e687f880c5618f3b2}{menu\+Friendlys\+Management} (\hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Displays the friendly matches management menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a30e2cf2012dd2f2530eaf74117f23405}{options\+Friendlys\+Management} (\hyperlink{class_club}{Club} \&main\+Club, \hyperlink{class_season}{Season} $\ast$current\+Season, \hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Friendly matches management options. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a0106dde0643a438add9fbb6184e4c575}{print\+Trainings\+Menu} (\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} level)
+\begin{DoxyCompactList}\small\item\em Print trainings menu. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{_menus_8cpp_a8c39b9149fb2aef371f68b86ed3869ec}{menu\+Trainings\+Management} (\hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Displays the trainings management menu. \end{DoxyCompactList}\item 
+void \hyperlink{_menus_8cpp_a54d7e0cce7d7da7c933cbe0ee35d8300}{options\+Trainings\+Management} (\hyperlink{class_club}{Club} \&main\+Club, \hyperlink{class_season}{Season} $\ast$current\+Season, \hyperlink{class_level}{Level} $\ast$current\+Level)
+\begin{DoxyCompactList}\small\item\em Trainings management options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_menus_8cpp_aba1d31da0cee422234dab65e959d075a}{}\label{_menus_8cpp_aba1d31da0cee422234dab65e959d075a} 
+\index{Menus.\+cpp@{Menus.\+cpp}!confirm@{confirm}}
+\index{confirm@{confirm}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{confirm()}{confirm()}}
+{\footnotesize\ttfamily bool confirm (\begin{DoxyParamCaption}\item[{const \hyperlink{class_table}{Table} \&}]{message }\end{DoxyParamCaption})}
+
+
+
+Confirms the given message. 
+
+LuÃ­s, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it succeeds, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a17fff41a52f56b7415e17a9901aef3bd}{}\label{_menus_8cpp_a17fff41a52f56b7415e17a9901aef3bd} 
+\index{Menus.\+cpp@{Menus.\+cpp}!initial\+Info@{initial\+Info}}
+\index{initial\+Info@{initial\+Info}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{initial\+Info()}{initialInfo()}}
+{\footnotesize\ttfamily void initial\+Info (\begin{DoxyParamCaption}\item[{string \&}]{club\+Name }\end{DoxyParamCaption})}
+
+
+
+Initial information. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em club\+Name} & \mbox{[}in,out\mbox{]} Name of the club. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a6c9679e3924a7c2bc973c4d21489d7f9}{}\label{_menus_8cpp_a6c9679e3924a7c2bc973c4d21489d7f9} 
+\index{Menus.\+cpp@{Menus.\+cpp}!initial\+Options@{initial\+Options}}
+\index{initial\+Options@{initial\+Options}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{initial\+Options()}{initialOptions()}}
+{\footnotesize\ttfamily void initial\+Options (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{football\+Club }\end{DoxyParamCaption})}
+
+
+
+Displays initial options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em football\+Club} & \mbox{[}in,out\mbox{]} The football club. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_ad5d02bcfd5db07f50cbe5b6f7eaf1583}{}\label{_menus_8cpp_ad5d02bcfd5db07f50cbe5b6f7eaf1583} 
+\index{Menus.\+cpp@{Menus.\+cpp}!main\+Menu@{main\+Menu}}
+\index{main\+Menu@{main\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{main\+Menu()}{mainMenu()}}
+{\footnotesize\ttfamily unsigned short int main\+Menu (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Main menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a9bcfc196f990e60b8cabbb0ee548d178}{}\label{_menus_8cpp_a9bcfc196f990e60b8cabbb0ee548d178} 
+\index{Menus.\+cpp@{Menus.\+cpp}!menu\+Athletes\+Management@{menu\+Athletes\+Management}}
+\index{menu\+Athletes\+Management@{menu\+Athletes\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{menu\+Athletes\+Management()}{menuAthletesManagement()}}
+{\footnotesize\ttfamily unsigned int menu\+Athletes\+Management (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Displays the athletes management menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a422fbb588b855f19351d94531e202fea}{}\label{_menus_8cpp_a422fbb588b855f19351d94531e202fea} 
+\index{Menus.\+cpp@{Menus.\+cpp}!menu\+Coaches\+Management@{menu\+Coaches\+Management}}
+\index{menu\+Coaches\+Management@{menu\+Coaches\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{menu\+Coaches\+Management()}{menuCoachesManagement()}}
+{\footnotesize\ttfamily unsigned int menu\+Coaches\+Management (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Displays the coaches management menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a46dfe2f8dd620d7e687f880c5618f3b2}{}\label{_menus_8cpp_a46dfe2f8dd620d7e687f880c5618f3b2} 
+\index{Menus.\+cpp@{Menus.\+cpp}!menu\+Friendlys\+Management@{menu\+Friendlys\+Management}}
+\index{menu\+Friendlys\+Management@{menu\+Friendlys\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{menu\+Friendlys\+Management()}{menuFriendlysManagement()}}
+{\footnotesize\ttfamily unsigned int menu\+Friendlys\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Displays the friendly matches management menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a4024915e96d2481729de5924a86b7363}{}\label{_menus_8cpp_a4024915e96d2481729de5924a86b7363} 
+\index{Menus.\+cpp@{Menus.\+cpp}!menu\+Levels\+Management@{menu\+Levels\+Management}}
+\index{menu\+Levels\+Management@{menu\+Levels\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{menu\+Levels\+Management()}{menuLevelsManagement()}}
+{\footnotesize\ttfamily unsigned int menu\+Levels\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Displays the levels management menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a8c39b9149fb2aef371f68b86ed3869ec}{}\label{_menus_8cpp_a8c39b9149fb2aef371f68b86ed3869ec} 
+\index{Menus.\+cpp@{Menus.\+cpp}!menu\+Trainings\+Management@{menu\+Trainings\+Management}}
+\index{menu\+Trainings\+Management@{menu\+Trainings\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{menu\+Trainings\+Management()}{menuTrainingsManagement()}}
+{\footnotesize\ttfamily unsigned int menu\+Trainings\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Displays the trainings management menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+An int. 
+\end{DoxyReturn}
+\hypertarget{_menus_8cpp_a61026bc1d06413a5b13c64175758b682}{}\label{_menus_8cpp_a61026bc1d06413a5b13c64175758b682} 
+\index{Menus.\+cpp@{Menus.\+cpp}!options\+Athletes\+Management@{options\+Athletes\+Management}}
+\index{options\+Athletes\+Management@{options\+Athletes\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{options\+Athletes\+Management()}{optionsAthletesManagement()}}
+{\footnotesize\ttfamily void options\+Athletes\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{football\+Club,  }\item[{string}]{season\+Name = {\ttfamily to\+\_\+string(\hyperlink{class_date}{Date}().getYear())} }\end{DoxyParamCaption})}
+
+
+
+Displays athletes management options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em football\+Club} & \mbox{[}in,out\mbox{]} The football club. \\
+\hline
+{\em season\+Name} & (Optional) Name of the season. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_ad19f96da69d9d0796b15938b0d2e0614}{}\label{_menus_8cpp_ad19f96da69d9d0796b15938b0d2e0614} 
+\index{Menus.\+cpp@{Menus.\+cpp}!options\+Coaches\+Management@{options\+Coaches\+Management}}
+\index{options\+Coaches\+Management@{options\+Coaches\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{options\+Coaches\+Management()}{optionsCoachesManagement()}}
+{\footnotesize\ttfamily void options\+Coaches\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{football\+Club,  }\item[{string}]{season\+Name = {\ttfamily to\+\_\+string(\hyperlink{class_date}{Date}().getYear())} }\end{DoxyParamCaption})}
+
+
+
+Displays coaches management options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em football\+Club} & \mbox{[}in,out\mbox{]} The football club. \\
+\hline
+{\em season\+Name} & (Optional) Name of the season. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a30e2cf2012dd2f2530eaf74117f23405}{}\label{_menus_8cpp_a30e2cf2012dd2f2530eaf74117f23405} 
+\index{Menus.\+cpp@{Menus.\+cpp}!options\+Friendlys\+Management@{options\+Friendlys\+Management}}
+\index{options\+Friendlys\+Management@{options\+Friendlys\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{options\+Friendlys\+Management()}{optionsFriendlysManagement()}}
+{\footnotesize\ttfamily void options\+Friendlys\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{main\+Club,  }\item[{\hyperlink{class_season}{Season} $\ast$}]{current\+Season,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Friendly matches management options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+Club} & \mbox{[}in,out\mbox{]} The main club. \\
+\hline
+{\em current\+Season} & \mbox{[}in,out\mbox{]} If non-\/null, the current season. \\
+\hline
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_aba6aee8db113f1e9d96b04b931bcdaae}{}\label{_menus_8cpp_aba6aee8db113f1e9d96b04b931bcdaae} 
+\index{Menus.\+cpp@{Menus.\+cpp}!options\+Levels\+Management@{options\+Levels\+Management}}
+\index{options\+Levels\+Management@{options\+Levels\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{options\+Levels\+Management()}{optionsLevelsManagement()}}
+{\footnotesize\ttfamily void options\+Levels\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{main\+Club,  }\item[{\hyperlink{class_season}{Season} $\ast$}]{current\+Season,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Displays levels management options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+Club} & \mbox{[}in,out\mbox{]} The main club. \\
+\hline
+{\em current\+Season} & \mbox{[}in,out\mbox{]} If non-\/null, the current season. \\
+\hline
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a54d7e0cce7d7da7c933cbe0ee35d8300}{}\label{_menus_8cpp_a54d7e0cce7d7da7c933cbe0ee35d8300} 
+\index{Menus.\+cpp@{Menus.\+cpp}!options\+Trainings\+Management@{options\+Trainings\+Management}}
+\index{options\+Trainings\+Management@{options\+Trainings\+Management}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{options\+Trainings\+Management()}{optionsTrainingsManagement()}}
+{\footnotesize\ttfamily void options\+Trainings\+Management (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} \&}]{main\+Club,  }\item[{\hyperlink{class_season}{Season} $\ast$}]{current\+Season,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{current\+Level }\end{DoxyParamCaption})}
+
+
+
+Trainings management options. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+Club} & \mbox{[}in,out\mbox{]} The main club. \\
+\hline
+{\em current\+Season} & \mbox{[}in,out\mbox{]} If non-\/null, the current season. \\
+\hline
+{\em current\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the current level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a69e227cadc4edcc033a18d9c07024705}{}\label{_menus_8cpp_a69e227cadc4edcc033a18d9c07024705} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Add\+Athlete\+Menu@{print\+Add\+Athlete\+Menu}}
+\index{print\+Add\+Athlete\+Menu@{print\+Add\+Athlete\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Add\+Athlete\+Menu()}{printAddAthleteMenu()}}
+{\footnotesize\ttfamily void print\+Add\+Athlete\+Menu (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Print add athlete menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_af6820edb9a6eb31af5d4580008276c96}{}\label{_menus_8cpp_af6820edb9a6eb31af5d4580008276c96} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Add\+Coach\+Menu@{print\+Add\+Coach\+Menu}}
+\index{print\+Add\+Coach\+Menu@{print\+Add\+Coach\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Add\+Coach\+Menu()}{printAddCoachMenu()}}
+{\footnotesize\ttfamily void print\+Add\+Coach\+Menu (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+\hypertarget{_menus_8cpp_a9f3c4b439a5f8ed7e98757ef4b75c801}{}\label{_menus_8cpp_a9f3c4b439a5f8ed7e98757ef4b75c801} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Athletes\+Menu@{print\+Athletes\+Menu}}
+\index{print\+Athletes\+Menu@{print\+Athletes\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Athletes\+Menu()}{printAthletesMenu()}}
+{\footnotesize\ttfamily void print\+Athletes\+Menu (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Print athletes menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_ac7e1de477c51eda2d53115a463204d03}{}\label{_menus_8cpp_ac7e1de477c51eda2d53115a463204d03} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Coaches\+Menu@{print\+Coaches\+Menu}}
+\index{print\+Coaches\+Menu@{print\+Coaches\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Coaches\+Menu()}{printCoachesMenu()}}
+{\footnotesize\ttfamily void print\+Coaches\+Menu (\begin{DoxyParamCaption}\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Print coaches menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a9c0bdbf2607971bfa3af0dc659b346b4}{}\label{_menus_8cpp_a9c0bdbf2607971bfa3af0dc659b346b4} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Friendlys\+Menu@{print\+Friendlys\+Menu}}
+\index{print\+Friendlys\+Menu@{print\+Friendlys\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Friendlys\+Menu()}{printFriendlysMenu()}}
+{\footnotesize\ttfamily void print\+Friendlys\+Menu (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}}]{level }\end{DoxyParamCaption})}
+
+
+
+Print friendly matches menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_abe56e5460ba04b3bc9b05a17ce2f4522}{}\label{_menus_8cpp_abe56e5460ba04b3bc9b05a17ce2f4522} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Levels\+Menu@{print\+Levels\+Menu}}
+\index{print\+Levels\+Menu@{print\+Levels\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Levels\+Menu()}{printLevelsMenu()}}
+{\footnotesize\ttfamily void print\+Levels\+Menu (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}}]{level }\end{DoxyParamCaption})}
+
+\hypertarget{_menus_8cpp_a0106dde0643a438add9fbb6184e4c575}{}\label{_menus_8cpp_a0106dde0643a438add9fbb6184e4c575} 
+\index{Menus.\+cpp@{Menus.\+cpp}!print\+Trainings\+Menu@{print\+Trainings\+Menu}}
+\index{print\+Trainings\+Menu@{print\+Trainings\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Trainings\+Menu()}{printTrainingsMenu()}}
+{\footnotesize\ttfamily void print\+Trainings\+Menu (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}}]{level }\end{DoxyParamCaption})}
+
+
+
+Print trainings menu. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{_menus_8cpp_a19a4edcd5cd802ee7c6bf50e34d5dc1f}{}\label{_menus_8cpp_a19a4edcd5cd802ee7c6bf50e34d5dc1f} 
+\index{Menus.\+cpp@{Menus.\+cpp}!show\+Main\+Menu@{show\+Main\+Menu}}
+\index{show\+Main\+Menu@{show\+Main\+Menu}!Menus.\+cpp@{Menus.\+cpp}}
+\subsubsection{\texorpdfstring{show\+Main\+Menu()}{showMainMenu()}}
+{\footnotesize\ttfamily void show\+Main\+Menu (\begin{DoxyParamCaption}\item[{unsigned short int}]{option\+Chosen,  }\item[{string}]{season\+Name }\end{DoxyParamCaption})}
+
+
+
+Shows the main menu. 
+
+LuÃ­s, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option\+Chosen} & The option chosen. \\
+\hline
+{\em season\+Name} & Name of the season. \\
+\hline
+\end{DoxyParams}

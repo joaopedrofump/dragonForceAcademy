@@ -1,0 +1,236 @@
+\hypertarget{class_date}{}\section{Date Class Reference}
+\label{class_date}\index{Date@{Date}}
+
+
+{\ttfamily \#include $<$Utils.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}{Date} ()
+\item 
+\hyperlink{class_date_aed0ec4ac9e00fb6130f8a642a61180b9}{Date} (string data)
+\item 
+\hyperlink{class_date_ae0f1f3db515c009b0a9f77869edc7599}{Date} (unsigned int dia, unsigned int mes, unsigned int ano)
+\item 
+\hyperlink{class_date_a5b859c0abe4bcf936dc7a7124e079659}{Date} (ifstream \&in\+Stream)
+\item 
+int \hyperlink{class_date_a0f253815240e70f4c39cb93cc68bd3f4}{get\+Day} () const
+\item 
+int \hyperlink{class_date_a332f6e3a2f6a40d73742b6dab7be0f64}{get\+Month} () const
+\item 
+int \hyperlink{class_date_a8b0869f34c2b38d108ab83ee2e770e5d}{get\+Year} () const
+\item 
+void \hyperlink{class_date_a742b1032af5bbd3e4c9ddfc9c21c1a5a}{set\+Day} (int dia)
+\item 
+void \hyperlink{class_date_a11b56160e1dbb550b68a7dd54c968204}{set\+Month} (int mes)
+\item 
+void \hyperlink{class_date_a62230a93ff2ce92cd4b30408622393af}{set\+Year} (int ano)
+\item 
+void \hyperlink{class_date_af7ea8f12ad1c018f58dbc85f9c844b03}{save} (ofstream \&out) const
+\item 
+string \hyperlink{class_date_affb645fa983d4e0317ba0aa8f5998fd1}{show\+Date} () const
+\item 
+void \hyperlink{class_date_ada293ae20419963c246a7831096f6091}{set\+Current\+Date} ()
+\item 
+string \hyperlink{class_date_a5ea4980f43e2b098e033651e199d2793}{str} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_date_a434957869afa4b4e1275e00fe6a67216}{is\+Leap} (int \hyperlink{class_date_a3eeced2ed56bc95d56782b9e738db8ea}{year}) const
+\item 
+int \hyperlink{class_date_a102f0523e4d84ad9cef682f2ff233808}{num\+Days} (int \hyperlink{class_date_a533843e07c6ac8d19fee9b16f5336ba2}{month}, int \hyperlink{class_date_a3eeced2ed56bc95d56782b9e738db8ea}{year}) const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_date_a5b192adcabf2b2871e3f0b76c1ec1601}{day}
+\item 
+int \hyperlink{class_date_a533843e07c6ac8d19fee9b16f5336ba2}{month}
+\item 
+int \hyperlink{class_date_a3eeced2ed56bc95d56782b9e738db8ea}{year}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ifstream \& \hyperlink{class_date_ab895bef0d8545ab4875f6bfc4a7fd4f7}{operator$>$$>$} (ifstream \&in\+Stream, \hyperlink{class_date}{Date} \&date\+To\+Read)
+\item 
+bool \hyperlink{class_date_ad9736995fa90a35631dc5f220e33e4b2}{operator$>$=} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} date2)
+\item 
+bool \hyperlink{class_date_aa2e695ccf211714fafbc8c73cb7e5419}{operator$<$} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\item 
+bool \hyperlink{class_date_a588c6068972f9e69bc50292405c1fac7}{operator==} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\item 
+ostream \& \hyperlink{class_date_a7f6a6b50c5a5aca26dd5b5631c2f5c43}{operator$<$$<$} (ostream \&out, const \hyperlink{class_date}{Date} \&data)
+\item 
+int \hyperlink{class_date_ac5bf05534baacb5dc11f6abbb4e1f621}{operator-\/} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}{}\label{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd} 
+\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{Date()}{Date()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Date\+::\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_aed0ec4ac9e00fb6130f8a642a61180b9}{}\label{class_date_aed0ec4ac9e00fb6130f8a642a61180b9} 
+\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{Date()}{Date()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Date\+::\+Date (\begin{DoxyParamCaption}\item[{string}]{data }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_ae0f1f3db515c009b0a9f77869edc7599}{}\label{class_date_ae0f1f3db515c009b0a9f77869edc7599} 
+\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{Date()}{Date()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Date\+::\+Date (\begin{DoxyParamCaption}\item[{unsigned int}]{dia,  }\item[{unsigned int}]{mes,  }\item[{unsigned int}]{ano }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_a5b859c0abe4bcf936dc7a7124e079659}{}\label{class_date_a5b859c0abe4bcf936dc7a7124e079659} 
+\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{Date()}{Date()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Date\+::\+Date (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+Stream }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_date_a0f253815240e70f4c39cb93cc68bd3f4}{}\label{class_date_a0f253815240e70f4c39cb93cc68bd3f4} 
+\index{Date@{Date}!get\+Day@{get\+Day}}
+\index{get\+Day@{get\+Day}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Day()}{getDay()}}
+{\footnotesize\ttfamily int Date\+::get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_date_a332f6e3a2f6a40d73742b6dab7be0f64}{}\label{class_date_a332f6e3a2f6a40d73742b6dab7be0f64} 
+\index{Date@{Date}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Month()}{getMonth()}}
+{\footnotesize\ttfamily int Date\+::get\+Month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_date_a8b0869f34c2b38d108ab83ee2e770e5d}{}\label{class_date_a8b0869f34c2b38d108ab83ee2e770e5d} 
+\index{Date@{Date}!get\+Year@{get\+Year}}
+\index{get\+Year@{get\+Year}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Year()}{getYear()}}
+{\footnotesize\ttfamily int Date\+::get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_date_a434957869afa4b4e1275e00fe6a67216}{}\label{class_date_a434957869afa4b4e1275e00fe6a67216} 
+\index{Date@{Date}!is\+Leap@{is\+Leap}}
+\index{is\+Leap@{is\+Leap}!Date@{Date}}
+\subsubsection{\texorpdfstring{is\+Leap()}{isLeap()}}
+{\footnotesize\ttfamily bool Date\+::is\+Leap (\begin{DoxyParamCaption}\item[{int}]{year }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_date_a102f0523e4d84ad9cef682f2ff233808}{}\label{class_date_a102f0523e4d84ad9cef682f2ff233808} 
+\index{Date@{Date}!num\+Days@{num\+Days}}
+\index{num\+Days@{num\+Days}!Date@{Date}}
+\subsubsection{\texorpdfstring{num\+Days()}{numDays()}}
+{\footnotesize\ttfamily int Date\+::num\+Days (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{year }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_date_af7ea8f12ad1c018f58dbc85f9c844b03}{}\label{class_date_af7ea8f12ad1c018f58dbc85f9c844b03} 
+\index{Date@{Date}!save@{save}}
+\index{save@{save}!Date@{Date}}
+\subsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void Date\+::save (\begin{DoxyParamCaption}\item[{ofstream \&}]{out }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_date_ada293ae20419963c246a7831096f6091}{}\label{class_date_ada293ae20419963c246a7831096f6091} 
+\index{Date@{Date}!set\+Current\+Date@{set\+Current\+Date}}
+\index{set\+Current\+Date@{set\+Current\+Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{set\+Current\+Date()}{setCurrentDate()}}
+{\footnotesize\ttfamily void Date\+::set\+Current\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_a742b1032af5bbd3e4c9ddfc9c21c1a5a}{}\label{class_date_a742b1032af5bbd3e4c9ddfc9c21c1a5a} 
+\index{Date@{Date}!set\+Day@{set\+Day}}
+\index{set\+Day@{set\+Day}!Date@{Date}}
+\subsubsection{\texorpdfstring{set\+Day()}{setDay()}}
+{\footnotesize\ttfamily void Date\+::set\+Day (\begin{DoxyParamCaption}\item[{int}]{dia }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_a11b56160e1dbb550b68a7dd54c968204}{}\label{class_date_a11b56160e1dbb550b68a7dd54c968204} 
+\index{Date@{Date}!set\+Month@{set\+Month}}
+\index{set\+Month@{set\+Month}!Date@{Date}}
+\subsubsection{\texorpdfstring{set\+Month()}{setMonth()}}
+{\footnotesize\ttfamily void Date\+::set\+Month (\begin{DoxyParamCaption}\item[{int}]{mes }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_a62230a93ff2ce92cd4b30408622393af}{}\label{class_date_a62230a93ff2ce92cd4b30408622393af} 
+\index{Date@{Date}!set\+Year@{set\+Year}}
+\index{set\+Year@{set\+Year}!Date@{Date}}
+\subsubsection{\texorpdfstring{set\+Year()}{setYear()}}
+{\footnotesize\ttfamily void Date\+::set\+Year (\begin{DoxyParamCaption}\item[{int}]{ano }\end{DoxyParamCaption})}
+
+\hypertarget{class_date_affb645fa983d4e0317ba0aa8f5998fd1}{}\label{class_date_affb645fa983d4e0317ba0aa8f5998fd1} 
+\index{Date@{Date}!show\+Date@{show\+Date}}
+\index{show\+Date@{show\+Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{show\+Date()}{showDate()}}
+{\footnotesize\ttfamily string Date\+::show\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_date_a5ea4980f43e2b098e033651e199d2793}{}\label{class_date_a5ea4980f43e2b098e033651e199d2793} 
+\index{Date@{Date}!str@{str}}
+\index{str@{str}!Date@{Date}}
+\subsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily string Date\+::str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_date_ac5bf05534baacb5dc11f6abbb4e1f621}{}\label{class_date_ac5bf05534baacb5dc11f6abbb4e1f621} 
+\index{Date@{Date}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator-\/}{operator-}}
+{\footnotesize\ttfamily int operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_date_aa2e695ccf211714fafbc8c73cb7e5419}{}\label{class_date_aa2e695ccf211714fafbc8c73cb7e5419} 
+\index{Date@{Date}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_date_a7f6a6b50c5a5aca26dd5b5631c2f5c43}{}\label{class_date_a7f6a6b50c5a5aca26dd5b5631c2f5c43} 
+\index{Date@{Date}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_date}{Date} \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_date_a588c6068972f9e69bc50292405c1fac7}{}\label{class_date_a588c6068972f9e69bc50292405c1fac7} 
+\index{Date@{Date}!operator==@{operator==}}
+\index{operator==@{operator==}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_date_ad9736995fa90a35631dc5f220e33e4b2}{}\label{class_date_ad9736995fa90a35631dc5f220e33e4b2} 
+\index{Date@{Date}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator$>$=}{operator>=}}
+{\footnotesize\ttfamily bool operator$>$= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date}}]{date2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_date_ab895bef0d8545ab4875f6bfc4a7fd4f7}{}\label{class_date_ab895bef0d8545ab4875f6bfc4a7fd4f7} 
+\index{Date@{Date}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily ifstream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+Stream,  }\item[{\hyperlink{class_date}{Date} \&}]{date\+To\+Read }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_date_a5b192adcabf2b2871e3f0b76c1ec1601}{}\label{class_date_a5b192adcabf2b2871e3f0b76c1ec1601} 
+\index{Date@{Date}!day@{day}}
+\index{day@{day}!Date@{Date}}
+\subsubsection{\texorpdfstring{day}{day}}
+{\footnotesize\ttfamily int Date\+::day\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_date_a533843e07c6ac8d19fee9b16f5336ba2}{}\label{class_date_a533843e07c6ac8d19fee9b16f5336ba2} 
+\index{Date@{Date}!month@{month}}
+\index{month@{month}!Date@{Date}}
+\subsubsection{\texorpdfstring{month}{month}}
+{\footnotesize\ttfamily int Date\+::month\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_date_a3eeced2ed56bc95d56782b9e738db8ea}{}\label{class_date_a3eeced2ed56bc95d56782b9e738db8ea} 
+\index{Date@{Date}!year@{year}}
+\index{year@{year}!Date@{Date}}
+\subsubsection{\texorpdfstring{year}{year}}
+{\footnotesize\ttfamily int Date\+::year\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_utils_8hpp}{Utils.\+hpp}\item 
+\hyperlink{_utils_8cpp}{Utils.\+cpp}\end{DoxyCompactItemize}

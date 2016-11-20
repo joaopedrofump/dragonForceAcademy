@@ -1,0 +1,1055 @@
+\hypertarget{class_level}{}\section{Level Class Reference}
+\label{class_level}\index{Level@{Level}}
+
+
+{\ttfamily \#include $<$Level.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_level_a3e56499129f883f0cb4e5a855243c1e2}{Level} (string \hyperlink{class_level_a39e8e8b8d5f64c3d3a50b617c3ea8321}{year\+Of\+Season}, string path\+To\+Season\+Folder, string \hyperlink{class_level_aa59964368a47b0d36ff67948b880b3ef}{level\+Name}, \hyperlink{class_club}{Club} $\ast$\hyperlink{class_level_a383670d611a12c518ef48ce9fa179f7a}{parent\+Club})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_ab773a1c1c9ecfa31c45d5e3e48b38a92}{get\+Min\+Age} () const
+\begin{DoxyCompactList}\small\item\em Gets minimum age. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_ae034a3eb28a90653820eb9633b9f7464}{get\+Max\+Age} () const
+\begin{DoxyCompactList}\small\item\em Gets maximum age. \end{DoxyCompactList}\item 
+char \hyperlink{class_level_a1a32dbbb6c0a3e9cfd26870388a02363}{get\+Min\+Height} () const
+\begin{DoxyCompactList}\small\item\em Gets minimum height. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ \hyperlink{class_level_a3d4498069e112cbdc952ce1c9e5eb6a5}{get\+Map\+Info\+Players} () const
+\begin{DoxyCompactList}\small\item\em Gets the map containing the athletes performance informations. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_level_a2130d8ee6b56f18821e5606c757661d3}{get\+Coaches} () const
+\begin{DoxyCompactList}\small\item\em Gets the coaches. \end{DoxyCompactList}\item 
+\hyperlink{class_level}{Level} $\ast$ \hyperlink{class_level_a5c9636031654943ea260c22fe5dede44}{add\+Athlete\+To\+Level} (pair$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$ player\+Info)
+\begin{DoxyCompactList}\small\item\em Adds an athlete to level. \end{DoxyCompactList}\item 
+\hyperlink{class_level}{Level} $\ast$ \hyperlink{class_level_ae0c356fc3ffa08c834d4a9ea3d7bacc8}{add\+Coach\+To\+Level} (unsigned int id\+Coach, bool main\+Coach=false)
+\begin{DoxyCompactList}\small\item\em Adds a coach to level to \textquotesingle{}main\+Coach\textquotesingle{}. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_tournament}{Tournament} $\ast$ $>$ \hyperlink{class_level_ad01baca6bdb906c6d605f04f6885cb81}{get\+Tournaments} () const
+\begin{DoxyCompactList}\small\item\em Gets the tournaments. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a810328bff045bfb02159d388414718d8}{get\+Level\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets level name. \end{DoxyCompactList}\item 
+int \hyperlink{class_level_afda6ab0cbba0cea709e2fb04cdc0187a}{get\+Main\+Coach\+Id} () const
+\begin{DoxyCompactList}\small\item\em Gets main coach identifier. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a22837fd78482f7a7451cb228fe6595d2}{get\+Year} () const
+\begin{DoxyCompactList}\small\item\em Gets the year. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a66ee534fb23e363ccba422c64f08a202}{get\+Path\+To\+Level\+Folder} () const
+\begin{DoxyCompactList}\small\item\em Gets path to level folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a038f1525cd82ba7ff262c95559ae05f9}{get\+Path\+To\+Level\+Athletes\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to level athletes file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_ac779bf1052984fbcba0669139e639c46}{get\+Path\+To\+Level\+Coaches\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to level coaches file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_ac4cd1f4a5c87dbd2b47c1d07cbf114e4}{get\+Path\+To\+Level\+Matches\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to level matches file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a5808d2312d1b6c2f93dbbd0b47c97499}{get\+Path\+To\+Level\+Matches\+Folder} () const
+\begin{DoxyCompactList}\small\item\em Gets path to level matches folder. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_abe3f06938f9d39800648c0fc0ddbadeb}{get\+Last\+Match\+Id} () const
+\begin{DoxyCompactList}\small\item\em Gets the last match identifier. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_ad3f226396e776c339ae2a33e4cebd2c3}{update\+Last\+Match\+Id} ()
+\begin{DoxyCompactList}\small\item\em Updates the last match identifier. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_match}{Match} $\ast$ $>$ \hyperlink{class_level_a67ede4d99accffb562e15c2c75cb81b8}{get\+All\+Level\+Matches} (bool only\+Not\+Played=false) const
+\begin{DoxyCompactList}\small\item\em Gets all level matches. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_match}{Match} $\ast$ $>$ \hyperlink{class_level_af1da9db30e4e0d350fb72ca7c844958c}{get\+Matches\+Ready\+To\+Play} () const
+\begin{DoxyCompactList}\small\item\em Gets matches ready to play. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_training}{Training} $\ast$ $>$ \hyperlink{class_level_a839826078b5b56b27b697e7e599dd6ef}{get\+Trainings\+Ready\+To\+Play} () const
+\begin{DoxyCompactList}\small\item\em Gets trainings ready be made. \end{DoxyCompactList}\item 
+\hyperlink{class_table}{Table} \hyperlink{class_level_aeacdd2b25ba6fdfadb89290dc3d73513}{show\+Athletes\+Of\+Level} (bool only\+Available=false) const
+\begin{DoxyCompactList}\small\item\em Shows the athletes of level. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_training}{Training} $\ast$ $>$ \hyperlink{class_level_aaf1c5f18fbbc46890d5849ab5bf4eb91}{get\+All\+Level\+Trainings} (bool only\+Not\+Played=false) const
+\begin{DoxyCompactList}\small\item\em Gets all level trainings. \end{DoxyCompactList}\item 
+\hyperlink{class_level}{Level} $\ast$ \hyperlink{class_level_a7d49f90eae1baaaf957a68334c54ab34}{add\+Match\+To\+Level} (\hyperlink{class_match}{Match} $\ast$new\+Match)
+\begin{DoxyCompactList}\small\item\em Adds a match to level. \end{DoxyCompactList}\item 
+\hyperlink{class_level}{Level} $\ast$ \hyperlink{class_level_a6bdd904d0268409efd619c49950b9ccc}{add\+Training\+To\+Level} (\hyperlink{class_training}{Training} $\ast$new\+Training)
+\begin{DoxyCompactList}\small\item\em Adds a training to level. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_ab28a5bc03ae76bb52b44711c4d59e56f}{show\+Matches} (vector$<$ \hyperlink{class_match}{Match} $\ast$$>$ matches)
+\begin{DoxyCompactList}\small\item\em Shows the matches. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_abe23e553dbe354819966db88317a095c}{show\+Match} (\hyperlink{class_match}{Match} $\ast$match\+To\+Show)
+\begin{DoxyCompactList}\small\item\em Shows the match. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_a213282facf5cf571e5266013124d0002}{show\+Trainings} (vector$<$ \hyperlink{class_training}{Training} $\ast$$>$ matches)
+\begin{DoxyCompactList}\small\item\em Shows the trainings. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_a26d032066034ca77792322903d0edfd5}{sort\+Trainings} ()
+\begin{DoxyCompactList}\small\item\em Sort trainings. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_ab1d7ebab6cd1338ba044dc54fe6fd38b}{save\+Level\+Trainings} () const
+\begin{DoxyCompactList}\small\item\em Saves the level trainings. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_ac4dc4739fe40da18e9cf19b2a42c7b43}{save\+Level\+Tournaments} () const
+\begin{DoxyCompactList}\small\item\em Saves the level tournaments. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_aee00ac018e11b0c0fa8a42ee45ac2ae8}{schedule\+Training} (\hyperlink{class_date}{Date} training\+Date)
+\begin{DoxyCompactList}\small\item\em Schedule training. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_a347646f5e92f549ac4467afb8fc723f1}{register\+Training} (unsigned int training\+Id, vector$<$ unsigned int $>$ missing\+Players)
+\begin{DoxyCompactList}\small\item\em Registers scheduled training. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_afed5cd2f4b28935b95c6541d6e15c8a0}{register\+Training} (\hyperlink{class_date}{Date} training\+Date, vector$<$ unsigned int $>$ missing\+Players)
+\begin{DoxyCompactList}\small\item\em Registers non scheduled training. \end{DoxyCompactList}\item 
+\hyperlink{class_table}{Table} \hyperlink{class_level_a49d9f8bc2848dc41199342b1a0557631}{get\+Trainings\+List} (\hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5}{Sort\+Criteria} criteria=\hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5aa325b226dd9bbe4b1d3989a96326bb43}{date}, \hyperlink{_training_8hpp_ad9be72f666a31b4318bbc8e8a16a9472}{Sort\+Order} order=\hyperlink{_training_8hpp_ad9be72f666a31b4318bbc8e8a16a9472a9c04aeb1f974b5141257e307bcd1610d}{ascending}, char list\+Type=\textquotesingle{}a\textquotesingle{}) const
+\begin{DoxyCompactList}\small\item\em Get the all the trainings of the level. \end{DoxyCompactList}\item 
+void \hyperlink{class_level_a040a2ff70cc01830e8bd5589deeaf9c8}{add\+Tournament} (\hyperlink{class_date}{Date} initial\+Date, \hyperlink{class_date}{Date} end\+Date, vector$<$ string $>$ tournament\+Clubs, string name)
+\begin{DoxyCompactList}\small\item\em Adds a tournament. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ string $>$ $>$ \hyperlink{class_level_a71eeac219eb35734461d2fec5ea69f65}{get\+Tournament\+Matches} (unsigned int tournament\+Id) const
+\begin{DoxyCompactList}\small\item\em Gets tournament matches. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_level_ac5d3ad313fb2694842f245fdb9499872}{filter\+Players} (vector$<$ unsigned int $>$ original\+Player\+Ids\+Vector) const
+\begin{DoxyCompactList}\small\item\em Filter players. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_level_afa22f5ec13dde3359a636df38cf71377}{get\+Parent\+Club} () const
+\begin{DoxyCompactList}\small\item\em Gets the parent club. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_level_a383670d611a12c518ef48ce9fa179f7a}{parent\+Club}
+\begin{DoxyCompactList}\small\item\em The parent club. \end{DoxyCompactList}\item 
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} \hyperlink{class_level_a722b6532d70a38fa5f31518761c63012}{level\+Enum}
+\begin{DoxyCompactList}\small\item\em The level enum. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_aa59964368a47b0d36ff67948b880b3ef}{level\+Name}
+\begin{DoxyCompactList}\small\item\em Name of the level. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a2cb769dac86d869787a3a6cd90f32454}{path\+To\+Level\+Folder}
+\begin{DoxyCompactList}\small\item\em Pathname of the path to level folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a657f004e4174828d48b1a7014536fa50}{path\+To\+Level\+Athletes\+File}
+\begin{DoxyCompactList}\small\item\em The path to level athletes file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a2c43373a0343a66b777d7e879544b5ae}{path\+To\+Level\+Coaches\+File}
+\begin{DoxyCompactList}\small\item\em The path to level coaches file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a295d863ec897640e286b1f9848a36c46}{path\+To\+Level\+Matches\+File}
+\begin{DoxyCompactList}\small\item\em The path to level matches file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_aa13c0c2c38b5cb67f5aa51654710d9a7}{path\+To\+Level\+Matches\+Folder}
+\begin{DoxyCompactList}\small\item\em Pathname of the path to level matches folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a3958021df480857263d65f57c668f5bd}{path\+To\+Level\+Trainings\+File}
+\begin{DoxyCompactList}\small\item\em The path to level trainings file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a1c196300430057e2d7d133e85f0c929a}{path\+To\+Level\+Tournaments\+File}
+\begin{DoxyCompactList}\small\item\em The path to level tournaments file. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a49f20ede8543a270f763f7253c4247d6}{path\+To\+Level\+Tournaments\+Folder}
+\begin{DoxyCompactList}\small\item\em Pathname of the path to level tournaments folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_level_a39e8e8b8d5f64c3d3a50b617c3ea8321}{year\+Of\+Season}
+\begin{DoxyCompactList}\small\item\em The year of season. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_a4c6c8eb32ad6dbc8b7dae820de6db4ba}{last\+Match\+Id}
+\begin{DoxyCompactList}\small\item\em Identifier for the last match. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_match}{Match} $\ast$ $>$ \hyperlink{class_level_ace54062d1ad170581337f33ac4d6ab45}{level\+Matches}
+\begin{DoxyCompactList}\small\item\em The level matches. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_training}{Training} $\ast$ $>$ \hyperlink{class_level_a887624d3374e9ba74edfeb6a5a38a4b1}{level\+Trainings}
+\begin{DoxyCompactList}\small\item\em The level trainings. \end{DoxyCompactList}\item 
+int \hyperlink{class_level_af7943487f1cf311dfa00400037da1f3d}{level\+Main\+Coach}
+\begin{DoxyCompactList}\small\item\em The level main coach. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_level_a2244ded7cbc3e261c400042dcd1f765f}{coaches\+Ids\+Vector}
+\begin{DoxyCompactList}\small\item\em The coaches identifiers vector. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ \hyperlink{class_level_aea430b89c484e79aebe7f23852ce998c}{map\+Info\+Players}
+\begin{DoxyCompactList}\small\item\em The map information players. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_a3ab82616194caca77f24c568c4151a19}{min\+Age}
+\begin{DoxyCompactList}\small\item\em The minimum age. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_level_a009aecf3fb4c0b553680d9e66385a8e2}{max\+Age}
+\begin{DoxyCompactList}\small\item\em The maximum age. \end{DoxyCompactList}\item 
+char \hyperlink{class_level_a94edfb0b68503e60c1d79163c2cc1861}{min\+Height}
+\begin{DoxyCompactList}\small\item\em The minimum height. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_tournament}{Tournament} $\ast$ $>$ \hyperlink{class_level_ad6c327fa0c1fc11c38bc167de8e92476}{tournaments}
+\begin{DoxyCompactList}\small\item\em The tournaments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_level_a3e56499129f883f0cb4e5a855243c1e2}{}\label{class_level_a3e56499129f883f0cb4e5a855243c1e2} 
+\index{Level@{Level}!Level@{Level}}
+\index{Level@{Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{Level()}{Level()}}
+{\footnotesize\ttfamily Level\+::\+Level (\begin{DoxyParamCaption}\item[{string}]{year\+Of\+Season,  }\item[{string}]{path\+To\+Season\+Folder,  }\item[{string}]{level\+Name,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{parent\+Club }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year\+Of\+Season} & The year of season. \\
+\hline
+{\em path\+To\+Season\+Folder} & Pathname of the path to season folder. \\
+\hline
+{\em level\+Name} & Name of the level. \\
+\hline
+{\em parent\+Club} & \mbox{[}in,out\mbox{]} If non-\/null, the parent club. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_level_a5c9636031654943ea260c22fe5dede44}{}\label{class_level_a5c9636031654943ea260c22fe5dede44} 
+\index{Level@{Level}!add\+Athlete\+To\+Level@{add\+Athlete\+To\+Level}}
+\index{add\+Athlete\+To\+Level@{add\+Athlete\+To\+Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{add\+Athlete\+To\+Level()}{addAthleteToLevel()}}
+{\footnotesize\ttfamily \hyperlink{class_level}{Level} $\ast$ Level\+::add\+Athlete\+To\+Level (\begin{DoxyParamCaption}\item[{pair$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$}]{player\+Info }\end{DoxyParamCaption})}
+
+
+
+Adds an athlete to level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Info} & \mbox{[}in,out\mbox{]} If non-\/null, information describing the player. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else a pointer to a \hyperlink{class_level}{Level}. 
+\end{DoxyReturn}
+\hypertarget{class_level_ae0c356fc3ffa08c834d4a9ea3d7bacc8}{}\label{class_level_ae0c356fc3ffa08c834d4a9ea3d7bacc8} 
+\index{Level@{Level}!add\+Coach\+To\+Level@{add\+Coach\+To\+Level}}
+\index{add\+Coach\+To\+Level@{add\+Coach\+To\+Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{add\+Coach\+To\+Level()}{addCoachToLevel()}}
+{\footnotesize\ttfamily \hyperlink{class_level}{Level} $\ast$ Level\+::add\+Coach\+To\+Level (\begin{DoxyParamCaption}\item[{unsigned int}]{id\+Coach,  }\item[{bool}]{main\+Coach = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Adds a coach to level to \textquotesingle{}main\+Coach\textquotesingle{}. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+Coach} & The identifier coach. \\
+\hline
+{\em main\+Coach} & (Optional) True to main coach. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else a pointer to a \hyperlink{class_level}{Level}. 
+\end{DoxyReturn}
+\hypertarget{class_level_a7d49f90eae1baaaf957a68334c54ab34}{}\label{class_level_a7d49f90eae1baaaf957a68334c54ab34} 
+\index{Level@{Level}!add\+Match\+To\+Level@{add\+Match\+To\+Level}}
+\index{add\+Match\+To\+Level@{add\+Match\+To\+Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{add\+Match\+To\+Level()}{addMatchToLevel()}}
+{\footnotesize\ttfamily \hyperlink{class_level}{Level} $\ast$ Level\+::add\+Match\+To\+Level (\begin{DoxyParamCaption}\item[{\hyperlink{class_match}{Match} $\ast$}]{new\+Match }\end{DoxyParamCaption})}
+
+
+
+Adds a match to level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Match} & \mbox{[}in,out\mbox{]} If non-\/null, a match specifying the new. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else a pointer to a \hyperlink{class_level}{Level}. 
+\end{DoxyReturn}
+\hypertarget{class_level_a040a2ff70cc01830e8bd5589deeaf9c8}{}\label{class_level_a040a2ff70cc01830e8bd5589deeaf9c8} 
+\index{Level@{Level}!add\+Tournament@{add\+Tournament}}
+\index{add\+Tournament@{add\+Tournament}!Level@{Level}}
+\subsubsection{\texorpdfstring{add\+Tournament()}{addTournament()}}
+{\footnotesize\ttfamily void Level\+::add\+Tournament (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{initial\+Date,  }\item[{\hyperlink{class_date}{Date}}]{end\+Date,  }\item[{vector$<$ string $>$}]{tournament\+Clubs,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Adds a tournament. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Date} & The initial date. \\
+\hline
+{\em end\+Date} & The end date. \\
+\hline
+{\em tournament\+Clubs} & The tournament clubs. \\
+\hline
+{\em name} & The name. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_a6bdd904d0268409efd619c49950b9ccc}{}\label{class_level_a6bdd904d0268409efd619c49950b9ccc} 
+\index{Level@{Level}!add\+Training\+To\+Level@{add\+Training\+To\+Level}}
+\index{add\+Training\+To\+Level@{add\+Training\+To\+Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{add\+Training\+To\+Level()}{addTrainingToLevel()}}
+{\footnotesize\ttfamily \hyperlink{class_level}{Level} $\ast$ Level\+::add\+Training\+To\+Level (\begin{DoxyParamCaption}\item[{\hyperlink{class_training}{Training} $\ast$}]{new\+Training }\end{DoxyParamCaption})}
+
+
+
+Adds a training to level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Training} & \mbox{[}in,out\mbox{]} If non-\/null, the new training. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else a pointer to a \hyperlink{class_level}{Level}. 
+\end{DoxyReturn}
+\hypertarget{class_level_ac5d3ad313fb2694842f245fdb9499872}{}\label{class_level_ac5d3ad313fb2694842f245fdb9499872} 
+\index{Level@{Level}!filter\+Players@{filter\+Players}}
+\index{filter\+Players@{filter\+Players}!Level@{Level}}
+\subsubsection{\texorpdfstring{filter\+Players()}{filterPlayers()}}
+{\footnotesize\ttfamily vector$<$ unsigned int $>$ Level\+::filter\+Players (\begin{DoxyParamCaption}\item[{vector$<$ unsigned int $>$}]{original\+Player\+Ids\+Vector }\end{DoxyParamCaption}) const}
+
+
+
+Filter players. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Player\+Ids\+Vector} & The original player identifiers vector. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+A vector of players ids; 
+\end{DoxyReturn}
+\hypertarget{class_level_a67ede4d99accffb562e15c2c75cb81b8}{}\label{class_level_a67ede4d99accffb562e15c2c75cb81b8} 
+\index{Level@{Level}!get\+All\+Level\+Matches@{get\+All\+Level\+Matches}}
+\index{get\+All\+Level\+Matches@{get\+All\+Level\+Matches}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+All\+Level\+Matches()}{getAllLevelMatches()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_match}{Match} $\ast$ $>$ Level\+::get\+All\+Level\+Matches (\begin{DoxyParamCaption}\item[{bool}]{only\+Not\+Played = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Gets all level matches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Not\+Played} & (Optional) True if only not played. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else all level matches. 
+\end{DoxyReturn}
+\hypertarget{class_level_aaf1c5f18fbbc46890d5849ab5bf4eb91}{}\label{class_level_aaf1c5f18fbbc46890d5849ab5bf4eb91} 
+\index{Level@{Level}!get\+All\+Level\+Trainings@{get\+All\+Level\+Trainings}}
+\index{get\+All\+Level\+Trainings@{get\+All\+Level\+Trainings}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+All\+Level\+Trainings()}{getAllLevelTrainings()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_training}{Training} $\ast$ $>$ Level\+::get\+All\+Level\+Trainings (\begin{DoxyParamCaption}\item[{bool}]{only\+Not\+Played = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Gets all level trainings. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Not\+Played} & (Optional) True if only not played. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else all level trainings. 
+\end{DoxyReturn}
+\hypertarget{class_level_a2130d8ee6b56f18821e5606c757661d3}{}\label{class_level_a2130d8ee6b56f18821e5606c757661d3} 
+\index{Level@{Level}!get\+Coaches@{get\+Coaches}}
+\index{get\+Coaches@{get\+Coaches}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Coaches()}{getCoaches()}}
+{\footnotesize\ttfamily vector$<$ unsigned int $>$ Level\+::get\+Coaches (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the coaches. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The coaches. 
+\end{DoxyReturn}
+\hypertarget{class_level_abe3f06938f9d39800648c0fc0ddbadeb}{}\label{class_level_abe3f06938f9d39800648c0fc0ddbadeb} 
+\index{Level@{Level}!get\+Last\+Match\+Id@{get\+Last\+Match\+Id}}
+\index{get\+Last\+Match\+Id@{get\+Last\+Match\+Id}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Last\+Match\+Id()}{getLastMatchId()}}
+{\footnotesize\ttfamily unsigned int Level\+::get\+Last\+Match\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the last match identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The last match identifier. 
+\end{DoxyReturn}
+\hypertarget{class_level_a810328bff045bfb02159d388414718d8}{}\label{class_level_a810328bff045bfb02159d388414718d8} 
+\index{Level@{Level}!get\+Level\+Name@{get\+Level\+Name}}
+\index{get\+Level\+Name@{get\+Level\+Name}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Level\+Name()}{getLevelName()}}
+{\footnotesize\ttfamily string Level\+::get\+Level\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets level name. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The level name. 
+\end{DoxyReturn}
+\hypertarget{class_level_afda6ab0cbba0cea709e2fb04cdc0187a}{}\label{class_level_afda6ab0cbba0cea709e2fb04cdc0187a} 
+\index{Level@{Level}!get\+Main\+Coach\+Id@{get\+Main\+Coach\+Id}}
+\index{get\+Main\+Coach\+Id@{get\+Main\+Coach\+Id}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Main\+Coach\+Id()}{getMainCoachId()}}
+{\footnotesize\ttfamily int Level\+::get\+Main\+Coach\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets main coach identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The main coach identifier. 
+\end{DoxyReturn}
+\hypertarget{class_level_a3d4498069e112cbdc952ce1c9e5eb6a5}{}\label{class_level_a3d4498069e112cbdc952ce1c9e5eb6a5} 
+\index{Level@{Level}!get\+Map\+Info\+Players@{get\+Map\+Info\+Players}}
+\index{get\+Map\+Info\+Players@{get\+Map\+Info\+Players}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Map\+Info\+Players()}{getMapInfoPlayers()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ Level\+::get\+Map\+Info\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the map containing the athletes performance informations. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the map containing the athletes performance informations. 
+\end{DoxyReturn}
+\hypertarget{class_level_af1da9db30e4e0d350fb72ca7c844958c}{}\label{class_level_af1da9db30e4e0d350fb72ca7c844958c} 
+\index{Level@{Level}!get\+Matches\+Ready\+To\+Play@{get\+Matches\+Ready\+To\+Play}}
+\index{get\+Matches\+Ready\+To\+Play@{get\+Matches\+Ready\+To\+Play}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Matches\+Ready\+To\+Play()}{getMatchesReadyToPlay()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_match}{Match} $\ast$ $>$ Level\+::get\+Matches\+Ready\+To\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets matches ready to play. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the matches ready to play. 
+\end{DoxyReturn}
+\hypertarget{class_level_ae034a3eb28a90653820eb9633b9f7464}{}\label{class_level_ae034a3eb28a90653820eb9633b9f7464} 
+\index{Level@{Level}!get\+Max\+Age@{get\+Max\+Age}}
+\index{get\+Max\+Age@{get\+Max\+Age}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Max\+Age()}{getMaxAge()}}
+{\footnotesize\ttfamily unsigned int Level\+::get\+Max\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets maximum age. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The maximum age. 
+\end{DoxyReturn}
+\hypertarget{class_level_ab773a1c1c9ecfa31c45d5e3e48b38a92}{}\label{class_level_ab773a1c1c9ecfa31c45d5e3e48b38a92} 
+\index{Level@{Level}!get\+Min\+Age@{get\+Min\+Age}}
+\index{get\+Min\+Age@{get\+Min\+Age}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Min\+Age()}{getMinAge()}}
+{\footnotesize\ttfamily unsigned int Level\+::get\+Min\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets minimum age. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The minimum age. 
+\end{DoxyReturn}
+\hypertarget{class_level_a1a32dbbb6c0a3e9cfd26870388a02363}{}\label{class_level_a1a32dbbb6c0a3e9cfd26870388a02363} 
+\index{Level@{Level}!get\+Min\+Height@{get\+Min\+Height}}
+\index{get\+Min\+Height@{get\+Min\+Height}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Min\+Height()}{getMinHeight()}}
+{\footnotesize\ttfamily char Level\+::get\+Min\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets minimum height. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The minimum height. 
+\end{DoxyReturn}
+\hypertarget{class_level_afa22f5ec13dde3359a636df38cf71377}{}\label{class_level_afa22f5ec13dde3359a636df38cf71377} 
+\index{Level@{Level}!get\+Parent\+Club@{get\+Parent\+Club}}
+\index{get\+Parent\+Club@{get\+Parent\+Club}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Parent\+Club()}{getParentClub()}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club} $\ast$ Level\+::get\+Parent\+Club (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the parent club. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the parent club. 
+\end{DoxyReturn}
+\hypertarget{class_level_a038f1525cd82ba7ff262c95559ae05f9}{}\label{class_level_a038f1525cd82ba7ff262c95559ae05f9} 
+\index{Level@{Level}!get\+Path\+To\+Level\+Athletes\+File@{get\+Path\+To\+Level\+Athletes\+File}}
+\index{get\+Path\+To\+Level\+Athletes\+File@{get\+Path\+To\+Level\+Athletes\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Level\+Athletes\+File()}{getPathToLevelAthletesFile()}}
+{\footnotesize\ttfamily string Level\+::get\+Path\+To\+Level\+Athletes\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to level athletes file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to level athletes file. 
+\end{DoxyReturn}
+\hypertarget{class_level_ac779bf1052984fbcba0669139e639c46}{}\label{class_level_ac779bf1052984fbcba0669139e639c46} 
+\index{Level@{Level}!get\+Path\+To\+Level\+Coaches\+File@{get\+Path\+To\+Level\+Coaches\+File}}
+\index{get\+Path\+To\+Level\+Coaches\+File@{get\+Path\+To\+Level\+Coaches\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Level\+Coaches\+File()}{getPathToLevelCoachesFile()}}
+{\footnotesize\ttfamily string Level\+::get\+Path\+To\+Level\+Coaches\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to level coaches file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to level coaches file. 
+\end{DoxyReturn}
+\hypertarget{class_level_a66ee534fb23e363ccba422c64f08a202}{}\label{class_level_a66ee534fb23e363ccba422c64f08a202} 
+\index{Level@{Level}!get\+Path\+To\+Level\+Folder@{get\+Path\+To\+Level\+Folder}}
+\index{get\+Path\+To\+Level\+Folder@{get\+Path\+To\+Level\+Folder}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Level\+Folder()}{getPathToLevelFolder()}}
+{\footnotesize\ttfamily string Level\+::get\+Path\+To\+Level\+Folder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to level folder. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to level folder. 
+\end{DoxyReturn}
+\hypertarget{class_level_ac4cd1f4a5c87dbd2b47c1d07cbf114e4}{}\label{class_level_ac4cd1f4a5c87dbd2b47c1d07cbf114e4} 
+\index{Level@{Level}!get\+Path\+To\+Level\+Matches\+File@{get\+Path\+To\+Level\+Matches\+File}}
+\index{get\+Path\+To\+Level\+Matches\+File@{get\+Path\+To\+Level\+Matches\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Level\+Matches\+File()}{getPathToLevelMatchesFile()}}
+{\footnotesize\ttfamily string Level\+::get\+Path\+To\+Level\+Matches\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to level matches file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to level matches file. 
+\end{DoxyReturn}
+\hypertarget{class_level_a5808d2312d1b6c2f93dbbd0b47c97499}{}\label{class_level_a5808d2312d1b6c2f93dbbd0b47c97499} 
+\index{Level@{Level}!get\+Path\+To\+Level\+Matches\+Folder@{get\+Path\+To\+Level\+Matches\+Folder}}
+\index{get\+Path\+To\+Level\+Matches\+Folder@{get\+Path\+To\+Level\+Matches\+Folder}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Level\+Matches\+Folder()}{getPathToLevelMatchesFolder()}}
+{\footnotesize\ttfamily string Level\+::get\+Path\+To\+Level\+Matches\+Folder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to level matches folder. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to level matches folder. 
+\end{DoxyReturn}
+\hypertarget{class_level_a71eeac219eb35734461d2fec5ea69f65}{}\label{class_level_a71eeac219eb35734461d2fec5ea69f65} 
+\index{Level@{Level}!get\+Tournament\+Matches@{get\+Tournament\+Matches}}
+\index{get\+Tournament\+Matches@{get\+Tournament\+Matches}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Matches()}{getTournamentMatches()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ string $>$ $>$ Level\+::get\+Tournament\+Matches (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Id }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament matches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Id} & Identifier for the tournament. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The tournament matches. 
+\end{DoxyReturn}
+\hypertarget{class_level_ad01baca6bdb906c6d605f04f6885cb81}{}\label{class_level_ad01baca6bdb906c6d605f04f6885cb81} 
+\index{Level@{Level}!get\+Tournaments@{get\+Tournaments}}
+\index{get\+Tournaments@{get\+Tournaments}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Tournaments()}{getTournaments()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_tournament}{Tournament} $\ast$ $>$ Level\+::get\+Tournaments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the tournaments. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the tournaments. 
+\end{DoxyReturn}
+\hypertarget{class_level_a49d9f8bc2848dc41199342b1a0557631}{}\label{class_level_a49d9f8bc2848dc41199342b1a0557631} 
+\index{Level@{Level}!get\+Trainings\+List@{get\+Trainings\+List}}
+\index{get\+Trainings\+List@{get\+Trainings\+List}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Trainings\+List()}{getTrainingsList()}}
+{\footnotesize\ttfamily \hyperlink{class_table}{Table} Level\+::get\+Trainings\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5}{Sort\+Criteria}}]{criteria = {\ttfamily \hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5aa325b226dd9bbe4b1d3989a96326bb43}{date}},  }\item[{\hyperlink{_training_8hpp_ad9be72f666a31b4318bbc8e8a16a9472}{Sort\+Order}}]{order = {\ttfamily \hyperlink{_training_8hpp_ad9be72f666a31b4318bbc8e8a16a9472a9c04aeb1f974b5141257e307bcd1610d}{ascending}},  }\item[{char}]{list\+Type = {\ttfamily \textquotesingle{}a\textquotesingle{}} }\end{DoxyParamCaption}) const}
+
+
+
+Get the all the trainings of the level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em criteria} & criteria enum argument\+: id = sorted by id, date = sorted by date, number\+Of\+Players = sorted by number of players who trained \\
+\hline
+{\em order} & order enum argument\+: ascending = sorted ascending, descending = sorted descending \\
+\hline
+{\em list\+Type} & char argument\+: a = all trainings, p = past trainings, r = registed trainings, n = trainings not registered, f = future trainings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector of string vectors where each string vector contains the list of trainings attributes 
+\end{DoxyReturn}
+\hypertarget{class_level_a839826078b5b56b27b697e7e599dd6ef}{}\label{class_level_a839826078b5b56b27b697e7e599dd6ef} 
+\index{Level@{Level}!get\+Trainings\+Ready\+To\+Play@{get\+Trainings\+Ready\+To\+Play}}
+\index{get\+Trainings\+Ready\+To\+Play@{get\+Trainings\+Ready\+To\+Play}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Trainings\+Ready\+To\+Play()}{getTrainingsReadyToPlay()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_training}{Training} $\ast$ $>$ Level\+::get\+Trainings\+Ready\+To\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets trainings ready be made. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the trainings ready to play. 
+\end{DoxyReturn}
+\hypertarget{class_level_a22837fd78482f7a7451cb228fe6595d2}{}\label{class_level_a22837fd78482f7a7451cb228fe6595d2} 
+\index{Level@{Level}!get\+Year@{get\+Year}}
+\index{get\+Year@{get\+Year}!Level@{Level}}
+\subsubsection{\texorpdfstring{get\+Year()}{getYear()}}
+{\footnotesize\ttfamily string Level\+::get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the year. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The year. 
+\end{DoxyReturn}
+\hypertarget{class_level_a347646f5e92f549ac4467afb8fc723f1}{}\label{class_level_a347646f5e92f549ac4467afb8fc723f1} 
+\index{Level@{Level}!register\+Training@{register\+Training}}
+\index{register\+Training@{register\+Training}!Level@{Level}}
+\subsubsection{\texorpdfstring{register\+Training()}{registerTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Level\+::register\+Training (\begin{DoxyParamCaption}\item[{unsigned int}]{training\+Id,  }\item[{vector$<$ unsigned int $>$}]{missing\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers scheduled training. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+Id} & Identifier for the training. \\
+\hline
+{\em missing\+Players} & The missing players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_afed5cd2f4b28935b95c6541d6e15c8a0}{}\label{class_level_afed5cd2f4b28935b95c6541d6e15c8a0} 
+\index{Level@{Level}!register\+Training@{register\+Training}}
+\index{register\+Training@{register\+Training}!Level@{Level}}
+\subsubsection{\texorpdfstring{register\+Training()}{registerTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Level\+::register\+Training (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{training\+Date,  }\item[{vector$<$ unsigned int $>$}]{missing\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers non scheduled training. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+Date} & The training date. \\
+\hline
+{\em missing\+Players} & The missing players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_ac4dc4739fe40da18e9cf19b2a42c7b43}{}\label{class_level_ac4dc4739fe40da18e9cf19b2a42c7b43} 
+\index{Level@{Level}!save\+Level\+Tournaments@{save\+Level\+Tournaments}}
+\index{save\+Level\+Tournaments@{save\+Level\+Tournaments}!Level@{Level}}
+\subsubsection{\texorpdfstring{save\+Level\+Tournaments()}{saveLevelTournaments()}}
+{\footnotesize\ttfamily void Level\+::save\+Level\+Tournaments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Saves the level tournaments. 
+
+Luís, 20/11/2016. \hypertarget{class_level_ab1d7ebab6cd1338ba044dc54fe6fd38b}{}\label{class_level_ab1d7ebab6cd1338ba044dc54fe6fd38b} 
+\index{Level@{Level}!save\+Level\+Trainings@{save\+Level\+Trainings}}
+\index{save\+Level\+Trainings@{save\+Level\+Trainings}!Level@{Level}}
+\subsubsection{\texorpdfstring{save\+Level\+Trainings()}{saveLevelTrainings()}}
+{\footnotesize\ttfamily void Level\+::save\+Level\+Trainings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Saves the level trainings. 
+
+Luís, 20/11/2016. \hypertarget{class_level_aee00ac018e11b0c0fa8a42ee45ac2ae8}{}\label{class_level_aee00ac018e11b0c0fa8a42ee45ac2ae8} 
+\index{Level@{Level}!schedule\+Training@{schedule\+Training}}
+\index{schedule\+Training@{schedule\+Training}!Level@{Level}}
+\subsubsection{\texorpdfstring{schedule\+Training()}{scheduleTraining()}}
+{\footnotesize\ttfamily void Level\+::schedule\+Training (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{training\+Date }\end{DoxyParamCaption})}
+
+
+
+Schedule training. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+Date} & The training date. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_aeacdd2b25ba6fdfadb89290dc3d73513}{}\label{class_level_aeacdd2b25ba6fdfadb89290dc3d73513} 
+\index{Level@{Level}!show\+Athletes\+Of\+Level@{show\+Athletes\+Of\+Level}}
+\index{show\+Athletes\+Of\+Level@{show\+Athletes\+Of\+Level}!Level@{Level}}
+\subsubsection{\texorpdfstring{show\+Athletes\+Of\+Level()}{showAthletesOfLevel()}}
+{\footnotesize\ttfamily \hyperlink{class_table}{Table} Level\+::show\+Athletes\+Of\+Level (\begin{DoxyParamCaption}\item[{bool}]{only\+Available = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Shows the athletes of level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Available} & (Optional) True if only available. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_table}{Table}. 
+\end{DoxyReturn}
+\hypertarget{class_level_abe23e553dbe354819966db88317a095c}{}\label{class_level_abe23e553dbe354819966db88317a095c} 
+\index{Level@{Level}!show\+Match@{show\+Match}}
+\index{show\+Match@{show\+Match}!Level@{Level}}
+\subsubsection{\texorpdfstring{show\+Match()}{showMatch()}}
+{\footnotesize\ttfamily void Level\+::show\+Match (\begin{DoxyParamCaption}\item[{\hyperlink{class_match}{Match} $\ast$}]{match\+To\+Show }\end{DoxyParamCaption})}
+
+
+
+Shows the match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+To\+Show} & \mbox{[}in,out\mbox{]} If non-\/null, the match to show. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_ab28a5bc03ae76bb52b44711c4d59e56f}{}\label{class_level_ab28a5bc03ae76bb52b44711c4d59e56f} 
+\index{Level@{Level}!show\+Matches@{show\+Matches}}
+\index{show\+Matches@{show\+Matches}!Level@{Level}}
+\subsubsection{\texorpdfstring{show\+Matches()}{showMatches()}}
+{\footnotesize\ttfamily void Level\+::show\+Matches (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_match}{Match} $\ast$$>$}]{matches }\end{DoxyParamCaption})}
+
+
+
+Shows the matches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matches} & \mbox{[}in,out\mbox{]} If non-\/null, the matches. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_a213282facf5cf571e5266013124d0002}{}\label{class_level_a213282facf5cf571e5266013124d0002} 
+\index{Level@{Level}!show\+Trainings@{show\+Trainings}}
+\index{show\+Trainings@{show\+Trainings}!Level@{Level}}
+\subsubsection{\texorpdfstring{show\+Trainings()}{showTrainings()}}
+{\footnotesize\ttfamily void Level\+::show\+Trainings (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_training}{Training} $\ast$$>$}]{matches }\end{DoxyParamCaption})}
+
+
+
+Shows the trainings. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matches} & \mbox{[}in,out\mbox{]} If non-\/null, the matches. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_level_a26d032066034ca77792322903d0edfd5}{}\label{class_level_a26d032066034ca77792322903d0edfd5} 
+\index{Level@{Level}!sort\+Trainings@{sort\+Trainings}}
+\index{sort\+Trainings@{sort\+Trainings}!Level@{Level}}
+\subsubsection{\texorpdfstring{sort\+Trainings()}{sortTrainings()}}
+{\footnotesize\ttfamily void Level\+::sort\+Trainings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sort trainings. 
+
+Luís, 20/11/2016. \hypertarget{class_level_ad3f226396e776c339ae2a33e4cebd2c3}{}\label{class_level_ad3f226396e776c339ae2a33e4cebd2c3} 
+\index{Level@{Level}!update\+Last\+Match\+Id@{update\+Last\+Match\+Id}}
+\index{update\+Last\+Match\+Id@{update\+Last\+Match\+Id}!Level@{Level}}
+\subsubsection{\texorpdfstring{update\+Last\+Match\+Id()}{updateLastMatchId()}}
+{\footnotesize\ttfamily void Level\+::update\+Last\+Match\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the last match identifier. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_level_a2244ded7cbc3e261c400042dcd1f765f}{}\label{class_level_a2244ded7cbc3e261c400042dcd1f765f} 
+\index{Level@{Level}!coaches\+Ids\+Vector@{coaches\+Ids\+Vector}}
+\index{coaches\+Ids\+Vector@{coaches\+Ids\+Vector}!Level@{Level}}
+\subsubsection{\texorpdfstring{coaches\+Ids\+Vector}{coachesIdsVector}}
+{\footnotesize\ttfamily vector$<$unsigned int$>$ Level\+::coaches\+Ids\+Vector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The coaches identifiers vector. 
+
+\hypertarget{class_level_a4c6c8eb32ad6dbc8b7dae820de6db4ba}{}\label{class_level_a4c6c8eb32ad6dbc8b7dae820de6db4ba} 
+\index{Level@{Level}!last\+Match\+Id@{last\+Match\+Id}}
+\index{last\+Match\+Id@{last\+Match\+Id}!Level@{Level}}
+\subsubsection{\texorpdfstring{last\+Match\+Id}{lastMatchId}}
+{\footnotesize\ttfamily unsigned int Level\+::last\+Match\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Identifier for the last match. 
+
+\hypertarget{class_level_a722b6532d70a38fa5f31518761c63012}{}\label{class_level_a722b6532d70a38fa5f31518761c63012} 
+\index{Level@{Level}!level\+Enum@{level\+Enum}}
+\index{level\+Enum@{level\+Enum}!Level@{Level}}
+\subsubsection{\texorpdfstring{level\+Enum}{levelEnum}}
+{\footnotesize\ttfamily \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} Level\+::level\+Enum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The level enum. 
+
+\hypertarget{class_level_af7943487f1cf311dfa00400037da1f3d}{}\label{class_level_af7943487f1cf311dfa00400037da1f3d} 
+\index{Level@{Level}!level\+Main\+Coach@{level\+Main\+Coach}}
+\index{level\+Main\+Coach@{level\+Main\+Coach}!Level@{Level}}
+\subsubsection{\texorpdfstring{level\+Main\+Coach}{levelMainCoach}}
+{\footnotesize\ttfamily int Level\+::level\+Main\+Coach\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The level main coach. 
+
+\hypertarget{class_level_ace54062d1ad170581337f33ac4d6ab45}{}\label{class_level_ace54062d1ad170581337f33ac4d6ab45} 
+\index{Level@{Level}!level\+Matches@{level\+Matches}}
+\index{level\+Matches@{level\+Matches}!Level@{Level}}
+\subsubsection{\texorpdfstring{level\+Matches}{levelMatches}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_match}{Match}$\ast$$>$ Level\+::level\+Matches\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The level matches. 
+
+\hypertarget{class_level_aa59964368a47b0d36ff67948b880b3ef}{}\label{class_level_aa59964368a47b0d36ff67948b880b3ef} 
+\index{Level@{Level}!level\+Name@{level\+Name}}
+\index{level\+Name@{level\+Name}!Level@{Level}}
+\subsubsection{\texorpdfstring{level\+Name}{levelName}}
+{\footnotesize\ttfamily string Level\+::level\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name of the level. 
+
+\hypertarget{class_level_a887624d3374e9ba74edfeb6a5a38a4b1}{}\label{class_level_a887624d3374e9ba74edfeb6a5a38a4b1} 
+\index{Level@{Level}!level\+Trainings@{level\+Trainings}}
+\index{level\+Trainings@{level\+Trainings}!Level@{Level}}
+\subsubsection{\texorpdfstring{level\+Trainings}{levelTrainings}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_training}{Training}$\ast$$>$ Level\+::level\+Trainings\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The level trainings. 
+
+\hypertarget{class_level_aea430b89c484e79aebe7f23852ce998c}{}\label{class_level_aea430b89c484e79aebe7f23852ce998c} 
+\index{Level@{Level}!map\+Info\+Players@{map\+Info\+Players}}
+\index{map\+Info\+Players@{map\+Info\+Players}!Level@{Level}}
+\subsubsection{\texorpdfstring{map\+Info\+Players}{mapInfoPlayers}}
+{\footnotesize\ttfamily map$<$unsigned int, \hyperlink{class_info}{Info}$\ast$$>$ Level\+::map\+Info\+Players\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The map information players. 
+
+\hypertarget{class_level_a009aecf3fb4c0b553680d9e66385a8e2}{}\label{class_level_a009aecf3fb4c0b553680d9e66385a8e2} 
+\index{Level@{Level}!max\+Age@{max\+Age}}
+\index{max\+Age@{max\+Age}!Level@{Level}}
+\subsubsection{\texorpdfstring{max\+Age}{maxAge}}
+{\footnotesize\ttfamily unsigned int Level\+::max\+Age\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The maximum age. 
+
+\hypertarget{class_level_a3ab82616194caca77f24c568c4151a19}{}\label{class_level_a3ab82616194caca77f24c568c4151a19} 
+\index{Level@{Level}!min\+Age@{min\+Age}}
+\index{min\+Age@{min\+Age}!Level@{Level}}
+\subsubsection{\texorpdfstring{min\+Age}{minAge}}
+{\footnotesize\ttfamily unsigned int Level\+::min\+Age\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The minimum age. 
+
+\hypertarget{class_level_a94edfb0b68503e60c1d79163c2cc1861}{}\label{class_level_a94edfb0b68503e60c1d79163c2cc1861} 
+\index{Level@{Level}!min\+Height@{min\+Height}}
+\index{min\+Height@{min\+Height}!Level@{Level}}
+\subsubsection{\texorpdfstring{min\+Height}{minHeight}}
+{\footnotesize\ttfamily char Level\+::min\+Height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The minimum height. 
+
+\hypertarget{class_level_a383670d611a12c518ef48ce9fa179f7a}{}\label{class_level_a383670d611a12c518ef48ce9fa179f7a} 
+\index{Level@{Level}!parent\+Club@{parent\+Club}}
+\index{parent\+Club@{parent\+Club}!Level@{Level}}
+\subsubsection{\texorpdfstring{parent\+Club}{parentClub}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club}$\ast$ Level\+::parent\+Club\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The parent club. 
+
+\hypertarget{class_level_a657f004e4174828d48b1a7014536fa50}{}\label{class_level_a657f004e4174828d48b1a7014536fa50} 
+\index{Level@{Level}!path\+To\+Level\+Athletes\+File@{path\+To\+Level\+Athletes\+File}}
+\index{path\+To\+Level\+Athletes\+File@{path\+To\+Level\+Athletes\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Athletes\+File}{pathToLevelAthletesFile}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Athletes\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to level athletes file. 
+
+\hypertarget{class_level_a2c43373a0343a66b777d7e879544b5ae}{}\label{class_level_a2c43373a0343a66b777d7e879544b5ae} 
+\index{Level@{Level}!path\+To\+Level\+Coaches\+File@{path\+To\+Level\+Coaches\+File}}
+\index{path\+To\+Level\+Coaches\+File@{path\+To\+Level\+Coaches\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Coaches\+File}{pathToLevelCoachesFile}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Coaches\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to level coaches file. 
+
+\hypertarget{class_level_a2cb769dac86d869787a3a6cd90f32454}{}\label{class_level_a2cb769dac86d869787a3a6cd90f32454} 
+\index{Level@{Level}!path\+To\+Level\+Folder@{path\+To\+Level\+Folder}}
+\index{path\+To\+Level\+Folder@{path\+To\+Level\+Folder}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Folder}{pathToLevelFolder}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Folder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pathname of the path to level folder. 
+
+\hypertarget{class_level_a295d863ec897640e286b1f9848a36c46}{}\label{class_level_a295d863ec897640e286b1f9848a36c46} 
+\index{Level@{Level}!path\+To\+Level\+Matches\+File@{path\+To\+Level\+Matches\+File}}
+\index{path\+To\+Level\+Matches\+File@{path\+To\+Level\+Matches\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Matches\+File}{pathToLevelMatchesFile}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Matches\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to level matches file. 
+
+\hypertarget{class_level_aa13c0c2c38b5cb67f5aa51654710d9a7}{}\label{class_level_aa13c0c2c38b5cb67f5aa51654710d9a7} 
+\index{Level@{Level}!path\+To\+Level\+Matches\+Folder@{path\+To\+Level\+Matches\+Folder}}
+\index{path\+To\+Level\+Matches\+Folder@{path\+To\+Level\+Matches\+Folder}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Matches\+Folder}{pathToLevelMatchesFolder}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Matches\+Folder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pathname of the path to level matches folder. 
+
+\hypertarget{class_level_a1c196300430057e2d7d133e85f0c929a}{}\label{class_level_a1c196300430057e2d7d133e85f0c929a} 
+\index{Level@{Level}!path\+To\+Level\+Tournaments\+File@{path\+To\+Level\+Tournaments\+File}}
+\index{path\+To\+Level\+Tournaments\+File@{path\+To\+Level\+Tournaments\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Tournaments\+File}{pathToLevelTournamentsFile}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Tournaments\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to level tournaments file. 
+
+\hypertarget{class_level_a49f20ede8543a270f763f7253c4247d6}{}\label{class_level_a49f20ede8543a270f763f7253c4247d6} 
+\index{Level@{Level}!path\+To\+Level\+Tournaments\+Folder@{path\+To\+Level\+Tournaments\+Folder}}
+\index{path\+To\+Level\+Tournaments\+Folder@{path\+To\+Level\+Tournaments\+Folder}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Tournaments\+Folder}{pathToLevelTournamentsFolder}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Tournaments\+Folder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pathname of the path to level tournaments folder. 
+
+\hypertarget{class_level_a3958021df480857263d65f57c668f5bd}{}\label{class_level_a3958021df480857263d65f57c668f5bd} 
+\index{Level@{Level}!path\+To\+Level\+Trainings\+File@{path\+To\+Level\+Trainings\+File}}
+\index{path\+To\+Level\+Trainings\+File@{path\+To\+Level\+Trainings\+File}!Level@{Level}}
+\subsubsection{\texorpdfstring{path\+To\+Level\+Trainings\+File}{pathToLevelTrainingsFile}}
+{\footnotesize\ttfamily string Level\+::path\+To\+Level\+Trainings\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to level trainings file. 
+
+\hypertarget{class_level_ad6c327fa0c1fc11c38bc167de8e92476}{}\label{class_level_ad6c327fa0c1fc11c38bc167de8e92476} 
+\index{Level@{Level}!tournaments@{tournaments}}
+\index{tournaments@{tournaments}!Level@{Level}}
+\subsubsection{\texorpdfstring{tournaments}{tournaments}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_tournament}{Tournament}$\ast$$>$ Level\+::tournaments\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The tournaments. 
+
+\hypertarget{class_level_a39e8e8b8d5f64c3d3a50b617c3ea8321}{}\label{class_level_a39e8e8b8d5f64c3d3a50b617c3ea8321} 
+\index{Level@{Level}!year\+Of\+Season@{year\+Of\+Season}}
+\index{year\+Of\+Season@{year\+Of\+Season}!Level@{Level}}
+\subsubsection{\texorpdfstring{year\+Of\+Season}{yearOfSeason}}
+{\footnotesize\ttfamily string Level\+::year\+Of\+Season\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The year of season. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_level_8h}{Level.\+h}\item 
+\hyperlink{_level_8cpp}{Level.\+cpp}\end{DoxyCompactItemize}
