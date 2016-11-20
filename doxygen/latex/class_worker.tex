@@ -1,0 +1,520 @@
+\hypertarget{class_worker}{}\section{Worker Class Reference}
+\label{class_worker}\index{Worker@{Worker}}
+
+
+\hyperlink{class_worker}{Worker} Class.  
+
+
+
+
+{\ttfamily \#include $<$Worker.\+hpp$>$}
+
+Inheritance diagram for Worker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_worker}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_worker_a29731c51f83b66fad738b7c66383b62b}{Worker} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, unsigned int \hyperlink{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{id}=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_worker}{Worker} constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_worker_a3754817df06ffe220f7f0d903c78ccac}{Worker} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_worker}{Worker} empty constructor. \end{DoxyCompactList}\item 
+virtual unsigned int \hyperlink{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{get\+ID} () const =0
+\begin{DoxyCompactList}\small\item\em Abstract method -\/ get the worker id. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_worker_a0a2eb7505b3a734184be3dfdf3316cc3}{is\+Athlete} () const =0
+\item 
+bool \hyperlink{class_worker_ab2f8a86824ea129ea4d39b6ed7cfe847}{operator==} (\hyperlink{class_worker}{Worker} $\ast$worker) const
+\item 
+void \hyperlink{class_worker_a7d66047c0683a9a43f89254d0450cd47}{set\+Status} (bool new\+Status)
+\item 
+void \hyperlink{class_worker_a213180d9f1e4822113f654f7f4ed147c}{set\+Id} (unsigned int new\+Id)
+\item 
+void \hyperlink{class_worker_ace180f14f1a72e3e018c5ce06c1f3bb3}{set\+Civil\+Id} (unsigned int new\+Civil\+Id)
+\item 
+virtual void \hyperlink{class_worker_a7d06c15a1d9872d629988aa054996627}{update\+E\+CG} (bool resultado, \hyperlink{class_date}{Date} expiration\+Date=\hyperlink{class_date}{Date}(\hyperlink{class_date}{Date}().get\+Day(), \hyperlink{class_date}{Date}().get\+Month(), \hyperlink{class_date}{Date}().get\+Year()+1))
+\begin{DoxyCompactList}\small\item\em Updates the ecg. \end{DoxyCompactList}\item 
+void \hyperlink{class_worker_a9113351bf9395094fa0e1d1cfa426881}{set\+Name} (string new\+Name)
+\begin{DoxyCompactList}\small\item\em Sets a name. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_worker_ac48a8315ccdeb2913cd98ea223660f72}{set\+Birth\+Date} (\hyperlink{class_date}{Date} new\+Birthdate)
+\begin{DoxyCompactList}\small\item\em Sets birth date. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_worker_a64124dca31baa9b110779c7698c15a57}{set\+Height} (unsigned int new\+Height)
+\begin{DoxyCompactList}\small\item\em Sets a height. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_worker_ae84b05468a6fdbadad9163bfc18e0569}{set\+Coach\+Type} (\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} new\+Type)
+\begin{DoxyCompactList}\small\item\em Sets coach type. \end{DoxyCompactList}\item 
+\hyperlink{class_worker_aa8e4543ef1e93fd9d884269ba30c5bfe}{$\sim$\+Worker} ()
+\item 
+unsigned int \hyperlink{class_worker_ae82fdc34f91e5f47dc709d97329a872f}{get\+Age} () const
+\begin{DoxyCompactList}\small\item\em Gets the age. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_worker_a43fb49c315c8c0a656924e8da285ddf9}{get\+Birthdate} () const
+\begin{DoxyCompactList}\small\item\em Gets the birthdate. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_info}{Info} $\ast$ \hyperlink{class_worker_a95a4f7c750644937859b8e14515a480e}{get\+Info} () const
+\begin{DoxyCompactList}\small\item\em Gets the information. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_worker_ad54db262f7473cc729c371dd54e292eb}{add\+Info} (\hyperlink{class_info}{Info} $\ast$more\+Info)
+\begin{DoxyCompactList}\small\item\em Adds an information. \end{DoxyCompactList}\item 
+virtual string \hyperlink{class_worker_ac77905603b86c58cb0a87d6389dca744}{generate\+Info} () const
+\begin{DoxyCompactList}\small\item\em Generates an information. \end{DoxyCompactList}\item 
+string \hyperlink{class_worker_aaaa5808dae61a91b5344224b0ec4d0aa}{get\+Name} () const
+\item 
+virtual unsigned int \hyperlink{class_worker_a5fd37dea8c5e6579c1deecbfc1b22db9}{get\+Position} () const =0
+\item 
+virtual unsigned int \hyperlink{class_worker_a1c5dcdc1c7dc5e498a44f678e964bbfd}{get\+Height} () const =0
+\item 
+virtual \hyperlink{class_e_c_g}{E\+CG} $\ast$ \hyperlink{class_worker_a625cb5da072fd244f38f42e15693058a}{get\+E\+CG} () const
+\item 
+unsigned int \hyperlink{class_worker_a29fed9c10e4e9a8c1bd4cdfa41add2d2}{get\+Civil\+ID} () const
+\item 
+virtual vector$<$ string $>$ \hyperlink{class_worker_aca1475c72f6e7c6b85114b0bba0da038}{show\+In\+Screen} () const
+\item 
+bool \hyperlink{class_worker_a59b1b4769ad7cc740b051e53c986b725}{is\+Active} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \hyperlink{class_worker_ab2ad8ec70eb7a478a3525e5114689625}{get\+Last\+Id} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}
+\item 
+\hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}
+\item 
+unsigned int \hyperlink{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{id}
+\item 
+bool \hyperlink{class_worker_a86618aa5fcac9253f9a7ca0dc16a31d4}{status}
+\item 
+unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \hyperlink{class_worker_a5f0df787d74ab0938583c07a09d126bf}{workers\+Counter} = 0
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_worker_a8d1e3d13654b0c5466ec0560d2ab7c4e}{operator$<$$<$} (ostream \&out, const \hyperlink{class_worker}{Worker} \&worker)
+\begin{DoxyCompactList}\small\item\em Stream insertion operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_worker}{Worker} Class. 
+
+Represents a club worker, can be either a player or a coach 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_worker_a29731c51f83b66fad738b7c66383b62b}{}\label{class_worker_a29731c51f83b66fad738b7c66383b62b} 
+\index{Worker@{Worker}!Worker@{Worker}}
+\index{Worker@{Worker}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{Worker()}{Worker()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Worker\+::\+Worker (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_worker}{Worker} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the worker. \\
+\hline
+{\em birthdate} & the worker birthdate. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_worker_a3754817df06ffe220f7f0d903c78ccac}{}\label{class_worker_a3754817df06ffe220f7f0d903c78ccac} 
+\index{Worker@{Worker}!Worker@{Worker}}
+\index{Worker@{Worker}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{Worker()}{Worker()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Worker\+::\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_worker}{Worker} empty constructor. 
+
+\hypertarget{class_worker_aa8e4543ef1e93fd9d884269ba30c5bfe}{}\label{class_worker_aa8e4543ef1e93fd9d884269ba30c5bfe} 
+\index{Worker@{Worker}!````~Worker@{$\sim$\+Worker}}
+\index{````~Worker@{$\sim$\+Worker}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{$\sim$\+Worker()}{~Worker()}}
+{\footnotesize\ttfamily Worker\+::$\sim$\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_worker_ad54db262f7473cc729c371dd54e292eb}{}\label{class_worker_ad54db262f7473cc729c371dd54e292eb} 
+\index{Worker@{Worker}!add\+Info@{add\+Info}}
+\index{add\+Info@{add\+Info}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{add\+Info()}{addInfo()}}
+{\footnotesize\ttfamily virtual void Worker\+::add\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{class_info}{Info} $\ast$}]{more\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Adds an information. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em more\+Info} & \mbox{[}in,out\mbox{]} If non-\/null, information describing the more. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_coach_a989f8c8ec5ba95849503f79376fc68bb}{Coach}, \hyperlink{class_goalkeeper_a97fc43118c67d500d7d56abc9c0029fe}{Goalkeeper}, \hyperlink{class_defender_abcd887808491719d6e40d92d68862b4e}{Defender}, \hyperlink{class_forward_a18f2db8a8234912d6a27727cb3b04fd9}{Forward}, and \hyperlink{class_midfielder_aca69e728b57110b3f34de94556465c0a}{Midfielder}.
+
+\hypertarget{class_worker_ac77905603b86c58cb0a87d6389dca744}{}\label{class_worker_ac77905603b86c58cb0a87d6389dca744} 
+\index{Worker@{Worker}!generate\+Info@{generate\+Info}}
+\index{generate\+Info@{generate\+Info}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{generate\+Info()}{generateInfo()}}
+{\footnotesize\ttfamily virtual string Worker\+::generate\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Generates an information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The information. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_coach_a95f841d14e6994708a7f230a5d3a8d23}{Coach}, and \hyperlink{class_athlete_a44a5a7f1676c6ad2faca9bf51877a6f8}{Athlete}.
+
+\hypertarget{class_worker_ae82fdc34f91e5f47dc709d97329a872f}{}\label{class_worker_ae82fdc34f91e5f47dc709d97329a872f} 
+\index{Worker@{Worker}!get\+Age@{get\+Age}}
+\index{get\+Age@{get\+Age}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Age()}{getAge()}}
+{\footnotesize\ttfamily unsigned int Worker\+::get\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the age. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The age. 
+\end{DoxyReturn}
+\hypertarget{class_worker_a43fb49c315c8c0a656924e8da285ddf9}{}\label{class_worker_a43fb49c315c8c0a656924e8da285ddf9} 
+\index{Worker@{Worker}!get\+Birthdate@{get\+Birthdate}}
+\index{get\+Birthdate@{get\+Birthdate}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Birthdate()}{getBirthdate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Worker\+::get\+Birthdate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the birthdate. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The birthdate. 
+\end{DoxyReturn}
+\hypertarget{class_worker_a29fed9c10e4e9a8c1bd4cdfa41add2d2}{}\label{class_worker_a29fed9c10e4e9a8c1bd4cdfa41add2d2} 
+\index{Worker@{Worker}!get\+Civil\+ID@{get\+Civil\+ID}}
+\index{get\+Civil\+ID@{get\+Civil\+ID}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Civil\+I\+D()}{getCivilID()}}
+{\footnotesize\ttfamily unsigned int Worker\+::get\+Civil\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_worker_a625cb5da072fd244f38f42e15693058a}{}\label{class_worker_a625cb5da072fd244f38f42e15693058a} 
+\index{Worker@{Worker}!get\+E\+CG@{get\+E\+CG}}
+\index{get\+E\+CG@{get\+E\+CG}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+E\+C\+G()}{getECG()}}
+{\footnotesize\ttfamily \hyperlink{class_e_c_g}{E\+CG} $\ast$ Worker\+::get\+E\+CG (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This is an abstract method to get the athlete\textquotesingle{}s \hyperlink{class_e_c_g}{E\+CG} 
+
+Reimplemented in \hyperlink{class_athlete_a9655c13ed4126435df2e57e64884deab}{Athlete}.
+
+\hypertarget{class_worker_a1c5dcdc1c7dc5e498a44f678e964bbfd}{}\label{class_worker_a1c5dcdc1c7dc5e498a44f678e964bbfd} 
+\index{Worker@{Worker}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Height()}{getHeight()}}
+{\footnotesize\ttfamily virtual unsigned int Worker\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This is an abstract method to get the athlete height 
+
+Implemented in \hyperlink{class_coach_af899da3e98bc326b9abdf3ef46cf5279}{Coach}, and \hyperlink{class_athlete_a54a75ed3943dc6b5e229997be8422466}{Athlete}.
+
+\hypertarget{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{}\label{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182} 
+\index{Worker@{Worker}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Worker\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Abstract method -\/ get the worker id. 
+
+This is an abstract method to make this class abstract 
+
+Implemented in \hyperlink{class_goalkeeper_a61cff0476146d2fc063d5ed7be82a123}{Goalkeeper}, \hyperlink{class_defender_ad2aadb1cb382bf08522bd858ecc69667}{Defender}, \hyperlink{class_coach_a408361901fdbc11fd990b5fa26a94803}{Coach}, \hyperlink{class_forward_aacec6cafa4f965940286bd81e91e1eed}{Forward}, and \hyperlink{class_midfielder_ac55e51de4a6544c30ef2471b6c160d2b}{Midfielder}.
+
+\hypertarget{class_worker_a95a4f7c750644937859b8e14515a480e}{}\label{class_worker_a95a4f7c750644937859b8e14515a480e} 
+\index{Worker@{Worker}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Info()}{getInfo()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_info}{Info}$\ast$ Worker\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the information. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_coach_a527d675556892403695d70c438d76151}{Coach}, \hyperlink{class_goalkeeper_a8636c061d81440070cf554d5a3923acb}{Goalkeeper}, \hyperlink{class_defender_a54de21eac6353f8847ac109b8a08fcab}{Defender}, \hyperlink{class_forward_a5d8e8085c9a8c95a3296afc40fca81e5}{Forward}, and \hyperlink{class_midfielder_a18c2c163951dd942685950ac562f3b24}{Midfielder}.
+
+\hypertarget{class_worker_ab2ad8ec70eb7a478a3525e5114689625}{}\label{class_worker_ab2ad8ec70eb7a478a3525e5114689625} 
+\index{Worker@{Worker}!get\+Last\+Id@{get\+Last\+Id}}
+\index{get\+Last\+Id@{get\+Last\+Id}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Last\+Id()}{getLastId()}}
+{\footnotesize\ttfamily unsigned int Worker\+::get\+Last\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This is a static method to get the last Id created \hypertarget{class_worker_aaaa5808dae61a91b5344224b0ec4d0aa}{}\label{class_worker_aaaa5808dae61a91b5344224b0ec4d0aa} 
+\index{Worker@{Worker}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string Worker\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_worker_a5fd37dea8c5e6579c1deecbfc1b22db9}{}\label{class_worker_a5fd37dea8c5e6579c1deecbfc1b22db9} 
+\index{Worker@{Worker}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily virtual unsigned int Worker\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This is an abstract method to get the athlete or coach position 
+
+Implemented in \hyperlink{class_coach_aa248ee0fec4a5dfdddb8c235ad4ae4a8}{Coach}, and \hyperlink{class_athlete_a18ca289d50900c3825f21d36f2bf8d75}{Athlete}.
+
+\hypertarget{class_worker_a59b1b4769ad7cc740b051e53c986b725}{}\label{class_worker_a59b1b4769ad7cc740b051e53c986b725} 
+\index{Worker@{Worker}!is\+Active@{is\+Active}}
+\index{is\+Active@{is\+Active}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{is\+Active()}{isActive()}}
+{\footnotesize\ttfamily bool Worker\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_worker_a0a2eb7505b3a734184be3dfdf3316cc3}{}\label{class_worker_a0a2eb7505b3a734184be3dfdf3316cc3} 
+\index{Worker@{Worker}!is\+Athlete@{is\+Athlete}}
+\index{is\+Athlete@{is\+Athlete}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{is\+Athlete()}{isAthlete()}}
+{\footnotesize\ttfamily virtual bool Worker\+::is\+Athlete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This is an abstract method to check if the object is an \hyperlink{class_athlete}{Athlete} 
+
+Implemented in \hyperlink{class_athlete_a5a6f1744e0944cbabbe333964d6357f4}{Athlete}, and \hyperlink{class_coach_a6329a96f3fea5b02b46b4e6caf519359}{Coach}.
+
+\hypertarget{class_worker_ab2f8a86824ea129ea4d39b6ed7cfe847}{}\label{class_worker_ab2f8a86824ea129ea4d39b6ed7cfe847} 
+\index{Worker@{Worker}!operator==@{operator==}}
+\index{operator==@{operator==}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Worker\+::operator== (\begin{DoxyParamCaption}\item[{\hyperlink{class_worker}{Worker} $\ast$}]{worker }\end{DoxyParamCaption}) const}
+
+This is the == operator that returns true if the id\textquotesingle{}s are equal \hypertarget{class_worker_ac48a8315ccdeb2913cd98ea223660f72}{}\label{class_worker_ac48a8315ccdeb2913cd98ea223660f72} 
+\index{Worker@{Worker}!set\+Birth\+Date@{set\+Birth\+Date}}
+\index{set\+Birth\+Date@{set\+Birth\+Date}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Birth\+Date()}{setBirthDate()}}
+{\footnotesize\ttfamily virtual void Worker\+::set\+Birth\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{new\+Birthdate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets birth date. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Birthdate} & The new birthdate. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_athlete_a73fdec76546be945f02cc2b6d90b99ca}{Athlete}, and \hyperlink{class_coach_aef508cef2680594ef837407790d00db6}{Coach}.
+
+\hypertarget{class_worker_ace180f14f1a72e3e018c5ce06c1f3bb3}{}\label{class_worker_ace180f14f1a72e3e018c5ce06c1f3bb3} 
+\index{Worker@{Worker}!set\+Civil\+Id@{set\+Civil\+Id}}
+\index{set\+Civil\+Id@{set\+Civil\+Id}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Civil\+Id()}{setCivilId()}}
+{\footnotesize\ttfamily void Worker\+::set\+Civil\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Civil\+Id }\end{DoxyParamCaption})}
+
+This is the set Civil ID function that actualize the civil ID atribute \hypertarget{class_worker_ae84b05468a6fdbadad9163bfc18e0569}{}\label{class_worker_ae84b05468a6fdbadad9163bfc18e0569} 
+\index{Worker@{Worker}!set\+Coach\+Type@{set\+Coach\+Type}}
+\index{set\+Coach\+Type@{set\+Coach\+Type}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Coach\+Type()}{setCoachType()}}
+{\footnotesize\ttfamily virtual void Worker\+::set\+Coach\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}}]{new\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets coach type. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Type} & Type of the new. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_coach_a72de329d96f180eca4108c7103946ee3}{Coach}.
+
+\hypertarget{class_worker_a64124dca31baa9b110779c7698c15a57}{}\label{class_worker_a64124dca31baa9b110779c7698c15a57} 
+\index{Worker@{Worker}!set\+Height@{set\+Height}}
+\index{set\+Height@{set\+Height}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Height()}{setHeight()}}
+{\footnotesize\ttfamily virtual void Worker\+::set\+Height (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets a height. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Height} & Height of the new. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_athlete_ab96f3138f984bb830aa69f1502961dc8}{Athlete}.
+
+\hypertarget{class_worker_a213180d9f1e4822113f654f7f4ed147c}{}\label{class_worker_a213180d9f1e4822113f654f7f4ed147c} 
+\index{Worker@{Worker}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Id()}{setId()}}
+{\footnotesize\ttfamily void Worker\+::set\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Id }\end{DoxyParamCaption})}
+
+This is the set ID function that actualize the ID atribute \hypertarget{class_worker_a9113351bf9395094fa0e1d1cfa426881}{}\label{class_worker_a9113351bf9395094fa0e1d1cfa426881} 
+\index{Worker@{Worker}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Name()}{setName()}}
+{\footnotesize\ttfamily void Worker\+::set\+Name (\begin{DoxyParamCaption}\item[{string}]{new\+Name }\end{DoxyParamCaption})}
+
+
+
+Sets a name. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Name} & Name of the new. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_worker_a7d66047c0683a9a43f89254d0450cd47}{}\label{class_worker_a7d66047c0683a9a43f89254d0450cd47} 
+\index{Worker@{Worker}!set\+Status@{set\+Status}}
+\index{set\+Status@{set\+Status}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{set\+Status()}{setStatus()}}
+{\footnotesize\ttfamily void Worker\+::set\+Status (\begin{DoxyParamCaption}\item[{bool}]{new\+Status }\end{DoxyParamCaption})}
+
+This is the set status function that actualize the status atribute \hypertarget{class_worker_aca1475c72f6e7c6b85114b0bba0da038}{}\label{class_worker_aca1475c72f6e7c6b85114b0bba0da038} 
+\index{Worker@{Worker}!show\+In\+Screen@{show\+In\+Screen}}
+\index{show\+In\+Screen@{show\+In\+Screen}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{show\+In\+Screen()}{showInScreen()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Worker\+::show\+In\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_coach_a954ee94a35267f5992d1a84d25c15c7f}{Coach}, and \hyperlink{class_athlete_a4c7813bb2b52b7095cb7e85aef2e54d5}{Athlete}.
+
+\hypertarget{class_worker_a7d06c15a1d9872d629988aa054996627}{}\label{class_worker_a7d06c15a1d9872d629988aa054996627} 
+\index{Worker@{Worker}!update\+E\+CG@{update\+E\+CG}}
+\index{update\+E\+CG@{update\+E\+CG}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{update\+E\+C\+G()}{updateECG()}}
+{\footnotesize\ttfamily void Worker\+::update\+E\+CG (\begin{DoxyParamCaption}\item[{bool}]{resultado,  }\item[{\hyperlink{class_date}{Date}}]{expiration\+Date = {\ttfamily \hyperlink{class_date}{Date}(\hyperlink{class_date}{Date}().getDay(),~\hyperlink{class_date}{Date}().getMonth(),\hyperlink{class_date}{Date}().getYear()+1)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the ecg. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resultado} & True to resultado. \\
+\hline
+{\em expiration\+Date} & (Optional) The expiration date. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_athlete_a7eda9551e23db1e742a33e9ac61bd42d}{Athlete}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_worker_a8d1e3d13654b0c5466ec0560d2ab7c4e}{}\label{class_worker_a8d1e3d13654b0c5466ec0560d2ab7c4e} 
+\index{Worker@{Worker}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_worker}{Worker} \&}]{worker }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream insertion operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}in,out\mbox{]} The out. \\
+\hline
+{\em worker} & The worker. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The shifted result. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_worker_a3c1845f40a084b471750a787a87614dd}{}\label{class_worker_a3c1845f40a084b471750a787a87614dd} 
+\index{Worker@{Worker}!birthdate@{birthdate}}
+\index{birthdate@{birthdate}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{birthdate}{birthdate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Worker\+::birthdate\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} birthdate used to calculate age \hypertarget{class_worker_adfafba55f967994f4595bd914bbba127}{}\label{class_worker_adfafba55f967994f4595bd914bbba127} 
+\index{Worker@{Worker}!civil\+ID@{civil\+ID}}
+\index{civil\+ID@{civil\+ID}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{civil\+ID}{civilID}}
+{\footnotesize\ttfamily unsigned int Worker\+::civil\+ID\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} Civil ID \hypertarget{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{}\label{class_worker_afc39287cd510977cfe7697ed2c86b2ca} 
+\index{Worker@{Worker}!id@{id}}
+\index{id@{id}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily unsigned int Worker\+::id\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} unique id for each club worker \hypertarget{class_worker_a66cf57341253a31e418cf8abad59ffb1}{}\label{class_worker_a66cf57341253a31e418cf8abad59ffb1} 
+\index{Worker@{Worker}!name@{name}}
+\index{name@{name}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Worker\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} name \hypertarget{class_worker_a86618aa5fcac9253f9a7ca0dc16a31d4}{}\label{class_worker_a86618aa5fcac9253f9a7ca0dc16a31d4} 
+\index{Worker@{Worker}!status@{status}}
+\index{status@{status}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily bool Worker\+::status\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} current status \hypertarget{class_worker_a5f0df787d74ab0938583c07a09d126bf}{}\label{class_worker_a5f0df787d74ab0938583c07a09d126bf} 
+\index{Worker@{Worker}!workers\+Counter@{workers\+Counter}}
+\index{workers\+Counter@{workers\+Counter}!Worker@{Worker}}
+\subsubsection{\texorpdfstring{workers\+Counter}{workersCounter}}
+{\footnotesize\ttfamily unsigned int Worker\+::workers\+Counter = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\hyperlink{class_worker}{Worker} counter to keep track and generate the ids 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_worker_8hpp}{Worker.\+hpp}\item 
+\hyperlink{_worker_8cpp}{Worker.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,406 @@
+\hypertarget{class_binary_tree}{}\section{Binary\+Tree$<$ T $>$ Class Template Reference}
+\label{class_binary_tree}\index{Binary\+Tree$<$ T $>$@{Binary\+Tree$<$ T $>$}}
+
+
+A binary tree.  
+
+
+
+
+{\ttfamily \#include $<$B\+S\+T.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_binary_tree_a9202cce23960faf8f647c6765decccd4}{Binary\+Tree} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree_a196a1463712d6f5dfab9e36b26622545}{Binary\+Tree} (const \hyperlink{class_binary_tree}{Binary\+Tree} \&t)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree_a0e9f40807e8572d3c48ae3c1c97297d9}{Binary\+Tree} (const T \&)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree_af4fdef67ba18a1e1839137452fa5b7f3}{Binary\+Tree} (const T \&elem, const \hyperlink{class_binary_tree}{Binary\+Tree} \&esq, const \hyperlink{class_binary_tree}{Binary\+Tree} \&dir)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree_a390c319c0b28b958463851119edb8af3}{$\sim$\+Binary\+Tree} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+const \hyperlink{class_binary_tree}{Binary\+Tree} \& \hyperlink{class_binary_tree_ac279bcb6977dde769bba27ffba0b1b1f}{operator=} (const \hyperlink{class_binary_tree}{Binary\+Tree} \&rhs)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+bool \hyperlink{class_binary_tree_a0d870186995435510057e2b1312e1250}{is\+Empty} () const
+\begin{DoxyCompactList}\small\item\em Query if this object is empty. \end{DoxyCompactList}\item 
+T \& \hyperlink{class_binary_tree_afe7bd436227bc88b66920abc08ebeaba}{get\+Root} () const
+\begin{DoxyCompactList}\small\item\em Gets the root. \end{DoxyCompactList}\item 
+void \hyperlink{class_binary_tree_ad72c34cb7d17ae7d3eaaa43bfcc80de3}{make\+Empty} ()
+\begin{DoxyCompactList}\small\item\em Makes an empty binary tree. \end{DoxyCompactList}\item 
+void \hyperlink{class_binary_tree_a01a8974d6d5f26e03ac0f2fa142a12b2}{output\+Preorder} (ostream \&out) const
+\begin{DoxyCompactList}\small\item\em Output preorder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_binary_tree_a751ae424bb621e6cf72c53b58174ba5a}{make\+Empty} (\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$r)
+\begin{DoxyCompactList}\small\item\em Makes an empty node. \end{DoxyCompactList}\item 
+\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$ \hyperlink{class_binary_tree_a014618e17cbd8ec616e95db4c028c60f}{copy\+Subtree} (const \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$n) const
+\begin{DoxyCompactList}\small\item\em Copies the subtree described by n. \end{DoxyCompactList}\item 
+void \hyperlink{class_binary_tree_a1ffb7f4262ab5f14c76b5bb945c77a8d}{output\+Preorder} (ostream \&out, const \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$n) const
+\begin{DoxyCompactList}\small\item\em Output preorder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$ \hyperlink{class_binary_tree_ae587d62783bdf539c98ba7b392be47db}{root}
+\begin{DoxyCompactList}\small\item\em The root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_binary_tree_a803b4f6df7f3239e80af1600d26a7d30}{B\+T\+Itr\+In$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A bt itr in. \end{DoxyCompactList}\item 
+class \hyperlink{class_binary_tree_adfe4104666d42d9d6fb4b4ffc1c1fe51}{B\+T\+Itr\+Pre$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A bt itr pre. \end{DoxyCompactList}\item 
+class \hyperlink{class_binary_tree_af3c09c804ca3ba21c07c7d7eb41fd606}{B\+T\+Itr\+Post$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A bt itr post. \end{DoxyCompactList}\item 
+class \hyperlink{class_binary_tree_aa111eea53d6a1abdc602ea0fc0740878}{B\+T\+Itr\+Level$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A bt itr level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Binary\+Tree$<$ T $>$}
+
+A binary tree. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_binary_tree_a9202cce23960faf8f647c6765decccd4}{}\label{class_binary_tree_a9202cce23960faf8f647c6765decccd4} 
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{Binary\+Tree()}{BinaryTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::\hyperlink{class_binary_tree}{Binary\+Tree} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+Luís, 20/11/2016. \hypertarget{class_binary_tree_a196a1463712d6f5dfab9e36b26622545}{}\label{class_binary_tree_a196a1463712d6f5dfab9e36b26622545} 
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{Binary\+Tree()}{BinaryTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::\hyperlink{class_binary_tree}{Binary\+Tree} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&}]{t }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The \hyperlink{class_binary_tree}{Binary\+Tree} to process. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_tree_a0e9f40807e8572d3c48ae3c1c97297d9}{}\label{class_binary_tree_a0e9f40807e8572d3c48ae3c1c97297d9} 
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{Binary\+Tree()}{BinaryTree()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::\hyperlink{class_binary_tree}{Binary\+Tree} (\begin{DoxyParamCaption}\item[{const T \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter1} & The first parameter. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_tree_af4fdef67ba18a1e1839137452fa5b7f3}{}\label{class_binary_tree_af4fdef67ba18a1e1839137452fa5b7f3} 
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\index{Binary\+Tree@{Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{Binary\+Tree()}{BinaryTree()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::\hyperlink{class_binary_tree}{Binary\+Tree} (\begin{DoxyParamCaption}\item[{const T \&}]{elem,  }\item[{const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&}]{esq,  }\item[{const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&}]{dir }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elem} & The element. \\
+\hline
+{\em esq} & The left node. \\
+\hline
+{\em dir} & The right node. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_tree_a390c319c0b28b958463851119edb8af3}{}\label{class_binary_tree_a390c319c0b28b958463851119edb8af3} 
+\index{Binary\+Tree@{Binary\+Tree}!````~Binary\+Tree@{$\sim$\+Binary\+Tree}}
+\index{````~Binary\+Tree@{$\sim$\+Binary\+Tree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{$\sim$\+Binary\+Tree()}{~BinaryTree()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::$\sim$\hyperlink{class_binary_tree}{Binary\+Tree} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_binary_tree_a014618e17cbd8ec616e95db4c028c60f}{}\label{class_binary_tree_a014618e17cbd8ec616e95db4c028c60f} 
+\index{Binary\+Tree@{Binary\+Tree}!copy\+Subtree@{copy\+Subtree}}
+\index{copy\+Subtree@{copy\+Subtree}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{copy\+Subtree()}{copySubtree()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$ \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::copy\+Subtree (\begin{DoxyParamCaption}\item[{const \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Copies the subtree described by n. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The node to process. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else a pointer to a node; 
+\end{DoxyReturn}
+\hypertarget{class_binary_tree_afe7bd436227bc88b66920abc08ebeaba}{}\label{class_binary_tree_afe7bd436227bc88b66920abc08ebeaba} 
+\index{Binary\+Tree@{Binary\+Tree}!get\+Root@{get\+Root}}
+\index{get\+Root@{get\+Root}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{get\+Root()}{getRoot()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T\& \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::get\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the root. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{class_underflow}{Underflow}} & Thrown when an underflow error condition occurs. \\
+\hline
+\end{DoxyExceptions}
+
+
+\begin{DoxyReturn}{Returns}
+The root. 
+\end{DoxyReturn}
+\hypertarget{class_binary_tree_a0d870186995435510057e2b1312e1250}{}\label{class_binary_tree_a0d870186995435510057e2b1312e1250} 
+\index{Binary\+Tree@{Binary\+Tree}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{is\+Empty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+bool \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Query if this object is empty. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if empty, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_binary_tree_ad72c34cb7d17ae7d3eaaa43bfcc80de3}{}\label{class_binary_tree_ad72c34cb7d17ae7d3eaaa43bfcc80de3} 
+\index{Binary\+Tree@{Binary\+Tree}!make\+Empty@{make\+Empty}}
+\index{make\+Empty@{make\+Empty}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{make\+Empty()}{makeEmpty()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::make\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Makes an empty binary tree. 
+
+Luís, 20/11/2016. \hypertarget{class_binary_tree_a751ae424bb621e6cf72c53b58174ba5a}{}\label{class_binary_tree_a751ae424bb621e6cf72c53b58174ba5a} 
+\index{Binary\+Tree@{Binary\+Tree}!make\+Empty@{make\+Empty}}
+\index{make\+Empty@{make\+Empty}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{make\+Empty()}{makeEmpty()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::make\+Empty (\begin{DoxyParamCaption}\item[{\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Makes an empty node. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & \mbox{[}in,out\mbox{]} If non-\/null, binary tree node pointer to process. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_tree_ac279bcb6977dde769bba27ffba0b1b1f}{}\label{class_binary_tree_ac279bcb6977dde769bba27ffba0b1b1f} 
+\index{Binary\+Tree@{Binary\+Tree}!operator=@{operator=}}
+\index{operator=@{operator=}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \& \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Assignment operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+A shallow copy of this object. 
+\end{DoxyReturn}
+\hypertarget{class_binary_tree_a01a8974d6d5f26e03ac0f2fa142a12b2}{}\label{class_binary_tree_a01a8974d6d5f26e03ac0f2fa142a12b2} 
+\index{Binary\+Tree@{Binary\+Tree}!output\+Preorder@{output\+Preorder}}
+\index{output\+Preorder@{output\+Preorder}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{output\+Preorder()}{outputPreorder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::output\+Preorder (\begin{DoxyParamCaption}\item[{ostream \&}]{out }\end{DoxyParamCaption}) const}
+
+
+
+Output preorder. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}in,out\mbox{]} The outfile. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_tree_a1ffb7f4262ab5f14c76b5bb945c77a8d}{}\label{class_binary_tree_a1ffb7f4262ab5f14c76b5bb945c77a8d} 
+\index{Binary\+Tree@{Binary\+Tree}!output\+Preorder@{output\+Preorder}}
+\index{output\+Preorder@{output\+Preorder}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{output\+Preorder()}{outputPreorder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::output\+Preorder (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Output preorder. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}in,out\mbox{]} The outfile. \\
+\hline
+{\em n} & The node pointer to process. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_binary_tree_a803b4f6df7f3239e80af1600d26a7d30}{}\label{class_binary_tree_a803b4f6df7f3239e80af1600d26a7d30} 
+\index{Binary\+Tree@{Binary\+Tree}!B\+T\+Itr\+In$<$ T $>$@{B\+T\+Itr\+In$<$ T $>$}}
+\index{B\+T\+Itr\+In$<$ T $>$@{B\+T\+Itr\+In$<$ T $>$}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+In$<$ T $>$}{BTItrIn< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_in}{B\+T\+Itr\+In}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+A bt itr in. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+\hypertarget{class_binary_tree_aa111eea53d6a1abdc602ea0fc0740878}{}\label{class_binary_tree_aa111eea53d6a1abdc602ea0fc0740878} 
+\index{Binary\+Tree@{Binary\+Tree}!B\+T\+Itr\+Level$<$ T $>$@{B\+T\+Itr\+Level$<$ T $>$}}
+\index{B\+T\+Itr\+Level$<$ T $>$@{B\+T\+Itr\+Level$<$ T $>$}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Level$<$ T $>$}{BTItrLevel< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_level}{B\+T\+Itr\+Level}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+A bt itr level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+\hypertarget{class_binary_tree_af3c09c804ca3ba21c07c7d7eb41fd606}{}\label{class_binary_tree_af3c09c804ca3ba21c07c7d7eb41fd606} 
+\index{Binary\+Tree@{Binary\+Tree}!B\+T\+Itr\+Post$<$ T $>$@{B\+T\+Itr\+Post$<$ T $>$}}
+\index{B\+T\+Itr\+Post$<$ T $>$@{B\+T\+Itr\+Post$<$ T $>$}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Post$<$ T $>$}{BTItrPost< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+A bt itr post. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+\hypertarget{class_binary_tree_adfe4104666d42d9d6fb4b4ffc1c1fe51}{}\label{class_binary_tree_adfe4104666d42d9d6fb4b4ffc1c1fe51} 
+\index{Binary\+Tree@{Binary\+Tree}!B\+T\+Itr\+Pre$<$ T $>$@{B\+T\+Itr\+Pre$<$ T $>$}}
+\index{B\+T\+Itr\+Pre$<$ T $>$@{B\+T\+Itr\+Pre$<$ T $>$}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Pre$<$ T $>$}{BTItrPre< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_pre}{B\+T\+Itr\+Pre}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+A bt itr pre. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_binary_tree_ae587d62783bdf539c98ba7b392be47db}{}\label{class_binary_tree_ae587d62783bdf539c98ba7b392be47db} 
+\index{Binary\+Tree@{Binary\+Tree}!root@{root}}
+\index{root@{root}!Binary\+Tree@{Binary\+Tree}}
+\subsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$<$T$>$$\ast$ \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\+::root\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The root. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_b_s_t_8h}{B\+S\+T.\+h}\end{DoxyCompactItemize}

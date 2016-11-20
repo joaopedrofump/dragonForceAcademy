@@ -1,0 +1,339 @@
+\hypertarget{class_athlete}{}\section{Athlete Class Reference}
+\label{class_athlete}\index{Athlete@{Athlete}}
+
+
+An athlete.  
+
+
+
+
+{\ttfamily \#include $<$Athlete.\+hpp$>$}
+
+Inheritance diagram for Athlete\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_athlete}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_athlete_ae606aa946830e5ea0a05bf8f4fe22132}{Athlete} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, unsigned char \hyperlink{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{height}, unsigned int \hyperlink{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{id}=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_athlete}{Athlete}\textquotesingle{}s Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_athlete_a47d08c02239cf9dec64223ddf7e133fe}{Athlete} (string \&new\+Athlete, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} \hyperlink{class_athlete_ab6c8f0df2238999ed76e563510ac0b38}{position})
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_athlete}{Athlete}\textquotesingle{}s Constructor that reads from the athlete\textquotesingle{}s file. \end{DoxyCompactList}\item 
+\hyperlink{class_athlete_a8afd915bce6c257a4f512c97fe42a518}{$\sim$\+Athlete} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_athlete_a18ca289d50900c3825f21d36f2bf8d75}{get\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the athlete\textquotesingle{}s position. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_athlete_a54a75ed3943dc6b5e229997be8422466}{get\+Height} () const
+\begin{DoxyCompactList}\small\item\em Gets the athlete\textquotesingle{}s height. \end{DoxyCompactList}\item 
+\hyperlink{class_e_c_g}{E\+CG} $\ast$ \hyperlink{class_athlete_a9655c13ed4126435df2e57e64884deab}{get\+E\+CG} () const
+\begin{DoxyCompactList}\small\item\em Gets the athlete\textquotesingle{}s ecg. \end{DoxyCompactList}\item 
+void \hyperlink{class_athlete_a7eda9551e23db1e742a33e9ac61bd42d}{update\+E\+CG} (bool resultado, \hyperlink{class_date}{Date} expiration\+Date)
+\begin{DoxyCompactList}\small\item\em Updates the ecg. \end{DoxyCompactList}\item 
+bool \hyperlink{class_athlete_a5a6f1744e0944cbabbe333964d6357f4}{is\+Athlete} () const
+\begin{DoxyCompactList}\small\item\em Query if this object is athlete. \end{DoxyCompactList}\item 
+string \hyperlink{class_athlete_a44a5a7f1676c6ad2faca9bf51877a6f8}{generate\+Info} () const
+\begin{DoxyCompactList}\small\item\em Generates the athlete\textquotesingle{}s performance information. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \hyperlink{class_athlete_a4c7813bb2b52b7095cb7e85aef2e54d5}{show\+In\+Screen} () const
+\begin{DoxyCompactList}\small\item\em Shows all the athlete\textquotesingle{}s information in screen. \end{DoxyCompactList}\item 
+void \hyperlink{class_athlete_a73fdec76546be945f02cc2b6d90b99ca}{set\+Birth\+Date} (\hyperlink{class_date}{Date} new\+Birthdate)
+\begin{DoxyCompactList}\small\item\em Sets birth date. \end{DoxyCompactList}\item 
+void \hyperlink{class_athlete_ab96f3138f984bb830aa69f1502961dc8}{set\+Height} (unsigned int new\+Height)
+\begin{DoxyCompactList}\small\item\em Sets the athlete\textquotesingle{}s height. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \hyperlink{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{height}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_athlete}{Athlete}\textquotesingle{}s height. \end{DoxyCompactList}\item 
+\hyperlink{class_e_c_g}{E\+CG} $\ast$ \hyperlink{class_athlete_aa9576b3d16acdbe4c6efaeed68f690d7}{ecg}
+\begin{DoxyCompactList}\small\item\em pointer to ecg when there\textquotesingle{}s an athlete\textquotesingle{}s class. \end{DoxyCompactList}\item 
+\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} \hyperlink{class_athlete_ab6c8f0df2238999ed76e563510ac0b38}{position}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_athlete}{Athlete}\textquotesingle{}s position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An athlete. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_athlete_ae606aa946830e5ea0a05bf8f4fe22132}{}\label{class_athlete_ae606aa946830e5ea0a05bf8f4fe22132} 
+\index{Athlete@{Athlete}!Athlete@{Athlete}}
+\index{Athlete@{Athlete}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{Athlete()}{Athlete()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Athlete\+::\+Athlete (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned char}]{height,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_athlete}{Athlete}\textquotesingle{}s Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Identifier for the civil. \\
+\hline
+{\em height} & The height. \\
+\hline
+{\em id} & (Optional) The identifier. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_athlete_a47d08c02239cf9dec64223ddf7e133fe}{}\label{class_athlete_a47d08c02239cf9dec64223ddf7e133fe} 
+\index{Athlete@{Athlete}!Athlete@{Athlete}}
+\index{Athlete@{Athlete}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{Athlete()}{Athlete()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Athlete\+::\+Athlete (\begin{DoxyParamCaption}\item[{string \&}]{new\+Athlete,  }\item[{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}}]{position }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_athlete}{Athlete}\textquotesingle{}s Constructor that reads from the athlete\textquotesingle{}s file. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Athlete} & \mbox{[}in,out\mbox{]} The new athlete. \\
+\hline
+{\em position} & The position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_athlete_a8afd915bce6c257a4f512c97fe42a518}{}\label{class_athlete_a8afd915bce6c257a4f512c97fe42a518} 
+\index{Athlete@{Athlete}!````~Athlete@{$\sim$\+Athlete}}
+\index{````~Athlete@{$\sim$\+Athlete}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{$\sim$\+Athlete()}{~Athlete()}}
+{\footnotesize\ttfamily Athlete\+::$\sim$\+Athlete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_athlete_a44a5a7f1676c6ad2faca9bf51877a6f8}{}\label{class_athlete_a44a5a7f1676c6ad2faca9bf51877a6f8} 
+\index{Athlete@{Athlete}!generate\+Info@{generate\+Info}}
+\index{generate\+Info@{generate\+Info}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{generate\+Info()}{generateInfo()}}
+{\footnotesize\ttfamily string Athlete\+::generate\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates the athlete\textquotesingle{}s performance information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The athlete\textquotesingle{}s performance information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_ac77905603b86c58cb0a87d6389dca744}{Worker}.
+
+\hypertarget{class_athlete_a9655c13ed4126435df2e57e64884deab}{}\label{class_athlete_a9655c13ed4126435df2e57e64884deab} 
+\index{Athlete@{Athlete}!get\+E\+CG@{get\+E\+CG}}
+\index{get\+E\+CG@{get\+E\+CG}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{get\+E\+C\+G()}{getECG()}}
+{\footnotesize\ttfamily \hyperlink{class_e_c_g}{E\+CG} $\ast$ Athlete\+::get\+E\+CG (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the athlete\textquotesingle{}s ecg. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the ecg. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_a625cb5da072fd244f38f42e15693058a}{Worker}.
+
+\hypertarget{class_athlete_a54a75ed3943dc6b5e229997be8422466}{}\label{class_athlete_a54a75ed3943dc6b5e229997be8422466} 
+\index{Athlete@{Athlete}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{get\+Height()}{getHeight()}}
+{\footnotesize\ttfamily unsigned int Athlete\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the athlete\textquotesingle{}s height. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The athlete\textquotesingle{}s height. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a1c5dcdc1c7dc5e498a44f678e964bbfd}{Worker}.
+
+\hypertarget{class_athlete_a18ca289d50900c3825f21d36f2bf8d75}{}\label{class_athlete_a18ca289d50900c3825f21d36f2bf8d75} 
+\index{Athlete@{Athlete}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily unsigned int Athlete\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the athlete\textquotesingle{}s position. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The athlete\textquotesingle{}s position. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a5fd37dea8c5e6579c1deecbfc1b22db9}{Worker}.
+
+\hypertarget{class_athlete_a5a6f1744e0944cbabbe333964d6357f4}{}\label{class_athlete_a5a6f1744e0944cbabbe333964d6357f4} 
+\index{Athlete@{Athlete}!is\+Athlete@{is\+Athlete}}
+\index{is\+Athlete@{is\+Athlete}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{is\+Athlete()}{isAthlete()}}
+{\footnotesize\ttfamily bool Athlete\+::is\+Athlete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Query if this object is athlete. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if athlete, false if not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a0a2eb7505b3a734184be3dfdf3316cc3}{Worker}.
+
+\hypertarget{class_athlete_a73fdec76546be945f02cc2b6d90b99ca}{}\label{class_athlete_a73fdec76546be945f02cc2b6d90b99ca} 
+\index{Athlete@{Athlete}!set\+Birth\+Date@{set\+Birth\+Date}}
+\index{set\+Birth\+Date@{set\+Birth\+Date}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{set\+Birth\+Date()}{setBirthDate()}}
+{\footnotesize\ttfamily void Athlete\+::set\+Birth\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{new\+Birthdate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sets birth date. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Birthdate} & The new birthdate. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ac48a8315ccdeb2913cd98ea223660f72}{Worker}.
+
+\hypertarget{class_athlete_ab96f3138f984bb830aa69f1502961dc8}{}\label{class_athlete_ab96f3138f984bb830aa69f1502961dc8} 
+\index{Athlete@{Athlete}!set\+Height@{set\+Height}}
+\index{set\+Height@{set\+Height}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{set\+Height()}{setHeight()}}
+{\footnotesize\ttfamily void Athlete\+::set\+Height (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sets the athlete\textquotesingle{}s height. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Height} & New height. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_a64124dca31baa9b110779c7698c15a57}{Worker}.
+
+\hypertarget{class_athlete_a4c7813bb2b52b7095cb7e85aef2e54d5}{}\label{class_athlete_a4c7813bb2b52b7095cb7e85aef2e54d5} 
+\index{Athlete@{Athlete}!show\+In\+Screen@{show\+In\+Screen}}
+\index{show\+In\+Screen@{show\+In\+Screen}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{show\+In\+Screen()}{showInScreen()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Athlete\+::show\+In\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Shows all the athlete\textquotesingle{}s information in screen. 
+
+This is a method that shows all the athlete\textquotesingle{}s informaton on the screen
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+A vector of strings; 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_aca1475c72f6e7c6b85114b0bba0da038}{Worker}.
+
+\hypertarget{class_athlete_a7eda9551e23db1e742a33e9ac61bd42d}{}\label{class_athlete_a7eda9551e23db1e742a33e9ac61bd42d} 
+\index{Athlete@{Athlete}!update\+E\+CG@{update\+E\+CG}}
+\index{update\+E\+CG@{update\+E\+CG}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{update\+E\+C\+G()}{updateECG()}}
+{\footnotesize\ttfamily void Athlete\+::update\+E\+CG (\begin{DoxyParamCaption}\item[{bool}]{resultado,  }\item[{\hyperlink{class_date}{Date}}]{expiration\+Date }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the ecg. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resultado} & True to result. \\
+\hline
+{\em expiration\+Date} & The expiration date. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_a7d06c15a1d9872d629988aa054996627}{Worker}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_athlete_aa9576b3d16acdbe4c6efaeed68f690d7}{}\label{class_athlete_aa9576b3d16acdbe4c6efaeed68f690d7} 
+\index{Athlete@{Athlete}!ecg@{ecg}}
+\index{ecg@{ecg}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{ecg}{ecg}}
+{\footnotesize\ttfamily \hyperlink{class_e_c_g}{E\+CG}$\ast$ Athlete\+::ecg\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+pointer to ecg when there\textquotesingle{}s an athlete\textquotesingle{}s class. 
+
+\hypertarget{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{}\label{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914} 
+\index{Athlete@{Athlete}!height@{height}}
+\index{height@{height}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily unsigned char Athlete\+::height\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\hyperlink{class_athlete}{Athlete}\textquotesingle{}s height. 
+
+\hypertarget{class_athlete_ab6c8f0df2238999ed76e563510ac0b38}{}\label{class_athlete_ab6c8f0df2238999ed76e563510ac0b38} 
+\index{Athlete@{Athlete}!position@{position}}
+\index{position@{position}!Athlete@{Athlete}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} Athlete\+::position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\hyperlink{class_athlete}{Athlete}\textquotesingle{}s position. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_athlete_8hpp}{Athlete.\+hpp}\item 
+\hyperlink{_athlete_8cpp}{Athlete.\+cpp}\end{DoxyCompactItemize}
