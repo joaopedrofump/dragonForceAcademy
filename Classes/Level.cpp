@@ -297,6 +297,10 @@ string Level::getYear() const {
 	return this->yearOfSeason;
 }
 
+ageLevel Level::getAgeLevel() const {
+	return levelEnum;
+}
+
 Level* Level::addAthleteToLevel(pair<unsigned int, Info*> playerInfo) {
     
     this->mapInfoPlayers.insert(playerInfo);

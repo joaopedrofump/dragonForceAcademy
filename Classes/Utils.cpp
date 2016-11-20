@@ -914,7 +914,7 @@ void trimString(string &inputString) {
 	}
 }
 
-bool validateName(string &name) {
+bool validateName(string &name, unsigned int minWords) {
 
 	trimString(name);
 
@@ -946,9 +946,9 @@ bool validateName(string &name) {
 
 	//verify if it contains at least two names
 
-	if (names.size() < 2) {
+	if (names.size() < minWords) {
 
-		throw InvalidInput("The name must be comprised of at least two names.");
+		throw InvalidInput("The name must be comprised of at least " + to_string(minWords) + " names.");
 		return false;
 
 	}
@@ -1122,7 +1122,7 @@ bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, s
 	return result;
 }
 
-bool readDates(vector<Date> &resultVector, string message, string errorMessage) {
+bool readDates(vector<Date> &resultVector, Date min, Date max, string message, string errorMessage) {
 
 
 	string dates;
@@ -1150,10 +1150,16 @@ bool readDates(vector<Date> &resultVector, string message, string errorMessage) 
 		Date currentDate(currentDateStr);
 
 		resultVector.push_back(currentDate);
-		resultBool = true;
+		//resultBool = true;
 
 		if (resultVector.size() == 2) {
 
+			if (resultVector.at(0) < min) {
+				throw InvalidDate(OutOfBoundsMin, min.getDay(), min.getMonth(), min.getYear(), min.str(), max.str());
+			}
+			if (max < resultVector.at(1)) {
+				throw InvalidDate(OutOfBoundsMax, max.getDay(), max.getMonth(), max.getYear(), min.str(), max.str());
+			}
 			resultBool = true;
 
 		}

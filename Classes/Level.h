@@ -56,6 +56,7 @@ public:
     string getLevelName() const;
     int getMainCoachId() const;
 	string getYear() const;
+	ageLevel getAgeLevel() const;
     
     string getPathToLevelFolder() const;
     string getPathToLevelAthletesFile() const;

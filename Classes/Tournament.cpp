@@ -209,7 +209,7 @@ const BinaryTree<nodeMatch>& Tournament::getTournamentTree() const {
 }
 
 
-vector<vector<string>> Tournament::getTournamentMatches() const {
+vector<vector<string>> Tournament::getTournamentMatches(bool onlyNotRegisted) const {
     
     vector<vector<string>> result;
     
@@ -217,16 +217,24 @@ vector<vector<string>> Tournament::getTournamentMatches() const {
     while (!matchIterator.isAtEnd()) {
         
         nodeMatch* node = &matchIterator.retrieve();
-        vector<string>match = node->second.second->showInScreen(node->first.first);
+        
+		if (onlyNotRegisted && node->second.second->getPlayed()) {
+			matchIterator.advance();
+			continue;
+		}
+
+		vector<string>match = node->second.second->showInScreen(node->first.first);
         match.push_back(phaseStringMap.at(node->second.first));
-        result.push_back(match);
-        matchIterator.advance();
+        
+		result.push_back(match);
+        
+		matchIterator.advance();
         
     }
     return result;
 }
 
-void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex, unsigned int awayTeamIndex) {
+void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex, unsigned int awayTeamIndex, bool played) {
     
     nodeMatch* node =this->findMatchNode(tournamentMatchId);
     
@@ -236,14 +244,17 @@ void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date ma
     string matchId = this->name + "-" + phaseStringMap.at(node->second.first) + normalizeId(3, node->first.first);
     if (node->second.first == this->initialPhase) {
         
-        vector<unsigned int>::const_iterator iteClubHome = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), homeTeamIndex);
-        vector<unsigned int>::const_iterator iteClubAway = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), awayTeamIndex);
-        if (iteClubHome != this->clubsAuxUsed.end() || iteClubAway != this->clubsAuxUsed.end())  {
-            throw string("This club was already used before");
-        }
+		if (!this->clubsAuxUsed.empty()) {
+			vector<unsigned int>::const_iterator iteClubHome = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), homeTeamIndex);
+			vector<unsigned int>::const_iterator iteClubAway = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), awayTeamIndex);
+			if (iteClubHome != this->clubsAuxUsed.end() || iteClubAway != this->clubsAuxUsed.end()) {
+				throw string("This club was already used before");
+			}
+		}
+        
         
         delete node->second.second;
-        Match* newMatch = new Match(matchDate, this->clubs.at(homeTeamIndex), this->clubs.at(awayTeamIndex), matchId);
+        Match* newMatch = new Match(matchDate, this->clubs.at(homeTeamIndex), this->clubs.at(awayTeamIndex), matchId, played);
         node->second.second = newMatch;
         node->first.second = 1;
         this->clubsAuxUsed.push_back(homeTeamIndex);
@@ -313,7 +324,7 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
     node->second.second->setPlayers(filteredVector);
     map<unsigned int, Info *> infoPlayersEmpty;
     node->second.second->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
-    if (node->first.second == Final) {
+    if (node->second.first == Final) {
         this->winner = homeTeamScore > awayTeamScore ? node->second.second->getHomeTeam() : node->second.second->getAwayTeam();
     }
     this->updateTree();
@@ -322,7 +333,7 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
 
 void Tournament::registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore, unsigned int awayTeamScore, unsigned int homeTeamIndex, unsigned int awayTeamIndex) {
     
-    this->scheduleTournamentMatch(tournamentMatchId, matchDate, homeTeamIndex, awayTeamIndex);
+    this->scheduleTournamentMatch(tournamentMatchId, matchDate, homeTeamIndex, awayTeamIndex, true);
     this->registerMatch(tournamentMatchId, level, homeTeamScore, awayTeamScore, matchPlayers);
     
     
@@ -429,4 +440,13 @@ ostream& operator<(ostream& oStream, Tournament &tournamentToWrite) {
 
 string Tournament::getName() const {
     return this->name;
+}
+
+vector<unsigned int> Tournament::getClubsAuxUsed() const {
+	return this->clubsAuxUsed;
+}
+
+void Tournament::showTournament() const {
+
+	
 }
