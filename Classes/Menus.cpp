@@ -3111,6 +3111,8 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 		bool control = false;
 		bool exitSwitch = false;
 
+		Tournament* currentTournament = currentLevel->getTournaments().at(tournamentChosen);
+
 
 		Table showInformation({ "Information" , "Data" });
 
@@ -3119,13 +3121,18 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 		switch (option) {
 		case 1:             //=========== SHOW TABLE   ==============
 		{
+			printOneTournamentMenu(currentLevel, tournamentChosen, currentLevel->getYear());
 
+			currentLevel->getTournaments().at(tournamentChosen)->showMatches();
+			ignoreLine(false);
+			break;
 		}
 		case 2:             //=======  SCHEDULE MATCH   ======= 
-		{
-			showMainMenu(0, currentSeason->getSeasonName());
+		/*{
 
-			cout << Table(currentLevel->getTournaments().at(tournamentChosen)->getTournamentMatches(true), 0);
+			printOneTournamentMenu(currentLevel, tournamentChosen, currentLevel->getYear());
+
+			currentTournament->showMatches();
 
 			control = false;
 			while (!control) {
@@ -3138,11 +3145,17 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 						exitSwitch = true;
 						break;
 					}
+
+					if (currentTournament->getMatches().at(idInput)->getPlayed())
+						throw InvalidInput("That match was already registed.");
+					if (Date() < currentTournament->getMatches().at(idInput)->getMatchDay())
+						throw InvalidInput("That match didn't happen yet.");
+
 				}
 				catch (InvalidInput e) {
 
 					showMainMenu(0, currentSeason->getSeasonName());
-					currentLevel->showMatches(currentLevel->getMatchesReadyToPlay());
+					currentTournament->showMatches();
 
 					cout << Table({ e.getMessage() });
 					control = false;
@@ -3152,19 +3165,71 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 			if (exitSwitch) break;
 
 			//=======================
-			// Read Match Date
-
-
-			Date newMatchDate;
+			cout << Table(newTable, 0);
 
 			control = false;
 			while (!control) {
 				try {
 
-					showMainMenu(0, currentSeason->getSeasonName());
-					cout << showInformation;
+					cout << Table({ "Please, enter the Teams IDs to this tournament. (Eg: 1 x 4)" }) << endl;
 
-					control = readDate(newMatchDate, today, currentSeason->getEndDate(), "Please, enter the MATCH DATE.", "Invalid Date");
+					getline(cin, tmpMatch);
+
+					if (tmpMatch.length() == 0) {
+						exitSwitch = true;
+						break;
+					}
+
+					stringstream ssPlayers(tmpMatch);
+
+
+					char separator;
+
+					ssPlayers >> idTeam1 >> separator >> idTeam2;
+
+					if (ssPlayers.fail())
+						throw InvalidInput(tmpMatch + " is not a valid Match.");
+
+					if (!newTournament->getClubsAuxUsed().empty()) {
+						vector<unsigned int> tmpAux = newTournament->getClubsAuxUsed();
+						vector<unsigned int>::const_iterator iteClubHome = find(tmpAux.begin(), tmpAux.end(), idTeam1 - 1);
+						vector<unsigned int>::const_iterator iteClubAway = find(tmpAux.begin(), tmpAux.end(), idTeam2 - 1);
+						if (iteClubHome != tmpAux.end() || iteClubAway != tmpAux.end()) {
+							throw InvalidInput("One of those clubs was already used before");
+						}
+					}
+
+					control = true;
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+					cout << Table(newTable, 0);
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			if (exitSwitch)	break;
+
+			//======================
+			// Read Match Date
+
+
+			Date newMatchDate;
+
+
+			printOneTournamentMenu(currentLevel, tournamentChosen, currentLevel->getYear());
+			cout << showInformation;
+
+			control = false;
+			while (!control) {
+				try {
+
+
+					control = readDate(newMatchDate, today < currentTournament->getTournamentStartingDate() ? currentTournament->getTournamentStartingDate() : today, currentSeason->getEndDate(), "Please, enter the MATCH DATE.", "Invalid Date");
 
 					if (newMatchDate == today) {
 						exitSwitch = true;
@@ -3176,7 +3241,7 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 				}
 				catch (InvalidDate e) {
 
-					showMainMenu(0, currentSeason->getSeasonName());
+					printOneTournamentMenu(currentLevel, tournamentChosen, currentLevel->getYear());
 					cout << showInformation;
 
 					cout << Table({ e.getMessage() });
@@ -3189,7 +3254,11 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 
 			//==========================
 
-		}
+
+			currentTournament->scheduleTournamentMatch(idInput,newMatchDate,
+				currentTournament->findMatchNode(idInput)->second.first == currentTournament->getInitialPhase() ? )
+
+		}*/
 		case 3:             //=======  CALL UP PLAYERS   ======= 
 		{
 

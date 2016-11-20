@@ -220,6 +220,24 @@ const BinaryTree<nodeMatch>& Tournament::getTournamentTree() const {
     
 }
 
+vector<Match*> Tournament::getMatches() const {
+	
+	vector<Match*> result;
+
+	BTItrLevel<nodeMatch> matchIterator(this->getTournamentTree());
+	while (!matchIterator.isAtEnd()) {
+
+		result.push_back(matchIterator.retrieve().second.second);
+		matchIterator.advance();
+	}
+
+	return result;
+
+}
+
+Phase Tournament::getInitialPhase() const {
+	return this->initialPhase;
+}
 
 vector<vector<string>> Tournament::getTournamentMatches(bool onlyNotRegisted) const {
     
@@ -459,7 +477,42 @@ vector<unsigned int> Tournament::getClubsAuxUsed() const {
 	return this->clubsAuxUsed;
 }
 
-void Tournament::showTournament() const {
+void Tournament::showMatches() const {
 
-	
+	vector<Table> result;
+	unsigned int currentPhase = -1;
+	Table tmpTable({ "" });
+
+	BTItrLevel<nodeMatch> matchIterator(this->getTournamentTree());
+	while (!matchIterator.isAtEnd()) {
+
+		if (currentPhase == (unsigned int)matchIterator.retrieve().second.first) {
+
+			tmpTable.addDataInSameLine(vector<string>(7, ""));
+			tmpTable.addDataInSameLine(matchIterator.retrieve().second.second->showInScreen(matchIterator.retrieve().first.first));
+		}
+		else {
+			if (tmpTable.getTableVector() != vector<vector<string>>{{ "" }})
+				result.push_back(tmpTable);
+			result.push_back(Table({ phaseStringMap.at(matchIterator.retrieve().second.first) }));
+			
+			Table newTable(matchIterator.retrieve().second.second->showInScreen(matchIterator.retrieve().first.first));
+			tmpTable = newTable;
+
+			currentPhase = (unsigned int)matchIterator.retrieve().second.first;
+
+		}
+
+		matchIterator.advance();
+
+		if(matchIterator.isAtEnd())
+			result.push_back(tmpTable);
+	}
+
+	for (size_t i = 0; i < result.size(); i++) {
+
+		cout << result.at(i);
+	}
+
+
 }

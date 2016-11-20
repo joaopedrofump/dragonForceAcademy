@@ -48,6 +48,7 @@ public:
 	vector<unsigned int> getClubsAuxUsed() const;
     const BinaryTree<nodeMatch>& getTournamentTree() const;
     vector<vector<string>> getTournamentMatches(bool onlyNotRegisted = false) const;
+	Phase getInitialPhase() const;
     //para agendar um de uma fase posterior a fase inicial do torneio chamar funcao com dois ultimos parametros a 0
     void scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0, bool played = false);
     //convocar jogadores para jogo agendado
@@ -67,6 +68,7 @@ public:
 	// Write to Tournament file in Tournaments folder
     friend ostream& operator<(ostream& oStream, Tournament &tournamentToWrite);
 
+	vector<Match*> getMatches() const;
 
-	void showTournament() const;
+	void showMatches() const;
 };

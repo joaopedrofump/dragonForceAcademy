@@ -164,7 +164,6 @@ public:
 
 class Table {
 private:
-	//stringstream tableStream;
 	vector<vector<string>> tableVector;
 	vector<bool> blocks; //FALSE se a linha est· colada ‡ de cima, TRUE se s„o linhas separadas
 
@@ -178,7 +177,8 @@ private:
 
 public:
 	stringstream tableStream;
-
+	Table& operator=(const Table&);
+	Table(const Table&);
 	Table(vector<string> components, unsigned int indentacao = 0);
 	Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao = 0);
 	Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao = 0);
