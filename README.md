@@ -2,6 +2,8 @@
 
 # Dragon Force Academy Project #
 
+[Documentation](https://github.com/joaopedrofump/dragonForceAcademy/tree/pedro/doxygen/html/index.html)
+
 
 ##Tema 1 – Formação de Atletas (Parte 1)
 
