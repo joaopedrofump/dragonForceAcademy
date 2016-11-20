@@ -46,7 +46,10 @@ public:
 	unsigned int getId() const;
     vector<unsigned int> getPlayers() const;
     bool getTrainingGiven() const;
+	
     bool isRegistered() const;
+
+	static unsigned int getIdCounter();
     
     void setPlayers(vector<unsigned int> playersTrained);
     void setDate(Date newDate);

@@ -36,7 +36,7 @@ class Tournament {
 
 public:
 	Tournament(Date tournamentStartingDate, Date tournamentEndingDate, vector<string> tournamentClubs, Club* programClub, string name, unsigned int id = 0);
-    Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tournamentLevel);
+    Tournament(istream &inStream, Level* tournamentLevel);
 	~Tournament() {};
     string getName() const;
 	Date getTournamentStartingDate() const;
@@ -45,10 +45,12 @@ public:
     nodeMatch* findMatchNode(unsigned int tournamentMatchId);
     unsigned int getId() const;
     vector<Club*> getTournamentClubs() const;
+	vector<unsigned int> getClubsAuxUsed() const;
     const BinaryTree<nodeMatch>& getTournamentTree() const;
-    vector<vector<string>> getTournamentMatches() const;
+    vector<vector<string>> getTournamentMatches(bool onlyNotRegisted = false) const;
+	Phase getInitialPhase() const;
     //para agendar um de uma fase posterior a fase inicial do torneio chamar funcao com dois ultimos parametros a 0
-    void scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0);
+    void scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0, bool played = false);
     //convocar jogadores para jogo agendado
     void callUpPlayers(unsigned int tournamentMatchId, vector<unsigned int> matchPlayers);
     //convocar jogadores para jogo não agendado
@@ -61,7 +63,12 @@ public:
     void registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore = 0, unsigned int awayTeamScore = 0, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0);
     void updateTree();
     
+	// Write to Tournaments file
     friend ostream& operator<<(ostream& oStream, Tournament &tournamentToWrite);
+	// Write to Tournament file in Tournaments folder
     friend ostream& operator<(ostream& oStream, Tournament &tournamentToWrite);
-	
+
+	vector<Match*> getMatches() const;
+
+	void showMatches() const;
 };

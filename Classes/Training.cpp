@@ -67,6 +67,10 @@ bool Training::isRegistered() const {
     return this->registed;
 }
 
+unsigned int Training::getIdCounter(){
+	return trainingCounter;
+}
+
 void Training::setPlayers(vector<unsigned int> playersTrained) {
     this->playersTrained = playersTrained;
 }

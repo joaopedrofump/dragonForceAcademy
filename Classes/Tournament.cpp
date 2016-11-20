@@ -39,34 +39,42 @@ Tournament::Tournament(Date tournamentStartingDate, Date tournamentEndingDate, v
     
 }
 
-Tournament::Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tournamentLevel) {
+Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
     
-    Date tournamentStartingDate;
-    Date tournamentEndingDate;
+    string tournamentStartingDate;
+    string tournamentEndingDate;
     vector<string> tournamentClubs;
     string name;
     unsigned int id;
     
     string separator;
-    inStream >> id >> separator >> name >> separator;
+    inStream >> id >> separator;
+    
+    getline(inStream, name, ';');
+    trimString(name);
+    
     inStream >> tournamentStartingDate >> separator;
     inStream >> tournamentEndingDate >> separator;
+    Date startDate(tournamentStartingDate);
+    Date endDate(tournamentEndingDate);
     unsigned int phase, numberOfMatches;
-    inStream >> phase >> separator >> numberOfMatches >> separator >> separator;
+    inStream >> phase >> separator >> numberOfMatches >> separator;
+    
+    getline(inStream, separator, ';');
+    
     vector<string> clubs;
     
-    for (size_t i = 0; i < this->numberOfMatches; i++) {
+    for (size_t i = 0; i < numberOfMatches; i++) {
         string eachTeam;
-        inStream >> eachTeam;
-        
-        if (i != this->numberOfMatches - 1) {
-            inStream >> separator;
-        }
+        getline(inStream, eachTeam, ',');
+        trimString(eachTeam);
         clubs.push_back(eachTeam);
         
     }
     //constroi novo torneio com arvore inicializada
-    *this = Tournament(tournamentStartingDate, tournamentEndingDate, clubs, tournamentLevel->getParentClub(), name, id);
+    *this = Tournament(startDate, endDate, clubs, tournamentLevel->getParentClub(), name, id);
+    
+    ifstream tournamentTree(tournamentLevel->getPathtoLevelTournamentsFolder() + "/" + name + ".txt");
     
     for (int i = 0; i < this->numberOfMatches; i++) {
         
@@ -77,11 +85,12 @@ Tournament::Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tour
         tournamentTree >> matchIdInTournament >> separator >> scheduled >> separator;
         tournamentTree >> phaseInt >> separator;
         Match eachMatch(tournamentTree);
+        unsigned int numberOfPLayers;
+        tournamentTree >> separator >> numberOfPLayers;
         
-        map<unsigned int, Info*> playersMap = eachMatch.getInfoPlayers();
         vector<unsigned int> playersIds;
         
-        for (map<unsigned int, Info*>::const_iterator playersIterator = playersMap.begin(); playersIterator != playersMap.end(); playersIterator++) {
+        for (size_t j = 0; j < numberOfPLayers ; j++) {
             
             unsigned int currentId;
             string separator;
@@ -89,7 +98,9 @@ Tournament::Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tour
             Info* waste = new Info(tournamentTree);
             delete waste;
             playersIds.push_back(currentId);
+         
         }
+        
         
         
         if (scheduled) {
@@ -107,15 +118,15 @@ Tournament::Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tour
             bool foundHome = false;
             bool foundAway = false;
             
-            for (unsigned int i = 0; i < this->clubs.size(); i++) {
+            for (unsigned int k = 0; k < this->clubs.size(); k++) {
                 
-                if (homeTeam == this->clubs.at(i)->getName()) {
-                    indexHome = i;
+                if (homeTeam == this->clubs.at(k)->getName()) {
+                    indexHome = k;
                     foundHome = true;
                     continue;
                 }
-                if (awayTeam == this->clubs.at(i)->getName()) {
-                    indexAway = i;
+                if (awayTeam == this->clubs.at(k)->getName()) {
+                    indexAway = k;
                     foundAway = true;
                     continue;
                 }
@@ -143,6 +154,7 @@ Tournament::Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tour
         }
         
     }
+    tournamentTree.close();
     
 }
 
@@ -208,8 +220,26 @@ const BinaryTree<nodeMatch>& Tournament::getTournamentTree() const {
     
 }
 
+vector<Match*> Tournament::getMatches() const {
+	
+	vector<Match*> result;
 
-vector<vector<string>> Tournament::getTournamentMatches() const {
+	BTItrLevel<nodeMatch> matchIterator(this->getTournamentTree());
+	while (!matchIterator.isAtEnd()) {
+
+		result.push_back(matchIterator.retrieve().second.second);
+		matchIterator.advance();
+	}
+
+	return result;
+
+}
+
+Phase Tournament::getInitialPhase() const {
+	return this->initialPhase;
+}
+
+vector<vector<string>> Tournament::getTournamentMatches(bool onlyNotRegisted) const {
     
     vector<vector<string>> result;
     
@@ -217,16 +247,24 @@ vector<vector<string>> Tournament::getTournamentMatches() const {
     while (!matchIterator.isAtEnd()) {
         
         nodeMatch* node = &matchIterator.retrieve();
-        vector<string>match = node->second.second->showInScreen(node->first.first);
+        
+		if (onlyNotRegisted && node->second.second->getPlayed()) {
+			matchIterator.advance();
+			continue;
+		}
+
+		vector<string>match = node->second.second->showInScreen(node->first.first);
         match.push_back(phaseStringMap.at(node->second.first));
-        result.push_back(match);
-        matchIterator.advance();
+        
+		result.push_back(match);
+        
+		matchIterator.advance();
         
     }
     return result;
 }
 
-void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex, unsigned int awayTeamIndex) {
+void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date matchDate, unsigned int homeTeamIndex, unsigned int awayTeamIndex, bool played) {
     
     nodeMatch* node =this->findMatchNode(tournamentMatchId);
     
@@ -236,14 +274,17 @@ void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date ma
     string matchId = this->name + "-" + phaseStringMap.at(node->second.first) + normalizeId(3, node->first.first);
     if (node->second.first == this->initialPhase) {
         
-        vector<unsigned int>::const_iterator iteClubHome = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), homeTeamIndex);
-        vector<unsigned int>::const_iterator iteClubAway = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), awayTeamIndex);
-        if (iteClubHome != this->clubsAuxUsed.end() || iteClubAway != this->clubsAuxUsed.end())  {
-            throw string("This club was already used before");
-        }
+		if (!this->clubsAuxUsed.empty()) {
+			vector<unsigned int>::const_iterator iteClubHome = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), homeTeamIndex);
+			vector<unsigned int>::const_iterator iteClubAway = find(this->clubsAuxUsed.begin(), this->clubsAuxUsed.end(), awayTeamIndex);
+			if (iteClubHome != this->clubsAuxUsed.end() || iteClubAway != this->clubsAuxUsed.end()) {
+				throw string("This club was already used before");
+			}
+		}
+        
         
         delete node->second.second;
-        Match* newMatch = new Match(matchDate, this->clubs.at(homeTeamIndex), this->clubs.at(awayTeamIndex), matchId);
+        Match* newMatch = new Match(matchDate, this->clubs.at(homeTeamIndex), this->clubs.at(awayTeamIndex), matchId, played);
         node->second.second = newMatch;
         node->first.second = 1;
         this->clubsAuxUsed.push_back(homeTeamIndex);
@@ -313,7 +354,9 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
     node->second.second->setPlayers(filteredVector);
     map<unsigned int, Info *> infoPlayersEmpty;
     node->second.second->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
-    if (node->first.second == Final) {
+
+    if (node->second.first == Final && (homeTeamScore != awayTeamScore)) {
+        
         this->winner = homeTeamScore > awayTeamScore ? node->second.second->getHomeTeam() : node->second.second->getAwayTeam();
     }
     this->updateTree();
@@ -322,7 +365,7 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
 
 void Tournament::registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore, unsigned int awayTeamScore, unsigned int homeTeamIndex, unsigned int awayTeamIndex) {
     
-    this->scheduleTournamentMatch(tournamentMatchId, matchDate, homeTeamIndex, awayTeamIndex);
+    this->scheduleTournamentMatch(tournamentMatchId, matchDate, homeTeamIndex, awayTeamIndex, true);
     this->registerMatch(tournamentMatchId, level, homeTeamScore, awayTeamScore, matchPlayers);
     
     
@@ -333,10 +376,10 @@ void Tournament::updateTree() {
     BTItrLevel<nodeMatch> matchIterator(this->getTournamentTree());
     while (!matchIterator.isAtEnd()) {
         
+        string matchId = this->name + "-" + phaseStringMap.at(matchIterator.retrieve().second.first) + normalizeId(3, matchIterator.retrieve().first.first);
+        matchIterator.retrieve().second.second->setId(matchId);
+        
         if (matchIterator.retrieve().second.first != this->initialPhase) {
-            
-            string matchId = this->name + "-" + phaseStringMap.at(matchIterator.retrieve().second.first) + normalizeId(3, matchIterator.retrieve().first.first);
-            matchIterator.retrieve().second.second->setId(matchId);
             
             Club* homeTeamTmp = new Club("Winner " + to_string(matchIterator.getNode()->getRightNode()->getElement().first.first), true);
             Club* awayTeamTmp = new Club("Winner " + to_string(matchIterator.getNode()->getLeftNode()->getElement().first.first), true);
@@ -387,11 +430,11 @@ ostream& operator<<(ostream& oStream, Tournament &tournamentToWrite) {
     oStream << tournamentToWrite.id << " ; " << tournamentToWrite.name << " ; " << tournamentToWrite.tournamentStartingDate << " ; " << tournamentToWrite.tournamentEndingDate << " ; " << tournamentToWrite.initialPhase << " ; " << tournamentToWrite.numberOfMatches << " ; ";
     
     string winner = tournamentToWrite.winner ? tournamentToWrite.winner->getName() : "NONE";
-    oStream << winner;
+    oStream << winner << " ; ";
     
-    for (size_t i = 0; i < tournamentToWrite.clubs.size(); i++) {
+    for (size_t i = 1; i < tournamentToWrite.clubs.size(); i++) {
         
-        oStream << tournamentToWrite.clubs.at(i);
+        oStream << tournamentToWrite.clubs.at(i)->getName();
         if (i != tournamentToWrite.clubs.size() - 1) {
             oStream << " , ";
         }
@@ -407,17 +450,16 @@ ostream& operator<(ostream& oStream, Tournament &tournamentToWrite) {
     while (!matchIterator.isAtEnd()) {
         
         nodeMatch* node = &matchIterator.retrieve();
-        
-        oStream << node->first.first << " ; " << node->first.second << " ; " << node->second.first << node->second.second << endl;
+    
+        oStream << node->first.first << " ; " << node->first.second << " ; " << node->second.first << " ; " << *node->second.second << " ; " << (node->second.second)->getPlayers().size() << endl;
         
         map<unsigned int, Info*> matchPlayersMap = node->second.second->getInfoPlayers();
         
         for (map<unsigned int, Info*>::const_iterator playersIterator = matchPlayersMap.begin(); playersIterator!= matchPlayersMap.end(); playersIterator++) {
             
-            oStream << playersIterator->second << endl;
+            oStream << playersIterator->first << " ; " << *playersIterator->second << endl;
             
         }
-        
         
         matchIterator.advance();
         
@@ -429,4 +471,48 @@ ostream& operator<(ostream& oStream, Tournament &tournamentToWrite) {
 
 string Tournament::getName() const {
     return this->name;
+}
+
+vector<unsigned int> Tournament::getClubsAuxUsed() const {
+	return this->clubsAuxUsed;
+}
+
+void Tournament::showMatches() const {
+
+	vector<Table> result;
+	unsigned int currentPhase = -1;
+	Table tmpTable({ "" });
+
+	BTItrLevel<nodeMatch> matchIterator(this->getTournamentTree());
+	while (!matchIterator.isAtEnd()) {
+
+		if (currentPhase == (unsigned int)matchIterator.retrieve().second.first) {
+
+			tmpTable.addDataInSameLine(vector<string>(7, ""));
+			tmpTable.addDataInSameLine(matchIterator.retrieve().second.second->showInScreen(matchIterator.retrieve().first.first));
+		}
+		else {
+			if (tmpTable.getTableVector() != vector<vector<string>>{{ "" }})
+				result.push_back(tmpTable);
+			result.push_back(Table({ phaseStringMap.at(matchIterator.retrieve().second.first) }));
+			
+			Table newTable(matchIterator.retrieve().second.second->showInScreen(matchIterator.retrieve().first.first));
+			tmpTable = newTable;
+
+			currentPhase = (unsigned int)matchIterator.retrieve().second.first;
+
+		}
+
+		matchIterator.advance();
+
+		if(matchIterator.isAtEnd())
+			result.push_back(tmpTable);
+	}
+
+	for (size_t i = 0; i < result.size(); i++) {
+
+		cout << result.at(i);
+	}
+
+
 }

@@ -164,7 +164,6 @@ public:
 
 class Table {
 private:
-	//stringstream tableStream;
 	vector<vector<string>> tableVector;
 	vector<bool> blocks; //FALSE se a linha est· colada ‡ de cima, TRUE se s„o linhas separadas
 
@@ -178,7 +177,8 @@ private:
 
 public:
 	stringstream tableStream;
-
+	Table& operator=(const Table&);
+	Table(const Table&);
 	Table(vector<string> components, unsigned int indentacao = 0);
 	Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao = 0);
 	Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao = 0);
@@ -262,13 +262,11 @@ public:
 
 void trimString(string &inputString);
 
-bool validateName(string &nome);
+bool validateName(string &nome, unsigned int minWords = 2);
 
 string trimLink(string link);
 
 void clearScreen();
-
-bool validateName(string &nome);
 
 void SetCursor(int column, int line);
 
@@ -280,7 +278,7 @@ void ignoreLine(bool ignoreControl = true, string message = "Press ENTER to cont
 
 bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage = "Invalid Input");
 
-bool readDates(vector<Date> &resultVector, string message, string errorMessage);
+bool readDates(vector<Date> &resultVector, Date min, Date max, string message, string errorMessage);
 
 bool readDate(Date &result, string message, string errorMessage);
 bool readDate(Date &result, Date min, Date max, string message, string errorMessage);

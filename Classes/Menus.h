@@ -56,6 +56,20 @@ unsigned int menuTrainingsManagement(Level* currentLevel);
 
 void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* currentLevel);
 
+
+
+unsigned int menuTournament(Level* currentLevel, unsigned int tournamentChosen);
+
+void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLevel, unsigned int tournamentChosen);
+
+void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* currentLevel);
+
+unsigned int menuTournamentsManagement(Level* currentLevel);
+
+void printOneTournamentMenu(Level* currentLevel, unsigned int tournamentChosen, string seasonName);
+
+void printTournamentsMenu(Level* currentLevel);
+
 /*void listarClientesOrdemAlfabetica(VendeMaisMais & supermercado);
 
 void listarProdutos(VendeMaisMais & supermercado);*/

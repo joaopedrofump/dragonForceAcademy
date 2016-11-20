@@ -15,8 +15,8 @@ class Match{
 public:
     Match(string id);
 	Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played = false);
-    Match(istringstream& iss);
-    Match(istringstream& iss, Club* programClub, MatchType homeOrAway);
+    Match(istream& iss);
+    Match(istream& iss, Club* programClub, MatchType homeOrAway);
     Match(Date matchDay);
 	~Match();
 

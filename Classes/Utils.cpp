@@ -657,6 +657,35 @@ ostream& operator<<(ostream& out, const Table &tableToShow) {
 	return out;
 }
 
+Table& Table::operator=(const Table& table) {
+	this->blocks = table.getBlocks();
+	this->columnsWidth = table.getColumsWidth();
+	this->indent = table.getIndentacao();
+	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
+	this->numColumns = table.getTableVector().at(0).size();
+	this->numLines = table.getTableVector().size();
+	this->tableVector = table.getTableVector();
+
+	string tmp = table.tableStream.str();
+
+	this->tableStream = stringstream(tmp);
+
+	return *this;
+}
+
+Table::Table(const Table& table) {
+	this->blocks = table.getBlocks();
+	this->columnsWidth = table.getColumsWidth();
+	this->indent = table.getIndentacao();
+	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
+	this->numColumns = table.getTableVector().at(0).size();
+	this->numLines = table.getTableVector().size();
+	this->tableVector = table.getTableVector();
+
+	string tmp = table.tableStream.str();
+
+	this->tableStream = stringstream(tmp);
+}
 //=================================
 //=========  FRACTION  ============
 //=================================
@@ -914,7 +943,7 @@ void trimString(string &inputString) {
 	}
 }
 
-bool validateName(string &name) {
+bool validateName(string &name, unsigned int minWords) {
 
 	trimString(name);
 
@@ -946,9 +975,9 @@ bool validateName(string &name) {
 
 	//verify if it contains at least two names
 
-	if (names.size() < 2) {
+	if (names.size() < minWords) {
 
-		throw InvalidInput("The name must be comprised of at least two names.");
+		throw InvalidInput("The name must be comprised of at least " + to_string(minWords) + " names.");
 		return false;
 
 	}
@@ -1122,7 +1151,7 @@ bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, s
 	return result;
 }
 
-bool readDates(vector<Date> &resultVector, string message, string errorMessage) {
+bool readDates(vector<Date> &resultVector, Date min, Date max, string message, string errorMessage) {
 
 
 	string dates;
@@ -1150,10 +1179,16 @@ bool readDates(vector<Date> &resultVector, string message, string errorMessage) 
 		Date currentDate(currentDateStr);
 
 		resultVector.push_back(currentDate);
-		resultBool = true;
+		//resultBool = true;
 
 		if (resultVector.size() == 2) {
 
+			if (resultVector.at(0) < min) {
+				throw InvalidDate(OutOfBoundsMin, min.getDay(), min.getMonth(), min.getYear(), min.str(), max.str());
+			}
+			if (max < resultVector.at(1)) {
+				throw InvalidDate(OutOfBoundsMax, max.getDay(), max.getMonth(), max.getYear(), min.str(), max.str());
+			}
 			resultBool = true;
 
 		}
