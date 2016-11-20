@@ -20,10 +20,6 @@ Worker::Worker(string name, Date birthdate, unsigned int civilID, unsigned int i
         throw string("Invalid Name");
     }
     
-    if(Date()-birthdate < 11 || Date() - birthdate > 45) {
-        throw string("Invalid Age");
-    }
-    
     this->name = name;
     this->birthdate = birthdate;
 	this->status = true;
@@ -80,7 +76,7 @@ void Worker::setStatus(bool newStatus) {
 
 }
 
-unsigned int Worker::getIdade() const {
+unsigned int Worker::getAge() const {
 	
     return Date() - this->birthdate;
 
@@ -116,7 +112,7 @@ vector<string> Worker::showInScreen() const {
     output.push_back(to_string(this->civilID));
     output.push_back(this->name);
     output.push_back(this->birthdate.showDate());
-    output.push_back(to_string(this->getIdade()));
+    output.push_back(to_string(this->getAge()));
     return output;
     
 }
@@ -133,3 +129,12 @@ void Worker::updateECG(bool resultado, Date expirationDate) {}
 
 
 ECG* Worker::getECG() const { return NULL; }
+
+void Worker::setName(string newName) {
+    
+    if(!validateName(newName)) {
+        throw string("Invalid Name");
+    }
+    this->name = newName;
+    
+}

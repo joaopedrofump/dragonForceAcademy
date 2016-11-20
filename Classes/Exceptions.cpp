@@ -17,6 +17,17 @@ InvalidDate::InvalidDate(DateExceptionType type, int day, int month, int year) {
     
 }
 
+InvalidDate::InvalidDate(string exceptionMessage, int day, int month, int year) {
+
+	this->type = InvalidDay;
+	this->day = day;
+	this->month = month;
+	this->year = year;
+
+	this->exceptionMessage = exceptionMessage;
+
+}
+
 string InvalidDate::getMessage() {
     
     switch (this->type) {

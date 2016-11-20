@@ -12,38 +12,82 @@
 
 #include "Midfielder.hpp"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	A defender. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Defender : public Athlete {
 private:
-    Info* generalInfo; //defender's general info
+    /// <summary>	defender's general info. </summary>
+    Info* generalInfo;
     
 public:
-    //! Defender's constructor
-	/*!
-	*	This is the constructor that creates a defender using his name, birthdate, civilID and height. The id is set automatically
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Constructor. The id is set automatically </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <param name="name">			The name. </param>
+	/// <param name="birthdate">	The birthdate. </param>
+	/// <param name="civilID">  	Civil identifier. </param>
+	/// <param name="height">   	The height. </param>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	Defender(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int = 0);
 	
-	/*!
-	*	This is the constructor that creates a defender using his defending position
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Constructor that reads from the athlete's file. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <param name="newDF">	[in,out] The new df. </param>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	Defender(string &newDF);
-    
-	//! Defender's destructor
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	~Defender();
     
-	/*!
-	*	This is the method that gets the defender's id
-	*/
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets the defender's identifier. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	The defender's identifier. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	unsigned int getID() const;
     
-	/*!
-	*	This is the method that gets the defender's performance information 
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets the defender's performance information. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	Null if it fails, else the defender's performance information. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	Info* getInfo() const;
-    
-	/*!
-	*	This is the method that adds information to the defender
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Adds information to the defender. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <param name="moreInfo">	[in,out] If non-null, all the defender's performance information. </param>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	void addInfo(Info* moreInfo);
     
 };

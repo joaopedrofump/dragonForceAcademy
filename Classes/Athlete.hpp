@@ -12,61 +12,160 @@
 
 #include "Coach.hpp"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	An athlete. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Athlete : public Worker {
     
 protected:
-    unsigned char height; //Athlete's height
-    ECG* ecg; //apontador para ECG quando houver classe
-	Position position; //Athlete's position
+    /// <summary>	Athlete's height. </summary>
+    unsigned char height;
+    /// <summary>	apontador para ECG quando houver classe. </summary>
+    ECG* ecg;
+	/// <summary>	Athlete's position. </summary>
+	Position position;
 
 public:
-	/*!
-	* This is the constructor that creates an athleteuses name, birthdate, civilID, height. The id is set automatically
-	*/
+	
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Athlete's Constructor. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="name">			The name. </param>
+    /// <param name="birthdate">	The birthdate. </param>
+    /// <param name="civilID">  	Identifier for the civil. </param>
+    /// <param name="height">   	The height. </param>
+    /// <param name="id">			(Optional) The identifier. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id = 0);
 	
-	/*!
-	*	This is the constructor that uses his subposition passed by reference and his position
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Athlete's Constructor that reads from the athlete's file. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <param name="newAthlete">	[in,out] The new athlete. </param>
+	/// <param name="position">  	The position. </param>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	Athlete(string &newAthlete, Position position);
 
-	//! Athlete's class destructor
-	 ~Athlete();
-	
-	 /*!
-	 * This is a method that gets the athlete's position
-	 */
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	~Athlete();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Gets the athlete's position. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	The athlete's position. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     unsigned int getPosition() const;
 
-	/*!
-	*	This is a method that gets the athlete's height
-	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets the athlete's height. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	The athlete's height. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	unsigned int getHeight() const;
 
-	/*!
-	*	This is a method that return a pointer to the athlete's ECG  
-	*/
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets the athlete's ecg. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	Null if it fails, else the ecg. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	ECG* getECG() const;
-    
-	/*!
-	*	This is a method that updates the athlete's ECG (result and expiration date)
-	*/
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Updates the ecg. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="resultado">	 	True to result. </param>
+    /// <param name="expirationDate">	The expiration date. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     void updateECG(bool resultado, Date expirationDate);
 
-	/*!
-	*	This is a method that checks if the worker is an athlete
-	*/
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Query if this object is athlete. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	True if athlete, false if not. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	bool isAthlete() const;
     
-	/*!
-	*	This is a method that generates the athlete's performance information
-	*/
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Generates the athlete's performance information. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	The athlete's performance information. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     string generateInfo() const;
     
 	/*!
-		This is a method that shows all the athlete's informaton on the screen
+	*	This is a method that shows all the athlete's informaton on the screen
 	*/
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Shows all the athlete's information in screen. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	A vector of strings; </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     vector<string> showInScreen() const;
+    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Sets birth date. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="newBirthdate">	The new birthdate. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void setBirthDate(Date newBirthdate);
+    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Sets the athlete's height. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="newHeight">	New height. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void setHeight(unsigned int newHeight);
 
 };
 

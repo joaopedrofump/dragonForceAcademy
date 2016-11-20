@@ -3,18 +3,31 @@
 
 #include "Athlete.hpp"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	A forward. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Forward : public Athlete
 {
 private:
-    Info* generalInfo; //forward's general information
+    /// <summary>	forward's general information. </summary>
+    Info* generalInfo;
 
 public:
-	
-	//! Forward's constructors
 
-	/*!
-	*	This is a constructor that creates a new forward using his name, birthdate, civilID and height. The id is set automatically
-	*/
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Constructor. The id is set automatically </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <param name="name">			The name. </param>
+	/// <param name="birthdate">	The birthdate. </param>
+	/// <param name="civilID">  	Civil identifier. </param>
+	/// <param name="height">   	The height. </param>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	Forward(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned id = 0);
 	
 	/*!

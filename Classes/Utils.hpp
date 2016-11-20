@@ -19,6 +19,7 @@
 #include <vector>
 #include <map>
 #include <ctime>
+#include <algorithm>
 #include "Exceptions.hpp"
 #ifdef __llvm__
 #include <sys/stat.h>
@@ -36,10 +37,9 @@ string const FILE_SEPARATOR = "------------------------------------------------"
 
 enum CoachType {
     
-    HeadCoach,			// HDC
-    AssistantCoach,		// ASC
-    GoalkeeperCoach,	// GKC
-    PhysicalTrainer		// PHT
+    HeadCoach = 1,			// HDC
+    GoalkeeperCoach = 2,	// GKC
+    PhysicalTrainer = 3		// PHT
     
 };
 
@@ -99,6 +99,13 @@ enum ageLevel {
     
 };
 
+enum MatchType {
+    
+    home,
+    away,
+    neutral
+};
+
 // ===========================================
 // ===============  DATE  ====================
 // ===========================================
@@ -124,6 +131,7 @@ public:
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
     friend bool operator<(const Date &date1, const Date &date2);
+	friend bool operator==(const Date &date1, const Date &date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
 	friend int operator-(const Date &date1, const Date &date2);
 	string showDate() const;
@@ -248,9 +256,14 @@ int GetCursorX();
 
 int GetCursorY();
 
-void ignoreLine(bool ignoreControl = true, string message = "Prima Enter para continuar.");
+void ignoreLine(bool ignoreControl = true, string message = "Press ENTER to continue.");
 
-bool readUnsignedShortInt(unsigned short int &input, unsigned short int min, unsigned short int  max, string errorMessage = "Invalid Input");
+bool readUnsignedInt(unsigned int &input, unsigned int min, unsigned int  max, string errorMessage = "Invalid Input");
+
+bool readDates(vector<Date> &resultVector, string message, string errorMessage);
+
+bool readDate(Date &result, string message, string errorMessage);
+bool readDate(Date &result, Date min, Date max, string message, string errorMessage);
 
 bool emptyString(string stringTest);
 
@@ -264,5 +277,7 @@ string stringPath(string originalStr);
 string getLevelFromAge(Date birthDate);
 
 string readAndCut(string &stringToCut);
+
+string normalizeId(unsigned int digits, unsigned int id);
 
 #endif /* Utils_hpp */

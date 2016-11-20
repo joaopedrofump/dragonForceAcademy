@@ -86,17 +86,25 @@ public:
     void setCivilId(unsigned int newCivilId);
     
     virtual void updateECG(bool resultado, Date expirationDate = Date(Date().getDay(), Date().getMonth(),Date().getYear()+1));
-
+    
+    void setName(string newName);
+    virtual void setBirthDate(Date newBirthdate){};
+    virtual void setHeight(unsigned int newHeight){};
+    virtual void setCoachType(CoachType newType) {};
 	
 
     ~Worker();
-	unsigned int getIdade() const;
+	
 
 	//====== GETTERS =============
+
+	unsigned int getAge() const;
+
     
     Date getBirthdate() const;
     
     virtual Info* getInfo() const { Info* res = new Info(); return res;};
+    
     virtual void addInfo(Info* moreInfo){};
     
     friend ostream& operator<<(ostream& out, const Worker &worker);

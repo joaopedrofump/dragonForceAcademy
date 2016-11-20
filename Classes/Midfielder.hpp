@@ -14,7 +14,7 @@
 
 class Midfielder : public Athlete {
 private:
-    Info* generalInfo; //midfielder's general information
+    Info* generalInfo; //! midfielder's general information
 public:
     //! Midfielder's constructors
 
