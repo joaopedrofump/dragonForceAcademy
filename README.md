@@ -2,9 +2,6 @@
 
 # Dragon Force Academy Project #
 
-[Documentation](https://github.com/joaopedrofump/dragonForceAcademy/tree/pedro/doxygen/html/index.html)
-
-
 ##Tema 1 – Formação de Atletas (Parte 1)
 
 A gestão de uma modalidade desportiva, nos seus escalões de formação, passa por registar todos os passos desportivos de cada **atleta**. Em cada categoria (desde os minis, passando pelos juvenis e terminando nos juniores e seniores), cada atleta tem uma determinada assiduidade aos treinos, bem como um conjunto de **presenças nos diversos jogos­ treino e pequenos torneios** que se vão realizando com outras equipas. É com base nesta informação que o treinador decide quem convocar para os torneios principais que se realizam com menor frequência.
