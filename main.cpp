@@ -14,8 +14,6 @@
 #elif _MSC_VER
 
 
-
-
 #include "Classes\\Menus.h"
 #include "Classes\\Season.hpp"
 #include "Classes\\Level.h"

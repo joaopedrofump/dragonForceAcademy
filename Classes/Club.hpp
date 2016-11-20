@@ -7,6 +7,7 @@ class Season;
 class Match;
 class Level;
 
+
 /// <summary>	The coach type map. </summary>
 extern const map<string, CoachType> coachTypeMap; //
 /// <summary>	The age level map. </summary>
@@ -21,6 +22,7 @@ extern const map<string, ageLevel> ageLevelMap; //
 ///
 /// <returns>	True if it succeeds, false if it fails. </returns>
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 extern bool confirm(const Table &message);
 
@@ -42,6 +44,7 @@ extern void showMainMenu(unsigned short int optionChosen, string seasonName);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Club {
+
 	
 	/// <summary>	True to program club. </summary>
 	bool programClub;
@@ -100,6 +103,10 @@ public:
 	/// <returns>	The name. </returns>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+	/*!
+	*	This is a method that gets the club's name
+	*/
 
 	string getName() const;
 
@@ -201,6 +208,7 @@ public:
 
 	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
 
+
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,6 +220,7 @@ public:
 	///
 	/// <returns>	Null if it fails, else gets the inactives. </returns>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	map<unsigned int, Worker*> getInactives(unsigned char workersType = 0) const;
 
@@ -227,7 +236,6 @@ public:
 
 	map<unsigned int, Worker*> getCoaches(bool onlyActives = false) const;
 
-
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,6 +245,22 @@ public:
 	///
 	/// <param name="onlyActives">	(Optional) True to only actives. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+	/*!
+	*	This is a method that gets the inactive players from the workers' map
+	*/
+	//map<unsigned int, Worker*> getInactives() const;
+
+	/*!
+	*	This is a method that gets the coaches from the workers' map
+	*/
+	//map<unsigned int, Worker*> getCoaches() const;
+
+	/*!
+	*	This is a method that shows all the athletes of the club
+	*/
+
 	void showAthletes(bool onlyActives = false) const;
 	
 
@@ -392,6 +416,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	string getPathToClubInfoFile() const;
+
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -429,6 +454,8 @@ public:
     /// <param name="level">	   	[in,out] If non-null, the level. </param>
     /// <param name="type">		   	The match type. </param>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     void scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type);
     
@@ -525,5 +552,5 @@ public:
     //registar treino não agendado
     void registerTraining(Date trainingDate, Level* level, vector<unsigned int> missingPlayers);
     
-   
+
 };

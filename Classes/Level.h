@@ -68,7 +68,9 @@ public:
     
     vector<Match*> getAllLevelMatches(bool onlyNotPlayed = false) const;
 	vector<Match*> getMatchesReadyToPlay() const;
+
 	vector<Training*> getTrainingsReadyToPlay() const;
+
 
 	Table showAthletesOfLevel(bool onlyAvailable = false) const;
     vector<Training*> getAllLevelTrainings(bool onlyNotPlayed = false) const;
@@ -76,7 +78,11 @@ public:
     Level* addTrainingToLevel(Training* newTraining);
 
 	void showMatches(vector<Match*> matches);
+
 	void showMatch(Match* matchToShow);
+
+
+
 
 	void showTrainings(vector<Training*> matches);
     void sortTrainings();

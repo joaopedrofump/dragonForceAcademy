@@ -1346,6 +1346,7 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 	while ((option = menuLevelsManagement(currentLevel))) {
 		string input;
 		unsigned int idMatch;
+
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -1418,6 +1419,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 	while ((option = menuFriendlysManagement(currentLevel))) {
 		string input;
 		unsigned int idMatch;
+
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -1437,6 +1439,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 				ignoreLine(false);
 				break;
 			}
+
 
 			control = false;
 			while (!control) {
@@ -1467,6 +1470,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			}
 
 			if (exitSwitch) break;
+
 
 
 
@@ -1525,7 +1529,9 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 					tmpTable.addNewLine({ "Oponent" , newOponentName });
 					cout << tmpTable;
 
+
 					cout << Table({ "This Match will be Home or Away?" }) << endl;
+
 
 					cout << Table({ "1. HOME", "2. AWAY" });
 
@@ -1594,7 +1600,6 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			//==========================
 
 			//Mostrar resumo da operacao
-
 
 			showInformation.addNewLine({ "Date: " , newMatchDate.str() });
 
@@ -1704,7 +1709,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 
 			showMainMenu(0, currentSeason->getSeasonName());
-
+			
 			currentLevel->showMatches(currentLevel->getAllLevelMatches(true));
 
 			control = false;
@@ -1731,11 +1736,13 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 			if (exitSwitch) break;
 
+
 			if (currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getPlayersIds().size()) {
 
 				if (!confirm(Table({ "This game already has players called-up. Do you want to continue?" })))
 					break;
 			}
+
 
 			//Read Players to Call-up
 			showMainMenu(0, currentSeason->getSeasonName());
@@ -1744,7 +1751,9 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			vector<unsigned int> playersToCallUpVector;
 
 			//Show players
+
 			cout << currentLevel->showAthletesOfLevel(true);
+
 
 			control = false;
 			while (!control) {
@@ -1787,11 +1796,14 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			mainClub.callUpPlayers(currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getId(), playersToCallUpVector, currentLevel);
 
 
+
+
 			mainClub.saveChanges();
 			break;
 		}
 		case 4:				//=======  REGISTER SCHEDULED MATCH  ======= 
 		{
+
 			if (currentLevel->getMatchesReadyToPlay().size() == 0) {
 
 				showMainMenu(0, currentSeason->getSeasonName());
@@ -1846,7 +1858,9 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			while (!control) {
 				try {
 					currentLevel->showMatches({ currentLevel->getMatchesReadyToPlay().at(idMatch - 1) });
+
 					cout << Table({ "Please, enter the SCORE of the Match. (Eg: 2 x 1)" }) << endl;
+
 
 					getline(cin, score);
 
@@ -1856,7 +1870,6 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 					}
 
 					stringstream ssPlayers(score);
-
 
 					ssPlayers >> homeTeamScore;
 
@@ -1889,9 +1902,11 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			Table showInfoMatch({ "Date", "Home Team", "Score", "Away Team" });
 
 			showInfoMatch.addNewLine({ currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getMatchDay().str(),
-				currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getHomeTeam()->getName(),
-				to_string(homeTeamScore) + " - " + to_string(awayTeamScore),
-				currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getAwayTeam()->getName() });
+
+			currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getHomeTeam()->getName(),
+			to_string(homeTeamScore) + " - " + to_string(awayTeamScore),
+			currentLevel->getMatchesReadyToPlay().at(idMatch - 1)->getAwayTeam()->getName() });
+
 
 			showMainMenu(0, currentSeason->getSeasonName());
 
@@ -1900,6 +1915,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			if (!confirm(showInfoMatch)) {
 				break;
 			}
+
 
 			mainClub.registerMatch(currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getId(), currentLevel, homeTeamScore, awayTeamScore,
 				currentLevel->getAllLevelMatches(true).at(idMatch - 1)->getPlayersIds());
@@ -2520,12 +2536,10 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 			}
 
 
-
-
 			mainClub.saveChanges();
 			break;
 		}
-		
+
 		case 0:
 			break;
 		}

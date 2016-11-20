@@ -355,12 +355,12 @@ vector<Match*> Level::getAllLevelMatches(bool onlyNotPlayed) const {
     
 	vector<Match*> result;
 	for (vector<Match*>::const_iterator it = this->levelMatches.begin(); it != levelMatches.end(); it++) {
-		if (!onlyNotPlayed || !(*it)->getPlayed()) {
+
+		if (!onlyNotPlayed || (*it)->getPlayed()) {
 			result.push_back(*it);
 		}
 	}
-    return result;
-    
+    return this->levelMatches;    
 }
 
 vector<Match*> Level::getMatchesReadyToPlay() const {
@@ -369,6 +369,7 @@ vector<Match*> Level::getMatchesReadyToPlay() const {
 
 	vector<Match*> result;
 	for (vector<Match*>::const_iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
+
 		if ((*it)->getMatchDay() < Date()) {
 			result.push_back(*it);
 		}
@@ -376,6 +377,7 @@ vector<Match*> Level::getMatchesReadyToPlay() const {
 
 	return result;
 }
+
 
 vector<Training*> Level::getTrainingsReadyToPlay() const {
 
@@ -449,6 +451,7 @@ Level* Level::addTrainingToLevel(Training* newTraining) {
 
 void Level::showMatches(vector<Match*> matches) {
 
+
 	unsigned int tmpID = 0;
 	Table matchesTable({ "ID", "Date", "Home Team", "Score", "Away Team", "Players Called-up" });
 
@@ -481,6 +484,7 @@ void Level::showTrainings(vector<Training*> trainings) {
 
 		if (it != trainings.end() - 1)
 			trainingsTable.addDataInSameLine({});
+
 	}
 
 	cout << trainingsTable;

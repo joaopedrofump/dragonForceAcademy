@@ -2,6 +2,7 @@
 
 #include "InfoAthletes.hpp"
 
+
 enum SortCriteria {
     
     id,
@@ -16,6 +17,7 @@ enum SortOrder {
 };
 
 class Club;
+
 
 class Training {
 private:
@@ -32,7 +34,9 @@ public:
 	/*!
 	*	This is a constructor that creates a new training using the training date and a vector containing the ids of the player that attended the training. The training's id is set automatically.
 	*/
-Training(Date trainingDate, vector<unsigned int> playersIds, unsigned int id = 0);
+
+    Training(Date trainingDate, vector<unsigned int> playersIds, unsigned int id = 0);
+
 
     Training(istream& iss);
     static void resetID(unsigned int newId);
@@ -41,8 +45,6 @@ Training(Date trainingDate, vector<unsigned int> playersIds, unsigned int id = 0
 	/*!
 		This is a method that resets the training's id and adds a training performed
 	*/
-    
-
 
 	Date getTrainingDate() const;
 	
