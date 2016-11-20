@@ -36,7 +36,7 @@ class Tournament {
 
 public:
 	Tournament(Date tournamentStartingDate, Date tournamentEndingDate, vector<string> tournamentClubs, Club* programClub, string name, unsigned int id = 0);
-    Tournament(ifstream &inStream, ifstream &tournamentTree, Level* tournamentLevel);
+    Tournament(istream &inStream, Level* tournamentLevel);
 	~Tournament() {};
     string getName() const;
 	Date getTournamentStartingDate() const;

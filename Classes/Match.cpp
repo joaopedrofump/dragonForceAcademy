@@ -53,14 +53,13 @@ Match::Match(Date matchDay) {
     this->played = false;
 }
 
-Match::Match(istringstream& iss) {
+Match::Match(istream& iss) {
     
     string separator;
     string homeTeam;
     string awayTeam;
     string date;
-    iss >> this->id;
-    iss >> separator;
+    getline(iss, this->id, ';');
     iss >> date;
     iss >> separator;
 
@@ -83,7 +82,7 @@ Match::Match(istringstream& iss) {
     
 }
 
-Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
+Match::Match(istream& iss, Club* programClub, MatchType homeOrAway) {
     
     string separator;
     string tmpHomeTeam;
@@ -308,5 +307,5 @@ vector<string> Match::showInScreen(unsigned int tmpID) const {
 }
 
 void Match::setId(string newId) {
-    this->id = id;
+    this->id = newId;
 }

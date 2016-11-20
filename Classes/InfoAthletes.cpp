@@ -302,7 +302,6 @@ InfoDF::InfoDF() : Info() {
 InfoDF::InfoDF(istream &inStream) : Info(inStream) {
     
     
-    
     while(!inStream.eof()) {
         string separator;
         inStream >> separator;
@@ -406,7 +405,6 @@ InfoMF::InfoMF() : Info() {
 }
 
 InfoMF::InfoMF(istream &inStream) : Info(inStream) {
-    
     
     
     while(!inStream.eof()) {

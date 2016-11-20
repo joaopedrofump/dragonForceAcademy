@@ -62,6 +62,8 @@ public:
     string getPathToLevelCoachesFile() const;
     string getPathToLevelMatchesFile() const;
     string getPathToLevelMatchesFolder() const;
+    string getPathToLevelTournamentsFile() const;
+    string getPathtoLevelTournamentsFolder() const;
     
     unsigned int getLastMatchId() const;
     void updateLastMatchId();

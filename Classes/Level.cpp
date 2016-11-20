@@ -268,7 +268,23 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         
     }
     
+    inStreamLevel.close();
+    
     //TODO: read tournaments
+    
+    inStreamLevel.open(this->pathToLevelTournamentsFile);
+    
+    while (!inStreamLevel.eof()) {
+        string eachTournament;
+        getline(inStreamLevel, eachTournament);
+        
+        if (eachTournament.length() != 0) {
+            istringstream issEachTournament(eachTournament);
+            Tournament* tournamentToAdd = new Tournament(issEachTournament, this);
+            this->tournaments.push_back(tournamentToAdd);
+        }
+        
+    }
     
 }
 
@@ -939,13 +955,22 @@ void Level::saveLevelTournaments() const {
         
         tournamentsOfStream << *this->tournaments.at(i);
         ofstream tournamentTreeOstream(this->pathToLevelTournamentsFolder + "/" + this->tournaments.at(i)->getName() + ".txt");
-        tournamentsOfStream < *this->tournaments.at(i);
+        tournamentTreeOstream < *this->tournaments.at(i);
+        tournamentTreeOstream.close();
         
     }
-    
+    tournamentsOfStream.close();
     
 }
 
 Club* Level::getParentClub() const {
     return this->parentClub;
+}
+
+
+string Level::getPathToLevelTournamentsFile() const {
+    return this->pathToLevelTournamentsFile;
+}
+string Level::getPathtoLevelTournamentsFolder() const {
+    return this->pathToLevelTournamentsFolder;
 }
