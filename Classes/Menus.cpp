@@ -82,6 +82,12 @@ void initialInfo(string &clubName) {
         createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19" + "/Matches")).c_str());
         createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors" + "/Matches")).c_str());
         
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U13" + "/Tournaments")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U15" + "/Tournaments")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U17" + "/Tournaments")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "U19" + "/Tournaments")).c_str());
+        createDirectory(stringPath((path() + clubName + "/" + year + "/" + "Seniors" + "/Tournaments")).c_str());
+        
         //create info files for levels
         ofstream outfileInfoLevel(stringPath(path() + clubName + "/" + year + "/U13" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
@@ -91,6 +97,8 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Trainings.txt").c_str());
         outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U13" + "/Tournaments.txt").c_str());
+        outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Coaches.txt").c_str());
@@ -98,6 +106,8 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Matches.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Trainings.txt").c_str());
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U15" + "/Tournaments.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
@@ -107,6 +117,8 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Trainings.txt").c_str());
         outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U17" + "/Tournaments.txt").c_str());
+        outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Coaches.txt").c_str());
@@ -115,6 +127,8 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Trainings.txt").c_str());
         outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/U19" + "/Tournaments.txt").c_str());
+        outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Athletes.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Coaches.txt").c_str());
@@ -122,9 +136,9 @@ void initialInfo(string &clubName) {
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Matches.txt").c_str());
         outfileInfoLevel.close();
         outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Trainings.txt").c_str());
-
-		outfileInfoLevel.close();
-        
+        outfileInfoLevel.close();
+        outfileInfoLevel.open(stringPath(path() + clubName + "/" + year + "/Seniors" + "/Tournaments.txt").c_str());
+        outfileInfoLevel.close();
         
 	}
 

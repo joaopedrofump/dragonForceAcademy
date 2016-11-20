@@ -39,12 +39,13 @@ int main(int argc, const char * argv[]) {
         }
 
         
-		Club currentClubInProgram(clubName);
-         
+		Club currentClubInProgram(clubName);         
         
         initialOptions(currentClubInProgram);
 
         currentClubInProgram.saveChanges();
+
+        
         
     }
     
@@ -69,6 +70,4 @@ int main(int argc, const char * argv[]) {
 	}
 	return 0;
 
-	cout << endl;
-	system("pause");
 }

@@ -1302,6 +1302,9 @@ void Club::saveChanges() {
 			athletesOStream.close();
 			coachesOStream.close();
 			matchesOStream.close();
+            
+            (*i)->getLevels().at(iteLevels)->saveLevelTrainings();
+            (*i)->getLevels().at(iteLevels)->saveLevelTournaments();
 
 
 			(*i)->getLevels().at(iteLevels)->saveLevelTrainings();

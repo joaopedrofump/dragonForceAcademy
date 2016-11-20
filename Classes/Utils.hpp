@@ -21,6 +21,7 @@
 #include <ctime>
 #include <algorithm>
 #include "Exceptions.hpp"
+#include "BST.h"
 #ifdef __llvm__
 #include <sys/stat.h>
 #elif _MSC_VER
@@ -107,6 +108,8 @@ enum MatchType {
 };
 
 
+
+
 const map<Position, string> positionsMapPosString = {
     
     {GoalkeeperPos, "GK"},
@@ -115,6 +118,8 @@ const map<Position, string> positionsMapPosString = {
     {ForwardPos, "FW"}
     
 };
+
+
 
 
 // ===========================================
@@ -133,6 +138,8 @@ public:
 	Date();//data actual
 	Date(string data); // data na forma DD/MM/AAAA
 	Date(unsigned int dia, unsigned int mes, unsigned int ano);
+    Date(ifstream &inStream);
+    friend ifstream& operator>>(ifstream &inStream, Date &dateToRead);
 	int getDay() const;
 	int getMonth() const;
 	int getYear() const;

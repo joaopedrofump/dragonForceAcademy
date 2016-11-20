@@ -88,7 +88,6 @@ string InvalidStream::getMessage() {
         case write:
             return "Could not write to file: " + this->fileName + ".";
             break;
-            
         default:
             break;
     }
