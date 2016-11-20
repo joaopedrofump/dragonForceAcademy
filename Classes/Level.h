@@ -3,6 +3,7 @@
 #include "Goalkeeper.hpp"
 #include "Match.hpp"
 #include "Training.hpp"
+#include "Tournament.hpp"
 
 class Club;
 class Training;
@@ -21,6 +22,8 @@ private:
     string pathToLevelMatchesFile;
     string pathToLevelMatchesFolder;
     string pathToLevelTrainingsFile;
+    string pathToLevelTournamentsFile;
+    string pathToLevelTournamentsFolder;
     string yearOfSeason;
 
     unsigned int lastMatchId;
@@ -35,8 +38,7 @@ private:
 	unsigned int maxAge;
 
 	char minHeight;
-
-	//vector<Tournament> tournaments;
+	vector<Tournament*> tournaments;
 
 public:
 
@@ -49,6 +51,7 @@ public:
     vector<unsigned int> getCoaches() const;
     Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
 	Level* addCoachToLevel(unsigned int idCoach, bool mainCoach = false);
+    vector<Tournament*> getTournaments() const;
     
     string getLevelName() const;
     int getMainCoachId() const;
@@ -78,6 +81,8 @@ public:
     
     void saveLevelTrainings() const;
     
+    void saveLevelTournaments() const;
+    
     void scheduleTraining(Date trainingDate);
     
     //registar treino já agendado
@@ -96,5 +101,13 @@ public:
      */
     
     vector<vector<string>> getTrainingsList(SortCriteria criteria, SortOrder order, char listType = 'a') const;
+    
+    void addTournament(Date initialDate, Date endDate, vector<string> tournamentClubs, string name);
+    
+    vector<vector<string>> getTournamentMatches(unsigned int tournamentId) const;
+    
+    vector<unsigned int> filterPlayers(vector<unsigned int> originalPlayerIdsVector) const;
+    
+    Club* getParentClub() const;
     
 };

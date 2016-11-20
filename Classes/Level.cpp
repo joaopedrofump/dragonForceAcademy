@@ -15,6 +15,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
     this->pathToLevelMatchesFile = stringPath(this->pathToLevelFolder + "/Matches.txt");
     this->pathToLevelMatchesFolder = stringPath(this->pathToLevelFolder + "/Matches");
     this->pathToLevelTrainingsFile = stringPath(this->pathToLevelFolder + "/Trainings.txt");
+    this->pathToLevelTournamentsFolder = stringPath(this->pathToLevelFolder + "/Tournaments");
+    this->pathToLevelTournamentsFile = stringPath(this->pathToLevelFolder + "/Tournaments.txt");
     this->lastMatchId = 0;
     
     if(levelName == "U13") {
@@ -265,6 +267,9 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         }
         
     }
+    
+    //TODO: read tournaments
+    
 }
 
 unsigned int Level::getMinAge() const
@@ -446,7 +451,6 @@ void Level::scheduleTraining(Date trainingDate) {
     if (trainingDate < Date()) {
         throw string("Can't schedule trainings for the past.");
     }
-    
     
     vector<unsigned int> players;
     Training* trainingToAdd = new Training(trainingDate, players);
@@ -714,3 +718,90 @@ vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder 
     
 }
 
+void Level::addTournament(Date initialDate, Date endDate, vector<string> tournamentClubs, string name) {
+    
+    Tournament* newTournament = new Tournament(initialDate, endDate, tournamentClubs, this->parentClub, name);
+    this->tournaments.push_back(newTournament);
+    
+}
+
+vector<vector<string>> Level::getTournamentMatches(unsigned int tournamentId) const {
+    
+    Tournament* tournamentToShow = NULL;
+    for (unsigned int i = 0; i < this->tournaments.size(); i++) {
+        
+        if (this->tournaments.at(i)->getId() == tournamentId) {
+            
+            tournamentToShow = tournaments.at(i);
+            
+        }
+        
+    }
+    
+    if (!tournamentToShow) {
+        throw string("This tournament does not exist.");
+    }
+
+    return tournamentToShow->getTournamentMatches();
+    
+}
+
+vector<Tournament*> Level::getTournaments() const {
+    
+    return this->tournaments;
+}
+
+vector<unsigned int> Level::filterPlayers(vector<unsigned int> originalPlayerIdsVector) const {
+    
+    vector<unsigned int> resultFilteredVector;
+    
+    if (!originalPlayerIdsVector.size()) {
+        
+        
+        for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = this->mapInfoPlayers.begin(); levelPlayersIterator != this->mapInfoPlayers.end(); levelPlayersIterator++) {
+            
+            resultFilteredVector.push_back(levelPlayersIterator->first);
+            
+        }
+        
+    }
+    
+    else {
+        
+        for (size_t i = 0; i < originalPlayerIdsVector.size(); i++) {
+            
+            map<unsigned int, Info*>::const_iterator existsInLevel = this->mapInfoPlayers.find(originalPlayerIdsVector.at(i));
+            
+            if (existsInLevel != this->mapInfoPlayers.end()) {
+                
+                resultFilteredVector.push_back(originalPlayerIdsVector.at(i));
+                
+            }
+            
+        }
+        
+    }
+    
+    return resultFilteredVector;
+
+    
+}
+
+void Level::saveLevelTournaments() const {
+    
+    ofstream tournamentsOfStream(this->pathToLevelTournamentsFile);
+    
+    for (size_t i = 0; i < this->tournaments.size(); i++) {
+        
+        tournamentsOfStream << *this->tournaments.at(i);
+        ofstream tournamentTreeOstream(this->pathToLevelTournamentsFolder + "/" + this->tournaments.at(i)->getName() + ".txt");
+        tournamentsOfStream < *this->tournaments.at(i);
+        
+    }
+    
+    
+}
+
+Club* Level::getParentClub() const {
+    return this->parentClub;
+}

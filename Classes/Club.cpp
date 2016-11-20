@@ -1018,7 +1018,7 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     vector<unsigned int> filteredVector;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
-    if (matchPlayers.size()) {
+    if (!matchPlayers.size()) {
         
         
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
@@ -1299,6 +1299,9 @@ void Club::saveChanges() {
 			athletesOStream.close();
 			coachesOStream.close();
 			matchesOStream.close();
+            
+            (*i)->getLevels().at(iteLevels)->saveLevelTrainings();
+            (*i)->getLevels().at(iteLevels)->saveLevelTournaments();
 
 		}
 

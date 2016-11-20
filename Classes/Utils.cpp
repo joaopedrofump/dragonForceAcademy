@@ -79,6 +79,30 @@ Date::Date(string dataStr) {
     
 }
 
+Date::Date(ifstream &inStream) {
+    
+    char separator1;
+    char separator2;
+    int tmpDay;
+    int tmpMonth;
+    int tmpYear;
+    
+    inStream >> tmpDay;
+    inStream >> separator1;
+    inStream >> tmpMonth;
+    inStream >> separator2;
+    inStream >> tmpYear;
+    
+    if (separator1 != '/' || separator2 != '/') {
+        
+        throw InvalidDate(InvalidSeparators,0,0,0);
+        
+    }
+    
+    *this = Date(tmpDay,tmpMonth,tmpYear);
+    
+}
+
 Date::Date(unsigned int day, unsigned int month, unsigned int year) {
     
     if (year < 1900 || year > 2100) {
@@ -99,6 +123,30 @@ Date::Date(unsigned int day, unsigned int month, unsigned int year) {
     this->month = month;
     this->year = year;
     
+}
+
+ifstream& operator>>(ifstream &inStream, Date &dateToRead) {
+    
+    char separator1;
+    char separator2;
+    int tmpDay;
+    int tmpMonth;
+    int tmpYear;
+    
+    inStream >> tmpDay;
+    inStream >> separator1;
+    inStream >> tmpMonth;
+    inStream >> separator2;
+    inStream >> tmpYear;
+    
+    if (separator1 != '/' || separator2 != '/') {
+        
+        throw InvalidDate(InvalidSeparators,0,0,0);
+        
+    }
+    
+    dateToRead = Date(tmpDay,tmpMonth,tmpYear);
+    return inStream;
 }
 
 int Date::getDay() const {
@@ -1181,8 +1229,6 @@ extern const map<string, ForwardPosition> forwardsMap = { { "CM", Striker },
 { "CDM", CentreForward },
 { "CAM", RigthWinger },
 { "LM", LeftWinger } };
-
-
 
 
 int createDirectory(const char* path) {
