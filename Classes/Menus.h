@@ -29,7 +29,7 @@ void printAthletesMenu(string seasonName);
 
 void printCoachesMenu(string seasonName);
 
-void showMainMenu(unsigned short int optionChosen = 0, string seasonName = "Main Menu");
+void showMainMenu(unsigned short int optionChosen = 0, string seasonName = Date().str());
 
 void optionsAthletesManagement(Club &footballClub, string seasonName = to_string(Date().getYear()));
 
@@ -41,7 +41,20 @@ unsigned int menuAthletesManagement(string seasonName);
 
 unsigned int menuCoachesManagement(string seasonName);
 
-unsigned short int menuLevelsManagement(Level* currentLevel);
+unsigned int menuLevelsManagement(Level* currentLevel);
+
+void printFriendlysMenu(ageLevel level);
+
+unsigned int menuFriendlysManagement(Level* currentLevel);
+
+void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* currentLevel);
+
+
+void printTrainingsMenu(ageLevel level);
+
+unsigned int menuTrainingsManagement(Level* currentLevel);
+
+void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* currentLevel);
 
 /*void listarClientesOrdemAlfabetica(VendeMaisMais & supermercado);
 

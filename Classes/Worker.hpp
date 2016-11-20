@@ -99,7 +99,6 @@ public:
 	//====== GETTERS =============
 
 	unsigned int getAge() const;
-
     
     Date getBirthdate() const;
     

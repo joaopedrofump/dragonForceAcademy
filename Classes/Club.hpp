@@ -100,6 +100,7 @@ public:
 	/// <returns>	The name. </returns>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 	string getName() const;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,6 +200,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	map<unsigned int, Worker*> getAthletes(bool onlyActives = false) const;
+
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,6 +227,7 @@ public:
 
 	map<unsigned int, Worker*> getCoaches(bool onlyActives = false) const;
 
+
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,7 +237,6 @@ public:
 	///
 	/// <param name="onlyActives">	(Optional) True to only actives. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	void showAthletes(bool onlyActives = false) const;
 	
 
@@ -390,7 +392,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	string getPathToClubInfoFile() const;
-
+	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Searches for the worker by civil identifier. </summary>
@@ -411,9 +413,11 @@ public:
 	///
 	/// <param name="athleteID">	Identifier for the athlete. </param>
 	/// <param name="result">   	True to result. </param>
+	///
+	/// <returns>	True if it succeeds, false if it fails. </returns>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	void updateECG(unsigned int athleteID, bool result);
+	bool updateECG(unsigned int athleteID, bool result);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>	Schedule match. </summary>
@@ -510,6 +514,7 @@ public:
     
     //registar jogo não agendado sem performance de jogadores (para já)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
+
     
     
     void scheduleTraining(Date trainingDate, Level* level);
@@ -520,6 +525,5 @@ public:
     //registar treino não agendado
     void registerTraining(Date trainingDate, Level* level, vector<unsigned int> missingPlayers);
     
-    
-
+   
 };

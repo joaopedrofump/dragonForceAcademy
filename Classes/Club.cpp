@@ -408,9 +408,9 @@ bool Club::removeAthlete(unsigned int athleteId) {
 		showMainMenu(0, to_string(Date().getYear()));
 
 
-		cout << Table({ "Are you sure you want to remove the athlete?" });;
+		cout << showInformation;
 
-		if (!confirm(showInformation)) {
+		if (!confirm(Table({ "Are you sure you want to remove the athlete?" }))) {
 			return false;
 		}
 
@@ -491,15 +491,18 @@ bool Club::reativateAthlete(unsigned int athleteId) {
 	return true;
 }
 
-void Club::updateECG(unsigned int athleteID, bool result) {
+bool Club::updateECG(unsigned int athleteID, bool result) {
 
 	if (this->allWorkers.find(athleteID) == allWorkers.end()) {
 
 		throw string("Athlete not found");
-
+		return false;
 	}
 
 	allWorkers.find(athleteID)->second->updateECG(result);
+
+	ignoreLine(false, "ECG correctly updated!");
+	return true;
 
 }
 
@@ -809,7 +812,6 @@ bool Club::reativateCoach(unsigned int coachId) {
 	return true;
 }
 
-
 void Club::showCoaches(bool onlyActives) const {
 
 	Table coachesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Position", "Status" });
@@ -890,7 +892,7 @@ bool Club::isProgramClub() const {
 //====================================
 
 void Club::scheduleMatch(string opponentClub, Date matchDate, Level* level, MatchType type) {
-    
+        
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
     
@@ -1014,12 +1016,12 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     Club* opponent = new Club(opponentClub, true);
     level->updateLastMatchId();
     string matchId = level->getLevelName() + normalizeId(3, level->getLastMatchId()) + "-" + to_string(matchDate.getYear()) + normalizeId(2,matchDate.getMonth()) + normalizeId(2,matchDate.getDay());
-    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId) : new Match(matchDate, opponent, this, matchId);
+    Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId, true) : new Match(matchDate, opponent, this, matchId, true);
     
     vector<unsigned int> filteredVector;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
-    if (matchPlayers.size()) {
+    if (!matchPlayers.size()) {
         
         
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
@@ -1093,6 +1095,7 @@ void Club::callUpPlayers(string opponentClub, Date matchDate, Level* level, Matc
     level->addMatchToLevel(matchToAdd);
 
 }
+
 
 void Club::scheduleTraining(Date trainingDate, Level* level) {
     
@@ -1387,7 +1390,12 @@ void Club::saveChanges() {
 			athletesOStream.close();
 			coachesOStream.close();
 			matchesOStream.close();
+            
+            (*i)->getLevels().at(iteLevels)->saveLevelTrainings();
+            (*i)->getLevels().at(iteLevels)->saveLevelTournaments();
 
+
+			(*i)->getLevels().at(iteLevels)->saveLevelTrainings();
 		}
 
 

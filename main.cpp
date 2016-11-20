@@ -14,6 +14,8 @@
 #elif _MSC_VER
 
 
+
+
 #include "Classes\\Menus.h"
 #include "Classes\\Season.hpp"
 #include "Classes\\Level.h"
@@ -30,9 +32,9 @@ int main(int argc, const char * argv[]) {
 
 	string clubName;
     
-    
     try {
         
+
         initialInfo(clubName);
 		Club currentClubInProgram(clubName, false);
                 
@@ -43,9 +45,22 @@ int main(int argc, const char * argv[]) {
         //currentClubInProgram.registerMatch("Seniors002|20170412", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
         //currentClubInProgram.updateECG(1, true);*/
 
+        //initialInfo(clubName);
+		clubName = "Porto";
+        
+        if (!clubName.size()) {
+            return 0;
+        }
+
+
+        
+		        
+        
         initialOptions(currentClubInProgram);
+
         currentClubInProgram.saveChanges();
-        //currentClubInProgram.updateECG(1, true);
+
+        
         
     }
     
@@ -70,6 +85,4 @@ int main(int argc, const char * argv[]) {
 	}
 	return 0;
 
-	cout << endl;
-	system("pause");
 }

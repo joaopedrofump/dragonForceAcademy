@@ -3,9 +3,13 @@
 #include "Goalkeeper.hpp"
 #include "Match.hpp"
 #include "Training.hpp"
+#include "Tournament.hpp"
 
 class Club;
 class Training;
+
+
+
 
 class Level {
 private:
@@ -17,6 +21,9 @@ private:
     string pathToLevelCoachesFile;
     string pathToLevelMatchesFile;
     string pathToLevelMatchesFolder;
+    string pathToLevelTrainingsFile;
+    string pathToLevelTournamentsFile;
+    string pathToLevelTournamentsFolder;
     string yearOfSeason;
 
     unsigned int lastMatchId;
@@ -31,8 +38,7 @@ private:
 	unsigned int maxAge;
 
 	char minHeight;
-
-	//vector<Tournament> tournaments;
+	vector<Tournament*> tournaments;
 
 public:
 
@@ -45,6 +51,7 @@ public:
     vector<unsigned int> getCoaches() const;
     Level* addAthleteToLevel(pair<unsigned int, Info*> playerInfo);
 	Level* addCoachToLevel(unsigned int idCoach, bool mainCoach = false);
+    vector<Tournament*> getTournaments() const;
     
     string getLevelName() const;
     int getMainCoachId() const;
@@ -59,14 +66,50 @@ public:
     unsigned int getLastMatchId() const;
     void updateLastMatchId();
     
-    vector<Match*> getAllLevelMatches() const;
+    vector<Match*> getAllLevelMatches(bool onlyNotPlayed = false) const;
+	vector<Match*> getMatchesReadyToPlay() const;
+	vector<Training*> getTrainingsReadyToPlay() const;
 
-	Table showAthletesOfLevel() const;
-    vector<Training*> getAllLevelTrainings() const;
+	Table showAthletesOfLevel(bool onlyAvailable = false) const;
+    vector<Training*> getAllLevelTrainings(bool onlyNotPlayed = false) const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
 
-	void showCalendar(bool onlyNotPlayed = false);
+	void showMatches(vector<Match*> matches);
+	void showMatch(Match* matchToShow);
 
-
+	void showTrainings(vector<Training*> matches);
+    void sortTrainings();
+    
+    void saveLevelTrainings() const;
+    
+    void saveLevelTournaments() const;
+    
+    void scheduleTraining(Date trainingDate);
+    
+    //registar treino já agendado
+    void registerTraining(unsigned int trainingId, vector<unsigned int> missingPlayers);
+    
+    //registar treino não agendado
+    void registerTraining(Date trainingDate, vector<unsigned int> missingPlayers);
+    
+    
+    //! Get the all the trainings of the level.
+    /*!
+     \param criteria criteria enum argument: id = sorted by id, date = sorted by date, numberOfPlayers = sorted by number of players who trained
+     \param order order enum argument: ascending = sorted ascending, descending = sorted descending
+     \param listType char argument: a = all trainings, p = past trainings, r = registed trainings, n = trainings not registered, f = future trainings
+	 \return Returns a vector of string vectors where each string vector contains the list of trainings attributes
+     */
+    
+	Table getTrainingsList(SortCriteria criteria = date, SortOrder order = ascending, char listType = 'a') const;
+    
+    void addTournament(Date initialDate, Date endDate, vector<string> tournamentClubs, string name);
+    
+    vector<vector<string>> getTournamentMatches(unsigned int tournamentId) const;
+    
+    vector<unsigned int> filterPlayers(vector<unsigned int> originalPlayerIdsVector) const;
+    
+    Club* getParentClub() const;
+    
 };

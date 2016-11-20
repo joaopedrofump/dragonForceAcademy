@@ -32,12 +32,26 @@ Match::~Match() {
             
             delete iteratorMapInfo->second;
             
-  
         }
 
     }
-
+    /*
+    if (!homeTeam->isProgramClub()) {
+        delete homeTeam;
+    }
+    if (!awayTeam->isProgramClub()) {
+        delete awayTeam;
+    }
+     */
 };
+
+Match::Match(Date matchDay) {
+    this->id = "Temporary ID";
+    this->matchDay = matchDay;
+    this->homeTeamScore = 0;
+    this->awayTeamScore = 0;
+    this->played = false;
+}
 
 Match::Match(istringstream& iss) {
     
@@ -72,16 +86,16 @@ Match::Match(istringstream& iss) {
 Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     
     string separator;
-    string homeTeam;
-    string awayTeam;
+    string tmpHomeTeam;
+    string tmpAwayTeam;
     string date;
     iss >> this->id;
     iss >> separator;
     iss >> date;
     iss >> separator;
 
-    getline(iss, homeTeam, ';');
-    getline(iss, awayTeam, ';');
+    getline(iss, tmpHomeTeam, ';');
+    getline(iss, tmpAwayTeam, ';');
 
     iss >> this->homeTeamScore;
     iss >> separator;
@@ -89,12 +103,12 @@ Match::Match(istringstream& iss, Club* programClub, MatchType homeOrAway) {
     iss >> separator;
     iss >> played;
     
-    trimString(homeTeam);
-    trimString(awayTeam);
+    trimString(tmpHomeTeam);
+    trimString(tmpAwayTeam);
     
     this->matchDay = Date(date);
-    this->homeTeam = (homeOrAway == home) ? programClub : new Club(awayTeam,true);
-    this->awayTeam = (homeOrAway == home) ? new Club(awayTeam,true) : programClub;
+    this->homeTeam = (homeOrAway == home) ? programClub : new Club(tmpHomeTeam,true);
+    this->awayTeam = (homeOrAway == home) ? new Club(tmpAwayTeam,true) : programClub;
     
     
 }
@@ -155,9 +169,20 @@ vector<Worker*> Match::getPlayers() const {
     
 }
 
+vector<unsigned int> Match::getPlayersIds() const {
+
+	vector<unsigned int> result;
+	for (map<unsigned int, Info*>::const_iterator iteratorMapInfo = this->mapInfoPlayers.begin(); iteratorMapInfo != this->mapInfoPlayers.end(); iteratorMapInfo++) {
+		result.push_back(iteratorMapInfo->first);
+	}
+
+	return result;
+}
+
 string Match::getId() const {
     return this->id;
 }
+
 bool Match::getPlayed() const {
 	return this->played;
 }
@@ -244,8 +269,8 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
     
 }
 
-bool Match::operator<(const Match& match1) {
-	return this->getMatchDay() < match1.getMatchDay();
+bool operator<(const Match& match1, const Match& match2) {
+	return match2.getMatchDay() < match1.getMatchDay();
 }
 
 ostream& operator<<(ostream& out, Match &match) {
@@ -262,11 +287,11 @@ bool Match::operator==(const Match &compareMatch) const {
     return this->id == compareMatch.getId();
 }
 
-vector<string> Match::showInScreen() const {
+vector<string> Match::showInScreen(unsigned int tmpID) const {
 
 	vector<string> result;
 
-	result.push_back(this->getId());
+	result.push_back(to_string(tmpID));
 
 	result.push_back(this->getMatchDay().str());
 
@@ -276,6 +301,12 @@ vector<string> Match::showInScreen() const {
 	
 	result.push_back(this->getAwayTeam()->getName());
 
+	result.push_back(this->getInfoPlayers().size() ? "YES" : "NO");
+
 	return result;
 
+}
+
+void Match::setId(string newId) {
+    this->id = id;
 }

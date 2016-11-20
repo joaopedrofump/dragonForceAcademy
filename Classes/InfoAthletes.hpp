@@ -63,7 +63,7 @@ public:
 	/*!
 	*	This is a method that adds a new training training frequency and calculates the athlete's overall training attendance
 	*/
-	void addTraining(Fraction newTraining);
+	void addTraining(Fraction newTraining = Fraction(1,1));
     
 	/*!
 	*	This is a method that gets the athlete's number of yellow cards

@@ -24,8 +24,9 @@ enum DateExceptionType {
     InvalidDay,
     InvalidMonth,
     InvalidYear,
-    InvalidSeparators
-    
+    InvalidSeparators,
+    OutOfBoundsMin,
+	OutOfBoundsMax
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +58,8 @@ private:
     int year;
     /// <summary>	The exception type. </summary>
     DateExceptionType type;
+	string maxDate;
+	string minDate;
 	/// <summary>	Message describing the exception. </summary>
 	string exceptionMessage;
 public:
@@ -72,7 +75,7 @@ public:
 	/// <param name="year"> 	The year. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	InvalidDate(DateExceptionType type, int day, int month ,int year);
+	InvalidDate(DateExceptionType type, int day, int month ,int year, string minDate = "", string maxDate = "");
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Constructor. </summary>
@@ -85,7 +88,7 @@ public:
 	/// <param name="year">			   	The year. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	InvalidDate(string exceptionMessage, int day, int month, int year);
+	//InvalidDate(string exceptionMessage, int day, int month, int year);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>	Gets the exception message. </summary>
@@ -94,7 +97,6 @@ public:
     ///
     /// <returns>	The exception message. </returns>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-
     string getMessage();
 };
 
@@ -146,6 +148,7 @@ private:
 	string exceptionMessage;
 public:
 
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Constructor. </summary>
 	///
@@ -153,8 +156,8 @@ public:
 	///
 	/// <param name="exceptionMessage">	Message describing the exception. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	InvalidInput(string exceptionMessage);
+	
+	InvalidInput(string exceptionMessage = "Invalid Input");
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Gets the exception message. </summary>
@@ -163,7 +166,7 @@ public:
 	///
 	/// <returns>	The exception message. </returns>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 	string getMessage();
 };
 
