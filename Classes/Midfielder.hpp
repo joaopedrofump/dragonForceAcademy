@@ -14,7 +14,8 @@
 
 class Midfielder : public Athlete {
 private:
-    Info* generalInfo; //! midfielder's general information
+    /// <summary>	midfielder's general information. </summary>
+    Info* generalInfo;
 public:
   
 
@@ -27,8 +28,13 @@ public:
 	*	This is a constructor that creates a new midfielder using his midfield position passed by reference
 	*/
 	Midfielder(string &newMF);
-    
-	//! Midfielder's destructor
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	~Midfielder();
     
 	/*!
