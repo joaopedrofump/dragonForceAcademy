@@ -21,6 +21,7 @@
 #include <ctime>
 #include <algorithm>
 #include "Exceptions.hpp"
+#include "BST.h"
 #ifdef __llvm__
 #include <sys/stat.h>
 #elif _MSC_VER
@@ -107,6 +108,8 @@ enum MatchType {
 };
 
 
+
+
 const map<Position, string> positionsMapPosString = {
     
     {GoalkeeperPos, "GK"},
@@ -115,6 +118,8 @@ const map<Position, string> positionsMapPosString = {
     {ForwardPos, "FW"}
     
 };
+
+
 
 
 // ===========================================
@@ -133,6 +138,8 @@ public:
 	Date();//data actual
 	Date(string data); // data na forma DD/MM/AAAA
 	Date(unsigned int dia, unsigned int mes, unsigned int ano);
+    Date(ifstream &inStream);
+    friend ifstream& operator>>(ifstream &inStream, Date &dateToRead);
 	int getDay() const;
 	int getMonth() const;
 	int getYear() const;
@@ -175,6 +182,7 @@ public:
 	Table(vector<string> components, unsigned int indentacao = 0);
 	Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao = 0);
 	Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao = 0);
+	Table(vector<vector<string>> tableVector, unsigned int indentation);
 	//Table(unsigned int indentacao = 0);
 
 	void formatTable(char internalChar, char limitingChar, vector<int> spacesForColumn, unsigned int indentacaoFT = 0);
@@ -183,6 +191,7 @@ public:
 	unsigned int getIndentacao() const;
 	vector<vector<string>> getTableVector() const;
 	vector<bool> getBlocks() const;
+	string getStream() const;
 
 	void addNewLine(vector<string> components);
 	void addDataInSameLine(vector<string> components);

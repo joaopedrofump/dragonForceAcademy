@@ -15,6 +15,8 @@ enum SortOrder {
     descending
 };
 
+class Club;
+
 class Training {
 private:
 	Date trainingDate;
@@ -48,9 +50,11 @@ public:
     
     void setPlayers(vector<unsigned int> playersTrained);
     void setDate(Date newDate);
-    friend ostream& operator<<(ostream& outStream, Training& trainingToSave);
+    friend ostream& operator<<(ostream &outStream, Training &trainingToSave);
     void setRegistered();
     void cancelRegister();
+
+	vector<vector<string>> showInScreen(Club* parentClub) const;
     
 };
 

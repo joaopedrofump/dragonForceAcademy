@@ -32,12 +32,26 @@ Match::~Match() {
             
             delete iteratorMapInfo->second;
             
-  
         }
 
     }
-
+    /*
+    if (!homeTeam->isProgramClub()) {
+        delete homeTeam;
+    }
+    if (!awayTeam->isProgramClub()) {
+        delete awayTeam;
+    }
+     */
 };
+
+Match::Match(Date matchDay) {
+    this->id = "Temporary ID";
+    this->matchDay = matchDay;
+    this->homeTeamScore = 0;
+    this->awayTeamScore = 0;
+    this->played = false;
+}
 
 Match::Match(istringstream& iss) {
     
@@ -291,4 +305,8 @@ vector<string> Match::showInScreen(unsigned int tmpID) const {
 
 	return result;
 
+}
+
+void Match::setId(string newId) {
+    this->id = id;
 }

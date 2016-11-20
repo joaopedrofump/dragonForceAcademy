@@ -132,7 +132,7 @@ public:
 	/*!
 	*	This is a method that updates the athlete's ECG
 	*/
-	void updateECG(unsigned int athleteID, bool result);
+	bool updateECG(unsigned int athleteID, bool result);
 
 	// FAZER DOXYGEN
 

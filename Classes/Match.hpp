@@ -17,6 +17,7 @@ public:
 	Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played = false);
     Match(istringstream& iss);
     Match(istringstream& iss, Club* programClub, MatchType homeOrAway);
+    Match(Date matchDay);
 	~Match();
 
 	// GETTERS
@@ -41,6 +42,7 @@ public:
 	void setAwayTeam(Club* newAwayTeam);
     void setHomeTeamScore(unsigned int newHomeTeamScore);
     void setAwayTeamScore(unsigned int newAwayTeamScore);
+    void setId(string newId);
     
     void setPlayers(vector<unsigned int> playersIds);
     void registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> infoPlayers);

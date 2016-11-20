@@ -18,8 +18,9 @@ enum DateExceptionType {
     InvalidDay,
     InvalidMonth,
     InvalidYear,
-    InvalidSeparators
-    
+    InvalidSeparators,
+    OutOfBoundsMin,
+	OutOfBoundsMax
 };
 
 enum InvalidStreamType {
@@ -35,10 +36,12 @@ private:
     int month;
     int year;
     DateExceptionType type;
-	string exceptionMessage;
+	string maxDate;
+	string minDate;
+	//string exceptionMessage;
 public:
-	InvalidDate(DateExceptionType type, int day, int month ,int year);
-	InvalidDate(string exceptionMessage, int day, int month, int year);
+	InvalidDate(DateExceptionType type, int day, int month ,int year, string minDate = "", string maxDate = "");
+	//InvalidDate(string exceptionMessage, int day, int month, int year);
     string getMessage();
 };
 
@@ -55,7 +58,7 @@ class InvalidInput {
 private:
 	string exceptionMessage;
 public:
-	InvalidInput(string exceptionMessage);
+	InvalidInput(string exceptionMessage = "Invalid Input");
 	string getMessage();
 };
 

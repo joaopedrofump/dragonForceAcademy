@@ -8,16 +8,17 @@
 
 #include "Exceptions.hpp"
 
-InvalidDate::InvalidDate(DateExceptionType type, int day, int month, int year) {
+InvalidDate::InvalidDate(DateExceptionType type, int day, int month, int year, string minDate, string maxDate) {
     
     this->type = type;
     this->day = day;
     this->month = month;
     this->year = year;
-    
+	this->minDate = minDate;
+	this->maxDate = maxDate;
 }
 
-InvalidDate::InvalidDate(string exceptionMessage, int day, int month, int year) {
+/*InvalidDate::InvalidDate(string exceptionMessage, int day, int month, int year) {
 
 	this->type = InvalidDay;
 	this->day = day;
@@ -26,7 +27,7 @@ InvalidDate::InvalidDate(string exceptionMessage, int day, int month, int year) 
 
 	this->exceptionMessage = exceptionMessage;
 
-}
+}*/
 
 string InvalidDate::getMessage() {
     
@@ -54,6 +55,17 @@ string InvalidDate::getMessage() {
 
             return "Invalid Date: Either separator 1 or separator 2 is not a valid date separator (/).";
             break;
+
+		case OutOfBoundsMin:
+
+			return "Invalid Date: The date cannot be earlier than " + minDate;
+			break;
+
+		case OutOfBoundsMax:
+
+			return "Invalid Date: The date cannot be later than " + maxDate;
+			break;
+
             
         default:
             break;
@@ -76,7 +88,6 @@ string InvalidStream::getMessage() {
         case write:
             return "Could not write to file: " + this->fileName + ".";
             break;
-            
         default:
             break;
     }
