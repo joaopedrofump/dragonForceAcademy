@@ -23,7 +23,7 @@ class Athlete : public Worker {
 protected:
     /// <summary>	Athlete's height. </summary>
     unsigned char height;
-    /// <summary>	apontador para ECG quando houver classe. </summary>
+    /// <summary>	pointer to ecg when there's an athlete's class. </summary>
     ECG* ecg;
 	/// <summary>	Athlete's position. </summary>
 	Position position;

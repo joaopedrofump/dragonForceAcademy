@@ -246,20 +246,6 @@ public:
 	/// <param name="onlyActives">	(Optional) True to only actives. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
-	/*!
-	*	This is a method that gets the inactive players from the workers' map
-	*/
-	//map<unsigned int, Worker*> getInactives() const;
-
-	/*!
-	*	This is a method that gets the coaches from the workers' map
-	*/
-	//map<unsigned int, Worker*> getCoaches() const;
-
-	/*!
-	*	This is a method that shows all the athletes of the club
-	*/
 
 	void showAthletes(bool onlyActives = false) const;
 	

@@ -16,7 +16,7 @@ class Midfielder : public Athlete {
 private:
     Info* generalInfo; //! midfielder's general information
 public:
-    //! Midfielder's constructors
+  
 
 	/*!
 	*	This is a constructor that creates a new midfielder using his name, birthdate, civilID, height. Id is automatically set

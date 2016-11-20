@@ -2,6 +2,11 @@
 
 #include "InfoAthletes.hpp"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	Values that represent sort criterias. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 enum SortCriteria {
     
@@ -11,6 +16,12 @@ enum SortCriteria {
     
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	Values that represent sort orders. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 enum SortOrder {
     ascending,
     descending
@@ -18,13 +29,23 @@ enum SortOrder {
 
 class Club;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	A training. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Training {
 private:
+	/// <summary>	The training date. </summary>
 	Date trainingDate;
+	/// <summary>	The training counter. </summary>
 	static unsigned int trainingCounter;
+	/// <summary>	The identifier. </summary>
 	unsigned int id;
+    /// <summary>	The players that attended the training. </summary>
     vector<unsigned int> playersTrained;
+    /// <summary>	True if registed. </summary>
     bool registed;
 
 public:
@@ -35,25 +56,91 @@ public:
 	*	This is a constructor that creates a new training using the training date and a vector containing the ids of the player that attended the training. The training's id is set automatically.
 	*/
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Constructor. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="trainingDate">	The training date. </param>
+    /// <param name="playersIds">  	List of identifiers for the players. </param>
+    /// <param name="id">		   	(Optional) The identifier. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Training(Date trainingDate, vector<unsigned int> playersIds, unsigned int id = 0);
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Constructor that creates a new training from reading from the club file using a stringstream. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="iss">	[in,out] The stringstream. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Training(istream& iss);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Resets the training's identifier and adds a training performed. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="newId">	Identifier for the new training. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     static void resetID(unsigned int newId);
 	
 
-	/*!
-		This is a method that resets the training's id and adds a training performed
-	*/
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets training date. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	The training date. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Date getTrainingDate() const;
 	
 	/*!
 	*	This is a method that the training's id
 	*/
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary>	Gets the training's identifier. </summary>
+	///
+	/// <remarks>	Luís, 20/11/2016. </remarks>
+	///
+	/// <returns>	The identifier. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	unsigned int getId() const;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Gets the players that attended the training. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	The players that attended the training. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     vector<unsigned int> getPlayers() const;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Gets training given. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	True if it succeeds, false if it fails. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     bool getTrainingGiven() const;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Query if the training is registered. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <returns>	True if registered, false if not. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     bool isRegistered() const;
     
     void setPlayers(vector<unsigned int> playersTrained);
@@ -66,11 +153,41 @@ public:
     
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <summary>	A sort training. </summary>
+///
+/// <remarks>	Luís, 20/11/2016. </remarks>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class SortTraining {
 private:
+    /// <summary>	The criteria. </summary>
     SortCriteria criteria;
+    /// <summary>	The order. </summary>
     SortOrder order;
 public:
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Constructor that a vector of trainings. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="criteria">	The criteria. </param>
+    /// <param name="order">   	The order. </param>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     SortTraining(SortCriteria criteria, SortOrder order);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>	Function call operator. </summary>
+    ///
+    /// <remarks>	Luís, 20/11/2016. </remarks>
+    ///
+    /// <param name="t1">	[in,out] If non-null, the first Training. </param>
+    /// <param name="t2">	[in,out] If non-null, the last Training. </param>
+    ///
+    /// <returns>	The result of the operation. </returns>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     bool operator()(Training* t1, Training* t2);
 };

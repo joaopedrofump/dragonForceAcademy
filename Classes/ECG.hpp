@@ -61,7 +61,7 @@ public:
 	*/
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Gets expiration date. </summary>
+	/// <summary>	Gets the ecg's expiration date. </summary>
 	///
 	/// <remarks>	Luís, 20/11/2016. </remarks>
 	///
@@ -69,13 +69,10 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Date getExpirationDate() const;
-	
-	/*!
-		This is a method that shows all the ECG's information on the screen
-	*/
+
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Shows the ECG's information on screen. </summary>
+	/// <summary>	Shows all the ECG's information on screen. </summary>
 	///
 	/// <remarks>	Luís, 20/11/2016. </remarks>
 	///
