@@ -39,38 +39,43 @@ int main(int argc, const char * argv[]) {
 
         
 		Club currentClubInProgram(clubName);
-                
-        //currentClubInProgram.scheduleMatch("Sporting", Date("12/04/2014"), (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), home);
+        //initialOptions(currentClubInProgram);
 
-        //vector<unsigned int> matchPlayers;
-        //matchPlayers.push_back(1);
-        //currentClubInProgram.registerMatch("Seniors002|20170412", (currentClubInProgram.getSeasons().at(0))->getLevels().at(4), 2, 0, matchPlayers);
-        //currentClubInProgram.updateECG(1, true);*/
-
-        
-        
-        
-        initialOptions(currentClubInProgram);
-        //currentClubInProgram.getSeasons().at(0)->getLevels().at(1)->scheduleTraining(Date(2,12,2016));
-        //currentClubInProgram.getSeasons().at(0)->getLevels().at(1)->registerTraining(2, {});
-        //currentClubInProgram.getSeasons().at(0)->getLevels().at(1)->registerTraining(Date(19,9,2016), {2});
-        currentClubInProgram.saveChanges();
+        //currentClubInProgram.saveChanges();
         //currentClubInProgram.updateECG(1, true);
         
-        cout << currentClubInProgram.getSeasons().at(0)->getEndDate() << endl;
+        vector<string> clubes = {"Benfica", "Sporting", "Braga", "Academica", "Guimaraes", "Belenenses", "Boavista","PSG", "Manchester United", "Real Madrid", "Barcelona", "Atletico", "Deportivo", "Arsenal", "Chelsea"};
+        vector<string> clubes2 = {"Benfica", "Sporting", "Braga"};
         
-        vector<vector<string>> testTrainings = currentClubInProgram.getSeasons().at(0)->getLevels().at(1)->getTrainingsList(numberOfPlayers,descending);
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->addTournament(Date(), Date(1,2,2017), clubes, "Torneio Teste");
         
-        for (size_t i = 0; i < testTrainings.size(); i++) {
+        
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->scheduleTournamentMatch(2, Date(1,2,2017), 1, 3);
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->scheduleTournamentMatch(3, Date(1,2,2017), 1, 3);
+        
+         /*
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->callUpPlayers(2, {4});
+       
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->callUpPlayers(1, Date(1,2,2017), currentClubInProgram.getSeasons().at(0)->getLevels().at(0), {4}, 0, 5);
+        
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->registerMatch(1, currentClubInProgram.getSeasons().at(0)->getLevels().at(0), 2, 0, {});
+        
+        currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournaments().at(0)->registerMatch(2, currentClubInProgram.getSeasons().at(0)->getLevels().at(0), 2, 0, {});
+        */
+        
+        vector<vector<string>> teste = currentClubInProgram.getSeasons().at(0)->getLevels().at(0)->getTournamentMatches(1);
+        
+        for (size_t i = 0; i < teste.size(); i++) {
             
-            for (size_t j = 0; j < testTrainings.at(i).size(); j++) {
+            for (size_t j = 0; j < teste.at(i).size(); j++) {
                 
-                cout << testTrainings.at(i).at(j) << " ";
+                cout << teste.at(i).at(j) << " ";
                 
             }
             cout << endl;
             
         }
+        
         
     }
     
@@ -95,6 +100,4 @@ int main(int argc, const char * argv[]) {
 	}
 	return 0;
 
-	cout << endl;
-	system("pause");
 }
