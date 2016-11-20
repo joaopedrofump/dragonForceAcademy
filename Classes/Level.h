@@ -65,15 +65,17 @@ public:
     
     vector<Match*> getAllLevelMatches(bool onlyNotPlayed = false) const;
 	vector<Match*> getMatchesReadyToPlay() const;
+	vector<Training*> getTrainingsReadyToPlay() const;
 
-	Table showAthletesOfLevel() const;
-    vector<Training*> getAllLevelTrainings() const;
+	Table showAthletesOfLevel(bool onlyAvailable = false) const;
+    vector<Training*> getAllLevelTrainings(bool onlyNotPlayed = false) const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
 
 	void showMatches(vector<Match*> matches);
+	void showMatch(Match* matchToShow);
 
-    
+	void showTrainings(vector<Training*> matches);
     void sortTrainings();
     
     void saveLevelTrainings() const;
@@ -92,9 +94,9 @@ public:
      \param criteria criteria enum argument: id = sorted by id, date = sorted by date, numberOfPlayers = sorted by number of players who trained
      \param order order enum argument: ascending = sorted ascending, descending = sorted descending
      \param listType char argument: a = all trainings, p = past trainings, r = registed trainings, n = trainings not registered, f = future trainings
-     \return Returns a vector of string vectors where each string vector contains the list of trainings attributes
+	 \return Returns a vector of string vectors where each string vector contains the list of trainings attributes
      */
     
-    vector<vector<string>> getTrainingsList(SortCriteria criteria, SortOrder order, char listType = 'a') const;
+	Table getTrainingsList(SortCriteria criteria = date, SortOrder order = ascending, char listType = 'a') const;
     
 };

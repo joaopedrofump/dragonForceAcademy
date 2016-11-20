@@ -1,4 +1,5 @@
 #include "Training.hpp"
+#include "Club.hpp"
 
 unsigned int Training::trainingCounter = 0;
 
@@ -74,7 +75,8 @@ ostream& operator<<(ostream& outStream, Training& trainingToSave) {
     
     outStream << trainingToSave.id << " ; " << trainingToSave.trainingDate << " ; " << trainingToSave.registed;
     
-    for (vector<unsigned int>::const_iterator iteratorPlayer = trainingToSave.getPlayers().begin() ; iteratorPlayer != trainingToSave.getPlayers().end(); iteratorPlayer++) {
+	vector<unsigned int> tmpVector = trainingToSave.getPlayers();
+    for (vector<unsigned int>::const_iterator iteratorPlayer = tmpVector.begin() ; iteratorPlayer != tmpVector.end(); iteratorPlayer++) {
         
         outStream << " ; " << *iteratorPlayer;
         
@@ -87,6 +89,7 @@ void Training::setRegistered() {
     this->registed = true;
     
 }
+
 void Training::cancelRegister() {
     
     this->registed = false;
@@ -116,4 +119,39 @@ bool SortTraining::operator()(Training* t1, Training* t2) {
             break;
     }
     return result;
+}
+
+vector<vector<string>> Training::showInScreen(Club* parentClub) const {
+
+	vector<vector<string>> eachTraining;
+
+	eachTraining.push_back({ to_string(this->getId()), this->getTrainingDate().str(), this->isRegistered() ? "Registed" : "Not Registed" });
+	
+
+	if (this->isRegistered()) {
+
+		string players;
+
+		for (size_t j = 0; j < this->getPlayers().size(); j++) {
+
+			players = to_string(this->getPlayers().at(j))
+				+ " " + positionsMapPosString.at((Position)parentClub->getAthletes().at(this->getPlayers().at(j))->getPosition())
+				+ " " + parentClub->getAthletes().at(this->getPlayers().at(j))->getName();
+			
+			if (!j)
+				eachTraining.at(0).push_back(players);
+			else
+				eachTraining.push_back({ "","","",players });
+
+		}
+		
+
+	}
+	else {
+		eachTraining.at(0).push_back("No players registered.");
+	}
+	
+
+	return eachTraining;
+
 }

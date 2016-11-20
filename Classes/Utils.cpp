@@ -405,11 +405,11 @@ Table::Table(vector<string> components, vector<int> spacesForColumn, unsigned in
 	tableStream << endl;
 	formatTable('_', '|', spacesForColumn, indentacao);
 
-	numColumns = (int)components.size();
-	numLines = 1;
-	columnsWidth = spacesForColumn;
-	lastLineComponents = components;
-	tableVector.push_back(components);
+	this->numColumns = (int)components.size();
+	this->numLines = 1;
+	this->columnsWidth = spacesForColumn;
+	this->lastLineComponents = components;
+	this->tableVector.push_back(components);
 
 	this->indent = indentacao;
 }
@@ -468,6 +468,24 @@ Table::Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int
 	this->numLines = (int)tableVector.size();
 	this->lastLineComponents = tableVector.at(tableVector.size() - 1);
 	this->indent = indentacao;
+}
+
+Table::Table(vector<vector<string>> tableVector, unsigned int indentation) {
+
+	Table result(tableVector.at(0), indentation);
+	for (size_t i = 1; i < tableVector.size(); i++) {
+
+		result.addNewLine(tableVector.at(i));
+	
+	}
+	this->numColumns = (int)tableVector.at(0).size();
+	this->numLines = (int)tableVector.size();
+	this->columnsWidth = result.getColumsWidth();
+	this->lastLineComponents = tableVector.at(tableVector.size()-1);
+	this->tableVector = tableVector;
+	this->tableStream = stringstream(result.getStream());
+
+	this->indent = indentation;
 }
 
 void Table::addNewLine(vector<string> components) {
@@ -577,6 +595,13 @@ vector<vector<string>> Table::getTableVector() const {
 vector<bool> Table::getBlocks() const {
 	return this->blocks;
 }
+
+string Table::getStream() const {
+	return tableStream.str();
+}
+
+
+
 
 ostream& operator<<(ostream& out, const Table &tableToShow) {
 	out << tableToShow.tableStream.str();
@@ -1127,10 +1152,10 @@ bool readDate(Date &result, Date min, Date max, string message, string errorMess
 	}
 	trimString(input);
 	if (Date(input) < min) {
-		throw InvalidDate("The date cannot be earlier than " + min.str(), min.getDay(), min.getMonth(), min.getYear());
+		throw InvalidDate(OutOfBoundsMin, min.getDay(), min.getMonth(), min.getYear(), min.str(), max.str());
 	}
 	if (max < Date(input)) {
-		throw InvalidDate("The date cannot be later than " + max.str(), max.getDay(), max.getMonth(), max.getYear());
+		throw InvalidDate(OutOfBoundsMax, max.getDay(), max.getMonth(), max.getYear(), min.str(), max.str());
 	}
 
 

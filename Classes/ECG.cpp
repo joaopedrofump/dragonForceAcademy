@@ -29,23 +29,28 @@ ECG::ECG(bool resultado, Date expirationDate) {
 }
 
 bool ECG::getResultado() const {
-    return this->resultado;
+	if(this)
+		return this->resultado;
+	return false;
 }
 
 Date ECG::getExpirationDate() const {
-    return this->expirationDate;
+	if(this)
+		return this->expirationDate;
+	return Date(1, 1, 1900);
 }
 
 string ECG::showInScreen() const {
 	string result;
 	if (getExpirationDate() < Date()) {
-		result = "NONE";
+		result = "EXPIRED";
+	}
+	else if (this->getResultado()) {
+
+		result = getExpirationDate().str();
 	}
 	else {
-		stringstream resultSS;
-
-		resultSS << getExpirationDate();
-		result = resultSS.str();
+		result = "INVALID";
 	}
 	return result;
 }

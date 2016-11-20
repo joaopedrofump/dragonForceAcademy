@@ -237,7 +237,7 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
                         
                 }
                 
-                levelMatches.at(i)->addInfoPlayer(make_pair(pos, currentPlayerInfo));
+                levelMatches.at(i)->addInfoPlayer(make_pair(id, currentPlayerInfo));
                 
             }
             
@@ -352,11 +352,11 @@ vector<Match*> Level::getAllLevelMatches(bool onlyNotPlayed) const {
     
 	vector<Match*> result;
 	for (vector<Match*>::const_iterator it = this->levelMatches.begin(); it != levelMatches.end(); it++) {
-		if (!onlyNotPlayed || (*it)->getPlayed()) {
+		if (!onlyNotPlayed || !(*it)->getPlayed()) {
 			result.push_back(*it);
 		}
 	}
-    return this->levelMatches;
+    return result;
     
 }
 
@@ -366,7 +366,7 @@ vector<Match*> Level::getMatchesReadyToPlay() const {
 
 	vector<Match*> result;
 	for (vector<Match*>::const_iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
-		if ((*it)->getInfoPlayers().size()/* > 18*/) {
+		if ((*it)->getMatchDay() < Date()) {
 			result.push_back(*it);
 		}
 	}
@@ -374,8 +374,29 @@ vector<Match*> Level::getMatchesReadyToPlay() const {
 	return result;
 }
 
-vector<Training*> Level::getAllLevelTrainings() const {
-    return this->levelTrainings;
+vector<Training*> Level::getTrainingsReadyToPlay() const {
+
+	vector<Training*> tmpVector = this->getAllLevelTrainings(true);
+
+	vector<Training*> result;
+	for (vector<Training*>::const_iterator it = tmpVector.begin(); it != tmpVector.end(); it++) {
+		if ((*it)->getTrainingDate() < Date()) {
+			result.push_back(*it);
+		}
+	}
+
+	return result;
+}
+
+vector<Training*> Level::getAllLevelTrainings(bool onlyNotPlayed) const {
+
+	vector<Training*> result;
+	for (vector<Training*>::const_iterator it = this->levelTrainings.begin(); it != levelTrainings.end(); it++) {
+		if (!onlyNotPlayed || !(*it)->isRegistered()) {
+			result.push_back(*it);
+		}
+	}
+	return result;
 }
 
 Level* Level::addMatchToLevel(Match* newMatch) {
@@ -384,7 +405,7 @@ Level* Level::addMatchToLevel(Match* newMatch) {
     return this;
 }
 
-Table Level::showAthletesOfLevel() const {
+Table Level::showAthletesOfLevel(bool onlyAvailable) const {
 	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
 	map<unsigned int, Info*> athletes = this->getMapInfoPlayers();
 	map<unsigned int, Info*>::iterator workersIterator;
@@ -392,15 +413,25 @@ Table Level::showAthletesOfLevel() const {
 	bool firstActive = false;
 	for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
 		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && !firstActive) {
-
-			athletesTable.addNewLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
-			firstActive = true;
-			continue;
+			bool result = parentClub->getAthletes().at(workersIterator->first)->getECG()->getResultado();
+			Date expiration = parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate();
+			if (!onlyAvailable || (result &&  expiration >= Date())) {
+				
+				athletesTable.addNewLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
+				firstActive = true;
+				continue;
+			}
+			
+			
 		}
 
 		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && firstActive && parentClub->getAthletes().at(workersIterator->first)->isAthlete()) {
+			
+			if (!onlyAvailable || (parentClub->getAthletes().at(workersIterator->first)->getECG()->getResultado()
+				&& parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate() >= Date())) {
 
-			athletesTable.addDataInSameLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
+				athletesTable.addDataInSameLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
+			}
 		}
 	}
 
@@ -418,12 +449,119 @@ void Level::showMatches(vector<Match*> matches) {
 	unsigned int tmpID = 0;
 	Table matchesTable({ "ID", "Date", "Home Team", "Score", "Away Team", "Players Called-up" });
 
+	
 	for (vector<Match*>::iterator it = matches.begin(); it != matches.end(); it++) {
-		matchesTable.addNewLine((*it)->showInScreen(++tmpID));
+		if(it == matches.begin())
+			matchesTable.addNewLine((*it)->showInScreen(++tmpID));
+		else 
+			matchesTable.addDataInSameLine((*it)->showInScreen(++tmpID));
+	
+		if(it != matches.end()-1)
+			matchesTable.addDataInSameLine({});
 	}
 
 	cout << matchesTable;
 }
+
+void Level::showTrainings(vector<Training*> trainings) {
+
+	unsigned int tmpID = 0;
+	Table trainingsTable({ "ID", "Date", "Players who attended" });
+
+
+	for (vector<Training*>::iterator it = trainings.begin(); it != trainings.end(); it++) {
+		
+		trainingsTable.addNewLine((*it)->showInScreen(this->parentClub).at(0));
+		for (size_t i = 0; (*it)->showInScreen(this->parentClub).size(); i++) {
+			trainingsTable.addDataInSameLine((*it)->showInScreen(this->parentClub).at(i));
+		}
+
+		if (it != trainings.end() - 1)
+			trainingsTable.addDataInSameLine({});
+	}
+
+	cout << trainingsTable;
+}
+
+void Level::showMatch(Match* matchToShow) {
+
+	showMainMenu(0, Date().str());
+
+	Match* tmpMatch = matchToShow;
+	//Show match
+	Table showInformation({ "Information", "Data"});
+
+	if (tmpMatch->getPlayed()) {
+		showInformation.addNewLine({ "Match: " , tmpMatch->getHomeTeam() == this->parentClub ?
+			(this->parentClub->getName() + " " + to_string(tmpMatch->getScore().first) + " - " + to_string(tmpMatch->getScore().second) + " " + tmpMatch->getAwayTeam()->getName())
+			: (tmpMatch->getHomeTeam()->getName() + " " + to_string(tmpMatch->getScore().first) + " - " + to_string(tmpMatch->getScore().second) + " " + this->parentClub->getName()) });
+	}
+	else {
+		showInformation.addNewLine({ "Match: " , tmpMatch->getHomeTeam() == this->parentClub ?
+			(this->parentClub->getName() + " vs " + tmpMatch->getAwayTeam()->getName())
+			: (tmpMatch->getHomeTeam()->getName() + " vs " + this->parentClub->getName()) });
+	}
+	
+	showInformation.addNewLine({ "Date: " , tmpMatch->getMatchDay().str() });
+
+
+	cout << showInformation;
+
+
+	Table athletes({ "ID", "Athletes called-up" , "Position"});
+
+	if (tmpMatch->getPlayers().size()) {
+
+		for (size_t i = 0; i < tmpMatch->getPlayers().size(); i++) {
+
+			if (!i) {
+				switch (tmpMatch->getPlayers().at(i)->getPosition()) {
+
+				case 1:
+					athletes.addNewLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Goalkeeper" });
+					break;
+				case 2:
+					athletes.addNewLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Defender" });
+					break;
+				case 3:
+					athletes.addNewLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Midfielder" });
+					break;
+				case 4:
+					athletes.addNewLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Forward" });
+					break;
+				}
+			}
+
+			else {
+				switch (tmpMatch->getPlayers().at(i)->getPosition()) {
+				case 1:
+					athletes.addDataInSameLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Goalkeeper" });
+					break;
+				case 2:
+					athletes.addDataInSameLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Defender" });
+					break;
+				case 3:
+					athletes.addDataInSameLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Midfielder" });
+					break;
+				case 4:
+					athletes.addDataInSameLine({ to_string(tmpMatch->getPlayers().at(i)->getID()), tmpMatch->getPlayers().at(i)->getName(), "Forward" });
+					break;
+				}
+			}
+		}
+
+		cout << athletes;
+
+	}
+	else {
+
+		cout << Table({ "There are not called-up players." });
+	}
+	
+
+	ignoreLine(false);
+}
+
 
 void Level::saveLevelTrainings() const {
     
@@ -477,14 +615,21 @@ void Level::registerTraining(unsigned int trainingId, vector<unsigned int> missi
     }
     
     vector<unsigned int> filteredVector;
-    map<unsigned int, Info*> mapLevelPLayers = this->getMapInfoPlayers();
+
+    map<unsigned int, Info*> mapLevelAllPLayers = this->getMapInfoPlayers();
+	map<unsigned int, Info*> mapLevelPLayers;
+
+	for (map<unsigned int, Info*>::iterator i = mapLevelAllPLayers.begin(); i != mapLevelAllPLayers.end(); i++) {
+
+		if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
+			mapLevelPLayers.insert(*i);
+	}
     
     for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
         
         if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
             
             mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
-            missingPlayersIterator--;
             
         }
     }
@@ -522,14 +667,20 @@ void Level::registerTraining(Date trainingDate, vector<unsigned int> missingPlay
     Training* trainingToAdd = new Training(trainingDate, players);
     
     vector<unsigned int> filteredVector;
-    map<unsigned int, Info*> mapLevelPLayers = this->getMapInfoPlayers();
+    map<unsigned int, Info*> mapLevelAllPLayers = this->getMapInfoPlayers();
+	map<unsigned int, Info*> mapLevelPLayers;
+
+	for (map<unsigned int, Info*>::iterator i = mapLevelAllPLayers.begin(); i != mapLevelAllPLayers.end(); i++) {
+
+		if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
+			mapLevelPLayers.insert(*i);
+	}
     
     for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
         
         if (mapLevelPLayers.find(*missingPlayersIterator) != mapLevelPLayers.end()) {
             
             mapLevelPLayers.erase(mapLevelPLayers.find(*missingPlayersIterator));
-            missingPlayersIterator--;
             
         }
     }
@@ -560,43 +711,35 @@ void Level::registerTraining(Date trainingDate, vector<unsigned int> missingPlay
     
 }
 
-vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder order, char listType) const {
+Table Level::getTrainingsList(SortCriteria criteria, SortOrder order, char listType) const {
     
-    vector<vector<string>> result;
+	Table result( {"ID", "Date", "Status", "Athletes"} );
     
     vector<Training*> allTrainings;
     
     switch (listType) {
         case 'a':
-            allTrainings = this->levelTrainings;
-            sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
-            for (size_t i = 0; i < allTrainings.size(); i++) {
-                
-                vector<string> eachTraining;
-                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
-                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
-                string registed = allTrainings.at(i)->isRegistered() ? "Registed" : "Not Registed";
-                eachTraining.push_back(registed);
-                if (allTrainings.at(i)->isRegistered()) {
-                    
-                    string players = "";
-                    for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
-                        
-                        players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
-                        
-                        if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
-                            players += ", ";
-                        }
-                        
-                    }
-                    eachTraining.push_back(players);
-                    
-                }
-                
-                result.push_back(eachTraining);
-                
-            }
-            break;
+		{
+			allTrainings = this->levelTrainings;
+
+			sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria, order));
+
+			for (size_t i = 0; i < allTrainings.size(); i++) {
+
+				vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+				result.addNewLine(tmpMatrix.at(0));
+				for (size_t j = 1; j < tmpMatrix.size(); j++) {
+					if(tmpMatrix.at(j).at(0) != "")
+						result.addNewLine(tmpMatrix.at(j));
+					else
+						result.addDataInSameLine(tmpMatrix.at(j));
+
+				}
+
+			}
+			break;
+		}
         case 'p':
             for (size_t i = 0; i < this->levelTrainings.size(); i++) {
                 
@@ -610,28 +753,16 @@ vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder 
             sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
             for (size_t i = 0; i < allTrainings.size(); i++) {
                 
-                vector<string> eachTraining;
-                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
-                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
-                string registed = allTrainings.at(i)->isRegistered() ? "Registed" : "Not Registed";
-                eachTraining.push_back(registed);
-                if (allTrainings.at(i)->isRegistered()) {
-                    
-                    string players = "";
-                    for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
-                        
-                        players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
-                        
-                        if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
-                            players += ", ";
-                        }
-                        
-                    }
-                    eachTraining.push_back(players);
-                    
-                }
-                result.push_back(eachTraining);
-                
+				vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+				result.addNewLine(tmpMatrix.at(0));
+				for (size_t j = 1; j < tmpMatrix.size(); j++) {
+					if (tmpMatrix.at(j).at(0) != "")
+						result.addNewLine(tmpMatrix.at(j));
+					else
+						result.addDataInSameLine(tmpMatrix.at(j));
+
+				}
             }
             
             break;
@@ -640,30 +771,33 @@ vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder 
                 
                 if (!(Date() < this->levelTrainings.at(i)->getTrainingDate()) && this->levelTrainings.at(i)->isRegistered()) {
                     
-                    allTrainings.push_back(this->levelTrainings.at(i));
-                    
+					vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+					result.addNewLine(tmpMatrix.at(0));
+					for (size_t j = 1; j < tmpMatrix.size(); j++) {
+						if (tmpMatrix.at(j).at(0) != "")
+							result.addNewLine(tmpMatrix.at(j));
+						else
+							result.addDataInSameLine(tmpMatrix.at(j));
+
+					}
                 }
                 
             }
             sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
             for (size_t i = 0; i < allTrainings.size(); i++) {
                 
-                vector<string> eachTraining;
-                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
-                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
-                string players = "";
-                for (size_t j = 0; j < allTrainings.at(i)->getPlayers().size(); j++) {
-                    
-                    players += to_string(allTrainings.at(i)->getPlayers().at(j)) + " " + positionsMapPosString.at((Position)this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getPosition()) + " " + this->parentClub->getAthletes().at(allTrainings.at(i)->getPlayers().at(j))->getName();
-                    
-                    if (j != (allTrainings.at(i)->getPlayers().size() - 1)) {
-                        players += ", ";
-                    }
-                    
-                }
-                eachTraining.push_back(players);
-                result.push_back(eachTraining);
-            }
+				vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+				result.addNewLine(tmpMatrix.at(0));
+				for (size_t j = 1; j < tmpMatrix.size(); j++) {
+					if (tmpMatrix.at(j).at(0) != "")
+						result.addNewLine(tmpMatrix.at(j));
+					else
+						result.addDataInSameLine(tmpMatrix.at(j));
+
+				}
+			}
             break;
         case 'n':
             for (size_t i = 0; i < this->levelTrainings.size(); i++) {
@@ -678,11 +812,16 @@ vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder 
             sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
             for (size_t i = 0; i < allTrainings.size(); i++) {
                 
-                vector<string> eachTraining;
-                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
-                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
-                result.push_back(eachTraining);
-                
+				vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+				result.addNewLine(tmpMatrix.at(0));
+				for (size_t j = 1; j < tmpMatrix.size(); j++) {
+					if (tmpMatrix.at(j).at(0) != "")
+						result.addNewLine(tmpMatrix.at(j));
+					else
+						result.addDataInSameLine(tmpMatrix.at(j));
+
+				}
             }
             break;
         case 'f':
@@ -698,11 +837,16 @@ vector<vector<string>> Level::getTrainingsList(SortCriteria criteria, SortOrder 
             sort(allTrainings.begin(), allTrainings.end(), SortTraining(criteria,order));
             for (size_t i = 0; i < allTrainings.size(); i++) {
                 
-                vector<string> eachTraining;
-                eachTraining.push_back(to_string(allTrainings.at(i)->getId()));
-                eachTraining.push_back(allTrainings.at(i)->getTrainingDate().str());
-                result.push_back(eachTraining);
-                
+				vector<vector<string>> tmpMatrix = allTrainings.at(i)->showInScreen(parentClub);
+
+				result.addNewLine(tmpMatrix.at(0));
+				for (size_t j = 1; j < tmpMatrix.size(); j++) {
+					if (tmpMatrix.at(j).at(0) != "")
+						result.addNewLine(tmpMatrix.at(j));
+					else
+						result.addDataInSameLine(tmpMatrix.at(j));
+
+				}
             }
             break;
             
