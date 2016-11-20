@@ -31,8 +31,7 @@ int main(int argc, const char * argv[]) {
     
     try {
         
-        //initialInfo(clubName);
-		clubName = "Porto";
+        initialInfo(clubName);
         
         if (!clubName.size()) {
             return 0;
