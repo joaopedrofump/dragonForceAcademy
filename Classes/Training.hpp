@@ -2,19 +2,6 @@
 
 #include "InfoAthletes.hpp"
 
-enum SortCriteria {
-    
-    id,
-    date,
-    numberOfPlayers
-    
-};
-
-enum SortOrder {
-    ascending,
-    descending
-};
-
 class Club;
 
 class Training {

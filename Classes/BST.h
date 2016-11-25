@@ -37,7 +37,7 @@ class BTNode {
 public:
     BTNode(const T &e, BTNode *esq = 0, BTNode *dir = 0)
     : element(e), left(esq), right(dir) { }
-    //added from professor's code
+    //added to professor's code
     T getElement() const {return this->element;}
     BTNode* getLeftNode() const {return this->left;};
     BTNode* getRightNode() const {return this->right;};
@@ -308,11 +308,11 @@ template <class T>
 class BTItrLevel {
 public:
     BTItrLevel(const BinaryTree<T> &bt);
-    
     void advance();
     T &retrieve() { return itrQueue.front()->element; }
-    BTNode<T>* getNode() const {return itrQueue.front();};
     bool isAtEnd() {return itrQueue.empty(); }
+    //added to professor's code
+    BTNode<T>* getNode() const {return itrQueue.front();};
     
 private:
     queue<BTNode<T> *> itrQueue;

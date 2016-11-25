@@ -29,15 +29,15 @@ ECG::ECG(bool resultado, Date expirationDate) {
 }
 
 bool ECG::getResultado() const {
-	if(this)
+	//if(this)
 		return this->resultado;
-	return false;
+	//return false;
 }
 
 Date ECG::getExpirationDate() const {
-	if(this)
+	//if(this)
 		return this->expirationDate;
-	return Date(1, 1, 1900);
+	//return Date(1, 1, 1900);
 }
 
 string ECG::showInScreen() const {

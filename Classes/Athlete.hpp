@@ -73,4 +73,5 @@ public:
     void setHeight(unsigned int newHeight);
 };
 
+
 #endif /* Athlete_hpp */

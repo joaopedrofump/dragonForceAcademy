@@ -94,7 +94,6 @@ public:
 	
 
     ~Worker();
-	unsigned int getIdade() const;
 
 	//====== GETTERS =============
 
@@ -123,8 +122,6 @@ public:
 	*/
 	virtual ECG* getECG() const;
 
-
-    
     unsigned int getCivilID() const;
     
     virtual vector<string> showInScreen() const;
@@ -136,8 +133,15 @@ public:
 	*/
 	static unsigned int getLastId();
 
+};
 
-
+class SortWorker {
+private:
+    SortCriteria criteria;
+    SortOrder order;
+public:
+    SortWorker(SortCriteria criteria, SortOrder order);
+    bool operator()(Worker* t1, Worker* t2) const;
 };
 
 #endif /* Worker_hpp */
