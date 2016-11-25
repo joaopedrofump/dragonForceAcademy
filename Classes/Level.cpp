@@ -430,32 +430,33 @@ Level* Level::addMatchToLevel(Match* newMatch) {
     return this;
 }
 
-vector<vector<string>> Level::showAthletesOfLevel(bool onlyAvailable) const {
+vector<vector<string>> Level::showAthletesOfLevel(SortCriteria criteria, SortOrder order, bool onlyAvailable) const {
 	vector<vector<string>> athletesVector = { { "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" } };
-	map<unsigned int, Info*> athletes = this->getMapInfoPlayers();
+	map<unsigned int, Info*> athletesMap = this->getMapInfoPlayers();
 	map<unsigned int, Info*>::iterator workersIterator;
 
-	bool firstActive = false;
-	for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
-		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && !firstActive) {
-			bool result = parentClub->getAthletes().at(workersIterator->first)->getECG()->getResultado();
-			Date expiration = parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate();
+	map<unsigned int, Worker*> test = this->getParentClub()->getAthletes();
+	vector<Worker*> athletesVec;
+
+	for (workersIterator = athletesMap.begin(); workersIterator != athletesMap.end(); workersIterator++) {
+
+		Worker* curr = this->getParentClub()->getAthletes().at(workersIterator->first);
+		athletesVec.push_back(curr);
+	}
+
+	sort(athletesVec.begin(), athletesVec.end(), SortWorker(criteria, order));
+
+	for (vector<Worker*>::iterator athletesVecIt = athletesVec.begin(); athletesVecIt != athletesVec.end(); athletesVecIt++) {
+
+		if ((*athletesVecIt)->isActive()) {
+
+			bool result = (*athletesVecIt)->getECG() ? (*athletesVecIt)->getECG()->getResultado() : false; //ecg result
+			Date expiration = (*athletesVecIt)->getECG() ? (*athletesVecIt)->getECG()->getExpirationDate() : Date(1, 1, 1900); //expiration date
+
 			if (!onlyAvailable || (result &&  expiration >= Date())) {
-				
-				athletesVector.push_back(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
-				firstActive = true;
+
+				athletesVector.push_back((*athletesVecIt)->showInScreen());
 				continue;
-			}
-			
-			
-		}
-
-		if (parentClub->getAthletes().at(workersIterator->first)->isActive() && firstActive && parentClub->getAthletes().at(workersIterator->first)->isAthlete()) {
-			
-			if (!onlyAvailable || (parentClub->getAthletes().at(workersIterator->first)->getECG()->getResultado()
-				&& parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate() >= Date())) {
-
-				athletesVector.push_back(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
 			}
 		}
 	}

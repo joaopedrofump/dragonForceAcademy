@@ -38,11 +38,11 @@ int main(int argc, const char * argv[]) {
         }
 
 		Club currentClubInProgram(clubName);
-        //initialOptions(currentClubInProgram);
-        //currentClubInProgram.saveChanges();
+        initialOptions(currentClubInProgram);
+        currentClubInProgram.saveChanges();
         
-        /*
-        map<unsigned int, Worker*> test = currentClubInProgram.getAthletes();
+        
+        /*map<unsigned int, Worker*> test = currentClubInProgram.getAthletes();
         vector<Worker*> athletes;
         for (map<unsigned int, Worker*>::const_iterator i = test.begin() ; i != test.end(); i++) {
             
@@ -93,6 +93,7 @@ int main(int argc, const char * argv[]) {
     
 	catch (...) {
 		cout << "Something went wrong.";
+		system("PAUSE");
 	}
 	return 0;
 

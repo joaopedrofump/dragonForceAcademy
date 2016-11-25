@@ -507,7 +507,7 @@ bool Club::updateECG(unsigned int athleteID, bool result) {
 }
 
 
-void Club::showAthletes(bool onlyActives) const {
+void Club::showAthletes(SortCriteria criteria, SortOrder order, bool onlyAvailable) const {
 
 	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
 	map<unsigned int, Worker*> athletes = this->getAthletes();
@@ -552,7 +552,7 @@ void Club::showAthletes(bool onlyActives) const {
 
 
 	for (size_t i = 0; i < levels.size(); i++) {
-		vector<vector<string>> athletesOfLevel = levels.at(i)->showAthletesOfLevel(onlyActives);
+		vector<vector<string>> athletesOfLevel = levels.at(i)->showAthletesOfLevel(criteria, order, onlyAvailable);
 
 		if(athletesOfLevel.size()>1) athletesTable.addNewLine(athletesOfLevel.at(1));
 
