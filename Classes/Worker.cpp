@@ -127,7 +127,6 @@ bool Worker::isActive()const {
 
 void Worker::updateECG(bool resultado, Date expirationDate) {}
 
-
 ECG* Worker::getECG() const { return NULL; }
 
 void Worker::setName(string newName) {
@@ -136,5 +135,143 @@ void Worker::setName(string newName) {
         throw string("Invalid Name");
     }
     this->name = newName;
+    
+}
+SortWorker::SortWorker(SortCriteria criteria, SortOrder order) {
+    this->criteria = criteria;
+    this->order = order;
+    
+}
+bool SortWorker::operator()(Worker* t1, Worker* t2) const {
+    
+    if(t1->isAthlete() && !t2->isAthlete()) { //athlete vs coach
+        return true;
+    }
+    else if (!t1->isAthlete() && t2->isAthlete()) { //coach vs athlete
+        return false;
+    }
+    
+    else if(t1->isAthlete() && t2->isAthlete()) { //two athletes
+        
+        switch (criteria) {
+            case playerPosition:
+                if (this->order == ascending) {
+                    if(t1->getPosition() != t2->getPosition()) {
+                        return t1->getPosition() < t2->getPosition();
+                    }
+                    return t1->getName() < t2->getName();
+                    
+                }
+                if(t1->getPosition() != t2->getPosition()) {
+                    return t1->getPosition() > t2->getPosition();
+                }
+                return t1->getName() < t2->getName();
+                break;
+            case name:
+                if (this->order == ascending) {
+                    return t1->getName() <= t2->getName();
+                }
+                return t1->getName() > t2->getName();
+                break;
+            case age:
+                if (this->order == ascending) {
+                    return t1->getAge() <= t2->getAge();
+                }
+                return t1->getAge() > t2->getAge();
+                break;
+            case height:
+                if (this->order == ascending) {
+                    return t1->getHeight() <= t2->getHeight();
+                }
+                return t1->getHeight() > t2->getHeight();
+                break;
+            case ecg:
+                if (this->order == ascending) {
+                    if(!t1->getECG() && t2->getECG()) {
+                        return true;
+                    }
+                    else if(t1->getECG() && !t2->getECG()){
+                        return false;
+                    }
+                    else if(t1->getECG() && t2->getECG()) {
+                        
+                        if (!t1->getECG()->getResultado() && t2->getECG()->getResultado()) {
+                            return true;
+                        }
+                        else if(t1->getECG()->getResultado() && !t2->getECG()->getResultado()) {
+                            return false;
+                        }
+                        else if(t1->getECG()->getResultado() && t2->getECG()->getResultado()) {
+                            return t1->getECG()->getExpirationDate() < t2->getECG()->getExpirationDate();
+                        }
+                        
+                    }
+                }
+                if(!t1->getECG() && t2->getECG()) {
+                    return false;
+                }
+                else if(t1->getECG() && !t2->getECG()){
+                    return true;
+                }
+                else if(t1->getECG() && t2->getECG()) {
+                    
+                    if (!t1->getECG()->getResultado() && t2->getECG()->getResultado()) {
+                        return false;
+                    }
+                    else if(t1->getECG()->getResultado() && !t2->getECG()->getResultado()) {
+                        return true;
+                    }
+                    else if(t1->getECG()->getResultado() && t2->getECG()->getResultado()) {
+                        return !(t1->getECG()->getExpirationDate() < t2->getECG()->getExpirationDate());
+                    }
+                    
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    else {
+        
+        switch (criteria) {
+            case typeOfCoach:
+                if (this->order == ascending) {
+                    if(t1->getPosition() != t2->getPosition()) {
+                        return t1->getPosition() < t2->getPosition();
+                    }
+                    return t1->getName() < t2->getName();
+                    
+                }
+                if(t1->getPosition() != t2->getPosition()) {
+                    return t1->getPosition() > t2->getPosition();
+                }
+                return t1->getName() < t2->getName();
+                break;
+            case name:
+                if (this->order == ascending) {
+                    return t1->getName() <= t2->getName();
+                }
+                return t1->getName() > t2->getName();
+                break;
+            case age:
+                if (this->order == ascending) {
+                    return t1->getAge() <= t2->getAge();
+                }
+                return t1->getAge() > t2->getAge();
+                break;
+            
+            default:
+                break;
+        }
+
+        
+    }
+    
+    
+    return true;
     
 }

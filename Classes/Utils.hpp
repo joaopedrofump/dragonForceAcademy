@@ -107,7 +107,25 @@ enum MatchType {
     neutral
 };
 
+enum SortCriteria {
+    
+    id,
+    date,
+    numberOfPlayers,
+    playerPosition,
+    name,
+    age,
+    height,
+    ecg,
+    typeOfCoach,
+    coachLevel
+    
+};
 
+enum SortOrder {
+    ascending,
+    descending
+};
 
 
 const map<Position, string> positionsMapPosString = {
