@@ -87,7 +87,7 @@ public:
 	/*!
 	*	This is a method that shows all the athletes of the club
 	*/
-	void showAthletes(bool onlyActives = false) const;
+	void showAthletes(SortCriteria criteria, SortOrder order = ascending, bool onlyAvailable = false) const;
 	bool showAthlete(unsigned int id) const;
 	void showAthletesInactives() const;
 

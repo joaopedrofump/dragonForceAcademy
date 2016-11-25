@@ -317,7 +317,7 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
 	
     
     if(this->findWorkerByCivilID(civilID) != -1) {
-        throw string("This player is already registered");
+        throw string("This id is already registered");
     }
     
     Date currentDate;
@@ -507,13 +507,15 @@ bool Club::updateECG(unsigned int athleteID, bool result) {
 }
 
 
-void Club::showAthletes(bool onlyActives) const {
+void Club::showAthletes(SortCriteria criteria, SortOrder order, bool onlyAvailable) const {
 
 	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
 	map<unsigned int, Worker*> athletes = this->getAthletes();
 	map<unsigned int, Worker*>::iterator workersIterator;
+	vector<Level*> levels = this->getSeasons().at(0)->getLevels();
+	
 
-	if (onlyActives) {
+	/*if (onlyActives) {
 
 		bool firstActive = false;
 		for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
@@ -546,6 +548,17 @@ void Club::showAthletes(bool onlyActives) const {
 			}
 		}
 
+	}*/
+
+
+	for (size_t i = 0; i < levels.size(); i++) {
+		vector<vector<string>> athletesOfLevel = levels.at(i)->showAthletesOfLevel(criteria, order, onlyAvailable);
+
+		if(athletesOfLevel.size()>1) athletesTable.addNewLine(athletesOfLevel.at(1));
+
+		for (size_t i = 2; i < athletesOfLevel.size(); i++) {
+			athletesTable.addDataInSameLine(athletesOfLevel.at(i));
+		}
 	}
 
 	cout << athletesTable << endl;

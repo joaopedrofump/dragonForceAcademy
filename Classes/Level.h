@@ -73,7 +73,7 @@ public:
 	vector<Match*> getMatchesReadyToPlay() const;
 	vector<Training*> getTrainingsReadyToPlay() const;
 
-	Table showAthletesOfLevel(bool onlyAvailable = false) const;
+	vector<vector<string>> showAthletesOfLevel(SortCriteria criteria, SortOrder order = ascending, bool onlyAvailable = false) const;
     vector<Training*> getAllLevelTrainings(bool onlyNotPlayed = false) const;
     Level* addMatchToLevel(Match* newMatch);
     Level* addTrainingToLevel(Training* newTraining);
