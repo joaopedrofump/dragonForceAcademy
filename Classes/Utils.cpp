@@ -518,12 +518,15 @@ Table::Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int
 	this->indent = indentacao;
 }
 
-Table::Table(vector<vector<string>> tableVector, unsigned int indentation) {
+Table::Table(vector<vector<string>> tableVector, unsigned int indentation, bool sameLine) {
 
 	Table result(tableVector.at(0), indentation);
 	for (size_t i = 1; i < tableVector.size(); i++) {
 
-		result.addNewLine(tableVector.at(i));
+		if(i==1 || !sameLine)
+			result.addNewLine(tableVector.at(i));
+		else
+			result.addDataInSameLine(tableVector.at(i));
 	
 	}
 	this->numColumns = (int)tableVector.at(0).size();

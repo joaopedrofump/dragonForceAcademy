@@ -182,7 +182,7 @@ public:
 	Table(vector<string> components, unsigned int indentacao = 0);
 	Table(vector<string> components, vector<int> spacesForColumn, unsigned int indentacao = 0);
 	Table(vector<vector<string>> tableVector, vector<bool> blocks, vector<int> spacesForColumn, unsigned int indentacao = 0);
-	Table(vector<vector<string>> tableVector, unsigned int indentation);
+	Table(vector<vector<string>> tableVector, unsigned int indentation, bool sameLine = true);
 	//Table(unsigned int indentacao = 0);
 
 	void formatTable(char internalChar, char limitingChar, vector<int> spacesForColumn, unsigned int indentacaoFT = 0);

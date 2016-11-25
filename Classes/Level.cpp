@@ -430,8 +430,8 @@ Level* Level::addMatchToLevel(Match* newMatch) {
     return this;
 }
 
-Table Level::showAthletesOfLevel(bool onlyAvailable) const {
-	Table athletesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" });
+vector<vector<string>> Level::showAthletesOfLevel(bool onlyAvailable) const {
+	vector<vector<string>> athletesVector = { { "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position", "Level" ,"Status", "ECG" } };
 	map<unsigned int, Info*> athletes = this->getMapInfoPlayers();
 	map<unsigned int, Info*>::iterator workersIterator;
 
@@ -442,7 +442,7 @@ Table Level::showAthletesOfLevel(bool onlyAvailable) const {
 			Date expiration = parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate();
 			if (!onlyAvailable || (result &&  expiration >= Date())) {
 				
-				athletesTable.addNewLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
+				athletesVector.push_back(parentClub->getAthletes().at(workersIterator->first)->showInScreen());
 				firstActive = true;
 				continue;
 			}
@@ -455,12 +455,12 @@ Table Level::showAthletesOfLevel(bool onlyAvailable) const {
 			if (!onlyAvailable || (parentClub->getAthletes().at(workersIterator->first)->getECG()->getResultado()
 				&& parentClub->getAthletes().at(workersIterator->first)->getECG()->getExpirationDate() >= Date())) {
 
-				athletesTable.addDataInSameLine(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
+				athletesVector.push_back(parentClub->getAthletes().at(workersIterator->first)->showInScreen()); //addDataInSameLine
 			}
 		}
 	}
 
-	return athletesTable;
+	return athletesVector;
 }
 
 Level* Level::addTrainingToLevel(Training* newTraining) {
