@@ -91,10 +91,12 @@ int main(int argc, const char * argv[]) {
         cout << s << endl;
     }
     
+    /*
 	catch (...) {
 		cout << "Something went wrong.";
 		system("PAUSE");
 	}
+     */
 	return 0;
 
 }

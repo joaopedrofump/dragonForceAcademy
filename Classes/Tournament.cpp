@@ -102,9 +102,7 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
         }
         
         
-        
         if (scheduled) {
-            
             
             //find match date
             Date matchDate = eachMatch.getMatchDay();

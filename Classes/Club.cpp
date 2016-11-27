@@ -825,12 +825,15 @@ bool Club::reativateCoach(unsigned int coachId) {
 	return true;
 }
 
-void Club::showCoaches(bool onlyActives) const {
+void Club::showCoaches(SortCriteria criteria, SortOrder order, bool onlyActives) const {
 
-	Table coachesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Position", "Status" });
+	Table coachesTable({ "ID", "Civil ID", "Name", "Birthdate" , "Age", "Position", "Status", "Level","Responsible" });
 	map<unsigned int, Worker*> coaches = this->getCoaches();
 	map<unsigned int, Worker*>::iterator workersIterator;
+    vector<Level*> levels = this->getSeasons().at(0)->getLevels();
 
+    
+    /*
 	if (onlyActives) {
 
 		bool firstActive = false;
@@ -865,6 +868,18 @@ void Club::showCoaches(bool onlyActives) const {
 		}
 
 	}
+
+     */
+    
+    for (size_t i = 0; i < levels.size(); i++) {
+        vector<vector<string>> coachesOfLevel = levels.at(i)->showCoachesOfLevel(criteria, order);
+        
+        if(coachesOfLevel.size()>1) coachesTable.addNewLine(coachesOfLevel.at(1));
+        
+        for (size_t i = 2; i < coachesOfLevel.size(); i++) {
+            coachesTable.addDataInSameLine(coachesOfLevel.at(i));
+        }
+    }
 
 	cout << coachesTable << endl;
 

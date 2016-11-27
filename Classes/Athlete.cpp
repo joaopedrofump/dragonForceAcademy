@@ -11,7 +11,7 @@
 Athlete::Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id) : Worker(name, birthdate, civilID, id) {
     
 
-    if(Date()-birthdate < 11 || Date() - birthdate > 45) {
+    if(Date()-birthdate <= 11 || Date() - birthdate > 45) {
         throw string("Invalid Age");
     }
     

@@ -665,8 +665,8 @@ Table& Table::operator=(const Table& table) {
 	this->columnsWidth = table.getColumsWidth();
 	this->indent = table.getIndentacao();
 	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
-	this->numColumns = table.getTableVector().at(0).size();
-	this->numLines = table.getTableVector().size();
+	this->numColumns = (unsigned int)table.getTableVector().at(0).size();
+	this->numLines = (unsigned int)table.getTableVector().size();
 	this->tableVector = table.getTableVector();
 
 	string tmp = table.tableStream.str();
@@ -681,8 +681,8 @@ Table::Table(const Table& table) {
 	this->columnsWidth = table.getColumsWidth();
 	this->indent = table.getIndentacao();
 	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
-	this->numColumns = table.getTableVector().at(0).size();
-	this->numLines = table.getTableVector().size();
+	this->numColumns = (unsigned int)table.getTableVector().at(0).size();
+	this->numLines = (unsigned int)table.getTableVector().size();
 	this->tableVector = table.getTableVector();
 
 	string tmp = table.tableStream.str();
@@ -1340,19 +1340,19 @@ string getLevelFromAge(Date birthDate) {
     
     unsigned int age = Date() - birthDate;
     
-    if (age < 13)
+    if (age <= 13)
         return "Under 13";
     
-    else if (age >= 13 && age < 15)
+    else if (age > 13 && age <= 15)
         return "Under 15";
     
-    else if (age >= 15 && age < 17)
+    else if (age > 15 && age <= 17)
         return "Under 17";
     
-    else if (age >= 17 && age < 19)
+    else if (age > 17 && age <= 19)
         return "Under 19";
     
-    else if (age >= 19 && age < 45)
+    else if (age > 19 && age <= 45)
         return "Seniors";
     
     else

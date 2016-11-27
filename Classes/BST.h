@@ -1,5 +1,5 @@
 #ifndef _BINARYTREE_H
-#define _BINARY_TREE_H
+#define _BINARYTREE_H
 
 #include <iostream>
 #include <stack>
