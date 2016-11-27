@@ -66,7 +66,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 
 unsigned int menuTournamentsManagement(Level* currentLevel);
 
-void printOneTournamentMenu(Level* currentLevel, unsigned int tournamentChosen, string seasonName);
+void printOneTournamentMenu(Level* currentLevel, unsigned int tournamentChosen);
 
 void printTournamentsMenu(Level* currentLevel);
 

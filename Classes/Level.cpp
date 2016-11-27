@@ -285,6 +285,8 @@ Level::Level(string yearOfSeason, string pathToSeasonFolder, string levelName, C
         }
         
     }
+
+	inStreamLevel.close();
     
 }
 

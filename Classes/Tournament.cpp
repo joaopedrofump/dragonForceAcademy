@@ -296,6 +296,7 @@ void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date ma
         
         node->second.second->setId(matchId);
         node->first.second = 1;
+		node->second.second->setMatchDay(matchDate);
         
     }
     
