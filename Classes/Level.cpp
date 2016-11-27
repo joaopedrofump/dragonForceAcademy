@@ -466,6 +466,37 @@ vector<vector<string>> Level::showAthletesOfLevel(SortCriteria criteria, SortOrd
 	return athletesVector;
 }
 
+vector<vector<string>> Level::showCoachesOfLevel(SortCriteria criteria, SortOrder order) const {
+    vector<vector<string>> coachesStringVector = { { "ID", "Civil ID", "Name", "Birthdate" , "Age", "Height", "Position" ,"Status, Level, Responsible" } };
+    
+    vector<unsigned int>coachesVector = this->getCoaches();
+    vector<unsigned int>::iterator coachesIterator;
+    
+    vector<Worker*> cochesVecWorker;
+    
+    for (coachesIterator = coachesVector.begin(); coachesIterator != coachesVector.end(); coachesIterator++) {
+        
+        Worker* curr = this->getParentClub()->getCoaches().at(*coachesIterator);
+        cochesVecWorker.push_back(curr);
+    }
+    
+    sort(cochesVecWorker.begin(), cochesVecWorker.end(), SortWorker(criteria, order));
+    
+    for (vector<Worker*>::iterator coachesVecIt = cochesVecWorker.begin(); coachesVecIt != cochesVecWorker.end(); coachesVecIt++) {
+        
+        if ((*coachesVecIt)->isActive()) {
+            
+            vector<string> currentVecString = (*coachesVecIt)->showInScreen();
+             string responsible = this->levelMainCoach == (*coachesVecIt)->getID() ? "Responsible" : "No";
+            currentVecString.push_back(this->levelName);
+            currentVecString.push_back(responsible);
+            coachesStringVector.push_back(currentVecString);
+        }
+    }
+    
+    return coachesStringVector;
+}
+
 Level* Level::addTrainingToLevel(Training* newTraining) {
     this->levelTrainings.push_back(newTraining);
     return this;
@@ -493,7 +524,6 @@ void Level::showMatches(vector<Match*> matches) {
 
 void Level::showTrainings(vector<Training*> trainings) {
 
-	unsigned int tmpID = 0;
 	Table trainingsTable({ "ID", "Date", "Players who attended" });
 
 

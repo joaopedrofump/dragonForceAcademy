@@ -146,7 +146,7 @@ void initialInfo(string &clubName) {
 
 bool confirm(const Table &message) {
 
-	unsigned int confirmResult;
+	unsigned int confirmResult = 1;
 	bool control = false;
 	while (!control) {
 		try {
@@ -328,7 +328,7 @@ void printAddAthleteMenu(string seasonName) {
 }
 
 unsigned int menuAthletesManagement(string seasonName) {
-    unsigned int option;
+    unsigned int option = 0;
     bool control = false;
 	printAthletesMenu(seasonName);
 
@@ -349,7 +349,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
     
     while ((option = menuAthletesManagement(seasonName))) {
 		string input;
-		unsigned int idWorker;
+		unsigned int idWorker = 0;
         bool control = false;
 		bool exitSwitch = false;
 
@@ -410,9 +410,6 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 				}
 
 				if (exitSwitch) break;
-
-
-
 				break;
 
 			}
@@ -467,7 +464,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 				printAddAthleteMenu(seasonName);
 
 
-				unsigned int position;
+				unsigned int position = 0;
 
 				control = false;
 				while (!control) {
@@ -572,7 +569,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 				showMainMenu(0, seasonName);
 
-				unsigned int heigth;
+				unsigned int heigth = 0;
 
 				control = false;
 				while (!control) {
@@ -610,7 +607,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 				showMainMenu(0, seasonName);
 
-				unsigned int CivilID;
+				unsigned int CivilID = 0;
 
 				control = false;
 				while (!control) {
@@ -691,7 +688,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 				
 				showMainMenu(0, seasonName);
-				mainClub.showAthletes(playerPosition, ascending, true);
+				mainClub.showAthletes(playerPosition, ascending, false);
 
 				control = false;
 				while (!control) {
@@ -838,7 +835,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 
 				showMainMenu(0, seasonName);
-				mainClub.showAthletes(playerPosition, ascending, true);
+				mainClub.showAthletes(playerPosition, ascending);
 
 				control = false;
 				while (!control) {
@@ -856,7 +853,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 					catch (InvalidInput e) {
 
 						showMainMenu(0, seasonName);
-						mainClub.showAthletes(playerPosition, ascending, true);
+						mainClub.showAthletes(playerPosition, ascending);
 
 						cout << Table({ e.getMessage() });
 						control = false;
@@ -940,7 +937,7 @@ void printAddCoachMenu(string seasonName) {
 }
 
 unsigned int menuCoachesManagement(string seasonName) {
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 	printCoachesMenu(seasonName);
 
@@ -982,10 +979,56 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 				break;
 			}
 
+            unsigned int criteria = 1;
+            char order = 'a';
+            control = false;
+            
+            while (!control) {
+                try {
+                    
+                    SortCriteria sortCriteria = typeOfCoach;
+                    switch (criteria) {
+                        case 1:
+                            sortCriteria = typeOfCoach;
+                            break;
+                        case 2:
+                            sortCriteria = name;
+                            break;
+                        case 3:
+                            sortCriteria = age;
+                            break;
+                            
+                    }
+                    mainClub.showCoaches(sortCriteria, order == 'a' ? ascending : descending);
+                    cout << Table({ "Sort by:" });
+                    cout << Table({"1. Coach Position","2. Name","3. Age","0. Back" }) << endl;
+                    cout << Table({ "a. Ascending", "d. Descending" });
+                    getline(cin, input);
+                    
+                    if (input.length() == 0) {
+                        exitSwitch = true;
+                        break;
+                    }
+                    stringstream ssTmp(input);
+                    
+                    ssTmp >> criteria;
+                    
+                    ssTmp >> order;
+                    
+                    if (ssTmp.fail() || criteria < 1 || criteria > 3 || (order != 'a' && order != 'd'))
+                        throw InvalidInput();
+                    
+                    control = false;
+                    showMainMenu(0, seasonName);
+                } catch (InvalidInput e) {
+                    showMainMenu(0, seasonName);
+                    mainClub.showCoaches((SortCriteria)(idWorker + 2), order == 'a' ? ascending : descending);
+                    cout << Table({ e.getMessage() });
+                    control = false;
+                }
+            }
 
-
-			mainClub.showCoaches();
-			ignoreLine(false);
+            if (exitSwitch) break;
 			break;
 		}
 		case 2:             //=========== ADD COACH       ==============
@@ -994,7 +1037,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 			//Read Coach's position
 			printAddCoachMenu(seasonName);
 			
-			unsigned int position;
+			unsigned int position = 0;
 
 			control = false;
 			while (!control) {
@@ -1066,7 +1109,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 					control = readDate(newCoachBirthDate, Date(1, 1, 1900),
 														  Date(today.getDay(), today.getMonth(), today.getYear() - 18),
-														  "Please, enter the athlete's BIRTH DATE.", "Invalid Date");
+														  "Please, enter the coach BIRTH DATE.", "Invalid Date");
 
 					if (newCoachBirthDate == today) {
 						exitSwitch = true;
@@ -1094,7 +1137,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 			showMainMenu(0, seasonName);
 
-			unsigned int CivilID;
+			unsigned int CivilID = 0;
 
 			control = false;
 			while (!control) {
@@ -1130,7 +1173,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 			showMainMenu(0, seasonName);
 
-			unsigned int level;
+			unsigned int level = 0;
 
 			control = false;
 			while (!control) {
@@ -1169,7 +1212,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 			showMainMenu(0, seasonName);
 
-			unsigned int coachResponsible;
+			unsigned int coachResponsible = 0;
 
 			control = false;
 			while (!control) {
@@ -1251,7 +1294,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 
 
 			showMainMenu(0, seasonName);
-			mainClub.showCoaches(true);
+			mainClub.showCoaches(typeOfCoach,ascending, true);
 
 			control = false;
 			while (!control) {
@@ -1273,7 +1316,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
 				catch (InvalidInput e) {
 
 					showMainMenu(0, seasonName);
-					mainClub.showCoaches(true);
+					mainClub.showCoaches(typeOfCoach, ascending,true);
 
 					cout << Table({ e.getMessage() });
 					control = false;
@@ -1361,7 +1404,7 @@ void printLevelsMenu(ageLevel level) {
 
 unsigned int menuLevelsManagement(Level* currentLevel) {
 
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 
 	showMainMenu((unsigned int) ageLevelMap.at(currentLevel->getLevelName()) + 2, currentLevel->getYear());
@@ -1385,10 +1428,6 @@ void optionsLevelsManagement(Club &mainClub, Season* currentSeason, Level* curre
 
 	while ((option = menuLevelsManagement(currentLevel))) {
 		string input;
-		unsigned int idMatch;
-		bool control = false;
-		bool exitSwitch = false;
-
 
 		Table showInformation({ "Information" , "Data" });
 
@@ -1433,7 +1472,7 @@ void printFriendlysMenu(ageLevel level) {
 
 unsigned int menuFriendlysManagement(Level* currentLevel) {
 
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 
 	showMainMenu((unsigned int)ageLevelMap.at(currentLevel->getLevelName()) + 2, currentLevel->getYear());
@@ -1453,11 +1492,11 @@ unsigned int menuFriendlysManagement(Level* currentLevel) {
 
 void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* currentLevel) {
 
-	unsigned int option;
+	unsigned int option = 0;
 
 	while ((option = menuFriendlysManagement(currentLevel))) {
 		string input;
-		unsigned int idMatch;
+		unsigned int idMatch = 0;
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -1486,7 +1525,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 					cout << Table({ "Please enter a MATCH ID to show game data." }) << endl;
 
-					control = readUnsignedInt(idMatch, 1, currentLevel->getAllLevelMatches(true).size(), "Invalid Match ID.");
+					control = readUnsignedInt(idMatch, 1, (unsigned int)currentLevel->getAllLevelMatches(true).size(), "Invalid Match ID.");
 
 					if (!idMatch) {
 						exitSwitch = true;
@@ -1556,7 +1595,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 			showMainMenu(0, currentSeason->getSeasonName());
 
-			unsigned int homeOrAway;
+			unsigned int homeOrAway = 0;
 
 			control = false;
 			while (!control) {
@@ -1650,7 +1689,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 			showMainMenu(0, currentSeason->getSeasonName());
 
-			unsigned int callUpPlayers;
+			unsigned int callUpPlayers = 0;
 
 			control = false;
 			while (!control) {
@@ -1753,7 +1792,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 				try {
 					cout << Table({ "Please enter the MATCH ID to call-up players." }) << endl;
 
-					control = readUnsignedInt(idMatch, 1, currentLevel->getAllLevelMatches(true).size(), "Invalid Match ID.");
+					control = readUnsignedInt(idMatch, 1, (unsigned int)currentLevel->getAllLevelMatches(true).size(), "Invalid Match ID.");
 
 					if (!idMatch) {
 						exitSwitch = true;
@@ -1860,7 +1899,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 				try {
 					cout << Table({ "Please enter the MATCH ID to register." }) << endl;
 
-					control = readUnsignedInt(idMatch, 1, currentLevel->getMatchesReadyToPlay().size(), "Invalid Match ID.");
+					control = readUnsignedInt(idMatch, 1, (unsigned int)currentLevel->getMatchesReadyToPlay().size(), "Invalid Match ID.");
 
 					if (!idMatch) {
 						exitSwitch = true;
@@ -1883,8 +1922,8 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			showMainMenu(0, currentSeason->getSeasonName());
 
 			string score;
-			unsigned int homeTeamScore;
-			unsigned int awayTeamScore;
+			unsigned int homeTeamScore = 0;
+			unsigned int awayTeamScore = 0;
 
 			control = false;
 			while (!control) {
@@ -2029,7 +2068,7 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 			showMainMenu(0, currentSeason->getSeasonName());
 
-			unsigned int homeOrAway;
+			unsigned int homeOrAway = 0;
 
 			control = false;
 			while (!control) {
@@ -2113,8 +2152,8 @@ void optionsFriendlysManagement(Club &mainClub, Season* currentSeason, Level* cu
 			showMainMenu(0, currentSeason->getSeasonName());
 
 			string score;
-			unsigned int homeTeamScore;
-			unsigned int awayTeamScore;
+			unsigned int homeTeamScore = 0;
+			unsigned int awayTeamScore = 0;
 
 			control = false;
 			while (!control) {
@@ -2249,7 +2288,7 @@ void printTrainingsMenu(ageLevel level) {
 
 unsigned int menuTrainingsManagement(Level* currentLevel) {
 
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 
 	showMainMenu((unsigned int)ageLevelMap.at(currentLevel->getLevelName()) + 2, currentLevel->getYear());
@@ -2273,7 +2312,7 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 	while ((option = menuTrainingsManagement(currentLevel))) {
 		string input;
-		unsigned int idInput;
+		unsigned int idInput = 0;
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -2418,7 +2457,7 @@ void optionsTrainingsManagement(Club &mainClub, Season* currentSeason, Level* cu
 
 					cout << Table({ "Please enter the TRAINING ID to register." }) << endl;
 
-					control = readUnsignedInt(idInput, 1, currentLevel->getTrainingsReadyToPlay().size(), "Invalid Training ID.");
+					control = readUnsignedInt(idInput, 1, (unsigned int)currentLevel->getTrainingsReadyToPlay().size(), "Invalid Training ID.");
 
 					if (!idInput) {
 						exitSwitch = true;
@@ -2611,7 +2650,7 @@ void printOneTournamentMenu(Level* currentLevel, unsigned int tournamentChosen) 
 
 unsigned int menuTournamentsManagement(Level* currentLevel) {
 
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 
 	showMainMenu((unsigned int)ageLevelMap.at(currentLevel->getLevelName()) + 2, currentLevel->getYear());
@@ -2619,7 +2658,7 @@ unsigned int menuTournamentsManagement(Level* currentLevel) {
 
 	while (!control) {
 		try {
-			control = readUnsignedInt(option, 0, currentLevel->getTournaments().size()+1);
+			control = readUnsignedInt(option, 0, (unsigned int)currentLevel->getTournaments().size()+1);
 		}
 		catch (InvalidInput e) {
 			printTournamentsMenu(currentLevel);
@@ -2631,11 +2670,10 @@ unsigned int menuTournamentsManagement(Level* currentLevel) {
 
 void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* currentLevel) {
 
-	unsigned int tournamentChosen = 1;
-	while (tournamentChosen = menuTournamentsManagement(currentLevel)) {
+	unsigned int tournamentChosen = 0;
+	while ((tournamentChosen = menuTournamentsManagement(currentLevel))) {
 
 		string input;
-		unsigned int idInput;
 		bool control = false;
 		bool exitSwitch = false;
 
@@ -2850,7 +2888,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 
 			showMainMenu(0, currentSeason->getSeasonName());
 
-			unsigned int scheduleMatches;
+			unsigned int scheduleMatches = 0;
 
 			control = false;
 			while (!control) {
@@ -2887,7 +2925,8 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 					showMainMenu(0, currentSeason->getSeasonName());
 
 					string tmpMatch;
-					unsigned int idTeam1, idTeam2;
+                    unsigned int idTeam1 = 0;
+                    unsigned int idTeam2 = 0;
 
 					//Show matches
 					
@@ -3003,8 +3042,8 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 						cout << showInformation;
 
 						string score;
-						unsigned int homeTeamScore;
-						unsigned int awayTeamScore;
+						unsigned int homeTeamScore = 0;
+						unsigned int awayTeamScore = 0;
 
 						control = false;
 						while (!control) {
@@ -3122,7 +3161,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 
 unsigned int menuTournament(Level* currentLevel, unsigned int tournamentChosen) {
 
-	unsigned int option;
+	unsigned int option = 0;
 	bool control = false;
 
 	showMainMenu((unsigned int)ageLevelMap.at(currentLevel->getLevelName()) + 2, currentLevel->getYear());

@@ -94,7 +94,7 @@ public:
 	void addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach = false);
 	bool removeCoach(unsigned int coachId);
 	bool reativateCoach(unsigned int coachId);
-	void showCoaches(bool onlyActives = false) const;
+	void showCoaches(SortCriteria criteria, SortOrder order = ascending,bool onlyActives = false) const;
 	void showCoachesInactives() const;
     void editCoach(unsigned int coachId, string newName, Date newBirthDate, unsigned int newCivilID, unsigned int newCoachType);
 

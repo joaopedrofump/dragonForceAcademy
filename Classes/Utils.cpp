@@ -665,8 +665,8 @@ Table& Table::operator=(const Table& table) {
 	this->columnsWidth = table.getColumsWidth();
 	this->indent = table.getIndentacao();
 	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
-	this->numColumns = table.getTableVector().at(0).size();
-	this->numLines = table.getTableVector().size();
+	this->numColumns = (unsigned int)table.getTableVector().at(0).size();
+	this->numLines = (unsigned int)table.getTableVector().size();
 	this->tableVector = table.getTableVector();
 
 	string tmp = table.tableStream.str();
@@ -681,8 +681,8 @@ Table::Table(const Table& table) {
 	this->columnsWidth = table.getColumsWidth();
 	this->indent = table.getIndentacao();
 	this->lastLineComponents = table.getTableVector().at(table.getTableVector().size() - 1);
-	this->numColumns = table.getTableVector().at(0).size();
-	this->numLines = table.getTableVector().size();
+	this->numColumns = (unsigned int)table.getTableVector().at(0).size();
+	this->numLines = (unsigned int)table.getTableVector().size();
 	this->tableVector = table.getTableVector();
 
 	string tmp = table.tableStream.str();

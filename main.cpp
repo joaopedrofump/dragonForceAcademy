@@ -94,10 +94,12 @@ int main(int argc, const char * argv[]) {
 		system("PAUSE");
     }
     
+    /*
 	catch (...) {
 		cout << "Something went wrong.";
 		system("PAUSE");
 	}
+     */
 	return 0;
 
 }
