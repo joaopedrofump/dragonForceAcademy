@@ -1015,7 +1015,7 @@ void optionsCoachesManagement(Club &mainClub, string seasonName) {
                     
                     ssTmp >> order;
                     
-                    if (ssTmp.fail() || idWorker < 1 || idWorker > 3 || (order != 'a' && order != 'd'))
+                    if (ssTmp.fail() || criteria < 1 || criteria > 3 || (order != 'a' && order != 'd'))
                         throw InvalidInput();
                     
                     control = false;
