@@ -677,9 +677,11 @@ void Level::registerTraining(unsigned int trainingId, vector<unsigned int> missi
 	map<unsigned int, Info*> mapLevelPLayers;
 
 	for (map<unsigned int, Info*>::iterator i = mapLevelAllPLayers.begin(); i != mapLevelAllPLayers.end(); i++) {
-
-		if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
-			mapLevelPLayers.insert(*i);
+        
+        if (this->parentClub->getAthletes().at(i->first)->getECG()) {
+            if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
+                mapLevelPLayers.insert(*i);
+        }
 	}
     
     for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
@@ -728,10 +730,14 @@ void Level::registerTraining(Date trainingDate, vector<unsigned int> missingPlay
 	map<unsigned int, Info*> mapLevelPLayers;
 
 	for (map<unsigned int, Info*>::iterator i = mapLevelAllPLayers.begin(); i != mapLevelAllPLayers.end(); i++) {
+        
+        if (this->parentClub->getAthletes().at(i->first)->getECG()) {
+            if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
+                mapLevelPLayers.insert(*i);
 
-		if (this->parentClub->getAthletes().at(i->first)->getECG()->getResultado())
-			mapLevelPLayers.insert(*i);
-	}
+        }
+
+    }
     
     for (vector<unsigned int>::const_iterator missingPlayersIterator = missingPlayers.begin(); missingPlayersIterator != missingPlayers.end(); missingPlayersIterator++) {
         
