@@ -41,6 +41,8 @@ Tournament::Tournament(Date tournamentStartingDate, Date tournamentEndingDate, v
 
 Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
     
+    map<unsigned int, vector<unsigned int>> caledUpPlayersMap;
+    
     string tournamentStartingDate;
     string tournamentEndingDate;
     vector<string> tournamentClubs;
@@ -73,6 +75,7 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
     }
     //constroi novo torneio com arvore inicializada
     *this = Tournament(startDate, endDate, clubs, tournamentLevel->getParentClub(), name, id);
+    Tournament::idCounter++;
     
     ifstream tournamentTree(tournamentLevel->getPathtoLevelTournamentsFolder() + "/" + name + ".txt");
     
@@ -87,15 +90,41 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
         Match eachMatch(tournamentTree);
         unsigned int numberOfPLayers;
         tournamentTree >> separator >> numberOfPLayers;
+        tournamentTree.clear();
+        tournamentTree.ignore();
         
         vector<unsigned int> playersIds;
         
         for (size_t j = 0; j < numberOfPLayers ; j++) {
             
+            string playerStringTemp;
+            getline(tournamentTree, playerStringTemp);
+            istringstream playerStringStream(playerStringTemp);
+            
             unsigned int currentId;
             string separator;
-            tournamentTree >> currentId >> separator;
-            Info* waste = new Info(tournamentTree);
+            playerStringStream >> currentId >> separator;
+            Position playerPosition = (Position)tournamentLevel->getParentClub()->getAthletes().at(currentId)->getPosition();
+            Info* waste;
+            switch (playerPosition) {
+                case GoalkeeperPos:
+                    waste = new InfoGK(playerStringStream);
+                    break;
+                case DefenderPos:
+                    waste = new InfoDF(playerStringStream);
+                    break;
+                case MidfielderPos:
+                    waste = new InfoMF(playerStringStream);
+                    break;
+                case ForwardPos:
+                    waste = new InfoFW(playerStringStream);
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            
             delete waste;
             playersIds.push_back(currentId);
          
@@ -136,10 +165,11 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
                 
             }
             
+            caledUpPlayersMap.insert(make_pair(matchIdInTournament, playersIds));
             
             if (eachMatch.getScore().first != eachMatch.getScore().second) {
                 
-                registerMatch(matchIdInTournament, matchDate, tournamentLevel, playersIds, eachMatch.getScore().first, eachMatch.getScore().second, indexHome, indexAway);
+                this->registerMatch(matchIdInTournament, matchDate, tournamentLevel, playersIds, eachMatch.getScore().first, eachMatch.getScore().second, indexHome, indexAway);
                 
             }
             
@@ -152,7 +182,16 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
         }
         
     }
+    
+    for (map<unsigned int, vector<unsigned int>>::iterator ite = caledUpPlayersMap.begin(); ite != caledUpPlayersMap.end() ; ite++) {
+        
+        this->callUpPlayers(ite->first, ite->second);
+        
+    }
+    
+    
     tournamentTree.close();
+    
     
 }
 
@@ -294,6 +333,7 @@ void Tournament::scheduleTournamentMatch(unsigned int tournamentMatchId, Date ma
         
         node->second.second->setId(matchId);
         node->first.second = 1;
+		node->second.second->setMatchDay(matchDate);
         
     }
     

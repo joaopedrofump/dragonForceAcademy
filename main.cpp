@@ -78,17 +78,20 @@ int main(int argc, const char * argv[]) {
     catch(InvalidDate e) {
         
         cout << e.getMessage() << endl;
+		system("PAUSE");
         
     }
     
     catch(InvalidStream invalidStream) {
         
         cout << invalidStream.getMessage() << endl;
+		system("PAUSE");
         
     }
     
     catch(string s) {
         cout << s << endl;
+		system("PAUSE");
     }
     
     /*

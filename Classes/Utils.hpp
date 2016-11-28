@@ -317,3 +317,12 @@ string readAndCut(string &stringToCut);
 string normalizeId(unsigned int digits, unsigned int id);
 
 #endif /* Utils_hpp */
+
+template <class T>
+size_t findInVector(vector<T> vec1, T element) {
+	for (size_t i = 0; i < vec1.size(); i++) {
+		if (element == vec1.at(i))
+			return i;
+	}
+	return -1;
+}
