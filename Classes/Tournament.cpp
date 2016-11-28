@@ -105,7 +105,7 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
             string separator;
             playerStringStream >> currentId >> separator;
             Position playerPosition = (Position)tournamentLevel->getParentClub()->getAthletes().at(currentId)->getPosition();
-            Info* waste;
+            Info* waste = NULL;
             switch (playerPosition) {
                 case GoalkeeperPos:
                     waste = new InfoGK(playerStringStream);

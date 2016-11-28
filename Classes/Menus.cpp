@@ -2951,7 +2951,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 					while (!control) {
 						try {
 
-							cout << Table({ "Please, enter the Teams IDs to this tournament. (Eg: 1 x 4)" }) << endl;
+							cout << Table({ "Please, enter the Teams IDs to create a match in this tournament. (Eg: 1 x 4)" }) << endl;
 
 							getline(cin, tmpMatch);
 
@@ -3034,7 +3034,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 
 					// Schedule Match
 					if (today < newMatchDate) {
-						newTournament->scheduleTournamentMatch(++idTournamentMatch, newMatchDate, idTeam1, idTeam2);
+						newTournament->scheduleTournamentMatch(++idTournamentMatch, newMatchDate, idTeam1-1, idTeam2-1);
 					}
 					else {
 
@@ -3294,12 +3294,97 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 			if (exitSwitch) break;
 
 			//==========================
+			
+			if (findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getHomeTeam()) == -1 ||
+				findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getAwayTeam()) == -1) {
+
+				Table showTeams({ "N", "Name" });
+
+				//Read Matches
+				showMainMenu(0, currentSeason->getSeasonName());
+
+				string tmpMatch;
+				unsigned int idTeam1 = 0;
+				unsigned int idTeam2 = 0;
+
+				//Show matches
+
+				for (size_t i = 0; i < currentTournament->getTournamentClubs().size(); i++) {
+					showTeams.addNewLine({ to_string(i+1), currentTournament->getTournamentClubs().at(i)->getName() });
+				}
+
+				vector<vector<string>> newTable = { showTeams.getTableVector().at(0) };
+				for (size_t i = 1; i < showTeams.getTableVector().size(); i++) {
+					control = false;
+					for (size_t j = 0; j < currentTournament->getClubsAuxUsed().size(); j++) {
+
+						if (showTeams.getTableVector().at(i).at(1) == currentTournament->getTournamentClubs().at(currentTournament->getClubsAuxUsed().at(j))->getName()) {
+							control = true;
+						}
+					}
+					if (!control)
+						newTable.push_back(showTeams.getTableVector().at(i));
+				}
+
+				cout << Table(newTable, 0);
+
+				control = false;
+				while (!control) {
+					try {
+
+						cout << Table({ "Please, enter the Teams IDs to create a match in this tournament. (Eg: 1 x 4)" }) << endl;
+
+						getline(cin, tmpMatch);
+
+						if (tmpMatch.length() == 0) {
+							exitSwitch = true;
+							break;
+						}
+
+						stringstream ssPlayers(tmpMatch);
 
 
-			currentTournament->scheduleTournamentMatch(idInput, newMatchDate,
-				findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getHomeTeam()),
-				findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getAwayTeam()), false);
-		
+						char separator;
+
+						ssPlayers >> idTeam1 >> separator >> idTeam2;
+
+						if (ssPlayers.fail())
+							throw InvalidInput(tmpMatch + " is not a valid Match.");
+
+						if (!currentTournament->getClubsAuxUsed().empty()) {
+							vector<unsigned int> tmpAux = currentTournament->getClubsAuxUsed();
+							vector<unsigned int>::const_iterator iteClubHome = find(tmpAux.begin(), tmpAux.end(), idTeam1 - 1);
+							vector<unsigned int>::const_iterator iteClubAway = find(tmpAux.begin(), tmpAux.end(), idTeam2 - 1);
+							if (iteClubHome != tmpAux.end() || iteClubAway != tmpAux.end()) {
+								throw InvalidInput("One of those clubs was already used before");
+							}
+						}
+
+						control = true;
+
+					}
+					catch (InvalidInput e) {
+
+						showMainMenu(0, currentSeason->getSeasonName());
+						cout << Table(newTable, 0);
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				if (exitSwitch)	break;
+
+				currentTournament->scheduleTournamentMatch(idInput, newMatchDate,idTeam1-1, idTeam2-1, false);
+
+			}
+			else {
+				currentTournament->scheduleTournamentMatch(idInput, newMatchDate,
+					findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getHomeTeam()),
+					findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getAwayTeam()), false);
+
+			}
+			
 			ignoreLine(false, "Match correctly scheduled.");
 			mainClub.saveChanges();
 			break;
@@ -3611,7 +3696,297 @@ void optionsTournament(Club &mainClub, Season* currentSeason, Level* currentLeve
 		}
 		case 5:				//=======  REGISTER NOT SCHEDULED MATCH  ======= 
 		{
+			printOneTournamentMenu(currentLevel, tournamentChosen);
 
+			currentTournament->showMatches();
+
+			control = false;
+			while (!control) {
+				try {
+					cout << Table({ "Please enter the MATCH ID to register." }) << endl;
+
+					control = readUnsignedInt(idInput, 1, tournamentClubs.size(), "Invalid Match ID.");
+
+					if (!idInput) {
+						exitSwitch = true;
+						break;
+					}
+
+					if (tournamentMatches.at(numberOfMatches - idInput)->getPlayed())
+						throw InvalidInput("That match was already registed.");
+					else if (today < tournamentMatches.at(numberOfMatches - idInput)->getMatchDay())
+						throw InvalidInput("That match does not happen yet.");
+					else {
+						BinaryTree<nodeMatch> tree = currentTournament->getTournamentTree();
+						for (BTItrLevel<nodeMatch> it(tree); !(it.isAtEnd()); it.advance()) {
+							if (it.getNode()->getElement().second.second == tournamentMatches.at(numberOfMatches - idInput)) {
+								if (it.getNode()->getElement().first.second)
+									throw InvalidInput("That match was already scheduled.");
+								else
+									break;
+							}
+						}
+					}
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+					currentTournament->showMatches();
+
+					cout << Table({ e.getMessage() });
+					control = false;
+				}
+			}
+
+			if (exitSwitch) break;
+
+			//==========================
+
+
+			unsigned int idTeam1 = 0;
+			unsigned int idTeam2 = 0;
+
+			if (findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getHomeTeam()) == -1 ||
+				findInVector(currentTournament->getTournamentClubs(), currentTournament->getMatches().at(numberOfMatches - idInput)->getAwayTeam()) == -1) {
+
+				Table showTeams({ "N", "Name" });
+
+				//Read Matches
+				showMainMenu(0, currentSeason->getSeasonName());
+
+				string tmpMatch;
+
+				//Show matches
+
+				for (size_t i = 0; i < currentTournament->getTournamentClubs().size(); i++) {
+					showTeams.addNewLine({ to_string(i + 1), currentTournament->getTournamentClubs().at(i)->getName() });
+				}
+
+				vector<vector<string>> newTable = { showTeams.getTableVector().at(0) };
+				for (size_t i = 1; i < showTeams.getTableVector().size(); i++) {
+					control = false;
+					for (size_t j = 0; j < currentTournament->getClubsAuxUsed().size(); j++) {
+
+						if (showTeams.getTableVector().at(i).at(1) == currentTournament->getTournamentClubs().at(currentTournament->getClubsAuxUsed().at(j))->getName()) {
+							control = true;
+						}
+					}
+					if (!control) {
+						newTable.push_back(showTeams.getTableVector().at(i));
+						newTable.push_back({"", ""});
+					}
+				}
+
+				cout << Table(newTable, 0);
+
+				control = false;
+				while (!control) {
+					try {
+
+						cout << Table({ "Please, enter the Teams IDs to create a match in this tournament. (Eg: 1 x 4)" }) << endl;
+
+						getline(cin, tmpMatch);
+
+						if (tmpMatch.length() == 0) {
+							exitSwitch = true;
+							break;
+						}
+
+						stringstream ssPlayers(tmpMatch);
+
+
+						char separator;
+
+						ssPlayers >> idTeam1 >> separator >> idTeam2;
+
+						if (ssPlayers.fail())
+							throw InvalidInput(tmpMatch + " is not a valid Match.");
+
+						if (!currentTournament->getClubsAuxUsed().empty()) {
+							vector<unsigned int> tmpAux = currentTournament->getClubsAuxUsed();
+							vector<unsigned int>::const_iterator iteClubHome = find(tmpAux.begin(), tmpAux.end(), idTeam1 - 1);
+							vector<unsigned int>::const_iterator iteClubAway = find(tmpAux.begin(), tmpAux.end(), idTeam2 - 1);
+							if (iteClubHome != tmpAux.end() || iteClubAway != tmpAux.end()) {
+								throw InvalidInput("One of those clubs was already used before");
+							}
+						}
+
+						control = true;
+
+					}
+					catch (InvalidInput e) {
+
+						showMainMenu(0, currentSeason->getSeasonName());
+						cout << Table(newTable, 0);
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				if (exitSwitch)	break;
+
+			}
+			else {
+				idTeam1 = findInVector(tournamentClubs, tournamentMatches.at(numberOfMatches - idInput)->getHomeTeam()) + 1;
+				idTeam2 = findInVector(tournamentClubs, tournamentMatches.at(numberOfMatches - idInput)->getAwayTeam()) + 1;
+			}
+
+			//=======================
+			// Read Match Date
+
+
+			Date newMatchDate;
+
+
+			printOneTournamentMenu(currentLevel, tournamentChosen);
+			cout << Table({to_string(idInput),  currentTournament->getTournamentClubs().at(idTeam1 - 1)->getName(), " X - X ",
+												currentTournament->getTournamentClubs().at(idTeam2 - 1)->getName() });
+
+			control = false;
+			while (!control) {
+				try {
+					Date maxControl = (today < currentTournament->getTournamentEndingDate() ? today : currentTournament->getTournamentEndingDate());
+					/*BinaryTree<nodeMatch> tree = currentTournament->getTournamentTree();
+					for (BTItrLevel<nodeMatch> it(tree); !(it.isAtEnd()); it.advance()) {
+						if (it.getNode()->getElement().second.second->getMatchDay() >= minControl)
+							minControl = it.getNode()->getElement().second.second->getMatchDay();
+					}*/
+
+					control = readDate(newMatchDate, currentTournament->getTournamentStartingDate(), maxControl, "Please, enter the MATCH DATE.", "Invalid Date");
+
+					if (newMatchDate == today) {
+						exitSwitch = true;
+						break;
+					}
+
+					control = true;
+
+				}
+				catch (InvalidDate e) {
+
+					printOneTournamentMenu(currentLevel, tournamentChosen);
+					cout << showInformation;
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			//If user push ENTER
+			if (exitSwitch) break;
+
+			//==========================
+
+			//Read Score of Match
+			showMainMenu(0, currentSeason->getSeasonName());
+
+			cout << Table({ to_string(idInput),  currentTournament->getTournamentClubs().at(idTeam1 - 1)->getName(), " X - X ",
+				currentTournament->getTournamentClubs().at(idTeam2 - 1)->getName() });
+
+			string score;
+			unsigned int homeTeamScore;
+			unsigned int awayTeamScore;
+
+			control = false;
+			while (!control) {
+				try {
+					cout << Table({ "Please, enter the SCORE of the Match. (Eg: 2 x 1)" }) << endl;
+
+					getline(cin, score);
+
+					if (score.length() == 0) {
+						exitSwitch = true;
+						break;
+					}
+
+					stringstream ssPlayers(score);
+
+
+					ssPlayers >> homeTeamScore;
+
+					string separator;
+					ssPlayers >> separator;
+
+					ssPlayers >> awayTeamScore;
+
+					if (ssPlayers.fail())
+						throw InvalidInput("Invalid Score: " + score + " is not a valid score.");
+
+					control = true;
+
+				}
+				catch (InvalidInput e) {
+
+					showMainMenu(0, currentSeason->getSeasonName());
+
+					cout << Table({ e.getMessage() });
+
+				}
+			}
+
+			if (exitSwitch)	break;
+
+			//==========================
+
+			vector<unsigned int> playersToCallUpVector;
+
+			// Call-up players
+			if (tournamentMatches.at(numberOfMatches - idInput)->getHomeTeam()->getName() == mainClub.getName() ||
+				tournamentMatches.at(numberOfMatches - idInput)->getAwayTeam()->getName() == mainClub.getName()) {
+
+				//Read Players to Call-up
+				showMainMenu(0, currentSeason->getSeasonName());
+
+				string playersToCallUp;
+
+				//Show players
+				cout << Table(currentLevel->showAthletesOfLevel(playerPosition, ascending, true), 0);
+
+				control = false;
+				while (!control) {
+					try {
+
+						cout << Table({ "Please, enter the ATHLETES IDs to call-up in this match. (Eg: 1 4 7)" }) << endl;
+
+						getline(cin, playersToCallUp);
+
+						if (playersToCallUp.length() == 0) {
+							exitSwitch = true;
+							break;
+						}
+
+						stringstream ssPlayers(playersToCallUp);
+
+						while (!ssPlayers.eof()) {
+							unsigned int idPlayer;
+							ssPlayers >> idPlayer;
+
+							if (!ssPlayers.fail())
+								playersToCallUpVector.push_back(idPlayer);
+
+						}
+						control = true;
+
+					}
+					catch (InvalidInput e) {
+
+						showMainMenu(0, currentSeason->getSeasonName());
+
+						cout << Table({ e.getMessage() });
+
+					}
+				}
+
+				if (exitSwitch)	break;
+
+			}
+
+			currentTournament->registerMatch(idInput, newMatchDate, currentLevel, playersToCallUpVector, homeTeamScore, awayTeamScore, idTeam1-1, idTeam2-1);
+
+			mainClub.saveChanges();
+			break;
 		}
 
 		case 0:
