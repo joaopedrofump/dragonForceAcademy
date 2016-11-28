@@ -2706,6 +2706,7 @@ void optionsTournamentsManagement(Club &mainClub, Season* currentSeason, Level* 
 					}
 
 					control = validateName(newTournamentName, 1);
+                   
 
 
 				}

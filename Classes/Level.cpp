@@ -990,7 +990,7 @@ void Level::saveLevelTournaments() const {
     
     for (size_t i = 0; i < this->tournaments.size(); i++) {
         
-        tournamentsOfStream << *this->tournaments.at(i);
+        tournamentsOfStream << *this->tournaments.at(i) << endl;
         ofstream tournamentTreeOstream(this->pathToLevelTournamentsFolder + "/" + this->tournaments.at(i)->getName() + ".txt");
         tournamentTreeOstream < *this->tournaments.at(i);
         tournamentTreeOstream.close();
