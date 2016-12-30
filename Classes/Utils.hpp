@@ -20,6 +20,7 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
+#include <unordered_set>
 #include "Exceptions.hpp"
 #include "BST.h"
 #ifdef __llvm__
@@ -35,6 +36,7 @@ string const FILE_SEPARATOR = "------------------------------------------------"
 // ===========================================
 // ==========  ENUMS & STRUCTS ===============
 // ===========================================
+
 
 enum CoachType {
     
@@ -328,6 +330,10 @@ string readAndCut(string &stringToCut);
 
 string normalizeId(unsigned int digits, unsigned int id);
 
+double getAthletePerformance(Fraction winFreq, Fraction drawFreq, Fraction lostFreq);
+
+string transformNumberToOrder(int number);
+
 template <class T>
 int findInVector(vector<T> vec1, T element) {
 	for (int i = 0; i < vec1.size(); i++) {
@@ -336,5 +342,6 @@ int findInVector(vector<T> vec1, T element) {
 	}
 	return -1;
 }
+
 
 #endif /* Utils_hpp */

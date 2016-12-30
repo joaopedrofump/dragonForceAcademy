@@ -305,6 +305,8 @@ void printAthletesMenu(string seasonName) {
 	menuAthletes.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes.addNewLine({ "6 - Update ECG of Athlete" });
 	menuAthletes.addNewLine({ "7 - Notify Athletes - ECG" });
+	menuAthletes.addNewLine({ "8 - Diploma Delivey" });
+	menuAthletes.addNewLine({ "9 - Congrat ex-Athletes and ex-Coaches" });
 	menuAthletes.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes;
 }
@@ -325,6 +327,8 @@ void printAddAthleteMenu(string seasonName) {
 	menuAthletes2.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes2.addNewLine({ "6 - Update ECG of Athlete" });
 	menuAthletes2.addNewLine({ "7 - Notify Athletes - ECG" });
+	menuAthletes2.addNewLine({ "8 - Diploma Delivey" });
+	menuAthletes2.addNewLine({ "9 - Congrat ex-Athletes and ex-Coaches" });
 	menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes << addAthlete << menuAthletes2;
 }
@@ -336,7 +340,7 @@ unsigned int menuAthletesManagement(string seasonName) {
 
 	while (!control) {
 		try {
-			control = readUnsignedInt(option, 0, 7);
+			control = readUnsignedInt(option, 0, 9);
 		}
 		catch (InvalidInput e) {
 			printAthletesMenu(seasonName);
@@ -919,9 +923,53 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 				}
 
+				mainClub.updateQueue_ECGNotify();
 
 				showMainMenu(0, seasonName);
 				mainClub.showNotificationList();
+
+				ignoreLine(false);
+				break;
+			}
+			case 8:				//================= DIPLOMA DELIVERY ==============
+			{
+				if (mainClub.getAthletes().size() == 0) {
+
+					showMainMenu(0, seasonName);
+					cout << Table({ "There are no Athletes." });
+					ignoreLine(false);
+					break;
+				}
+
+				if (mainClub.getAthletes(true).size() == 0) {
+
+					showMainMenu(0, seasonName);
+					cout << Table({ "There are no active Athletes." });
+					ignoreLine(false);
+					break;
+
+				}
+
+
+				showMainMenu(0, seasonName);
+				mainClub.getPlayersDiplomas();
+
+				ignoreLine(false);
+				break;
+			}
+			case 9:				//================= CONGRAT EX WORKERS ==============
+			{
+				if (mainClub.getWorkers().size() == 0) {
+
+					showMainMenu(0, seasonName);
+					cout << Table({ "There are no workers." });
+					ignoreLine(false);
+					break;
+				}
+
+
+				showMainMenu(0, seasonName);
+				mainClub.getFormerPlayersPostals();
 
 				ignoreLine(false);
 				break;
