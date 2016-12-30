@@ -4,6 +4,15 @@
 #include "Level.h"
 
 
+int workerHashTable::operator() (Worker* worker) const {
+    return 3 * worker->getID() + 4;
+}
+
+bool workerHashTable::operator()(Worker* worker1, Worker* worker2) const {
+        return worker1->getID() == worker2->getID();
+    }
+
+
 struct AthletePtr_BST {
     Worker* athletePtr;
     float athletePerformance;
@@ -226,9 +235,17 @@ Club::Club(string clubName, bool empty) {
         
         this->numberOfSeasons = (int)seasons.size();
 
-		updateQueue_ECGNotify();
+        for (map<unsigned int, Worker*>::const_iterator workerIterator = this->allWorkers.begin(); workerIterator != this->allWorkers.end(); workerIterator++) {
+            
+            if (!workerIterator->second->isActive()) {
+                
+                this->formerPlayers.insert(workerIterator->second);
+                
+            }
+            
+        }
         
-
+        
     }
 }
 
@@ -473,6 +490,7 @@ bool Club::removeAthlete(unsigned int athleteId) {
 		ignoreLine(false, "Athlete removed correctly");
 
 		this->allWorkers.at(athleteId)->setStatus(false);
+        this->formerPlayers.insert(this->allWorkers.at(athleteId));
 
 	}
 	else {
@@ -538,6 +556,7 @@ bool Club::reativateAthlete(unsigned int athleteId) {
 	if (!it->second->isActive()) {
 
 		this->allWorkers.at(athleteId)->setStatus(true);
+        this->formerPlayers.erase(this->allWorkers.at(athleteId));
 	}
 	else {
 
@@ -1702,21 +1721,9 @@ vector<vector<string>> Club::getPlayersDiplomas() const {
     while (!bstIterator.isAtEnd()) {
         
         vector<string> eachPlayerResult;
-        string rankString = to_string(++rank);
+        string rankString = to_string(bstIterator.retrieve().athletePtr->getID());
         eachPlayerResult.push_back(rankString);
-        
-        if (rankString.at(rankString.size()-1) == '1') {
-            rankString.append("st");
-        }
-        else if (rankString.at(rankString.size()-1) == '2') {
-            rankString.append("nd");
-        }
-        else if (rankString.at(rankString.size()-1) == '3') {
-            rankString.append("rd");
-        }
-        else {
-            rankString.append("th");
-        }
+        rankString = transformNumberToOrder(++rank);
         
         string playerDiploma;
         string playerTrainingAttendance;
@@ -1756,3 +1763,32 @@ vector<vector<string>> Club::getPlayersDiplomas() const {
     
     return result;
 }
+
+
+vector<vector<string>> Club::getFormerPlayersPostals() const {
+    
+    vector<vector<string>> result;
+    for (hashTableInactivePlayers::const_iterator formerWorkersIterator = this->formerPlayers.begin(); formerWorkersIterator != this->formerPlayers.end(); formerWorkersIterator++) {
+        
+        Date thisYearBD = (*formerWorkersIterator)->getBirthdate();
+        thisYearBD.setYear((*formerWorkersIterator)->getBirthdate().getYear() + (*formerWorkersIterator)->getAge() + 1);
+        Date in10Days = Date() + 10;
+        
+        if (Date() < thisYearBD && thisYearBD < in10Days) {
+            
+            vector<string> eachPlayerGreeting;
+            
+        
+            string id = to_string((*formerWorkersIterator)->getID());
+            string message = "Dear " + (*formerWorkersIterator)->getName() + ", from " + this->clubName + ", we wish you a happy " +  transformNumberToOrder(Date() - (*formerWorkersIterator)->getBirthdate()) + " birthday";
+            eachPlayerGreeting.push_back(id);
+            eachPlayerGreeting.push_back(message);
+            result.push_back(eachPlayerGreeting);
+            
+        }
+        
+    }
+    
+    return result;
+}
+

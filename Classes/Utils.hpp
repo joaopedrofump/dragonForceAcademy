@@ -20,6 +20,7 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
+#include <unordered_set>
 #include "Exceptions.hpp"
 #include "BST.h"
 #ifdef __llvm__
@@ -35,6 +36,7 @@ string const FILE_SEPARATOR = "------------------------------------------------"
 // ===========================================
 // ==========  ENUMS & STRUCTS ===============
 // ===========================================
+
 
 enum CoachType {
     
@@ -336,5 +338,7 @@ int findInVector(vector<T> vec1, T element) {
 	}
 	return -1;
 }
+
+string transformNumberToOrder(int number);
 
 #endif /* Utils_hpp */
