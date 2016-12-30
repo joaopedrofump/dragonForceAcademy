@@ -25,6 +25,8 @@ class Club {
 	string pathToClubCoachesFile; //path to the coaches' file
 	string pathToClubInfoFile; //path to the club's info file
 
+	priority_queue<AthletePtr_PQ>  ECG_queue;
+
 
 public:
 	//! Club's constructor
@@ -90,6 +92,8 @@ public:
 	void showAthletes(SortCriteria criteria, SortOrder order = ascending, bool onlyAvailable = false) const;
 	bool showAthlete(unsigned int id) const;
 	void showAthletesInactives() const;
+	void updateQueue_ECGNotify();
+	void showNotificationList();
 
 	void addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach = false);
 	bool removeCoach(unsigned int coachId);

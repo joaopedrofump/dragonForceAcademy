@@ -38,6 +38,16 @@ public:
 		This is a method that shows all the ECG's information on the screen
 	*/
 	string showInScreen() const;
+
+	/*!
+	This is a method that shows if the ECG is valid
+	*/
+	bool isValid() const;
+
+	/*!
+	This is a method that shows the state of athlete's ecg
+	*/
+	int isDelivered() const; //0 - valid , 1 - invalid, 2 - expirated, 3 - close to expiring (30 days)
 };
 
 #endif /* ECG_hpp */

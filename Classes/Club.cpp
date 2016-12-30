@@ -172,9 +172,11 @@ Club::Club(string clubName, bool empty) {
         inStreamClub.close();
         
         this->numberOfSeasons = (int)seasons.size();
+
+		updateQueue_ECGNotify();
         
+
     }
-    
 }
 
 //====================================
@@ -403,7 +405,7 @@ bool Club::removeAthlete(unsigned int athleteId) {
 
 		showInformation.addNewLine({ "Birth Date: " , this->getAthletes().at(athleteId)->getBirthdate().str() }); // Show Birth Date
 
-		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
+		showInformation.addNewLine({ "Level: " , getLevelStringFromAge(this->getAthletes().at(athleteId)->getBirthdate()) }); // Show Level
 
 		showMainMenu(0, to_string(Date().getYear()));
 
@@ -513,42 +515,6 @@ void Club::showAthletes(SortCriteria criteria, SortOrder order, bool onlyAvailab
 	map<unsigned int, Worker*> athletes = this->getAthletes();
 	map<unsigned int, Worker*>::iterator workersIterator;
 	vector<Level*> levels = this->getSeasons().at(0)->getLevels();
-	
-
-	/*if (onlyActives) {
-
-		bool firstActive = false;
-		for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
-			if (workersIterator->second->isActive() && !firstActive) {
-
-				athletesTable.addNewLine(workersIterator->second->showInScreen());
-				firstActive = true;
-				continue;
-			}
-
-			if (workersIterator->second->isActive() && firstActive && workersIterator->second->isAthlete()) {
-
-				athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
-			}
-		}
-
-	}
-
-	else {
-
-		for (workersIterator = athletes.begin(); workersIterator != athletes.end(); workersIterator++) {
-
-			if (workersIterator == athletes.begin()) {
-
-				athletesTable.addNewLine(workersIterator->second->showInScreen());
-			}
-			else {
-
-				athletesTable.addDataInSameLine(workersIterator->second->showInScreen()); //addDataInSameLine
-			}
-		}
-
-	}*/
 
 
 	for (size_t i = 0; i < levels.size(); i++) {
@@ -612,13 +578,83 @@ bool Club::showAthlete(unsigned int id) const {
 
 	showInformation.addNewLine({ "Birth Date: " , currentAthlete->getBirthdate().str() });
 
-	showInformation.addNewLine({ "Level: " , getLevelFromAge(currentAthlete->getBirthdate()) });
+	showInformation.addNewLine({ "Level: " , getLevelStringFromAge(currentAthlete->getBirthdate()) });
 
 	cout << showInformation;
 
 	return true;
 }
 
+void Club::updateQueue_ECGNotify() {
+
+	//Update priority_queue to players who don't have a valid ECG
+
+	priority_queue<AthletePtr_PQ> newPQ;
+
+	for (map<unsigned int, Worker*>::iterator it = allWorkers.begin(); it != allWorkers.end(); it++) {
+
+		if (it->second->isAthlete() && it->second->isActive() && it->second->isECGDelivered()) {
+
+			AthletePtr_PQ notValidECG_player;
+			notValidECG_player.athlete = (Athlete*)it->second;
+			newPQ.push(notValidECG_player);
+		}
+	}
+
+	ECG_queue = newPQ;
+}
+
+void Club::showNotificationList() {
+
+	Table athletesTable({ "ID", "Name", "Birthdate" , "ECG", "Message" });
+	
+	priority_queue<AthletePtr_PQ> tmpHeap = this->ECG_queue;
+
+	size_t size = tmpHeap.size();
+	for (size_t i = 0; i < size; i++) {
+		
+		string message;
+		switch (tmpHeap.top().athlete->isECGDelivered()) {
+		case 1:
+			message = "Unfortunately, you have not a positive ECG so you are not able to participate in " + this->getName() + " matches.";
+			break;
+		case 2:
+			message = "Your last ECG expired on " + tmpHeap.top().athlete->getECG()->getExpirationDate().str() + " then you need to take a new electrocardiogram.";
+			break;
+		case 3:
+			message = "Your last ECG is almost out of date (" + tmpHeap.top().athlete->getECG()->getExpirationDate().str() + ") then you need to take a new electrocardiogram.";
+			break;
+		case 4:
+			message = "You have not a ECG exame and you need it to perform in " + this->getName() + " matches. Please consider take a new ECG.";
+			break;
+		default:
+			message = "You already have a valid ECG. Keep going!";
+			break;
+		}
+		if (i == 0) {
+			athletesTable.addNewLine({ to_string(tmpHeap.top().athlete->getID()),
+				tmpHeap.top().athlete->getName() ,
+				tmpHeap.top().athlete->getBirthdate().str(),
+				tmpHeap.top().athlete->getECG() ? tmpHeap.top().athlete->getECG()->showInScreen() : "NONE",
+				message });
+		}
+		else {
+			athletesTable.addDataInSameLine({ to_string(tmpHeap.top().athlete->getID()),
+				tmpHeap.top().athlete->getName() ,
+				tmpHeap.top().athlete->getBirthdate().str(),
+				tmpHeap.top().athlete->getECG() ? tmpHeap.top().athlete->getECG()->showInScreen() : "NONE",
+				message });
+		}
+		
+
+		if (i != size - 1)
+			athletesTable.addDataInSameLine({ "" });
+
+		tmpHeap.pop();
+	}
+
+	cout << athletesTable << endl;
+}
 
 //====================================
 //===========  COACHES  ==============
@@ -801,7 +837,7 @@ bool Club::reativateCoach(unsigned int coachId) {
 
 		showInformation.addNewLine({ "Birth Date: " , this->getCoaches().at(coachId)->getBirthdate().str() }); // Show Birth Date
 
-		showInformation.addNewLine({ "Level: " , getLevelFromAge(this->getCoaches().at(coachId)->getBirthdate()) }); // Show Level
+		showInformation.addNewLine({ "Level: " , getLevelStringFromAge(this->getCoaches().at(coachId)->getBirthdate()) }); // Show Level
 
 		showMainMenu(0, to_string(Date().getYear()));
 

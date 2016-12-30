@@ -10,22 +10,8 @@
 
 ECG::ECG(bool resultado, Date expirationDate) {
     
-    try {
-      
-        if(expirationDate < Date()) {
-            throw string("invalid expiration date");
-        }
-        this->resultado = resultado;
-        this->expirationDate = expirationDate;
-        
-    }
-    
-    catch(InvalidDate e) {
-        cout << e.getMessage() << endl;
-    }
-    
-    
-    this->resultado=resultado;
+	this->resultado = resultado;
+	this->expirationDate = expirationDate;
 }
 
 bool ECG::getResultado() const {
@@ -53,4 +39,22 @@ string ECG::showInScreen() const {
 		result = "INVALID";
 	}
 	return result;
+}
+
+bool ECG::isValid() const {
+	if (expirationDate < Date())
+		return false;
+	else
+		return resultado;
+}
+
+int ECG::isDelivered() const {
+	if (expirationDate < Date())
+		return 2;
+	else {
+		if (expirationDate < Date() + 30)
+			return 3;
+		else
+			return resultado ? 0 : 1;
+	}
 }
