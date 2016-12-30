@@ -25,7 +25,6 @@ class Club {
 	string pathToClubCoachesFile; //path to the coaches' file
 	string pathToClubInfoFile; //path to the club's info file
 
-
 public:
 	//! Club's constructor
 	/*!
@@ -155,6 +154,8 @@ public:
     
     //registar jogo não agendado sem performance de jogadores (para já)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
-
+    
+    //sort players by performance and training attendance
+    vector<vector<string>> getPlayersDiplomas() const;
     
 };

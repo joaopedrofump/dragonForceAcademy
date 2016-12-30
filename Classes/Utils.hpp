@@ -127,6 +127,12 @@ enum SortOrder {
     descending
 };
 
+enum Result {
+    win,
+    lost,
+    draw
+};
+
 
 const map<Position, string> positionsMapPosString = {
     
@@ -272,6 +278,8 @@ public:
 	void print(bool originalFraction = true) const;
 	void printPercentage() const;
     string getFrac() const;
+    int getNumerator() const;
+    int getDenominator() const;
 };
 
 // ===========================================

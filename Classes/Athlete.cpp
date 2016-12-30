@@ -153,3 +153,10 @@ void Athlete::setHeight(unsigned int newHeight) {
     this->height= newHeight;
 }
 
+bool Athlete::hasValidECG() {
+    
+    if(this->ecg) {
+        return this->ecg->isValid();
+    }
+    return false;
+}

@@ -261,6 +261,7 @@ void Match::registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore
         
     }
     
+    
     this->homeTeamScore = homeTeamScore;
     this->awayTeamScore = awayTeamScore;
     this->played = true;
@@ -308,4 +309,8 @@ vector<string> Match::showInScreen(unsigned int tmpID) const {
 
 void Match::setId(string newId) {
     this->id = newId;
+}
+
+void Match::setPlayed(bool played) {
+    this->played = played;
 }

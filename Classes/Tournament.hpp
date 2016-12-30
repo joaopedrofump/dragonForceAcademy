@@ -57,10 +57,10 @@ public:
     //para agendar um de uma fase posterior a fase inicial do torneio chamar funcao com dois ultimos parametros a 0
     void callUpPlayers(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0);
     //registar jogo já agendado sem performance de jogadores (para já)
-    void registerMatch(unsigned int tournamentMatchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
+    void registerMatch(unsigned int tournamentMatchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers, bool previouslyRegistered = false);
     //registar jogo não agendado sem performance de jogadores (para já)
     //para agendar um de uma fase posterior a fase inicial do torneio chamar funcao com quatro ultimos parametros a 0
-    void registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore = 0, unsigned int awayTeamScore = 0, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0);
+    void registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore = 0, unsigned int awayTeamScore = 0, unsigned int homeTeamIndex = 0, unsigned int awayTeamIndex = 0, bool previouslyRegistered = false);
     void updateTree();
     
 	// Write to Tournaments file

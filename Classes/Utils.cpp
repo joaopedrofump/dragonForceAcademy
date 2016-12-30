@@ -882,6 +882,13 @@ Fraction Fraction::operator++ (int) { // postfix ++
 	return result;
 }
 
+int Fraction::getNumerator() const {
+    return this->numerator;
+}
+int Fraction::getDenominator() const {
+    return this->denominator;
+}
+
 //  Console functions
 
 void Fraction::print(bool originalFraction) const {

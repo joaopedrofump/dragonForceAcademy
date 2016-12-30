@@ -24,6 +24,9 @@ extern const map<string, ForwardPosition> forwardsMap; //map including the diffe
 class Info {
 protected:
     Fraction trainingFreq; //athlete's training frequency percentage
+    Fraction winningFreq; //athlete's frequency to won matches
+    Fraction losingFreq; //athlete's frequency to lost matches
+    Fraction drawFreq; //athlete's frequency to drawn matches
     unsigned int yellowCards; //athlete's number of yellow cards
     unsigned int redCards; //athlete's number of red cards
     unsigned int tackles; //athlete's number of tackles
@@ -38,7 +41,7 @@ public:
 	/*!
 	*	This is a constructor that creates new athlete's performance information using training frequency, number of yellow cards, number of red cards, number of tackles, number of fouls commited, number of goals scored, number of assists, pass accuracy
 	*/
-	Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
+	Info(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy);
 	
 	/*!
 	*	This is a constructor that creates new athlete's performance 
@@ -48,6 +51,12 @@ public:
     Info(istream &inStream);
     Fraction getTrainingFreq() const;
     void addTraining(Fraction newTraining = Fraction(1,1));
+    Fraction getWinningFreq() const;
+    void addWinningFreq(Fraction newFreq = Fraction(1,1));
+    Fraction getLosingFreq() const;
+    void addLosingFreq(Fraction newFreq = Fraction(1,1));
+    Fraction getDrawFreq() const;
+    void addDrawFreq(Fraction newFreq = Fraction(1,1));
     unsigned int getYellowCards() const;
     unsigned int getRedCards() const;
     void addYellowCard();
@@ -92,7 +101,7 @@ protected:
     unsigned int goalsConceeded;
     
 public:
-    InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
+    InfoGK(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq,unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded);
 	InfoGK(string &newInfo);
     InfoGK();
     InfoGK(istream &inStream);
@@ -109,7 +118,7 @@ class InfoDF : public Info {
 protected:
     vector<DefenderPosition> positions;
 public:
-    InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
+    InfoDF(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions);
 	InfoDF(string &newInfo);
     InfoDF();
     InfoDF(istream &inStream);
@@ -123,7 +132,7 @@ class InfoMF : public Info {
 protected:
     vector<MidfielderPosition> positions;
 public:
-    InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
+    InfoMF(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions);
 	InfoMF(string &newInfo);
     InfoMF();
     InfoMF(istream &inStream);
@@ -140,7 +149,7 @@ protected:
 
     vector<ForwardPosition> positions;
 public:
-    InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
+    InfoFW(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions);
 	InfoFW(string &newInfo);
     InfoFW();
     InfoFW(istream &inStream);

@@ -38,6 +38,11 @@ public:
 		This is a method that shows all the ECG's information on the screen
 	*/
 	string showInScreen() const;
+    
+    /*!
+     This is a method that returns if an ECG is a valid one
+     */
+    bool isValid() const;
 };
 
 #endif /* ECG_hpp */

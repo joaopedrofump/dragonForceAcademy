@@ -960,10 +960,11 @@ vector<unsigned int> Level::filterPlayers(vector<unsigned int> originalPlayerIds
     
     if (!originalPlayerIdsVector.size()) {
         
-        
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = this->mapInfoPlayers.begin(); levelPlayersIterator != this->mapInfoPlayers.end(); levelPlayersIterator++) {
             
-            resultFilteredVector.push_back(levelPlayersIterator->first);
+            if(this->parentClub->getWorkers().at(levelPlayersIterator->first)->hasValidECG() && this->parentClub->getWorkers().at(levelPlayersIterator->first)->isActive())
+            
+                resultFilteredVector.push_back(levelPlayersIterator->first);
             
         }
         
@@ -977,7 +978,9 @@ vector<unsigned int> Level::filterPlayers(vector<unsigned int> originalPlayerIds
             
             if (existsInLevel != this->mapInfoPlayers.end()) {
                 
-                resultFilteredVector.push_back(originalPlayerIdsVector.at(i));
+                if (this->parentClub->getAthletes().at(originalPlayerIdsVector.at(i))->hasValidECG() && this->parentClub->getAthletes().at(originalPlayerIdsVector.at(i))->isActive()) {
+                    resultFilteredVector.push_back(originalPlayerIdsVector.at(i));
+                }
                 
             }
             
