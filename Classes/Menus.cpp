@@ -304,6 +304,7 @@ void printAthletesMenu(string seasonName) {
 	menuAthletes.addNewLine({ "4 - Reactivate Athlete" });
 	menuAthletes.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes.addNewLine({ "6 - Update ECG of Athlete" });
+	menuAthletes.addNewLine({ "7 - Notify Athletes - ECG" });
 	menuAthletes.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes;
 }
@@ -323,6 +324,7 @@ void printAddAthleteMenu(string seasonName) {
 	Table menuAthletes2({ "4 - Reactivate Athlete" });
 	menuAthletes2.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes2.addNewLine({ "6 - Update ECG of Athlete" });
+	menuAthletes2.addNewLine({ "7 - Notify Athletes - ECG" });
 	menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes << addAthlete << menuAthletes2;
 }
@@ -334,7 +336,7 @@ unsigned int menuAthletesManagement(string seasonName) {
 
 	while (!control) {
 		try {
-			control = readUnsignedInt(option, 0, 6);
+			control = readUnsignedInt(option, 0, 7);
 		}
 		catch (InvalidInput e) {
 			printAthletesMenu(seasonName);
@@ -651,7 +653,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 				showInformation.addNewLine({ "Birth Date: " , newAthleteBirthDate.str() });
 
-				showInformation.addNewLine({ "Level: " , getLevelFromAge(newAthleteBirthDate) });
+				showInformation.addNewLine({ "Level: " , getLevelStringFromAge(newAthleteBirthDate) });
 
 				showMainMenu(0, seasonName);
 
@@ -780,7 +782,7 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 
 						showInformation.addNewLine({ "Birth Date: " , mainClub.getAthletes().at(idWorker)->getBirthdate().str() }); // Show Birth Date
 
-						showInformation.addNewLine({ "Level: " , getLevelFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
+						showInformation.addNewLine({ "Level: " , getLevelStringFromAge(mainClub.getAthletes().at(idWorker)->getBirthdate()) }); // Show Level
 
 						showMainMenu(0, seasonName);
 
@@ -896,6 +898,32 @@ void  optionsAthletesManagement(Club &mainClub, string seasonName) {
 				if (exitSwitch) break;
 
 				mainClub.saveChanges();
+				break;
+			}
+			case 7:				//================= NOTIFY PLAYERS WITH INVALID ECG ==============
+			{
+				if (mainClub.getAthletes().size() == 0) {
+
+					showMainMenu(0, seasonName);
+					cout << Table({ "There are no Athletes." });
+					ignoreLine(false);
+					break;
+				}
+
+				if (mainClub.getAthletes(true).size() == 0) {
+
+					showMainMenu(0, seasonName);
+					cout << Table({ "There are no active Athletes." });
+					ignoreLine(false);
+					break;
+
+				}
+
+
+				showMainMenu(0, seasonName);
+				mainClub.showNotificationList();
+
+				ignoreLine(false);
 				break;
 			}
             case 0:

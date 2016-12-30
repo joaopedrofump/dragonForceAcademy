@@ -67,12 +67,20 @@ void Athlete::updateECG(bool resultado, Date expirationDate) {
         this->ecg = tmpECG;
     }
     
+
 }
 
 bool Athlete::isAthlete() const {
 
 	return true;
 
+}
+
+int Athlete::isECGDelivered() const {
+	if (this->ecg) {
+		return this->ecg->isDelivered();
+	}
+	return 4;
 }
 
 unsigned int Athlete::getPosition() const {
@@ -120,7 +128,7 @@ vector<string> Athlete::showInScreen() const {
     }
     result.push_back(playerPosition);
 
-    result.push_back(getLevelFromAge(this->birthdate));
+    result.push_back(getLevelStringFromAge(this->birthdate));
 
     string workerStatus = this->status ? "ACTIVE" : "INACTIVE";
     result.push_back(workerStatus);
@@ -153,3 +161,10 @@ void Athlete::setHeight(unsigned int newHeight) {
     this->height= newHeight;
 }
 
+bool Athlete::hasValidECG() {
+    
+    if(this->ecg) {
+        return this->ecg->isValid();
+    }
+    return false;
+}

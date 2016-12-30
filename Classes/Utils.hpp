@@ -127,6 +127,12 @@ enum SortOrder {
     descending
 };
 
+enum Result {
+    win,
+    lost,
+    draw
+};
+
 
 const map<Position, string> positionsMapPosString = {
     
@@ -170,6 +176,9 @@ public:
 	friend bool operator==(const Date &date1, const Date &date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
 	friend int operator-(const Date &date1, const Date &date2);
+	friend Date operator+(const Date &date, int delta);
+	Date& operator++();
+	Date operator++(int);
 	string showDate() const;
 	void setCurrentDate();
 	string str() const;
@@ -226,11 +235,10 @@ public:
 
 class Fraction {
 
-private:
+public:
 	int numerator;
 	int denominator;
 
-public:
 	Fraction();
 	Fraction(int num, int den);
 	Fraction(string fractionString);
@@ -248,6 +256,8 @@ public:
 
 	Fraction operator/(Fraction value) const;
 	void operator/=(Fraction &value);
+
+	double fracValue() const;
 
 	//  Comparers
 
@@ -272,6 +282,8 @@ public:
 	void print(bool originalFraction = true) const;
 	void printPercentage() const;
     string getFrac() const;
+    int getNumerator() const;
+    int getDenominator() const;
 };
 
 // ===========================================
@@ -310,13 +322,11 @@ int createDirectory(const char* path);
 
 string stringPath(string originalStr);
 
-string getLevelFromAge(Date birthDate);
+string getLevelStringFromAge(Date birthDate);
 
 string readAndCut(string &stringToCut);
 
 string normalizeId(unsigned int digits, unsigned int id);
-
-#endif /* Utils_hpp */
 
 template <class T>
 int findInVector(vector<T> vec1, T element) {
@@ -326,3 +336,5 @@ int findInVector(vector<T> vec1, T element) {
 	}
 	return -1;
 }
+
+#endif /* Utils_hpp */

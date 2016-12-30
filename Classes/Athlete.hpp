@@ -12,16 +12,18 @@
 
 #include "Coach.hpp"
 
+
+
 class Athlete : public Worker {
     
 protected:
     unsigned char height; //Athlete's height
-    ECG* ecg; //apontador para ECG quando houver classe
+    ECG* ecg; //apontador para ECG
 	Position position; //Athlete's position
 
 public:
 	/*!
-	* This is the constructor that creates an athleteuses name, birthdate, civilID, height. The id is set automatically
+	* This is the constructor that creates an athlete using name, birthdate, civilID, height. The id is set automatically
 	*/
     Athlete(string name, Date birthdate, unsigned int civilID, unsigned char height, unsigned int id = 0);
 	
@@ -57,7 +59,10 @@ public:
 	*	This is a method that checks if the worker is an athlete
 	*/
 	bool isAthlete() const;
-    
+	/*!
+	*	This is a method that checks if the ECG of athlete was delivered
+	*/
+	int isECGDelivered() const; //0 - valid , 1 - invalid, 2 - expirated, 3 - close to expiring (30 days) , 4 - no ecg registered
 	/*!
 	*	This is a method that generates the athlete's performance information
 	*/
@@ -71,7 +76,15 @@ public:
     void setBirthDate(Date newBirthdate);
     
     void setHeight(unsigned int newHeight);
+    
+    bool hasValidECG();
 };
 
+struct AthletePtr_PQ {
+	Athlete* athlete;
+	bool operator < (const AthletePtr_PQ & t) const {
+		return athlete->getBirthdate() < t.athlete->getBirthdate();
+	}
+};
 
 #endif /* Athlete_hpp */

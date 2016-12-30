@@ -8,9 +8,12 @@
 
 #include "InfoAthletes.hpp"
 
-Info::Info(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy) {
+Info::Info(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy) {
     
     this->trainingFreq = trainingFreq;
+    this->winningFreq = winningFreq;
+    this->losingFreq = losingFreq;
+    this->drawFreq = drawFreq;
     this->yellowCards = yellowCards;
     this->redCards = redCards;
     this->tackles = tackles;
@@ -59,6 +62,9 @@ Info::Info(string &newInfo) {
 
 Info::Info() {
     this->trainingFreq = Fraction();
+    this->winningFreq = Fraction();
+    this->losingFreq = Fraction();
+    this->drawFreq = Fraction();
     this->yellowCards = 0;
     this->redCards = 0;
     this->tackles = 0;
@@ -73,6 +79,9 @@ Info::Info(istream &instream) {
     
     string separator;
     string trainingFreq;
+    string wFreq;
+    string lFreq;
+    string dFreq;
     instream >> trainingFreq;
     this->trainingFreq = Fraction(trainingFreq);
     instream >> separator;
@@ -91,6 +100,16 @@ Info::Info(istream &instream) {
     string passAccuracy;
     instream >> passAccuracy;
     this->passAccuracy = Fraction(passAccuracy);
+    instream >> separator;
+    instream >> wFreq;
+    instream >> separator;
+    instream >> lFreq;
+    instream >> separator;
+    instream >> dFreq;
+    
+    this->winningFreq = Fraction(wFreq);
+    this->losingFreq = Fraction(lFreq);
+    this->drawFreq = Fraction(dFreq);
     
 }
 
@@ -105,6 +124,28 @@ void Info::addTraining(Fraction newTraining) {
     this->trainingFreq |= newTraining;
     
 }
+
+Fraction Info::getWinningFreq() const {
+    return this->winningFreq;
+}
+void Info::addWinningFreq(Fraction newFreq) {
+    this->winningFreq |= newFreq;
+    
+}
+
+Fraction Info::getLosingFreq() const {
+    return this->losingFreq;
+}
+void Info::addLosingFreq(Fraction newFreq) {
+    this->losingFreq |= newFreq;
+}
+Fraction Info::getDrawFreq() const {
+    return this->drawFreq;
+}
+void Info::addDrawFreq(Fraction newFreq) {
+    this->drawFreq |= newFreq;
+}
+
 
 unsigned int Info::getYellowCards() const {
     
@@ -168,7 +209,7 @@ ostream& operator<<(ostream& out, const Info &info) {
 
 string Info::generateString() const {
     
-    return (trainingFreq.getFrac() + " ; " + to_string(this->tackles) + " ; " + to_string(this->fouls) + " ; " + to_string(this->yellowCards) + " ; " + to_string(this->redCards) + " ; " + to_string(this->goalsScored) + " ; " + to_string(this->assists) + " ; " + this->passAccuracy.getFrac());
+    return (trainingFreq.getFrac() + " ; " + to_string(this->tackles) + " ; " + to_string(this->fouls) + " ; " + to_string(this->yellowCards) + " ; " + to_string(this->redCards) + " ; " + to_string(this->goalsScored) + " ; " + to_string(this->assists) + " ; " + this->passAccuracy.getFrac() + " ; " + this->winningFreq.getFrac() + " ; " + this->losingFreq.getFrac() + " ; " + this->getDrawFreq().getFrac());
     
 }
 
@@ -181,6 +222,9 @@ void Info::save(ofstream &out) {
 void Info::sumGeneralInfo(const Info &info2) {
     
     this->trainingFreq |= info2.getTrainingFreq();
+    this->winningFreq |= info2.getWinningFreq();
+    this->losingFreq |= info2.getLosingFreq();
+    this->drawFreq |= info2.getDrawFreq();
     this->tackles += info2.getTackles();
     this->fouls += info2.getFouls();
     this->yellowCards += info2.getYellowCards();
@@ -191,8 +235,7 @@ void Info::sumGeneralInfo(const Info &info2) {
 }
 
 
-
-InfoGK::InfoGK(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
+InfoGK::InfoGK(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq,unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, unsigned int saves, unsigned int goalsConceeded) : Info(trainingFreq, winningFreq, losingFreq, drawFreq,yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->saves = saves;
     this->goalsConceeded = goalsConceeded;
@@ -260,7 +303,7 @@ void InfoGK::operator+=(const Info* info2) {
 }
 
 
-InfoDF::InfoDF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
+InfoDF::InfoDF(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<DefenderPosition> positions) : Info(trainingFreq, winningFreq, losingFreq, drawFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
     
@@ -361,7 +404,7 @@ void InfoDF::operator+=(const Info* info2) {
     
 }
 
-InfoMF::InfoMF(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
+InfoMF::InfoMF(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<MidfielderPosition> positions) : Info(trainingFreq, winningFreq, losingFreq, drawFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
     
@@ -465,7 +508,7 @@ void InfoMF::operator+=(const Info* info2) {
     
 }
 
-InfoFW::InfoFW(Fraction trainingFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions) : Info(trainingFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
+InfoFW::InfoFW(Fraction trainingFreq, Fraction winningFreq, Fraction losingFreq, Fraction drawFreq, unsigned int yellowCards, unsigned int redCards, unsigned int tackles, unsigned int fouls, unsigned int goalsScored, unsigned int assists, Fraction passAccuracy, vector<ForwardPosition> positions) : Info(trainingFreq, winningFreq, losingFreq, drawFreq, yellowCards, redCards, tackles, fouls, goalsScored, assists, passAccuracy) {
     
     this->positions = positions;
     

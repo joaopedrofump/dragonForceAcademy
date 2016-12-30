@@ -275,3 +275,5 @@ bool SortWorker::operator()(Worker* t1, Worker* t2) const {
     return true;
     
 }
+
+int Worker::isECGDelivered() const { return 0; }

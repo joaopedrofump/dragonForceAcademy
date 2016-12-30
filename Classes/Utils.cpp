@@ -337,6 +337,41 @@ int operator-(const Date &date1, const Date &date2)
     return date1.getYear() - date2.getYear();
 }
 
+Date& Date::operator++ (){     // prefix ++
+	
+	if (this->day == this->numDays(this->month, this->year)) {
+		if (this->month == 12) {
+			this->day = 1;
+			this->month = 1;
+			this->year++;
+		}
+		else {
+			this->day = 1;
+			this->month++;
+		}
+	}
+	else
+		this->day++;
+
+	return *this;
+}
+
+Date Date::operator++(int)  // postfix ++
+{
+	Date result(*this);
+	++(*this); 
+	return result;
+}
+
+Date operator+(const Date &date, int delta) {
+
+	Date result(date);
+	for (size_t i = 0; i < delta; i++) {
+		result++;
+	}
+	return result;
+}
+
 string Date::showDate() const {
     
     string finalDate = "";
@@ -882,6 +917,13 @@ Fraction Fraction::operator++ (int) { // postfix ++
 	return result;
 }
 
+int Fraction::getNumerator() const {
+    return this->numerator;
+}
+int Fraction::getDenominator() const {
+    return this->denominator;
+}
+
 //  Console functions
 
 void Fraction::print(bool originalFraction) const {
@@ -919,6 +961,10 @@ void Fraction::printPercentage() const {
 string Fraction::getFrac() const {
     
     return (to_string(this->numerator) + "/" +  to_string(this->denominator));
+}
+
+double Fraction::fracValue() const {
+	return this->numerator * 1.0 / (this->denominator ? this->denominator : 1.000000000000002);
 }
 
 // ===========================================
@@ -1336,7 +1382,7 @@ string stringPath(string originalStr) {
     
 }
 
-string getLevelFromAge(Date birthDate) {
+string getLevelStringFromAge(Date birthDate) {
     
     unsigned int age = Date() - birthDate;
     
@@ -1357,6 +1403,26 @@ string getLevelFromAge(Date birthDate) {
     
     else
         return "No Level available";
+}
+
+ageLevel getLevelFromBirthdate(Date birthDate) {
+
+	unsigned int age = Date() - birthDate;
+
+	if (age <= 13)
+		return U13;
+
+	else if (age > 13 && age <= 15)
+		return U15;
+
+	else if (age > 15 && age <= 17)
+		return U17;
+
+	else if (age > 17 && age <= 19)
+		return U19;
+
+	else /*if (age > 19 && age <= 45)*/
+		return Seniors;
 }
 
 string readAndCut(string &stringToCut) {
@@ -1391,6 +1457,15 @@ string normalizeId(unsigned int digits, unsigned int id) {
     }
     return tmp + idString;
     
+}
+
+double getAthletePerformance(Fraction winFreq, Fraction drawFreq, Fraction lostFreq) {
+
+	double Aw = winFreq.fracValue() * (winFreq.numerator + drawFreq.denominator - drawFreq.numerator + lostFreq.denominator - lostFreq.numerator);
+	double Ad = drawFreq.fracValue() * (drawFreq.numerator + winFreq.denominator - winFreq.numerator + lostFreq.denominator - lostFreq.numerator);
+	double Al = lostFreq.fracValue() * (lostFreq.numerator + drawFreq.denominator - drawFreq.numerator + winFreq.denominator - winFreq.numerator);
+
+	return 5 * Aw - 5 * Al + 2 * ((winFreq.denominator > lostFreq.denominator) ? -Ad : Ad);
 }
 
 

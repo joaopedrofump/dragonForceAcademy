@@ -25,6 +25,7 @@ class Club {
 	string pathToClubCoachesFile; //path to the coaches' file
 	string pathToClubInfoFile; //path to the club's info file
 
+	priority_queue<AthletePtr_PQ>  ECG_queue;
 
 public:
 	//! Club's constructor
@@ -90,6 +91,8 @@ public:
 	void showAthletes(SortCriteria criteria, SortOrder order = ascending, bool onlyAvailable = false) const;
 	bool showAthlete(unsigned int id) const;
 	void showAthletesInactives() const;
+	void updateQueue_ECGNotify();
+	void showNotificationList();
 
 	void addCoach(CoachType position, string name, Date birthdate, unsigned int civilID, ageLevel level, bool mainCoach = false);
 	bool removeCoach(unsigned int coachId);
@@ -155,6 +158,8 @@ public:
     
     //registar jogo não agendado sem performance de jogadores (para já)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
-
+    
+    //sort players by performance and training attendance
+    vector<vector<string>> getPlayersDiplomas() const;
     
 };
