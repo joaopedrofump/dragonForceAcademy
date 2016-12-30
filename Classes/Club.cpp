@@ -6,15 +6,20 @@
 
 struct AthletePtr_BST {
     Worker* athletePtr;
-    float athletePerformance;
-    float athleteTrainingAttendance;
+    double athletePerformance;
+    Fraction athleteTrainingAttendance;
     
-    AthletePtr_BST(Worker*);
-    AthletePtr_BST();
+    AthletePtr_BST(Worker* athletePtr);
     bool operator<(const AthletePtr_BST &at2) const;
     bool operator==(const AthletePtr_BST &at2) const;
-    
+	double generalPerformance() const;
 };
+
+double AthletePtr_BST::generalPerformance() const {
+	if (this->athleteTrainingAttendance == Fraction(6, 7)) 
+		cout << endl;
+	return athleteTrainingAttendance.fracValue() * (athletePerformance + 1); 
+}
 
 AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
     
@@ -22,17 +27,14 @@ AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
     
     if (athletePtr) {
         
-        if (!athletePtr->getInfo()->getTrainingFreq().getDenominator()) {
-            this->athleteTrainingAttendance = 1;
-        }
-        else {
-            this->athleteTrainingAttendance = (float)athletePtr->getInfo()->getTrainingFreq().getNumerator() / athletePtr->getInfo()->getTrainingFreq().getDenominator();
-        }
-        this->athletePerformance = 0; //modificar
+		this->athleteTrainingAttendance = athletePtr->getInfo()->getTrainingFreq();
+        this->athletePerformance = getAthletePerformance(athletePtr->getInfo()->getWinningFreq(),
+														 athletePtr->getInfo()->getDrawFreq(),
+														 athletePtr->getInfo()->getDrawFreq()); //modificar
         
     }
     else {
-        this->athleteTrainingAttendance = 0;
+        this->athleteTrainingAttendance = Fraction(0,0);
         this->athletePerformance = 0;
     }
     
@@ -40,15 +42,19 @@ AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
 
 }
 
-AthletePtr_BST::AthletePtr_BST() {}
-
 bool AthletePtr_BST::operator<(const AthletePtr_BST &at2) const {
     
-    if (this->athleteTrainingAttendance != at2.athleteTrainingAttendance) {
-        return this->athleteTrainingAttendance > at2.athleteTrainingAttendance;
-    }
-    return this->athletePtr->getName() < at2.athletePtr->getName();
-    
+	if (this->generalPerformance() != at2.generalPerformance()) {
+		return this->generalPerformance() > at2.generalPerformance();
+	}
+	else
+	{
+		if (!(this->athleteTrainingAttendance == at2.athleteTrainingAttendance)
+			&& this->athleteTrainingAttendance.fracValue() == at2.athleteTrainingAttendance.fracValue())
+			return this->athleteTrainingAttendance.numerator > at2.athleteTrainingAttendance.numerator;
+
+		return this->athletePtr->getName() < at2.athletePtr->getName();
+	}
 }
 
 bool AthletePtr_BST::operator==(const AthletePtr_BST &at2) const {
@@ -1748,11 +1754,27 @@ vector<vector<string>> Club::getPlayersDiplomas() const {
         eachPlayerResult.push_back(playerWonGames);
         eachPlayerResult.push_back(playerDrawGames);
         eachPlayerResult.push_back(playerLostGames);
+		eachPlayerResult.push_back(to_string(bstIterator.retrieve().generalPerformance()));
         result.push_back(eachPlayerResult);
         
         bstIterator.advance();
         
     }
+
+	Table athletesTable({ "ID", "Diploma", "Training attendance" , "Wins", "Draws", "Losses", "Performance" });
     
+	for (size_t i = 0; i < result.size(); i++) {
+		
+		if (!i)
+			athletesTable.addNewLine(result.at(i));
+		else {
+			athletesTable.addDataInSameLine({ "" });
+
+			athletesTable.addDataInSameLine(result.at(i));
+				
+		}
+	}
+
+	cout << athletesTable;
     return result;
 }
