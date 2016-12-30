@@ -14,6 +14,13 @@ extern bool confirm(const Table &message);
 
 extern void showMainMenu(unsigned short int optionChosen, string seasonName);
 
+struct workerHashTable {
+    int operator() (Worker* worker) const;
+    bool operator() (Worker* worker1, Worker* worker2) const;
+};
+
+typedef unordered_set<Worker*, workerHashTable, workerHashTable> hashTableInactivePlayers;
+
 class Club {
 	string clubName; // club's name
 	bool programClub; //  TRUE if the club is the program Club
@@ -26,6 +33,7 @@ class Club {
 	string pathToClubInfoFile; //path to the club's info file
 
 	priority_queue<AthletePtr_PQ>  ECG_queue;
+    hashTableInactivePlayers formerPlayers;
 
 public:
 	//! Club's constructor
@@ -161,5 +169,9 @@ public:
     
     //sort players by performance and training attendance
     vector<vector<string>> getPlayersDiplomas() const;
+    
+    //sort players by performance and training attendance
+    vector<vector<string>> getFormerPlayersPostals() const;
+    
     
 };

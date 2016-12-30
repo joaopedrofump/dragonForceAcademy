@@ -1468,4 +1468,53 @@ double getAthletePerformance(Fraction winFreq, Fraction drawFreq, Fraction lostF
 	return 5 * Aw - 5 * Al + 2 * ((winFreq.denominator > lostFreq.denominator) ? -Ad : Ad);
 }
 
+string transformNumberToOrder(int number) {
+    
+    string result = to_string(number);
+    
+    
+    if (result.size() > 1) {
+        if (result.at(result.size()-1) == '1' && result.at(result.size()-2) != '1') {
+            
+            result.append("st");
+            
+        }
+        
+        else if (result.at(result.size()-1) == '2' && result.at(result.size()-2) != '1') {
+            
+            result.append("nd");
+            
+        }
+        else if (result.at(result.size()-1) == '3' && result.at(result.size()-2) != '1') {
+            
+            result.append("rd");
+            
+        }
+        else {
+            result.append("th");
+        }
+
+    }
+    else {
+        
+        if (result.at(0) == '1') {
+            result.append("st");
+        }
+        else if (result.at(0) == '2') {
+            result.append("nd");
+        }
+        else if (result.at(0) == '3') {
+            result.append("rd");
+        }
+        else {
+            result.append("th");
+        }
+        
+    }
+    
+    
+    
+    return result;
+    
+}
 

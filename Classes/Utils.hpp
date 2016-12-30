@@ -37,6 +37,7 @@ string const FILE_SEPARATOR = "------------------------------------------------"
 // ==========  ENUMS & STRUCTS ===============
 // ===========================================
 
+
 enum CoachType {
     
     HeadCoach = 1,			// HDC
@@ -330,6 +331,8 @@ string readAndCut(string &stringToCut);
 string normalizeId(unsigned int digits, unsigned int id);
 
 double getAthletePerformance(Fraction winFreq, Fraction drawFreq, Fraction lostFreq);
+
+string transformNumberToOrder(int number);
 
 template <class T>
 int findInVector(vector<T> vec1, T element) {
