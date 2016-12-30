@@ -42,6 +42,7 @@ string ECG::showInScreen() const {
 }
 
 bool ECG::isValid() const {
+
 	if (expirationDate < Date())
 		return false;
 	else
@@ -58,3 +59,4 @@ int ECG::isDelivered() const {
 			return resultado ? 0 : 1;
 	}
 }
+

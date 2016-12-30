@@ -3,6 +3,59 @@
 #include "Match.hpp"
 #include "Level.h"
 
+
+struct AthletePtr_BST {
+    Worker* athletePtr;
+    float athletePerformance;
+    float athleteTrainingAttendance;
+    
+    AthletePtr_BST(Worker*);
+    AthletePtr_BST();
+    bool operator<(const AthletePtr_BST &at2) const;
+    bool operator==(const AthletePtr_BST &at2) const;
+    
+};
+
+AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
+    
+    this->athletePtr = athletePtr;
+    
+    if (athletePtr) {
+        
+        if (!athletePtr->getInfo()->getTrainingFreq().getDenominator()) {
+            this->athleteTrainingAttendance = 1;
+        }
+        else {
+            this->athleteTrainingAttendance = (float)athletePtr->getInfo()->getTrainingFreq().getNumerator() / athletePtr->getInfo()->getTrainingFreq().getDenominator();
+        }
+        this->athletePerformance = 0; //modificar
+        
+    }
+    else {
+        this->athleteTrainingAttendance = 0;
+        this->athletePerformance = 0;
+    }
+    
+
+
+}
+
+AthletePtr_BST::AthletePtr_BST() {}
+
+bool AthletePtr_BST::operator<(const AthletePtr_BST &at2) const {
+    
+    if (this->athleteTrainingAttendance != at2.athleteTrainingAttendance) {
+        return this->athleteTrainingAttendance > at2.athleteTrainingAttendance;
+    }
+    return this->athletePtr->getName() < at2.athletePtr->getName();
+    
+}
+
+bool AthletePtr_BST::operator==(const AthletePtr_BST &at2) const {
+    return this->athletePtr->getID() == at2.athletePtr->getID();
+}
+
+
 Club::Club(string clubName, bool empty) {
     
     this->clubName = clubName;
@@ -990,11 +1043,65 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
     
     (*matchToRegister)->registerMatch(homeTeamScore, awayTeamScore, matchPlayers);
     
+    
+    /* 
+     to be completed if we use this function
+     
+    Club* programClub = NULL;
+    unsigned int programClubScore = 0;
+    unsigned int otherClubScore = 0;
+    Result winLoseDraw = draw;
+    
+    if ((*matchToRegister)->getHomeTeam()->isProgramClub()) {
+        programClub = (*matchToRegister)->getHomeTeam();
+        programClubScore = homeTeamScore;
+        otherClubScore = awayTeamScore;
+        
+    }
+    else if ((*matchToRegister)->getAwayTeam()->isProgramClub()) {
+        programClub = (*matchToRegister)->getAwayTeam();
+        programClubScore = awayTeamScore;
+        otherClubScore = homeTeamScore;
+        
+    }
+    
+    if (programClub) {
+        
+        if(programClubScore > otherClubScore) {
+            winLoseDraw = win;
+        }
+        else if (programClubScore < otherClubScore) {
+            winLoseDraw = lost;
+        }
+        else {
+            winLoseDraw = draw;
+        }
+        
+    }
+    */
     for (map<unsigned int, Info*>::iterator iteratorInfoPlayer = matchPlayers.begin(); iteratorInfoPlayer != matchPlayers.end(); iteratorInfoPlayer++) {
         
+        /* 
+         to be completed when we use this function
+        switch (winLoseDraw) {
+            case win:
+                break;
+            case lost:
+                break;
+            case draw:
+                break;
+            
+        }
+        */
         *(level->getMapInfoPlayers().at(iteratorInfoPlayer->first)) += iteratorInfoPlayer->second;
         this->allWorkers.at(iteratorInfoPlayer->first)->addInfo(iteratorInfoPlayer->second);
+        
     }
+    
+    //adicionar a winning, losing and draw frequency depending on the result of the match when we use this function
+    
+   
+    
     
 }
 
@@ -1031,7 +1138,6 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
         
     }
     
-    
     if(matchToRegister == listOfLevelMatches.end()) {
         
         throw string("Not scheduled match.");
@@ -1039,14 +1145,19 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
     }
     
     vector<unsigned int> filteredVector;
+    vector<unsigned int> playersNotCalledUp;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
+    
+    //se não houver jogadores convocados registar todos nos convocados
     if (matchPlayers.size() == 0 && (*matchToRegister)->getInfoPlayers().size() == 0) {
-        
         
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
             
-            filteredVector.push_back(levelPlayersIterator->first);
+            if(this->allWorkers.at(levelPlayersIterator->first)->hasValidECG() && this->allWorkers.at(levelPlayersIterator->first)->isActive()) {
+                
+                filteredVector.push_back(levelPlayersIterator->first);
+            }
             
         }
         
@@ -1054,23 +1165,115 @@ void Club::registerMatch(string matchId, Level* level, unsigned int homeTeamScor
     
     else {
         
-        for (size_t i = 0; i < matchPlayers.size(); i++) {
+        
+        for (map<unsigned int, Info*>::const_iterator infoIterator = levelPlayers.begin(); infoIterator != levelPlayers.end(); infoIterator++) {
             
-            map<unsigned int, Info*>::const_iterator existsInLevel = levelPlayers.find(matchPlayers.at(i));
+            if (this->allWorkers.at(infoIterator->first)->hasValidECG() && this->allWorkers.at(infoIterator->first)->isActive()) {
+                bool playerCalledUp = false;
+                for (size_t i = 0; i < matchPlayers.size(); i++) {
+                    
+                    if (matchPlayers.at(i) == infoIterator->first && this->allWorkers.at(matchPlayers.at(i))->hasValidECG()) {
+                        
+                        playerCalledUp = true;
+                        break;
+                        
+                    }
+                    
+                }
+                if (playerCalledUp) {
+                    filteredVector.push_back(infoIterator->first);
+                }
+                else {
+                    playersNotCalledUp.push_back(infoIterator->first);
+                };
+            }
             
-            if (existsInLevel != levelPlayers.end()) {
-                
-                filteredVector.push_back(matchPlayers.at(i));
-                
+        }
+    
+    }
+    
+    (*matchToRegister)->setPlayers(filteredVector);
+    map<unsigned int, Info *> infoPlayersEmpty;
+    (*matchToRegister)->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
+    
+    //actualizar game frequency
+    
+    Club* programClub = NULL;
+    unsigned int programClubScore = 0;
+    unsigned int otherClubScore = 0;
+    Result winLoseDraw = draw;
+    
+    if ((*matchToRegister)->getHomeTeam()->isProgramClub()) {
+        programClub = (*matchToRegister)->getHomeTeam();
+        programClubScore = homeTeamScore;
+        otherClubScore = awayTeamScore;
+        
+    }
+    else if ((*matchToRegister)->getAwayTeam()->isProgramClub()) {
+        programClub = (*matchToRegister)->getAwayTeam();
+        programClubScore = awayTeamScore;
+        otherClubScore = homeTeamScore;
+        
+    }
+    
+    if (programClub) {
+        
+        if(programClubScore > otherClubScore) {
+            winLoseDraw = win;
+        }
+        else if (programClubScore < otherClubScore) {
+            winLoseDraw = lost;
+        }
+        else {
+            winLoseDraw = draw;
+        }
+        
+        
+        //add for players calld up
+        for (size_t i = 0; i < filteredVector.size(); i++) {
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addWinningFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addWinningFreq();
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addLosingFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addLosingFreq();
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addDrawFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addDrawFreq();
+                    break;
+                    
+            }
+            
+        }
+        
+        //add for players not calld up
+        for (size_t i = 0; i < playersNotCalledUp.size(); i++) {
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addWinningFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addWinningFreq(Fraction(0,1));
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addLosingFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addLosingFreq(Fraction(0,1));
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addDrawFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addDrawFreq(Fraction(0,1));
+                    break;
+                    
             }
             
         }
         
     }
     
-    (*matchToRegister)->setPlayers(filteredVector);
-    map<unsigned int, Info *> infoPlayersEmpty;
-    (*matchToRegister)->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
+    
     
 }
 
@@ -1083,30 +1286,51 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     Match* matchToAdd = (type == home) ? new Match(matchDate, this, opponent, matchId, true) : new Match(matchDate, opponent, this, matchId, true);
     
     vector<unsigned int> filteredVector;
+    vector<unsigned int> playersNotCalledUp;
     map<unsigned int, Info*> levelPlayers = level->getMapInfoPlayers();
     
     if (!matchPlayers.size()) {
         
-        
         for (map<unsigned int, Info*>::const_iterator levelPlayersIterator = levelPlayers.begin(); levelPlayersIterator != levelPlayers.end(); levelPlayersIterator++) {
             
-            filteredVector.push_back(levelPlayersIterator->first);
+            if(this->allWorkers.at(levelPlayersIterator->first)->hasValidECG() && this->allWorkers.at(levelPlayersIterator->first)->isActive()) {
+
+            
+                filteredVector.push_back(levelPlayersIterator->first);
+                
+            }
             
         }
         
     }
     
     else {
-        
-        for (size_t i = 0; i < matchPlayers.size(); i++) {
+    
+        for (map<unsigned int, Info*>::const_iterator infoIterator = levelPlayers.begin(); infoIterator != levelPlayers.end(); infoIterator++) {
             
-            map<unsigned int, Info*>::const_iterator existsInLevel = levelPlayers.find(matchPlayers.at(i));
-            
-            if (existsInLevel != levelPlayers.end()) {
+           
+            if (this->allWorkers.at(infoIterator->first)->hasValidECG() && this->allWorkers.at(infoIterator->first)->isActive()) {
                 
-                filteredVector.push_back(matchPlayers.at(i));
-                
+                bool playerCalledUp = false;
+                for (size_t i = 0; i < matchPlayers.size(); i++) {
+                    
+                    if (matchPlayers.at(i) == infoIterator->first) {
+                        
+                        playerCalledUp = true;
+                        break;
+                        
+                    }
+                    
+                }
+                if (playerCalledUp) {
+                    filteredVector.push_back(infoIterator->first);
+                }
+                else {
+                    playersNotCalledUp.push_back(infoIterator->first);
+                };
             }
+            
+            
             
         }
         
@@ -1118,7 +1342,87 @@ void Club::registerMatch(string opponentClub, Date matchDate, Level* level, Matc
     
 
     level->addMatchToLevel(matchToAdd);
-     
+    
+    //actualizar game frequency
+    
+    Club* programClub = NULL;
+    unsigned int programClubScore = 0;
+    unsigned int otherClubScore = 0;
+    Result winLoseDraw = draw;
+    
+    if (matchToAdd->getHomeTeam()->isProgramClub()) {
+        programClub = matchToAdd->getHomeTeam();
+        programClubScore = homeTeamScore;
+        otherClubScore = awayTeamScore;
+        
+    }
+    else if (matchToAdd->getAwayTeam()->isProgramClub()) {
+        programClub = matchToAdd->getAwayTeam();
+        programClubScore = awayTeamScore;
+        otherClubScore = homeTeamScore;
+        
+    }
+    
+    if (programClub) {
+        
+        if(programClubScore > otherClubScore) {
+            winLoseDraw = win;
+        }
+        else if (programClubScore < otherClubScore) {
+            winLoseDraw = lost;
+        }
+        else {
+            winLoseDraw = draw;
+        }
+        
+        //add for players calld up
+        for (size_t i = 0; i < filteredVector.size(); i++) {
+            
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addWinningFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addWinningFreq();
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addLosingFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addLosingFreq();
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addDrawFreq();
+                    this->allWorkers.at(filteredVector.at(i))->getInfo()->addDrawFreq();
+                    break;
+                    
+            }
+            
+        }
+        
+        //add for players not calld up
+        for (size_t i = 0; i < playersNotCalledUp.size(); i++) {
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addWinningFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addWinningFreq(Fraction(0,1));
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addLosingFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addLosingFreq(Fraction(0,1));
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addDrawFreq(Fraction(0,1));
+                    this->allWorkers.at(playersNotCalledUp.at(i))->getInfo()->addDrawFreq(Fraction(0,1));
+                    break;
+                    
+            }
+            
+        }
+        
+    }
+    
+    
+    cout << endl;
+    
 }
 
 void Club::callUpPlayers(string matchId, vector<unsigned int> matchPlayers, Level* level) {
@@ -1377,4 +1681,78 @@ void Club::saveChanges() {
 
 	}
 
+}
+
+vector<vector<string>> Club::getPlayersDiplomas() const {
+    
+    vector<vector<string>> result;
+    BST<AthletePtr_BST> playersBST(0);
+    
+    map<unsigned int, Worker*> athletesMap = this->getAthletes();
+    for (map<unsigned int, Worker*>::const_iterator playersIterator = athletesMap.begin(); playersIterator != athletesMap.end(); playersIterator++) {
+        
+        AthletePtr_BST thisAthleteStructBST(playersIterator->second);
+        playersBST.insert(thisAthleteStructBST);
+        
+    }
+    
+    BSTItrIn<AthletePtr_BST> bstIterator(playersBST);
+    int rank = 0;
+    
+    while (!bstIterator.isAtEnd()) {
+        
+        vector<string> eachPlayerResult;
+        string rankString = to_string(++rank);
+        eachPlayerResult.push_back(rankString);
+        
+        if (rankString.at(rankString.size()-1) == '1') {
+            rankString.append("st");
+        }
+        else if (rankString.at(rankString.size()-1) == '2') {
+            rankString.append("nd");
+        }
+        else if (rankString.at(rankString.size()-1) == '3') {
+            rankString.append("rd");
+        }
+        else {
+            rankString.append("th");
+        }
+        
+        string playerDiploma;
+        string playerTrainingAttendance;
+        string playerWonGames;
+        string playerLostGames;
+        string playerDrawGames;
+        
+        if(rank <= 3) {
+            
+            if (rank == 1) {
+                playerDiploma = bstIterator.retrieve().athletePtr->getName() + ", congratulations!! You are our best player! Keep the good working!";
+            }
+            else {
+                playerDiploma = bstIterator.retrieve().athletePtr->getName() + ", congratulations!! You are our " + rankString + " best player! Keep the good working!";
+            }
+            
+        }
+        else {
+            playerDiploma = bstIterator.retrieve().athletePtr->getName() + ", you are at " + rankString + " position!";
+        }
+        
+        playerTrainingAttendance = bstIterator.retrieve().athletePtr->getInfo()->getTrainingFreq().getFrac();
+        playerWonGames = bstIterator.retrieve().athletePtr->getInfo()->getWinningFreq().getFrac();
+        playerLostGames = bstIterator.retrieve().athletePtr->getInfo()->getLosingFreq().getFrac();
+        playerDrawGames = bstIterator.retrieve().athletePtr->getInfo()->getDrawFreq().getFrac();
+        
+        eachPlayerResult.push_back(playerDiploma);
+        eachPlayerResult.push_back(playerTrainingAttendance);
+        eachPlayerResult.push_back(playerWonGames);
+        eachPlayerResult.push_back(playerDrawGames);
+        eachPlayerResult.push_back(playerLostGames);
+        result.push_back(eachPlayerResult);
+        
+        bstIterator.advance();
+        
+    }
+    
+    return result;
 }

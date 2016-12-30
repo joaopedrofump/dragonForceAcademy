@@ -43,6 +43,7 @@ public:
     void setHomeTeamScore(unsigned int newHomeTeamScore);
     void setAwayTeamScore(unsigned int newAwayTeamScore);
     void setId(string newId);
+    void setPlayed(bool played);
     
     void setPlayers(vector<unsigned int> playersIds);
     void registerMatch(unsigned int homeTeamScore, unsigned int awayTeamScore, map<unsigned int, Info*> infoPlayers);

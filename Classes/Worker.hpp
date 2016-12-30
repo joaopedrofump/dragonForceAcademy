@@ -134,6 +134,8 @@ public:
 	This is a static method to get the last Id created
 	*/
 	static unsigned int getLastId();
+    
+    virtual bool hasValidECG(){return true;};
 
 };
 

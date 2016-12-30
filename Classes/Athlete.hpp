@@ -76,6 +76,8 @@ public:
     void setBirthDate(Date newBirthdate);
     
     void setHeight(unsigned int newHeight);
+    
+    bool hasValidECG();
 };
 
 struct AthletePtr_PQ {

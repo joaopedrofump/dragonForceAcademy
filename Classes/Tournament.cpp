@@ -169,7 +169,7 @@ Tournament::Tournament(istream &inStream, Level* tournamentLevel) {
             
             if (eachMatch.getScore().first != eachMatch.getScore().second) {
                 
-                this->registerMatch(matchIdInTournament, matchDate, tournamentLevel, playersIds, eachMatch.getScore().first, eachMatch.getScore().second, indexHome, indexAway);
+                this->registerMatch(matchIdInTournament, matchDate, tournamentLevel, playersIds, eachMatch.getScore().first, eachMatch.getScore().second, indexHome, indexAway, eachMatch.getPlayed());
                 
             }
             
@@ -371,7 +371,7 @@ void Tournament::callUpPlayers(unsigned int tournamentMatchId, Date matchDate, L
 
 }
 
-void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers) {
+void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers,bool previouslyRegistered) {
     
     nodeMatch* node =this->findMatchNode(tournamentMatchId);
     
@@ -388,9 +388,105 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
     }
     
     vector<unsigned int> filteredVector = level->filterPlayers(matchPlayers);
+    vector<unsigned int> playersNotCalledUp;
+    map<unsigned int, Info*> mapLevel = level->getMapInfoPlayers();
+    for (map<unsigned int, Info*>::const_iterator iteInfo = mapLevel.begin(); iteInfo != mapLevel.end(); iteInfo++) {
         
-    node->second.second->setPlayers(filteredVector);
+        if (level->getParentClub()->getAthletes().at(iteInfo->first)->hasValidECG() && level->getParentClub()->getAthletes().at(iteInfo->first)->isActive()) {
+            bool calledUp = false;
+            for (size_t i = 0; i < filteredVector.size(); i++) {
+                if (filteredVector.at(i) == iteInfo->first) {
+                    
+                    calledUp = true;
+                    break;
+                    
+                }
+            }
+            
+            if (!calledUp) {
+                playersNotCalledUp.push_back(iteInfo->first);
+            };
+        }
+        
+    }
+    
+    //actualizar game frequency
+    
+    Club* programClub = NULL;
+    unsigned int programClubScore = 0;
+    unsigned int otherClubScore = 0;
+    Result winLoseDraw = draw;
+    
+    if (node->second.second->getHomeTeam()->isProgramClub()) {
+        programClub = node->second.second->getHomeTeam();
+        programClubScore = homeTeamScore;
+        otherClubScore = awayTeamScore;
+        
+    }
+    else if (node->second.second->getAwayTeam()->isProgramClub()) {
+        programClub = node->second.second->getAwayTeam();
+        programClubScore = awayTeamScore;
+        otherClubScore = homeTeamScore;
+        
+    }
+    
+    if (programClub && (homeTeamScore != awayTeamScore) && !previouslyRegistered) {
+        
+        if(programClubScore > otherClubScore) {
+            winLoseDraw = win;
+        }
+        else if (programClubScore < otherClubScore) {
+            winLoseDraw = lost;
+        }
+        else {
+            winLoseDraw = draw;
+        }
+        
+        //add for players calld up
+        for (size_t i = 0; i < filteredVector.size(); i++) {
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addWinningFreq();
+                    programClub->getAthletes().at(filteredVector.at(i))->getInfo()->addWinningFreq();
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addLosingFreq();
+                    programClub->getAthletes().at(filteredVector.at(i))->getInfo()->addLosingFreq();
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(filteredVector.at(i))->addDrawFreq();
+                    programClub->getAthletes().at(filteredVector.at(i))->getInfo()->addDrawFreq();
+                    break;
+                    
+            }
+            
+        }
+        
+        //add for players not calld up
+        for (size_t i = 0; i < playersNotCalledUp.size(); i++) {
+            
+            switch (winLoseDraw) {
+                case win:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addWinningFreq(Fraction(0,1));
+                    programClub->getAthletes().at(playersNotCalledUp.at(i))->getInfo()->addWinningFreq(Fraction(0,1));
+                    break;
+                case lost:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addLosingFreq(Fraction(0,1));
+                    programClub->getAthletes().at(playersNotCalledUp.at(i))->getInfo()->addLosingFreq(Fraction(0,1));
+                    break;
+                case draw:
+                    level->getMapInfoPlayers().at(playersNotCalledUp.at(i))->addDrawFreq(Fraction(0,1));
+                    programClub->getAthletes().at(playersNotCalledUp.at(i))->getInfo()->addDrawFreq(Fraction(0,1));
+                    break;
+                    
+            }
+            
+        }
+        
+    }
     map<unsigned int, Info *> infoPlayersEmpty;
+    node->second.second->setPlayers(filteredVector);
     node->second.second->registerMatch(homeTeamScore, awayTeamScore, infoPlayersEmpty);
 
     if (node->second.first == Final && (homeTeamScore != awayTeamScore)) {
@@ -399,12 +495,14 @@ void Tournament::registerMatch(unsigned int tournamentMatchId, Level* level, uns
     }
     this->updateTree();
     
+    
+    
 }
 
-void Tournament::registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore, unsigned int awayTeamScore, unsigned int homeTeamIndex, unsigned int awayTeamIndex) {
+void Tournament::registerMatch(unsigned int tournamentMatchId, Date matchDate, Level* level, vector<unsigned int> matchPlayers, unsigned int homeTeamScore, unsigned int awayTeamScore, unsigned int homeTeamIndex, unsigned int awayTeamIndex, bool previouslyRegistered) {
     
     this->scheduleTournamentMatch(tournamentMatchId, matchDate, homeTeamIndex, awayTeamIndex, true);
-    this->registerMatch(tournamentMatchId, level, homeTeamScore, awayTeamScore, matchPlayers);
+    this->registerMatch(tournamentMatchId, level, homeTeamScore, awayTeamScore, matchPlayers, previouslyRegistered);
     
     
 }
@@ -440,7 +538,7 @@ void Tournament::updateTree() {
                 
             }
             
-            //check left node match winner
+            //check right node match winner
             unsigned int homeTeamScoreRightNode = matchIterator.getNode()->getRightNode()->getElement().second.second->getScore().first;
             unsigned int awayTeamScoreRightNode = matchIterator.getNode()->getRightNode()->getElement().second.second->getScore().second;
             
@@ -449,11 +547,22 @@ void Tournament::updateTree() {
                 matchIterator.retrieve().second.second->setAwayTeam(matchIterator.getNode()->getRightNode()->getElement().second.second->getHomeTeam());
                 
             }
-            else if (homeTeamScoreLeftNode < awayTeamScoreLeftNode) {
+            else if (homeTeamScoreRightNode < awayTeamScoreRightNode) {
                 
                 matchIterator.retrieve().second.second->setAwayTeam(matchIterator.getNode()->getRightNode()->getElement().second.second->getAwayTeam());
                 
             }
+            
+            if(matchIterator.getNode()->getElement().second.first == Final) {
+                
+                if(matchIterator.getNode()->getElement().second.second->getScore().first > matchIterator.getNode()->getElement().second.second->getScore().second) {
+                    this->winner = matchIterator.getNode()->getElement().second.second->getHomeTeam();
+                }
+                else if(matchIterator.getNode()->getElement().second.second->getScore().first < matchIterator.getNode()->getElement().second.second->getScore().second) {
+                    this->winner = matchIterator.getNode()->getElement().second.second->getAwayTeam();
+                }
+            }
+            
         
         }
         

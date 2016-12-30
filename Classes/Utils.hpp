@@ -127,6 +127,12 @@ enum SortOrder {
     descending
 };
 
+enum Result {
+    win,
+    lost,
+    draw
+};
+
 
 const map<Position, string> positionsMapPosString = {
     
@@ -276,6 +282,8 @@ public:
 	void print(bool originalFraction = true) const;
 	void printPercentage() const;
     string getFrac() const;
+    int getNumerator() const;
+    int getDenominator() const;
 };
 
 // ===========================================
@@ -319,8 +327,6 @@ string getLevelStringFromAge(Date birthDate);
 string readAndCut(string &stringToCut);
 
 string normalizeId(unsigned int digits, unsigned int id);
-
-
 
 template <class T>
 int findInVector(vector<T> vec1, T element) {

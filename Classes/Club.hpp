@@ -27,7 +27,6 @@ class Club {
 
 	priority_queue<AthletePtr_PQ>  ECG_queue;
 
-
 public:
 	//! Club's constructor
 	/*!
@@ -159,6 +158,8 @@ public:
     
     //registar jogo não agendado sem performance de jogadores (para já)
     void registerMatch(string opponentClub, Date matchDate, Level* level, MatchType type, unsigned int homeTeamScore, unsigned int awayTeamScore, vector<unsigned int> matchPlayers);
-
+    
+    //sort players by performance and training attendance
+    vector<vector<string>> getPlayersDiplomas() const;
     
 };
