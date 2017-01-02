@@ -25,7 +25,7 @@ struct AthletePtr_BST {
 };
 
 double AthletePtr_BST::generalPerformance() const {
-	return athleteTrainingAttendance.fracValue() * (athletePerformance + 1); 
+	return athleteTrainingAttendance.fracValue() * (athletePerformance + 1.0); 
 }
 
 AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
@@ -37,8 +37,7 @@ AthletePtr_BST::AthletePtr_BST(Worker* athletePtr) {
 		this->athleteTrainingAttendance = athletePtr->getInfo()->getTrainingFreq();
         this->athletePerformance = getAthletePerformance(athletePtr->getInfo()->getWinningFreq(),
 														 athletePtr->getInfo()->getDrawFreq(),
-														 athletePtr->getInfo()->getDrawFreq()); //modificar
-        
+														 athletePtr->getInfo()->getLosingFreq());
     }
     else {
         this->athleteTrainingAttendance = Fraction(0,0);
@@ -691,7 +690,7 @@ void Club::showNotificationList() {
 		string message;
 		switch (tmpHeap.top().athlete->isECGDelivered()) {
 		case 1:
-			message = "Unfortunately, you have not a positive ECG so you are not able to participate in " + this->getName() + " matches.";
+			message = "Unfortunately, you don't have a positive ECG so you are not able to participate in " + this->getName() + " matches.";
 			break;
 		case 2:
 			message = "Your last ECG expired on " + tmpHeap.top().athlete->getECG()->getExpirationDate().str() + " then you need to take a new electrocardiogram.";
@@ -700,7 +699,7 @@ void Club::showNotificationList() {
 			message = "Your last ECG is almost out of date (" + tmpHeap.top().athlete->getECG()->getExpirationDate().str() + ") then you need to take a new electrocardiogram.";
 			break;
 		case 4:
-			message = "You have not a ECG exame and you need it to perform in " + this->getName() + " matches. Please consider take a new ECG.";
+			message = "You don't have a ECG exame and you need it to perform in " + this->getName() + " matches. Please consider take a new ECG.";
 			break;
 		default:
 			message = "You already have a valid ECG. Keep going!";

@@ -252,7 +252,7 @@ unsigned short int mainMenu(string seasonName) {
 
 void showMainMenu(unsigned short int opcaoChosen, string seasonName) {
     clearScreen();
-	Table menu({ "Main Menu", "Current Season: " + seasonName });
+	Table menu({ "Main Menu", "Current Season: " + seasonName + "/" + to_string(stoi(seasonName) + 1) });
     vector<string> headerMenu;
     switch (opcaoChosen) {
         case 0:
@@ -305,7 +305,7 @@ void printAthletesMenu(string seasonName) {
 	menuAthletes.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes.addNewLine({ "6 - Update ECG of Athlete" });
 	menuAthletes.addNewLine({ "7 - Notify Athletes - ECG" });
-	menuAthletes.addNewLine({ "8 - Diploma Delivey" });
+	menuAthletes.addNewLine({ "8 - Diploma Delivery" });
 	menuAthletes.addNewLine({ "9 - Birthday Postals" });
 	menuAthletes.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes;
@@ -327,8 +327,8 @@ void printAddAthleteMenu(string seasonName) {
 	menuAthletes2.addNewLine({ "5 - Remove Athlete" });
 	menuAthletes2.addNewLine({ "6 - Update ECG of Athlete" });
 	menuAthletes2.addNewLine({ "7 - Notify Athletes - ECG" });
-	menuAthletes2.addNewLine({ "8 - Diploma Delivey" });
-	menuAthletes2.addNewLine({ "9 - Congrat ex-Athletes and ex-Coaches" });
+	menuAthletes2.addNewLine({ "8 - Diploma Delivery" });
+	menuAthletes2.addNewLine({ "9 - Birthday Postals" });
 	menuAthletes2.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes << addAthlete << menuAthletes2;
 }
