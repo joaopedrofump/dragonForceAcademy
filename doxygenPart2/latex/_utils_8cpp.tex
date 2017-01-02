@@ -1,0 +1,313 @@
+\hypertarget{_utils_8cpp}{}\section{Utils.\+cpp File Reference}
+\label{_utils_8cpp}\index{Utils.\+cpp@{Utils.\+cpp}}
+{\ttfamily \#include \char`\"{}Utils.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{_utils_8cpp_a8625ab296ed94e5daa9e706f0092c02c}{path} ()
+\item 
+ifstream \& \hyperlink{_utils_8cpp_ab895bef0d8545ab4875f6bfc4a7fd4f7}{operator$>$$>$} (ifstream \&in\+Stream, \hyperlink{class_date}{Date} \&date\+To\+Read)
+\item 
+bool \hyperlink{_utils_8cpp_ad9736995fa90a35631dc5f220e33e4b2}{operator$>$=} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} date2)
+\item 
+bool \hyperlink{_utils_8cpp_aa2e695ccf211714fafbc8c73cb7e5419}{operator$<$} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\item 
+bool \hyperlink{_utils_8cpp_a588c6068972f9e69bc50292405c1fac7}{operator==} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\item 
+ostream \& \hyperlink{_utils_8cpp_a7f6a6b50c5a5aca26dd5b5631c2f5c43}{operator$<$$<$} (ostream \&out, const \hyperlink{class_date}{Date} \&data)
+\item 
+int \hyperlink{_utils_8cpp_ac5bf05534baacb5dc11f6abbb4e1f621}{operator-\/} (const \hyperlink{class_date}{Date} \&date1, const \hyperlink{class_date}{Date} \&date2)
+\item 
+ostream \& \hyperlink{_utils_8cpp_ab62cd5b71f0c86a6f3660d2f51c39ae2}{operator$<$$<$} (ostream \&out, const \hyperlink{class_table}{Table} \&table\+To\+Show)
+\item 
+void \hyperlink{_utils_8cpp_a76c3b6dd449893fa001791a607156ee9}{trim\+String} (string \&input\+String)
+\item 
+bool \hyperlink{_utils_8cpp_ab2255ac1652e2daed66d88ae5d84050c}{validate\+Name} (string \&name)
+\item 
+string \hyperlink{_utils_8cpp_af88c4312f7ae914b33ee4e7f0a60fcc8}{trim\+Link} (string link)
+\item 
+void \hyperlink{_utils_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clear\+Screen} ()
+\item 
+void \hyperlink{_utils_8cpp_a7d905c3b893189bc2abe50f79b4a4c20}{Set\+Cursor} (int column, int line)
+\item 
+int \hyperlink{_utils_8cpp_a7c508c83150dcd127156d9c4e2436a8e}{Get\+CursorX} ()
+\item 
+int \hyperlink{_utils_8cpp_a4769e37502d12fbc431ace1a32749bc8}{Get\+CursorY} ()
+\item 
+void \hyperlink{_utils_8cpp_ab0a6821c334c03f3c4125f344fba4291}{ignore\+Line} (bool ignore\+Control, string message)
+\item 
+bool \hyperlink{_utils_8cpp_ae0bd1183f37f992d8fb42d561a421f9c}{read\+Unsigned\+Int} (unsigned int \&input, unsigned int min, unsigned int max, string error\+Message)
+\item 
+bool \hyperlink{_utils_8cpp_a84078122f9457a3f7bb42f43dadcee7d}{read\+Dates} (vector$<$ \hyperlink{class_date}{Date} $>$ \&result\+Vector, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8cpp_a08bdd1f203edd7936f1256e6e931e979}{read\+Date} (\hyperlink{class_date}{Date} \&result, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8cpp_aa2d200d1fbc5a914f855998bacc80a49}{read\+Date} (\hyperlink{class_date}{Date} \&result, \hyperlink{class_date}{Date} min, \hyperlink{class_date}{Date} max, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8cpp_ab69bf0d112f660a98443802bce2f97ef}{empty\+String} (string string\+Test)
+\item 
+int \hyperlink{_utils_8cpp_a9bf46266629bc543ecdf949886fd73dd}{create\+Directory} (const char $\ast$\hyperlink{_utils_8hpp_a8625ab296ed94e5daa9e706f0092c02c}{path})
+\item 
+string \hyperlink{_utils_8cpp_a8530f12a89322bd0fb3f64e9a3399420}{string\+Path} (string original\+Str)
+\item 
+string \hyperlink{_utils_8cpp_a77e3a6811ac83614248b3ec327662346}{get\+Level\+From\+Age} (\hyperlink{class_date}{Date} birth\+Date)
+\item 
+string \hyperlink{_utils_8cpp_ab3099eb7c73632b13474563c471a1794}{read\+And\+Cut} (string \&string\+To\+Cut)
+\item 
+string \hyperlink{_utils_8cpp_a040b8bb81caab1486ee310ea2edd102c}{normalize\+Id} (unsigned int digits, unsigned int \hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5a280d7329079c73a4a5df3f35697b60b1}{id})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} $>$ \hyperlink{_utils_8cpp_afe2a835516f3d8fb7eaa7bc6cd1cf961}{age\+Level\+Map}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} $>$ \hyperlink{_utils_8cpp_abcccd5e447418046556559994cfc522d}{coach\+Type\+Map}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} $>$ \hyperlink{_utils_8cpp_a07c4c7c854db3ff4915d5d7d2d7da002}{positions\+Map}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d}{Defender\+Position} $>$ \hyperlink{_utils_8cpp_a58887bb0379763da91da1fd6650010c4}{defenders\+Map}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217}{Midfielder\+Position} $>$ \hyperlink{_utils_8cpp_a89d9efb068bef492bfcc45a62dea04ee}{midfielders\+Map}
+\item 
+const map$<$ string, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$ \hyperlink{_utils_8cpp_a086afed5352a186d0f0b3196609a63df}{forwards\+Map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_utils_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{}\label{_utils_8cpp_a9d7e8af417b6d543da691e9c0e2f6f9f} 
+\index{Utils.\+cpp@{Utils.\+cpp}!clear\+Screen@{clear\+Screen}}
+\index{clear\+Screen@{clear\+Screen}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{clear\+Screen()}{clearScreen()}}
+{\footnotesize\ttfamily void clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a9bf46266629bc543ecdf949886fd73dd}{}\label{_utils_8cpp_a9bf46266629bc543ecdf949886fd73dd} 
+\index{Utils.\+cpp@{Utils.\+cpp}!create\+Directory@{create\+Directory}}
+\index{create\+Directory@{create\+Directory}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{create\+Directory()}{createDirectory()}}
+{\footnotesize\ttfamily int create\+Directory (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab69bf0d112f660a98443802bce2f97ef}{}\label{_utils_8cpp_ab69bf0d112f660a98443802bce2f97ef} 
+\index{Utils.\+cpp@{Utils.\+cpp}!empty\+String@{empty\+String}}
+\index{empty\+String@{empty\+String}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{empty\+String()}{emptyString()}}
+{\footnotesize\ttfamily bool empty\+String (\begin{DoxyParamCaption}\item[{string}]{string\+Test }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a7c508c83150dcd127156d9c4e2436a8e}{}\label{_utils_8cpp_a7c508c83150dcd127156d9c4e2436a8e} 
+\index{Utils.\+cpp@{Utils.\+cpp}!Get\+CursorX@{Get\+CursorX}}
+\index{Get\+CursorX@{Get\+CursorX}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{Get\+Cursor\+X()}{GetCursorX()}}
+{\footnotesize\ttfamily int Get\+CursorX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a4769e37502d12fbc431ace1a32749bc8}{}\label{_utils_8cpp_a4769e37502d12fbc431ace1a32749bc8} 
+\index{Utils.\+cpp@{Utils.\+cpp}!Get\+CursorY@{Get\+CursorY}}
+\index{Get\+CursorY@{Get\+CursorY}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{Get\+Cursor\+Y()}{GetCursorY()}}
+{\footnotesize\ttfamily int Get\+CursorY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a77e3a6811ac83614248b3ec327662346}{}\label{_utils_8cpp_a77e3a6811ac83614248b3ec327662346} 
+\index{Utils.\+cpp@{Utils.\+cpp}!get\+Level\+From\+Age@{get\+Level\+From\+Age}}
+\index{get\+Level\+From\+Age@{get\+Level\+From\+Age}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Level\+From\+Age()}{getLevelFromAge()}}
+{\footnotesize\ttfamily string get\+Level\+From\+Age (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{birth\+Date }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab0a6821c334c03f3c4125f344fba4291}{}\label{_utils_8cpp_ab0a6821c334c03f3c4125f344fba4291} 
+\index{Utils.\+cpp@{Utils.\+cpp}!ignore\+Line@{ignore\+Line}}
+\index{ignore\+Line@{ignore\+Line}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{ignore\+Line()}{ignoreLine()}}
+{\footnotesize\ttfamily void ignore\+Line (\begin{DoxyParamCaption}\item[{bool}]{ignore\+Control,  }\item[{string}]{message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a040b8bb81caab1486ee310ea2edd102c}{}\label{_utils_8cpp_a040b8bb81caab1486ee310ea2edd102c} 
+\index{Utils.\+cpp@{Utils.\+cpp}!normalize\+Id@{normalize\+Id}}
+\index{normalize\+Id@{normalize\+Id}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{normalize\+Id()}{normalizeId()}}
+{\footnotesize\ttfamily string normalize\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{digits,  }\item[{unsigned int}]{id }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ac5bf05534baacb5dc11f6abbb4e1f621}{}\label{_utils_8cpp_ac5bf05534baacb5dc11f6abbb4e1f621} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily int operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_aa2e695ccf211714fafbc8c73cb7e5419}{}\label{_utils_8cpp_aa2e695ccf211714fafbc8c73cb7e5419} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a7f6a6b50c5a5aca26dd5b5631c2f5c43}{}\label{_utils_8cpp_a7f6a6b50c5a5aca26dd5b5631c2f5c43} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_date}{Date} \&}]{data }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab62cd5b71f0c86a6f3660d2f51c39ae2}{}\label{_utils_8cpp_ab62cd5b71f0c86a6f3660d2f51c39ae2} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \hyperlink{class_table}{Table} \&}]{table\+To\+Show }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a588c6068972f9e69bc50292405c1fac7}{}\label{_utils_8cpp_a588c6068972f9e69bc50292405c1fac7} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date} \&}]{date2 }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ad9736995fa90a35631dc5f220e33e4b2}{}\label{_utils_8cpp_ad9736995fa90a35631dc5f220e33e4b2} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool operator$>$= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_date}{Date} \&}]{date1,  }\item[{const \hyperlink{class_date}{Date}}]{date2 }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab895bef0d8545ab4875f6bfc4a7fd4f7}{}\label{_utils_8cpp_ab895bef0d8545ab4875f6bfc4a7fd4f7} 
+\index{Utils.\+cpp@{Utils.\+cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
+{\footnotesize\ttfamily ifstream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+Stream,  }\item[{\hyperlink{class_date}{Date} \&}]{date\+To\+Read }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a8625ab296ed94e5daa9e706f0092c02c}{}\label{_utils_8cpp_a8625ab296ed94e5daa9e706f0092c02c} 
+\index{Utils.\+cpp@{Utils.\+cpp}!path@{path}}
+\index{path@{path}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{path()}{path()}}
+{\footnotesize\ttfamily string path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab3099eb7c73632b13474563c471a1794}{}\label{_utils_8cpp_ab3099eb7c73632b13474563c471a1794} 
+\index{Utils.\+cpp@{Utils.\+cpp}!read\+And\+Cut@{read\+And\+Cut}}
+\index{read\+And\+Cut@{read\+And\+Cut}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{read\+And\+Cut()}{readAndCut()}}
+{\footnotesize\ttfamily string read\+And\+Cut (\begin{DoxyParamCaption}\item[{string \&}]{string\+To\+Cut }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a08bdd1f203edd7936f1256e6e931e979}{}\label{_utils_8cpp_a08bdd1f203edd7936f1256e6e931e979} 
+\index{Utils.\+cpp@{Utils.\+cpp}!read\+Date@{read\+Date}}
+\index{read\+Date@{read\+Date}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{read\+Date()}{readDate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool read\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date} \&}]{result,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_aa2d200d1fbc5a914f855998bacc80a49}{}\label{_utils_8cpp_aa2d200d1fbc5a914f855998bacc80a49} 
+\index{Utils.\+cpp@{Utils.\+cpp}!read\+Date@{read\+Date}}
+\index{read\+Date@{read\+Date}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{read\+Date()}{readDate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool read\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date} \&}]{result,  }\item[{\hyperlink{class_date}{Date}}]{min,  }\item[{\hyperlink{class_date}{Date}}]{max,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a84078122f9457a3f7bb42f43dadcee7d}{}\label{_utils_8cpp_a84078122f9457a3f7bb42f43dadcee7d} 
+\index{Utils.\+cpp@{Utils.\+cpp}!read\+Dates@{read\+Dates}}
+\index{read\+Dates@{read\+Dates}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{read\+Dates()}{readDates()}}
+{\footnotesize\ttfamily bool read\+Dates (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_date}{Date} $>$ \&}]{result\+Vector,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ae0bd1183f37f992d8fb42d561a421f9c}{}\label{_utils_8cpp_ae0bd1183f37f992d8fb42d561a421f9c} 
+\index{Utils.\+cpp@{Utils.\+cpp}!read\+Unsigned\+Int@{read\+Unsigned\+Int}}
+\index{read\+Unsigned\+Int@{read\+Unsigned\+Int}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{read\+Unsigned\+Int()}{readUnsignedInt()}}
+{\footnotesize\ttfamily bool read\+Unsigned\+Int (\begin{DoxyParamCaption}\item[{unsigned int \&}]{input,  }\item[{unsigned int}]{min,  }\item[{unsigned int}]{max,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a7d905c3b893189bc2abe50f79b4a4c20}{}\label{_utils_8cpp_a7d905c3b893189bc2abe50f79b4a4c20} 
+\index{Utils.\+cpp@{Utils.\+cpp}!Set\+Cursor@{Set\+Cursor}}
+\index{Set\+Cursor@{Set\+Cursor}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{Set\+Cursor()}{SetCursor()}}
+{\footnotesize\ttfamily void Set\+Cursor (\begin{DoxyParamCaption}\item[{int}]{column,  }\item[{int}]{line }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a8530f12a89322bd0fb3f64e9a3399420}{}\label{_utils_8cpp_a8530f12a89322bd0fb3f64e9a3399420} 
+\index{Utils.\+cpp@{Utils.\+cpp}!string\+Path@{string\+Path}}
+\index{string\+Path@{string\+Path}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{string\+Path()}{stringPath()}}
+{\footnotesize\ttfamily string string\+Path (\begin{DoxyParamCaption}\item[{string}]{original\+Str }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_af88c4312f7ae914b33ee4e7f0a60fcc8}{}\label{_utils_8cpp_af88c4312f7ae914b33ee4e7f0a60fcc8} 
+\index{Utils.\+cpp@{Utils.\+cpp}!trim\+Link@{trim\+Link}}
+\index{trim\+Link@{trim\+Link}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{trim\+Link()}{trimLink()}}
+{\footnotesize\ttfamily string trim\+Link (\begin{DoxyParamCaption}\item[{string}]{link }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_a76c3b6dd449893fa001791a607156ee9}{}\label{_utils_8cpp_a76c3b6dd449893fa001791a607156ee9} 
+\index{Utils.\+cpp@{Utils.\+cpp}!trim\+String@{trim\+String}}
+\index{trim\+String@{trim\+String}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{trim\+String()}{trimString()}}
+{\footnotesize\ttfamily void trim\+String (\begin{DoxyParamCaption}\item[{string \&}]{input\+String }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8cpp_ab2255ac1652e2daed66d88ae5d84050c}{}\label{_utils_8cpp_ab2255ac1652e2daed66d88ae5d84050c} 
+\index{Utils.\+cpp@{Utils.\+cpp}!validate\+Name@{validate\+Name}}
+\index{validate\+Name@{validate\+Name}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{validate\+Name()}{validateName()}}
+{\footnotesize\ttfamily bool validate\+Name (\begin{DoxyParamCaption}\item[{string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{_utils_8cpp_afe2a835516f3d8fb7eaa7bc6cd1cf961}{}\label{_utils_8cpp_afe2a835516f3d8fb7eaa7bc6cd1cf961} 
+\index{Utils.\+cpp@{Utils.\+cpp}!age\+Level\+Map@{age\+Level\+Map}}
+\index{age\+Level\+Map@{age\+Level\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{age\+Level\+Map}{ageLevelMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}$>$ age\+Level\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"Seniors"}, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a2a42f11356765d3b5c0cd86635ef99d0}{Seniors} \},
+\{ \textcolor{stringliteral}{"U13"}, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6af64a5bccdcd2787a36a46aed13e6e069}{U13} \},
+\{ \textcolor{stringliteral}{"U15"}, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6adef26a81b3801797aa22ed51f5e43753}{U15} \},
+\{ \textcolor{stringliteral}{"U17"}, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a7b49270308326ebb72b856255ad3a769}{U17} \},
+\{ \textcolor{stringliteral}{"U19"}, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a354b06864c89d2f5358783521e5b2209}{U19} \} \}
+\end{DoxyCode}
+\hypertarget{_utils_8cpp_abcccd5e447418046556559994cfc522d}{}\label{_utils_8cpp_abcccd5e447418046556559994cfc522d} 
+\index{Utils.\+cpp@{Utils.\+cpp}!coach\+Type\+Map@{coach\+Type\+Map}}
+\index{coach\+Type\+Map@{coach\+Type\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{coach\+Type\+Map}{coachTypeMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}$>$ coach\+Type\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"HDC"}, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada3daa920051b17100f8c9617ff2d5efab}{HeadCoach} \},
+\{ \textcolor{stringliteral}{"GKC"}, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada9e0ea2164e471d68f8bdb08db9610171}{GoalkeeperCoach} \},
+\{ \textcolor{stringliteral}{"PHT"}, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada55634e87dff8c65da56a77c756744074}{PhysicalTrainer} \} \}
+\end{DoxyCode}
+\hypertarget{_utils_8cpp_a58887bb0379763da91da1fd6650010c4}{}\label{_utils_8cpp_a58887bb0379763da91da1fd6650010c4} 
+\index{Utils.\+cpp@{Utils.\+cpp}!defenders\+Map@{defenders\+Map}}
+\index{defenders\+Map@{defenders\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{defenders\+Map}{defendersMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d}{Defender\+Position}$>$ defenders\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"CB"}, \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dacc7b7d7345511ce1e2178f337ecac463}{CenterBack} \},
+\{ \textcolor{stringliteral}{"LB"}, \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dad692ab443c7f9e5afc4f93ef925cf931}{LeftBack} \},
+\{ \textcolor{stringliteral}{"RB"}, \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4da4bd87de17806c0677ed897689a99ebe8}{RightBack} \} \}
+\end{DoxyCode}
+\hypertarget{_utils_8cpp_a086afed5352a186d0f0b3196609a63df}{}\label{_utils_8cpp_a086afed5352a186d0f0b3196609a63df} 
+\index{Utils.\+cpp@{Utils.\+cpp}!forwards\+Map@{forwards\+Map}}
+\index{forwards\+Map@{forwards\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{forwards\+Map}{forwardsMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position}$>$ forwards\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"CM"}, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620a7e9f30c03495f2f4e3541149f64d608f}{Striker} \},
+\{ \textcolor{stringliteral}{"CDM"}, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ae5f9d2447a0a0f2253897b523b92f9a0}{CentreForward} \},
+\{ \textcolor{stringliteral}{"CAM"}, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac1b362b415000ed6568a9f263e0f7d97}{RigthWinger} \},
+\{ \textcolor{stringliteral}{"LM"}, \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac510a2473ed1c58a2a21e88e27fb7584}{LeftWinger} \} \}
+\end{DoxyCode}
+\hypertarget{_utils_8cpp_a89d9efb068bef492bfcc45a62dea04ee}{}\label{_utils_8cpp_a89d9efb068bef492bfcc45a62dea04ee} 
+\index{Utils.\+cpp@{Utils.\+cpp}!midfielders\+Map@{midfielders\+Map}}
+\index{midfielders\+Map@{midfielders\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{midfielders\+Map}{midfieldersMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217}{Midfielder\+Position}$>$ midfielders\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"CM"}, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ab5e328095d03589cf333024ac38e3260}{CentreMidfielder} \},
+\{ \textcolor{stringliteral}{"CDM"}, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a55087bd2bc79a87f093e20865904bda8}{DefensiveMidfielder} \},
+\{ \textcolor{stringliteral}{"CAM"}, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a293dc71a8706eb9d5f4543db57fcea14}{AttackingMidfielder} \},
+\{ \textcolor{stringliteral}{"LM"}, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac13521b92f9473eb01373cd682b7360f}{LeftMidfield} \},
+\{ \textcolor{stringliteral}{"RM"}, \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac7d4fa415c0cab9a1c34c773de4c19d1}{RightMidfield} \} \}
+\end{DoxyCode}
+\hypertarget{_utils_8cpp_a07c4c7c854db3ff4915d5d7d2d7da002}{}\label{_utils_8cpp_a07c4c7c854db3ff4915d5d7d2d7da002} 
+\index{Utils.\+cpp@{Utils.\+cpp}!positions\+Map@{positions\+Map}}
+\index{positions\+Map@{positions\+Map}!Utils.\+cpp@{Utils.\+cpp}}
+\subsubsection{\texorpdfstring{positions\+Map}{positionsMap}}
+{\footnotesize\ttfamily const map$<$string, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}$>$ positions\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{ \textcolor{stringliteral}{"GK"}, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a45b8f189e491f4babb168883b2ae686f}{GoalkeeperPos} \},
+\{ \textcolor{stringliteral}{"DF"}, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83ab4e5162c2a3d0e4fa7974946ab3f0be4}{DefenderPos} \},
+\{ \textcolor{stringliteral}{"MF"}, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83af1cb1bf7c311fff921f5276874f6d4bc}{MidfielderPos} \},
+\{ \textcolor{stringliteral}{"FW"}, \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a31b1c80c80b9bf3165dc4bd2af7f962f}{ForwardPos} \} \}
+\end{DoxyCode}

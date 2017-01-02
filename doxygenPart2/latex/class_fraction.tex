@@ -1,0 +1,235 @@
+\hypertarget{class_fraction}{}\section{Fraction Class Reference}
+\label{class_fraction}\index{Fraction@{Fraction}}
+
+
+{\ttfamily \#include $<$Utils.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_fraction_a29efaf0ef03cceab0bfa637e9eea2b7b}{Fraction} ()
+\item 
+\hyperlink{class_fraction_a55b666fe7b94b74f21d4919d9110805d}{Fraction} (int num, int den)
+\item 
+\hyperlink{class_fraction_a679e4834d2576a2b96a2904a81e5d990}{Fraction} (string fraction\+String)
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_ab72bc0a193460150fed673962f0681b9}{operator+} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+void \hyperlink{class_fraction_ad2327333e6f9186984eb728a9243ad1a}{operator+=} (\hyperlink{class_fraction}{Fraction} \&value)
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_a3ab475288d23337521e46c849bd81a88}{operator-\/} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+void \hyperlink{class_fraction_a560957bfe9353cfee0a6d30dbf66fb6f}{operator-\/=} (\hyperlink{class_fraction}{Fraction} \&value)
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_a88635ae851c5f33fe0c313319303220b}{operator$\ast$} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+void \hyperlink{class_fraction_a17225bab7600e54903a4716d21f6186b}{operator$\ast$=} (\hyperlink{class_fraction}{Fraction} \&value)
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_a60479946006e920343c3e03ce9f4f0f2}{operator/} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+void \hyperlink{class_fraction_a4a70499be6c756cf4e0f3982bb2558df}{operator/=} (\hyperlink{class_fraction}{Fraction} \&value)
+\item 
+bool \hyperlink{class_fraction_a7a122e21981f269280383178adce2868}{operator$<$} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+bool \hyperlink{class_fraction_ac652d0394b5c8f0046a975bf7ea1b60b}{operator==} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+bool \hyperlink{class_fraction_a2fc5da88a8106c34bd15a472c58cd61c}{operator$>$=} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+bool \hyperlink{class_fraction_a110a04c675b4737f09e6b84236f3d8e6}{operator$>$} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+bool \hyperlink{class_fraction_aa1a199c08a893bfb787a5b5a9915ba8b}{operator$<$=} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_a41a3516a3b2d8c431ea8a17a033f48a9}{operator$\vert$} (\hyperlink{class_fraction}{Fraction} value) const
+\item 
+void \hyperlink{class_fraction_a13da35dc2c6c3bee73c749192a61df8a}{operator$\vert$=} (const \hyperlink{class_fraction}{Fraction} \&value)
+\item 
+\hyperlink{class_fraction}{Fraction} \& \hyperlink{class_fraction_ac8ae2e81294340889183951be2657633}{operator++} ()
+\item 
+\hyperlink{class_fraction}{Fraction} \hyperlink{class_fraction_a8fc2c460f8cf333d153da2f53a969edf}{operator++} (int)
+\item 
+void \hyperlink{class_fraction_a8eee4d9ddb8a3484930f7fa5f7ca3ae7}{reduce} ()
+\item 
+void \hyperlink{class_fraction_a053300eed15ed1783a4316f9b7bf8a4f}{print} (bool original\+Fraction=true) const
+\item 
+void \hyperlink{class_fraction_a08ffc86159f5b96b10df4bfdf2f5c0a5}{print\+Percentage} () const
+\item 
+string \hyperlink{class_fraction_af475a2e5500fd3a0c36d918a2950464c}{get\+Frac} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_fraction_a447e179720bd927a19c1d73fb040d1c4}{numerator}
+\item 
+int \hyperlink{class_fraction_a079acff7892d39be395f14799244d044}{denominator}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_fraction_a29efaf0ef03cceab0bfa637e9eea2b7b}{}\label{class_fraction_a29efaf0ef03cceab0bfa637e9eea2b7b} 
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{Fraction()}{Fraction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Fraction\+::\+Fraction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a55b666fe7b94b74f21d4919d9110805d}{}\label{class_fraction_a55b666fe7b94b74f21d4919d9110805d} 
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{Fraction()}{Fraction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Fraction\+::\+Fraction (\begin{DoxyParamCaption}\item[{int}]{num,  }\item[{int}]{den }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a679e4834d2576a2b96a2904a81e5d990}{}\label{class_fraction_a679e4834d2576a2b96a2904a81e5d990} 
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\index{Fraction@{Fraction}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{Fraction()}{Fraction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Fraction\+::\+Fraction (\begin{DoxyParamCaption}\item[{string}]{fraction\+String }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_fraction_af475a2e5500fd3a0c36d918a2950464c}{}\label{class_fraction_af475a2e5500fd3a0c36d918a2950464c} 
+\index{Fraction@{Fraction}!get\+Frac@{get\+Frac}}
+\index{get\+Frac@{get\+Frac}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{get\+Frac()}{getFrac()}}
+{\footnotesize\ttfamily string Fraction\+::get\+Frac (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a88635ae851c5f33fe0c313319303220b}{}\label{class_fraction_a88635ae851c5f33fe0c313319303220b} 
+\index{Fraction@{Fraction}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a17225bab7600e54903a4716d21f6186b}{}\label{class_fraction_a17225bab7600e54903a4716d21f6186b} 
+\index{Fraction@{Fraction}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily void Fraction\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction} \&}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_ab72bc0a193460150fed673962f0681b9}{}\label{class_fraction_ab72bc0a193460150fed673962f0681b9} 
+\index{Fraction@{Fraction}!operator+@{operator+}}
+\index{operator+@{operator+}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator+ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_ac8ae2e81294340889183951be2657633}{}\label{class_fraction_ac8ae2e81294340889183951be2657633} 
+\index{Fraction@{Fraction}!operator++@{operator++}}
+\index{operator++@{operator++}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} \& Fraction\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a8fc2c460f8cf333d153da2f53a969edf}{}\label{class_fraction_a8fc2c460f8cf333d153da2f53a969edf} 
+\index{Fraction@{Fraction}!operator++@{operator++}}
+\index{operator++@{operator++}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_ad2327333e6f9186984eb728a9243ad1a}{}\label{class_fraction_ad2327333e6f9186984eb728a9243ad1a} 
+\index{Fraction@{Fraction}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily void Fraction\+::operator+= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction} \&}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a3ab475288d23337521e46c849bd81a88}{}\label{class_fraction_a3ab475288d23337521e46c849bd81a88} 
+\index{Fraction@{Fraction}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator-\/ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a560957bfe9353cfee0a6d30dbf66fb6f}{}\label{class_fraction_a560957bfe9353cfee0a6d30dbf66fb6f} 
+\index{Fraction@{Fraction}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily void Fraction\+::operator-\/= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction} \&}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a60479946006e920343c3e03ce9f4f0f2}{}\label{class_fraction_a60479946006e920343c3e03ce9f4f0f2} 
+\index{Fraction@{Fraction}!operator/@{operator/}}
+\index{operator/@{operator/}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator/ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a4a70499be6c756cf4e0f3982bb2558df}{}\label{class_fraction_a4a70499be6c756cf4e0f3982bb2558df} 
+\index{Fraction@{Fraction}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily void Fraction\+::operator/= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction} \&}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a7a122e21981f269280383178adce2868}{}\label{class_fraction_a7a122e21981f269280383178adce2868} 
+\index{Fraction@{Fraction}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Fraction\+::operator$<$ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_aa1a199c08a893bfb787a5b5a9915ba8b}{}\label{class_fraction_aa1a199c08a893bfb787a5b5a9915ba8b} 
+\index{Fraction@{Fraction}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily bool Fraction\+::operator$<$= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_ac652d0394b5c8f0046a975bf7ea1b60b}{}\label{class_fraction_ac652d0394b5c8f0046a975bf7ea1b60b} 
+\index{Fraction@{Fraction}!operator==@{operator==}}
+\index{operator==@{operator==}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Fraction\+::operator== (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a110a04c675b4737f09e6b84236f3d8e6}{}\label{class_fraction_a110a04c675b4737f09e6b84236f3d8e6} 
+\index{Fraction@{Fraction}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool Fraction\+::operator$>$ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a2fc5da88a8106c34bd15a472c58cd61c}{}\label{class_fraction_a2fc5da88a8106c34bd15a472c58cd61c} 
+\index{Fraction@{Fraction}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool Fraction\+::operator$>$= (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a41a3516a3b2d8c431ea8a17a033f48a9}{}\label{class_fraction_a41a3516a3b2d8c431ea8a17a033f48a9} 
+\index{Fraction@{Fraction}!operator\texttt{"|}@{operator\texttt{"|}}}
+\index{operator\texttt{"|}@{operator\texttt{"|}}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator\texttt{"|}()}{operator|()}}
+{\footnotesize\ttfamily \hyperlink{class_fraction}{Fraction} Fraction\+::operator$\vert$ (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{value }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a13da35dc2c6c3bee73c749192a61df8a}{}\label{class_fraction_a13da35dc2c6c3bee73c749192a61df8a} 
+\index{Fraction@{Fraction}!operator\texttt{"|}=@{operator\texttt{"|}=}}
+\index{operator\texttt{"|}=@{operator\texttt{"|}=}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{operator\texttt{"|}=()}{operator|=()}}
+{\footnotesize\ttfamily void Fraction\+::operator$\vert$= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_fraction}{Fraction} \&}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{class_fraction_a053300eed15ed1783a4316f9b7bf8a4f}{}\label{class_fraction_a053300eed15ed1783a4316f9b7bf8a4f} 
+\index{Fraction@{Fraction}!print@{print}}
+\index{print@{print}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Fraction\+::print (\begin{DoxyParamCaption}\item[{bool}]{original\+Fraction = {\ttfamily true} }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a08ffc86159f5b96b10df4bfdf2f5c0a5}{}\label{class_fraction_a08ffc86159f5b96b10df4bfdf2f5c0a5} 
+\index{Fraction@{Fraction}!print\+Percentage@{print\+Percentage}}
+\index{print\+Percentage@{print\+Percentage}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{print\+Percentage()}{printPercentage()}}
+{\footnotesize\ttfamily void Fraction\+::print\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_fraction_a8eee4d9ddb8a3484930f7fa5f7ca3ae7}{}\label{class_fraction_a8eee4d9ddb8a3484930f7fa5f7ca3ae7} 
+\index{Fraction@{Fraction}!reduce@{reduce}}
+\index{reduce@{reduce}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{reduce()}{reduce()}}
+{\footnotesize\ttfamily void Fraction\+::reduce (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_fraction_a079acff7892d39be395f14799244d044}{}\label{class_fraction_a079acff7892d39be395f14799244d044} 
+\index{Fraction@{Fraction}!denominator@{denominator}}
+\index{denominator@{denominator}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{denominator}{denominator}}
+{\footnotesize\ttfamily int Fraction\+::denominator\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_fraction_a447e179720bd927a19c1d73fb040d1c4}{}\label{class_fraction_a447e179720bd927a19c1d73fb040d1c4} 
+\index{Fraction@{Fraction}!numerator@{numerator}}
+\index{numerator@{numerator}!Fraction@{Fraction}}
+\subsubsection{\texorpdfstring{numerator}{numerator}}
+{\footnotesize\ttfamily int Fraction\+::numerator\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_utils_8hpp}{Utils.\+hpp}\item 
+\hyperlink{_utils_8cpp}{Utils.\+cpp}\end{DoxyCompactItemize}

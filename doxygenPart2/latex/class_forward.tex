@@ -1,0 +1,179 @@
+\hypertarget{class_forward}{}\section{Forward Class Reference}
+\label{class_forward}\index{Forward@{Forward}}
+
+
+A forward.  
+
+
+
+
+{\ttfamily \#include $<$Forward.\+hpp$>$}
+
+Inheritance diagram for Forward\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_forward}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_forward_ae7ea8d219a77c8b1fdb48bd2f9ef216b}{Forward} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, unsigned char \hyperlink{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{height}, unsigned \hyperlink{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{id}=0)
+\begin{DoxyCompactList}\small\item\em Constructor. The id is set automatically \end{DoxyCompactList}\item 
+\hyperlink{class_forward_a2b053b5babe85f26e06a9da516903f6b}{Forward} (string \&new\+FW)
+\begin{DoxyCompactList}\small\item\em Constructor that reads from the athletes file \end{DoxyCompactList}\item 
+\hyperlink{class_forward_af018f03fdfd0e58c653bbb8411b77ef0}{$\sim$\+Forward} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_forward_aacec6cafa4f965940286bd81e91e1eed}{get\+ID} () const
+\begin{DoxyCompactList}\small\item\em Gets the forward\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_forward_a5d8e8085c9a8c95a3296afc40fca81e5}{get\+Info} () const
+\begin{DoxyCompactList}\small\item\em Gets the forward\textquotesingle{}s performance information. \end{DoxyCompactList}\item 
+void \hyperlink{class_forward_a18f2db8a8234912d6a27727cb3b04fd9}{add\+Info} (\hyperlink{class_info}{Info} $\ast$more\+Info)
+\begin{DoxyCompactList}\small\item\em Adds performance information to the forward. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_forward_a64b43b34683be63ca7c8313ae755e4f0}{general\+Info}
+\begin{DoxyCompactList}\small\item\em forward\textquotesingle{}s general information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A forward. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_forward_ae7ea8d219a77c8b1fdb48bd2f9ef216b}{}\label{class_forward_ae7ea8d219a77c8b1fdb48bd2f9ef216b} 
+\index{Forward@{Forward}!Forward@{Forward}}
+\index{Forward@{Forward}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{Forward()}{Forward()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Forward\+::\+Forward (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned char}]{height,  }\item[{unsigned}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor. The id is set automatically 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Civil identifier. \\
+\hline
+{\em height} & The height. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_forward_a2b053b5babe85f26e06a9da516903f6b}{}\label{class_forward_a2b053b5babe85f26e06a9da516903f6b} 
+\index{Forward@{Forward}!Forward@{Forward}}
+\index{Forward@{Forward}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{Forward()}{Forward()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Forward\+::\+Forward (\begin{DoxyParamCaption}\item[{string \&}]{new\+FW }\end{DoxyParamCaption})}
+
+
+
+Constructor that reads from the athletes file 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+FW} & \mbox{[}in,out\mbox{]} The new firmware. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_forward_af018f03fdfd0e58c653bbb8411b77ef0}{}\label{class_forward_af018f03fdfd0e58c653bbb8411b77ef0} 
+\index{Forward@{Forward}!````~Forward@{$\sim$\+Forward}}
+\index{````~Forward@{$\sim$\+Forward}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{$\sim$\+Forward()}{~Forward()}}
+{\footnotesize\ttfamily Forward\+::$\sim$\+Forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_forward_a18f2db8a8234912d6a27727cb3b04fd9}{}\label{class_forward_a18f2db8a8234912d6a27727cb3b04fd9} 
+\index{Forward@{Forward}!add\+Info@{add\+Info}}
+\index{add\+Info@{add\+Info}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{add\+Info()}{addInfo()}}
+{\footnotesize\ttfamily void Forward\+::add\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{class_info}{Info} $\ast$}]{more\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Adds performance information to the forward. 
+
+This is a method that adds information to the forward
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em more\+Info} & \mbox{[}in,out\mbox{]} If non-\/null, forward\textquotesingle{}s performance information. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ad54db262f7473cc729c371dd54e292eb}{Worker}.
+
+\hypertarget{class_forward_aacec6cafa4f965940286bd81e91e1eed}{}\label{class_forward_aacec6cafa4f965940286bd81e91e1eed} 
+\index{Forward@{Forward}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Forward\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the forward\textquotesingle{}s identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The forward\textquotesingle{}s identifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{Worker}.
+
+\hypertarget{class_forward_a5d8e8085c9a8c95a3296afc40fca81e5}{}\label{class_forward_a5d8e8085c9a8c95a3296afc40fca81e5} 
+\index{Forward@{Forward}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{get\+Info()}{getInfo()}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info} $\ast$ Forward\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the forward\textquotesingle{}s performance information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the forward\textquotesingle{}s performance information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_a95a4f7c750644937859b8e14515a480e}{Worker}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_forward_a64b43b34683be63ca7c8313ae755e4f0}{}\label{class_forward_a64b43b34683be63ca7c8313ae755e4f0} 
+\index{Forward@{Forward}!general\+Info@{general\+Info}}
+\index{general\+Info@{general\+Info}!Forward@{Forward}}
+\subsubsection{\texorpdfstring{general\+Info}{generalInfo}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info}$\ast$ Forward\+::general\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+forward\textquotesingle{}s general information. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_forward_8hpp}{Forward.\+hpp}\item 
+\hyperlink{_forward_8cpp}{Forward.\+cpp}\end{DoxyCompactItemize}

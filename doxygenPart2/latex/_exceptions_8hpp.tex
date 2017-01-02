@@ -1,0 +1,89 @@
+\hypertarget{_exceptions_8hpp}{}\section{Exceptions.\+hpp File Reference}
+\label{_exceptions_8hpp}\index{Exceptions.\+hpp@{Exceptions.\+hpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_invalid_date}{Invalid\+Date}
+\begin{DoxyCompactList}\small\item\em An invalid date. \end{DoxyCompactList}\item 
+class \hyperlink{class_invalid_stream}{Invalid\+Stream}
+\begin{DoxyCompactList}\small\item\em An invalid stream. \end{DoxyCompactList}\item 
+class \hyperlink{class_invalid_input}{Invalid\+Input}
+\begin{DoxyCompactList}\small\item\em An invalid input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3}{Date\+Exception\+Type} \{ \newline
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ac8a2781a3a26c629de347bb72e20ea4f}{Invalid\+Day}, 
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a54767c7b71c22c93ea05783dec0f8c9c}{Invalid\+Month}, 
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ab1afa53fe865da8026fd392e9de6d3e2}{Invalid\+Year}, 
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a613fa88fb2700c04545b7ab2f58a3872}{Invalid\+Separators}, 
+\newline
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a7dc85a46620e365933f9cdcebaf11fe4}{Out\+Of\+Bounds\+Min}, 
+\hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a58754c47e13e44449c4e6a8a84f8d227}{Out\+Of\+Bounds\+Max}
+ \}\begin{DoxyCompactList}\small\item\em Values that represent date exception types. \end{DoxyCompactList}
+\item 
+enum \hyperlink{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39}{Invalid\+Stream\+Type} \{ \hyperlink{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aae835b662be01cdc3752f7db84529cca}{write}, 
+\hyperlink{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aea7c12cb3031ad9e88104ce9859ce1c5}{read}
+ \}\begin{DoxyCompactList}\small\item\em Values that represent invalid stream types. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3} 
+\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Date\+Exception\+Type@{Date\+Exception\+Type}}
+\index{Date\+Exception\+Type@{Date\+Exception\+Type}!Exceptions.\+hpp@{Exceptions.\+hpp}}
+\subsubsection{\texorpdfstring{Date\+Exception\+Type}{DateExceptionType}}
+{\footnotesize\ttfamily enum \hyperlink{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3}{Date\+Exception\+Type}}
+
+
+
+Values that represent date exception types. 
+
+Luís, 20/11/2016. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Invalid\+Day@{Invalid\+Day}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Invalid\+Day@{Invalid\+Day}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ac8a2781a3a26c629de347bb72e20ea4f}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ac8a2781a3a26c629de347bb72e20ea4f} 
+Invalid\+Day&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Invalid\+Month@{Invalid\+Month}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Invalid\+Month@{Invalid\+Month}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a54767c7b71c22c93ea05783dec0f8c9c}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a54767c7b71c22c93ea05783dec0f8c9c} 
+Invalid\+Month&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Invalid\+Year@{Invalid\+Year}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Invalid\+Year@{Invalid\+Year}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ab1afa53fe865da8026fd392e9de6d3e2}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3ab1afa53fe865da8026fd392e9de6d3e2} 
+Invalid\+Year&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Invalid\+Separators@{Invalid\+Separators}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Invalid\+Separators@{Invalid\+Separators}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a613fa88fb2700c04545b7ab2f58a3872}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a613fa88fb2700c04545b7ab2f58a3872} 
+Invalid\+Separators&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Out\+Of\+Bounds\+Min@{Out\+Of\+Bounds\+Min}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Out\+Of\+Bounds\+Min@{Out\+Of\+Bounds\+Min}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a7dc85a46620e365933f9cdcebaf11fe4}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a7dc85a46620e365933f9cdcebaf11fe4} 
+Out\+Of\+Bounds\+Min&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Out\+Of\+Bounds\+Max@{Out\+Of\+Bounds\+Max}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Out\+Of\+Bounds\+Max@{Out\+Of\+Bounds\+Max}}}\hypertarget{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a58754c47e13e44449c4e6a8a84f8d227}{}\label{_exceptions_8hpp_a3c07f150c56e3659483593a47dafc0e3a58754c47e13e44449c4e6a8a84f8d227} 
+Out\+Of\+Bounds\+Max&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39}{}\label{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39} 
+\index{Exceptions.\+hpp@{Exceptions.\+hpp}!Invalid\+Stream\+Type@{Invalid\+Stream\+Type}}
+\index{Invalid\+Stream\+Type@{Invalid\+Stream\+Type}!Exceptions.\+hpp@{Exceptions.\+hpp}}
+\subsubsection{\texorpdfstring{Invalid\+Stream\+Type}{InvalidStreamType}}
+{\footnotesize\ttfamily enum \hyperlink{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39}{Invalid\+Stream\+Type}}
+
+
+
+Values that represent invalid stream types. 
+
+Luís, 20/11/2016. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{write@{write}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!write@{write}}}\hypertarget{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aae835b662be01cdc3752f7db84529cca}{}\label{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aae835b662be01cdc3752f7db84529cca} 
+write&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{read@{read}!Exceptions.\+hpp@{Exceptions.\+hpp}}\index{Exceptions.\+hpp@{Exceptions.\+hpp}!read@{read}}}\hypertarget{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aea7c12cb3031ad9e88104ce9859ce1c5}{}\label{_exceptions_8hpp_a20debbce0a9d256d07eac93067032a39aea7c12cb3031ad9e88104ce9859ce1c5} 
+read&\\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,608 @@
+\hypertarget{class_tournament}{}\section{Tournament Class Reference}
+\label{class_tournament}\index{Tournament@{Tournament}}
+
+
+A tournament.  
+
+
+
+
+{\ttfamily \#include $<$Tournament.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tournament_a65490b32c093ace034b15ec8cbe75795}{Tournament} (\hyperlink{class_date}{Date} \hyperlink{class_tournament_afe5c5994c15194a320914831d05e40fc}{tournament\+Starting\+Date}, \hyperlink{class_date}{Date} \hyperlink{class_tournament_a85027b414ba2ddd7cd513c399588d2a8}{tournament\+Ending\+Date}, vector$<$ string $>$ tournament\+Clubs, \hyperlink{class_club}{Club} $\ast$program\+Club, string \hyperlink{class_tournament_a6d4f678a73d89147d34bb1d0c50cc976}{name}, unsigned int \hyperlink{class_tournament_a15cf54c0cde58d9a29c9700808173a8c}{id}=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_tournament_a4d5e4eb2007fb6873b5e4e91f70d565b}{Tournament} (ifstream \&in\+Stream, ifstream \&\hyperlink{class_tournament_a561cd3b82b192558910f85ae1c1f5bea}{tournament\+Tree}, \hyperlink{class_level}{Level} $\ast$tournament\+Level)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_tournament_a3cd15abb3e9599c60ae124fed5a04ee5}{$\sim$\+Tournament} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+string \hyperlink{class_tournament_a94cfb5371bd09ab75a50a13ef924ae58}{get\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets the name. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_tournament_a30bc0b9edbc862c7318d94199f6a94ee}{get\+Tournament\+Starting\+Date} () const
+\begin{DoxyCompactList}\small\item\em Gets tournament starting date. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_tournament_adffedf926ee07ba1a18424f71070ad3e}{get\+Tournament\+Ending\+Date} () const
+\begin{DoxyCompactList}\small\item\em Gets tournament ending date. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $>$ \hyperlink{class_tournament_ada52b0008dc78beee5c64718ce72a9ed}{fill\+Tournament\+Tree} (unsigned int final\+Phase)
+\begin{DoxyCompactList}\small\item\em Fill tournament tree. \end{DoxyCompactList}\item 
+\hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $\ast$ \hyperlink{class_tournament_af89af84fd12e55685a9693551b6b7652}{find\+Match\+Node} (unsigned int tournament\+Match\+Id)
+\begin{DoxyCompactList}\small\item\em Searches for the first match node. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_tournament_ad5e59e6551498b634e7bd745a7967fc9}{get\+Id} () const
+\begin{DoxyCompactList}\small\item\em Gets the identifier. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_club}{Club} $\ast$ $>$ \hyperlink{class_tournament_a51a2a85ded44857ab3798c8a9855f5b6}{get\+Tournament\+Clubs} () const
+\begin{DoxyCompactList}\small\item\em Gets tournament clubs. \end{DoxyCompactList}\item 
+const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $>$ \& \hyperlink{class_tournament_abeb767d12aab092bf94410e7224cf29b}{get\+Tournament\+Tree} () const
+\begin{DoxyCompactList}\small\item\em Gets tournament tree. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ string $>$ $>$ \hyperlink{class_tournament_af7b21e0eff39c9ebcba96f1a319d7f67}{get\+Tournament\+Matches} () const
+\begin{DoxyCompactList}\small\item\em Gets tournament matches. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_a8f132d5b00451d7c65eafd3048e29362}{schedule\+Tournament\+Match} (unsigned int tournament\+Match\+Id, \hyperlink{class_date}{Date} match\+Date, unsigned int home\+Team\+Index=0, unsigned int away\+Team\+Index=0)
+\begin{DoxyCompactList}\small\item\em Schedule tournament match. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_adbc7625a6fab79463241834d05fc5bfb}{call\+Up\+Players} (unsigned int tournament\+Match\+Id, vector$<$ unsigned int $>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Call up players. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_a15948a541a1675213e52381c6a67f51c}{call\+Up\+Players} (unsigned int tournament\+Match\+Id, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, vector$<$ unsigned int $>$ match\+Players, unsigned int home\+Team\+Index=0, unsigned int away\+Team\+Index=0)
+\begin{DoxyCompactList}\small\item\em Call up players. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_aa795dcb0ac03da77e9b916d8ef19bd63}{register\+Match} (unsigned int tournament\+Match\+Id, \hyperlink{class_level}{Level} $\ast$level, unsigned int home\+Team\+Score, unsigned int away\+Team\+Score, vector$<$ unsigned int $>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Registers the match. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_a344a73233eab3d1c2aa1224ec2f3cd5b}{register\+Match} (unsigned int tournament\+Match\+Id, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, vector$<$ unsigned int $>$ match\+Players, unsigned int home\+Team\+Score=0, unsigned int away\+Team\+Score=0, unsigned int home\+Team\+Index=0, unsigned int away\+Team\+Index=0)
+\begin{DoxyCompactList}\small\item\em Registers the match. \end{DoxyCompactList}\item 
+void \hyperlink{class_tournament_a98e75090ce3a6eddb2fdbe5f812d1894}{update\+Tree} ()
+\begin{DoxyCompactList}\small\item\em Updates the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_date}{Date} \hyperlink{class_tournament_afe5c5994c15194a320914831d05e40fc}{tournament\+Starting\+Date}
+\begin{DoxyCompactList}\small\item\em The tournament starting date. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_tournament_a85027b414ba2ddd7cd513c399588d2a8}{tournament\+Ending\+Date}
+\begin{DoxyCompactList}\small\item\em The tournament ending date. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_club}{Club} $\ast$ $>$ \hyperlink{class_tournament_a0bc3b92b52e1e0b13c466f5e14100a10}{clubs}
+\begin{DoxyCompactList}\small\item\em The clubs. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_tournament_a23735b59d67642c8e8e826b9638d588c}{clubs\+Aux\+Used}
+\begin{DoxyCompactList}\small\item\em The clubs auxiliary used. \end{DoxyCompactList}\item 
+\hyperlink{class_binary_tree}{Binary\+Tree}$<$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $>$ \hyperlink{class_tournament_a561cd3b82b192558910f85ae1c1f5bea}{tournament\+Tree}
+\begin{DoxyCompactList}\small\item\em The tournament tree. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_tournament_a4e662ffc9d1c3c868bb6db5c60be5c58}{winner}
+\begin{DoxyCompactList}\small\item\em The winner. \end{DoxyCompactList}\item 
+\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase} \hyperlink{class_tournament_a1536d0ea138cb8ccd6ce0ef5e2d0f6ec}{initial\+Phase}
+\begin{DoxyCompactList}\small\item\em The initial phase. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_tournament_a3b41df083ed5b33411e307ad1859ab6d}{number\+Of\+Matches}
+\begin{DoxyCompactList}\small\item\em Number of matches. \end{DoxyCompactList}\item 
+string \hyperlink{class_tournament_a6d4f678a73d89147d34bb1d0c50cc976}{name}
+\begin{DoxyCompactList}\small\item\em The name. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_tournament_a15cf54c0cde58d9a29c9700808173a8c}{id}
+\begin{DoxyCompactList}\small\item\em The identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \hyperlink{class_tournament_a02145894ee5d8aedffa86b6444cf4205}{id\+Counter} = 0
+\begin{DoxyCompactList}\small\item\em The identifier counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_tournament_a30a1cb2d3a53d0cc6c77c5f29449305c}{operator$<$$<$} (ostream \&o\+Stream, \hyperlink{class_tournament}{Tournament} \&tournament\+To\+Write)
+\begin{DoxyCompactList}\small\item\em Stream insertion operator. \end{DoxyCompactList}\item 
+ostream \& \hyperlink{class_tournament_ac1914f90b80482b534f7a20273ea5b60}{operator$<$} (ostream \&o\+Stream, \hyperlink{class_tournament}{Tournament} \&tournament\+To\+Write)
+\begin{DoxyCompactList}\small\item\em Less-\/than comparison operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A tournament. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tournament_a65490b32c093ace034b15ec8cbe75795}{}\label{class_tournament_a65490b32c093ace034b15ec8cbe75795} 
+\index{Tournament@{Tournament}!Tournament@{Tournament}}
+\index{Tournament@{Tournament}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{Tournament()}{Tournament()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Tournament\+::\+Tournament (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{tournament\+Starting\+Date,  }\item[{\hyperlink{class_date}{Date}}]{tournament\+Ending\+Date,  }\item[{vector$<$ string $>$}]{tournament\+Clubs,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{program\+Club,  }\item[{string}]{name,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Starting\+Date} & The tournament starting date. \\
+\hline
+{\em tournament\+Ending\+Date} & The tournament ending date. \\
+\hline
+{\em tournament\+Clubs} & The tournament clubs. \\
+\hline
+{\em program\+Club} & \mbox{[}in,out\mbox{]} If non-\/null, the program club. \\
+\hline
+{\em name} & The name. \\
+\hline
+{\em id} & (Optional) The identifier. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a4d5e4eb2007fb6873b5e4e91f70d565b}{}\label{class_tournament_a4d5e4eb2007fb6873b5e4e91f70d565b} 
+\index{Tournament@{Tournament}!Tournament@{Tournament}}
+\index{Tournament@{Tournament}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{Tournament()}{Tournament()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Tournament\+::\+Tournament (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+Stream,  }\item[{ifstream \&}]{tournament\+Tree,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{tournament\+Level }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Stream} & \mbox{[}in,out\mbox{]} Stream to read data from the club file. \\
+\hline
+{\em tournament\+Tree} & \mbox{[}in,out\mbox{]} The tournament tree. \\
+\hline
+{\em tournament\+Level} & \mbox{[}in,out\mbox{]} If non-\/null, the tournament level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a3cd15abb3e9599c60ae124fed5a04ee5}{}\label{class_tournament_a3cd15abb3e9599c60ae124fed5a04ee5} 
+\index{Tournament@{Tournament}!````~Tournament@{$\sim$\+Tournament}}
+\index{````~Tournament@{$\sim$\+Tournament}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{$\sim$\+Tournament()}{~Tournament()}}
+{\footnotesize\ttfamily Tournament\+::$\sim$\+Tournament (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tournament_adbc7625a6fab79463241834d05fc5bfb}{}\label{class_tournament_adbc7625a6fab79463241834d05fc5bfb} 
+\index{Tournament@{Tournament}!call\+Up\+Players@{call\+Up\+Players}}
+\index{call\+Up\+Players@{call\+Up\+Players}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{call\+Up\+Players()}{callUpPlayers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tournament\+::call\+Up\+Players (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id,  }\item[{vector$<$ unsigned int $>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Call up players. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a15948a541a1675213e52381c6a67f51c}{}\label{class_tournament_a15948a541a1675213e52381c6a67f51c} 
+\index{Tournament@{Tournament}!call\+Up\+Players@{call\+Up\+Players}}
+\index{call\+Up\+Players@{call\+Up\+Players}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{call\+Up\+Players()}{callUpPlayers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tournament\+::call\+Up\+Players (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{vector$<$ unsigned int $>$}]{match\+Players,  }\item[{unsigned int}]{home\+Team\+Index = {\ttfamily 0},  }\item[{unsigned int}]{away\+Team\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Call up players. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+{\em home\+Team\+Index} & (Optional) Zero-\/based index of the home team. \\
+\hline
+{\em away\+Team\+Index} & (Optional) Zero-\/based index of the away team. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_ada52b0008dc78beee5c64718ce72a9ed}{}\label{class_tournament_ada52b0008dc78beee5c64718ce72a9ed} 
+\index{Tournament@{Tournament}!fill\+Tournament\+Tree@{fill\+Tournament\+Tree}}
+\index{fill\+Tournament\+Tree@{fill\+Tournament\+Tree}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{fill\+Tournament\+Tree()}{fillTournamentTree()}}
+{\footnotesize\ttfamily \hyperlink{class_binary_tree}{Binary\+Tree}$<$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $>$ Tournament\+::fill\+Tournament\+Tree (\begin{DoxyParamCaption}\item[{unsigned int}]{final\+Phase }\end{DoxyParamCaption})}
+
+
+
+Fill tournament tree. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em final\+Phase} & The final phase. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_binary_tree}{Binary\+Tree}$<$node\+Match$>$ 
+\end{DoxyReturn}
+\hypertarget{class_tournament_af89af84fd12e55685a9693551b6b7652}{}\label{class_tournament_af89af84fd12e55685a9693551b6b7652} 
+\index{Tournament@{Tournament}!find\+Match\+Node@{find\+Match\+Node}}
+\index{find\+Match\+Node@{find\+Match\+Node}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{find\+Match\+Node()}{findMatchNode()}}
+{\footnotesize\ttfamily \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $\ast$ Tournament\+::find\+Match\+Node (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id }\end{DoxyParamCaption})}
+
+
+
+Searches for the first match node. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the found match node. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_ad5e59e6551498b634e7bd745a7967fc9}{}\label{class_tournament_ad5e59e6551498b634e7bd745a7967fc9} 
+\index{Tournament@{Tournament}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Id()}{getId()}}
+{\footnotesize\ttfamily unsigned int Tournament\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The identifier. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_a94cfb5371bd09ab75a50a13ef924ae58}{}\label{class_tournament_a94cfb5371bd09ab75a50a13ef924ae58} 
+\index{Tournament@{Tournament}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string Tournament\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the name. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The name. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_a51a2a85ded44857ab3798c8a9855f5b6}{}\label{class_tournament_a51a2a85ded44857ab3798c8a9855f5b6} 
+\index{Tournament@{Tournament}!get\+Tournament\+Clubs@{get\+Tournament\+Clubs}}
+\index{get\+Tournament\+Clubs@{get\+Tournament\+Clubs}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Clubs()}{getTournamentClubs()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_club}{Club} $\ast$ $>$ Tournament\+::get\+Tournament\+Clubs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament clubs. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the tournament clubs. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_adffedf926ee07ba1a18424f71070ad3e}{}\label{class_tournament_adffedf926ee07ba1a18424f71070ad3e} 
+\index{Tournament@{Tournament}!get\+Tournament\+Ending\+Date@{get\+Tournament\+Ending\+Date}}
+\index{get\+Tournament\+Ending\+Date@{get\+Tournament\+Ending\+Date}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Ending\+Date()}{getTournamentEndingDate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Tournament\+::get\+Tournament\+Ending\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament ending date. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The tournament ending date. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_af7b21e0eff39c9ebcba96f1a319d7f67}{}\label{class_tournament_af7b21e0eff39c9ebcba96f1a319d7f67} 
+\index{Tournament@{Tournament}!get\+Tournament\+Matches@{get\+Tournament\+Matches}}
+\index{get\+Tournament\+Matches@{get\+Tournament\+Matches}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Matches()}{getTournamentMatches()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ string $>$ $>$ Tournament\+::get\+Tournament\+Matches (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament matches. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The tournament matches. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_a30bc0b9edbc862c7318d94199f6a94ee}{}\label{class_tournament_a30bc0b9edbc862c7318d94199f6a94ee} 
+\index{Tournament@{Tournament}!get\+Tournament\+Starting\+Date@{get\+Tournament\+Starting\+Date}}
+\index{get\+Tournament\+Starting\+Date@{get\+Tournament\+Starting\+Date}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Starting\+Date()}{getTournamentStartingDate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Tournament\+::get\+Tournament\+Starting\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament starting date. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The tournament starting date. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_abeb767d12aab092bf94410e7224cf29b}{}\label{class_tournament_abeb767d12aab092bf94410e7224cf29b} 
+\index{Tournament@{Tournament}!get\+Tournament\+Tree@{get\+Tournament\+Tree}}
+\index{get\+Tournament\+Tree@{get\+Tournament\+Tree}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{get\+Tournament\+Tree()}{getTournamentTree()}}
+{\footnotesize\ttfamily const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match} $>$ \& Tournament\+::get\+Tournament\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets tournament tree. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The tournament tree. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_aa795dcb0ac03da77e9b916d8ef19bd63}{}\label{class_tournament_aa795dcb0ac03da77e9b916d8ef19bd63} 
+\index{Tournament@{Tournament}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tournament\+::register\+Match (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{vector$<$ unsigned int $>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers the match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em home\+Team\+Score} & The home team score. \\
+\hline
+{\em away\+Team\+Score} & The away team score. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a344a73233eab3d1c2aa1224ec2f3cd5b}{}\label{class_tournament_a344a73233eab3d1c2aa1224ec2f3cd5b} 
+\index{Tournament@{Tournament}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tournament\+::register\+Match (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{vector$<$ unsigned int $>$}]{match\+Players,  }\item[{unsigned int}]{home\+Team\+Score = {\ttfamily 0},  }\item[{unsigned int}]{away\+Team\+Score = {\ttfamily 0},  }\item[{unsigned int}]{home\+Team\+Index = {\ttfamily 0},  }\item[{unsigned int}]{away\+Team\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Registers the match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+{\em home\+Team\+Score} & (Optional) The home team score. \\
+\hline
+{\em away\+Team\+Score} & (Optional) The away team score. \\
+\hline
+{\em home\+Team\+Index} & (Optional) Zero-\/based index of the home team. \\
+\hline
+{\em away\+Team\+Index} & (Optional) Zero-\/based index of the away team. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a8f132d5b00451d7c65eafd3048e29362}{}\label{class_tournament_a8f132d5b00451d7c65eafd3048e29362} 
+\index{Tournament@{Tournament}!schedule\+Tournament\+Match@{schedule\+Tournament\+Match}}
+\index{schedule\+Tournament\+Match@{schedule\+Tournament\+Match}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{schedule\+Tournament\+Match()}{scheduleTournamentMatch()}}
+{\footnotesize\ttfamily void Tournament\+::schedule\+Tournament\+Match (\begin{DoxyParamCaption}\item[{unsigned int}]{tournament\+Match\+Id,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{unsigned int}]{home\+Team\+Index = {\ttfamily 0},  }\item[{unsigned int}]{away\+Team\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Schedule tournament match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tournament\+Match\+Id} & Identifier for the tournament match. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em home\+Team\+Index} & (Optional) Zero-\/based index of the home team. \\
+\hline
+{\em away\+Team\+Index} & (Optional) Zero-\/based index of the away team. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tournament_a98e75090ce3a6eddb2fdbe5f812d1894}{}\label{class_tournament_a98e75090ce3a6eddb2fdbe5f812d1894} 
+\index{Tournament@{Tournament}!update\+Tree@{update\+Tree}}
+\index{update\+Tree@{update\+Tree}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{update\+Tree()}{updateTree()}}
+{\footnotesize\ttfamily void Tournament\+::update\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the tree. 
+
+Luís, 20/11/2016. 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_tournament_ac1914f90b80482b534f7a20273ea5b60}{}\label{class_tournament_ac1914f90b80482b534f7a20273ea5b60} 
+\index{Tournament@{Tournament}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily ostream\& operator$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{o\+Stream,  }\item[{\hyperlink{class_tournament}{Tournament} \&}]{tournament\+To\+Write }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Less-\/than comparison operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+Stream} & \mbox{[}in,out\mbox{]} The first instance to compare. \\
+\hline
+{\em tournament\+To\+Write} & \mbox{[}in,out\mbox{]} The second instance to compare. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if the first parameter is less than the second. 
+\end{DoxyReturn}
+\hypertarget{class_tournament_a30a1cb2d3a53d0cc6c77c5f29449305c}{}\label{class_tournament_a30a1cb2d3a53d0cc6c77c5f29449305c} 
+\index{Tournament@{Tournament}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{o\+Stream,  }\item[{\hyperlink{class_tournament}{Tournament} \&}]{tournament\+To\+Write }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream insertion operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+Stream} & \mbox{[}in,out\mbox{]} The stream. \\
+\hline
+{\em tournament\+To\+Write} & \mbox{[}in,out\mbox{]} The tournament to write. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The shifted result. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_tournament_a0bc3b92b52e1e0b13c466f5e14100a10}{}\label{class_tournament_a0bc3b92b52e1e0b13c466f5e14100a10} 
+\index{Tournament@{Tournament}!clubs@{clubs}}
+\index{clubs@{clubs}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{clubs}{clubs}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_club}{Club}$\ast$$>$ Tournament\+::clubs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The clubs. 
+
+\hypertarget{class_tournament_a23735b59d67642c8e8e826b9638d588c}{}\label{class_tournament_a23735b59d67642c8e8e826b9638d588c} 
+\index{Tournament@{Tournament}!clubs\+Aux\+Used@{clubs\+Aux\+Used}}
+\index{clubs\+Aux\+Used@{clubs\+Aux\+Used}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{clubs\+Aux\+Used}{clubsAuxUsed}}
+{\footnotesize\ttfamily vector$<$unsigned int$>$ Tournament\+::clubs\+Aux\+Used\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The clubs auxiliary used. 
+
+\hypertarget{class_tournament_a15cf54c0cde58d9a29c9700808173a8c}{}\label{class_tournament_a15cf54c0cde58d9a29c9700808173a8c} 
+\index{Tournament@{Tournament}!id@{id}}
+\index{id@{id}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily unsigned int Tournament\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The identifier. 
+
+\hypertarget{class_tournament_a02145894ee5d8aedffa86b6444cf4205}{}\label{class_tournament_a02145894ee5d8aedffa86b6444cf4205} 
+\index{Tournament@{Tournament}!id\+Counter@{id\+Counter}}
+\index{id\+Counter@{id\+Counter}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{id\+Counter}{idCounter}}
+{\footnotesize\ttfamily unsigned int Tournament\+::id\+Counter = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The identifier counter. 
+
+\hypertarget{class_tournament_a1536d0ea138cb8ccd6ce0ef5e2d0f6ec}{}\label{class_tournament_a1536d0ea138cb8ccd6ce0ef5e2d0f6ec} 
+\index{Tournament@{Tournament}!initial\+Phase@{initial\+Phase}}
+\index{initial\+Phase@{initial\+Phase}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{initial\+Phase}{initialPhase}}
+{\footnotesize\ttfamily \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase} Tournament\+::initial\+Phase\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The initial phase. 
+
+\hypertarget{class_tournament_a6d4f678a73d89147d34bb1d0c50cc976}{}\label{class_tournament_a6d4f678a73d89147d34bb1d0c50cc976} 
+\index{Tournament@{Tournament}!name@{name}}
+\index{name@{name}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Tournament\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name. 
+
+\hypertarget{class_tournament_a3b41df083ed5b33411e307ad1859ab6d}{}\label{class_tournament_a3b41df083ed5b33411e307ad1859ab6d} 
+\index{Tournament@{Tournament}!number\+Of\+Matches@{number\+Of\+Matches}}
+\index{number\+Of\+Matches@{number\+Of\+Matches}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{number\+Of\+Matches}{numberOfMatches}}
+{\footnotesize\ttfamily unsigned int Tournament\+::number\+Of\+Matches\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of matches. 
+
+\hypertarget{class_tournament_a85027b414ba2ddd7cd513c399588d2a8}{}\label{class_tournament_a85027b414ba2ddd7cd513c399588d2a8} 
+\index{Tournament@{Tournament}!tournament\+Ending\+Date@{tournament\+Ending\+Date}}
+\index{tournament\+Ending\+Date@{tournament\+Ending\+Date}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{tournament\+Ending\+Date}{tournamentEndingDate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Tournament\+::tournament\+Ending\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The tournament ending date. 
+
+\hypertarget{class_tournament_afe5c5994c15194a320914831d05e40fc}{}\label{class_tournament_afe5c5994c15194a320914831d05e40fc} 
+\index{Tournament@{Tournament}!tournament\+Starting\+Date@{tournament\+Starting\+Date}}
+\index{tournament\+Starting\+Date@{tournament\+Starting\+Date}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{tournament\+Starting\+Date}{tournamentStartingDate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Tournament\+::tournament\+Starting\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The tournament starting date. 
+
+\hypertarget{class_tournament_a561cd3b82b192558910f85ae1c1f5bea}{}\label{class_tournament_a561cd3b82b192558910f85ae1c1f5bea} 
+\index{Tournament@{Tournament}!tournament\+Tree@{tournament\+Tree}}
+\index{tournament\+Tree@{tournament\+Tree}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{tournament\+Tree}{tournamentTree}}
+{\footnotesize\ttfamily \hyperlink{class_binary_tree}{Binary\+Tree}$<$\hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match}$>$ Tournament\+::tournament\+Tree\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The tournament tree. 
+
+\hypertarget{class_tournament_a4e662ffc9d1c3c868bb6db5c60be5c58}{}\label{class_tournament_a4e662ffc9d1c3c868bb6db5c60be5c58} 
+\index{Tournament@{Tournament}!winner@{winner}}
+\index{winner@{winner}!Tournament@{Tournament}}
+\subsubsection{\texorpdfstring{winner}{winner}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club}$\ast$ Tournament\+::winner\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The winner. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_tournament_8hpp}{Tournament.\+hpp}\item 
+\hyperlink{_tournament_8cpp}{Tournament.\+cpp}\end{DoxyCompactItemize}

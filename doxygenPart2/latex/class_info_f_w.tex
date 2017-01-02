@@ -1,0 +1,246 @@
+\hypertarget{class_info_f_w}{}\section{Info\+FW Class Reference}
+\label{class_info_f_w}\index{Info\+FW@{Info\+FW}}
+
+
+\hyperlink{class_forward}{Forward}\textquotesingle{}s performance information.  
+
+
+
+
+{\ttfamily \#include $<$Info\+Athletes.\+hpp$>$}
+
+Inheritance diagram for Info\+FW\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_info_f_w}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_info_f_w_a03c85ce3609ac34d37f0afee1e4a67c6}{Info\+FW} (\hyperlink{class_fraction}{Fraction} \hyperlink{class_info_ae893be5aad319de5d911c3f80cc0a2d4}{training\+Freq}, unsigned int \hyperlink{class_info_aabdfdb282f3ceaae1772574bf2b3cd86}{yellow\+Cards}, unsigned int \hyperlink{class_info_a953c30accc7e6ff301542adfd5824f38}{red\+Cards}, unsigned int \hyperlink{class_info_aecdd57d96490b16a0c2590dd8f34009e}{tackles}, unsigned int \hyperlink{class_info_a2f90c84ba67c0e225dd58cdc14ab7f3d}{fouls}, unsigned int \hyperlink{class_info_a5ad5f72833856502b9c1f6ea50a98619}{goals\+Scored}, unsigned int \hyperlink{class_info_a1c0340af11df3407946b0ffdaae28864}{assists}, \hyperlink{class_fraction}{Fraction} \hyperlink{class_info_a37ee53dc8ae9a9656206e7eb389c6392}{pass\+Accuracy}, vector$<$ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$ \hyperlink{class_info_f_w_ab6a247d57fee089e4a7ad08e798c101b}{positions})
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_info_f_w}{Info\+FW}\textquotesingle{}s constructors. \end{DoxyCompactList}\item 
+\hyperlink{class_info_f_w_ad4b4d077d84d8943bb1bccf8a9679e63}{Info\+FW} (string \&new\+Info)
+\begin{DoxyCompactList}\small\item\em Constructor that creates new forward\textquotesingle{}s performance information by reading it from athletes file using a string. \end{DoxyCompactList}\item 
+\hyperlink{class_info_f_w_aa45a6024762145dffd2c6c82648bc2ea}{Info\+FW} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_info_f_w_a2d29763451213dd0f92fee314e3ff2e9}{Info\+FW} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor that creates new forward\textquotesingle{}s performance information by reading it from thae athletes file using a stringstream. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$ \hyperlink{class_info_f_w_a9bce628dbf938dc530f9333d587b100a}{get\+Forward\+Specific\+Positions} () const
+\begin{DoxyCompactList}\small\item\em Gets the vector containing forward specific positions. \end{DoxyCompactList}\item 
+void \hyperlink{class_info_f_w_af8af688ba3e796239736dd9ce450991f}{add\+Attacker\+Specific\+Position} (\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} new\+Pos)
+\begin{DoxyCompactList}\small\item\em Adds an attacker specific position to the vector containing the different positions of the forward. \end{DoxyCompactList}\item 
+string \hyperlink{class_info_f_w_a4c5957205aa850fcdc1d6ba30f085543}{generate\+String} () const
+\begin{DoxyCompactList}\small\item\em Generates a string containing the forward\textquotesingle{}s performance information. \end{DoxyCompactList}\item 
+void \hyperlink{class_info_f_w_aa4819d4c6348908eee81e5e71552cf8d}{operator+=} (const \hyperlink{class_info}{Info} $\ast$info2)
+\begin{DoxyCompactList}\small\item\em Addition assignment operator that adds two different blocks of forward\textquotesingle{}s performance information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$ \hyperlink{class_info_f_w_ab6a247d57fee089e4a7ad08e798c101b}{positions}
+\begin{DoxyCompactList}\small\item\em vector containing the different midfielder positions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_forward}{Forward}\textquotesingle{}s performance information. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_info_f_w_a03c85ce3609ac34d37f0afee1e4a67c6}{}\label{class_info_f_w_a03c85ce3609ac34d37f0afee1e4a67c6} 
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{Info\+F\+W()}{InfoFW()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Info\+F\+W\+::\+Info\+FW (\begin{DoxyParamCaption}\item[{\hyperlink{class_fraction}{Fraction}}]{training\+Freq,  }\item[{unsigned int}]{yellow\+Cards,  }\item[{unsigned int}]{red\+Cards,  }\item[{unsigned int}]{tackles,  }\item[{unsigned int}]{fouls,  }\item[{unsigned int}]{goals\+Scored,  }\item[{unsigned int}]{assists,  }\item[{\hyperlink{class_fraction}{Fraction}}]{pass\+Accuracy,  }\item[{vector$<$ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$}]{positions }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_info_f_w}{Info\+FW}\textquotesingle{}s constructors. 
+
+This is a constructor that creates new forward\textquotesingle{}s performance information using training frequency, number of yellow cards, number of red cards, number of tackles, number of fouls commited, number of goals scored, number of assists, pass accuracy 
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+Freq} & The training frequency. \\
+\hline
+{\em yellow\+Cards} & The yellow cards. \\
+\hline
+{\em red\+Cards} & The red cards. \\
+\hline
+{\em tackles} & The tackles. \\
+\hline
+{\em fouls} & The fouls. \\
+\hline
+{\em goals\+Scored} & The goals scored. \\
+\hline
+{\em assists} & The assists. \\
+\hline
+{\em pass\+Accuracy} & The pass accuracy. \\
+\hline
+{\em positions} & The positions. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_info_f_w_ad4b4d077d84d8943bb1bccf8a9679e63}{}\label{class_info_f_w_ad4b4d077d84d8943bb1bccf8a9679e63} 
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{Info\+F\+W()}{InfoFW()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Info\+F\+W\+::\+Info\+FW (\begin{DoxyParamCaption}\item[{string \&}]{new\+Info }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates new forward\textquotesingle{}s performance information by reading it from athletes file using a string. 
+
+This is a constructor that creates new forward\textquotesingle{}s performance information by reading it from athletes file using a string
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Info} & \mbox{[}in,out\mbox{]} Information describing the new. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_info_f_w_aa45a6024762145dffd2c6c82648bc2ea}{}\label{class_info_f_w_aa45a6024762145dffd2c6c82648bc2ea} 
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{Info\+F\+W()}{InfoFW()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Info\+F\+W\+::\+Info\+FW (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+This is the \hyperlink{class_info_f_w}{Info\+FW}\textquotesingle{}s class empty constructor
+
+Luís, 20/11/2016. \hypertarget{class_info_f_w_a2d29763451213dd0f92fee314e3ff2e9}{}\label{class_info_f_w_a2d29763451213dd0f92fee314e3ff2e9} 
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\index{Info\+FW@{Info\+FW}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{Info\+F\+W()}{InfoFW()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Info\+F\+W\+::\+Info\+FW (\begin{DoxyParamCaption}\item[{istream \&}]{in\+Stream }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates new forward\textquotesingle{}s performance information by reading it from thae athletes file using a stringstream. 
+
+This is a constructor that creates new forward\textquotesingle{}s performance information by reading it from thae athletes file using a stringstream
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Stream} & \mbox{[}in,out\mbox{]} Stream to read data from. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_info_f_w_af8af688ba3e796239736dd9ce450991f}{}\label{class_info_f_w_af8af688ba3e796239736dd9ce450991f} 
+\index{Info\+FW@{Info\+FW}!add\+Attacker\+Specific\+Position@{add\+Attacker\+Specific\+Position}}
+\index{add\+Attacker\+Specific\+Position@{add\+Attacker\+Specific\+Position}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{add\+Attacker\+Specific\+Position()}{addAttackerSpecificPosition()}}
+{\footnotesize\ttfamily void Info\+F\+W\+::add\+Attacker\+Specific\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position}}]{new\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Adds an attacker specific position to the vector containing the different positions of the forward. 
+
+This is a method that adds a specific forward position to the vector containing the different positions of the forward
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Pos} & The new position. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_info_afba094a1c19e8ff4bb3a9048ca6c7f4a}{Info}.
+
+\hypertarget{class_info_f_w_a4c5957205aa850fcdc1d6ba30f085543}{}\label{class_info_f_w_a4c5957205aa850fcdc1d6ba30f085543} 
+\index{Info\+FW@{Info\+FW}!generate\+String@{generate\+String}}
+\index{generate\+String@{generate\+String}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{generate\+String()}{generateString()}}
+{\footnotesize\ttfamily string Info\+F\+W\+::generate\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates a string containing the forward\textquotesingle{}s performance information. 
+
+This is a method that generates a string containing the forward\textquotesingle{}s performance information
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The string containing the forward\textquotesingle{}s performance information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_info_a5e52b35a9c17b58222bb57af16c16ce3}{Info}.
+
+\hypertarget{class_info_f_w_a9bce628dbf938dc530f9333d587b100a}{}\label{class_info_f_w_a9bce628dbf938dc530f9333d587b100a} 
+\index{Info\+FW@{Info\+FW}!get\+Forward\+Specific\+Positions@{get\+Forward\+Specific\+Positions}}
+\index{get\+Forward\+Specific\+Positions@{get\+Forward\+Specific\+Positions}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{get\+Forward\+Specific\+Positions()}{getForwardSpecificPositions()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} $>$ Info\+F\+W\+::get\+Forward\+Specific\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the vector containing forward specific positions. 
+
+This is a method that gets the vector containing the different positions of the forward
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The vector containing forward specific positions. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_info_abff2f6cd7a845b8bd80c97d9d456e07e}{Info}.
+
+\hypertarget{class_info_f_w_aa4819d4c6348908eee81e5e71552cf8d}{}\label{class_info_f_w_aa4819d4c6348908eee81e5e71552cf8d} 
+\index{Info\+FW@{Info\+FW}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily void Info\+F\+W\+::operator+= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_info}{Info} $\ast$}]{info2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Addition assignment operator that adds two different blocks of forward\textquotesingle{}s performance information. 
+
+This is an assignment operator that adds two different blocks of forward\textquotesingle{}s performance information
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info2} & The second block information. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_info_a35d820d35f8ab3b8de15cdfc07f0c5a4}{Info}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_info_f_w_ab6a247d57fee089e4a7ad08e798c101b}{}\label{class_info_f_w_ab6a247d57fee089e4a7ad08e798c101b} 
+\index{Info\+FW@{Info\+FW}!positions@{positions}}
+\index{positions@{positions}!Info\+FW@{Info\+FW}}
+\subsubsection{\texorpdfstring{positions}{positions}}
+{\footnotesize\ttfamily vector$<$\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position}$>$ Info\+F\+W\+::positions\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+vector containing the different midfielder positions. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_info_athletes_8hpp}{Info\+Athletes.\+hpp}\item 
+\hyperlink{_info_athletes_8cpp}{Info\+Athletes.\+cpp}\end{DoxyCompactItemize}

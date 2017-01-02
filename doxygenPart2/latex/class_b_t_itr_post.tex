@@ -1,0 +1,166 @@
+\hypertarget{class_b_t_itr_post}{}\section{B\+T\+Itr\+Post$<$ T $>$ Class Template Reference}
+\label{class_b_t_itr_post}\index{B\+T\+Itr\+Post$<$ T $>$@{B\+T\+Itr\+Post$<$ T $>$}}
+
+
+A post binary tree iterator.  
+
+
+
+
+{\ttfamily \#include $<$B\+S\+T.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_b_t_itr_post_a52b3ebaefe70085321204f69db9449e7}{B\+T\+Itr\+Post} (const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&bt)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_b_t_itr_post_abe3a1f620e4122aa6c5d2ba120465ace}{advance} ()
+\begin{DoxyCompactList}\small\item\em Advances this object. \end{DoxyCompactList}\item 
+T \& \hyperlink{class_b_t_itr_post_ae3578aa6f427291651f51ab5d7305dbd}{retrieve} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a reference to a T. \end{DoxyCompactList}\item 
+bool \hyperlink{class_b_t_itr_post_ad3ab7ee3ff8897eff2f2ee2971c452d8}{is\+At\+End} ()
+\begin{DoxyCompactList}\small\item\em Query if this object is at end. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_b_t_itr_post_aeb538575d0d9e74c15e856d4ec7c2afc}{slide\+Down} (\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$n)
+\begin{DoxyCompactList}\small\item\em Slide down. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+stack$<$ \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$ $>$ \hyperlink{class_b_t_itr_post_ae6749ceccbea8e413da53a0ab5b150c5}{itr\+Stack}
+\begin{DoxyCompactList}\small\item\em Stack of itrs. \end{DoxyCompactList}\item 
+stack$<$ bool $>$ \hyperlink{class_b_t_itr_post_aa5f0b8f3427dcff09eda7a83fb0ba963}{visit\+Stack}
+\begin{DoxyCompactList}\small\item\em Stack of visits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class B\+T\+Itr\+Post$<$ T $>$}
+
+A post binary tree iterator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_b_t_itr_post_a52b3ebaefe70085321204f69db9449e7}{}\label{class_b_t_itr_post_a52b3ebaefe70085321204f69db9449e7} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Post()}{BTItrPost()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::\hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$ \&}]{bt }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bt} & The binary tree. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_b_t_itr_post_abe3a1f620e4122aa6c5d2ba120465ace}{}\label{class_b_t_itr_post_abe3a1f620e4122aa6c5d2ba120465ace} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!advance@{advance}}
+\index{advance@{advance}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{advance()}{advance()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::advance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Advances this object. 
+
+Luís, 20/11/2016. \hypertarget{class_b_t_itr_post_ad3ab7ee3ff8897eff2f2ee2971c452d8}{}\label{class_b_t_itr_post_ad3ab7ee3ff8897eff2f2ee2971c452d8} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!is\+At\+End@{is\+At\+End}}
+\index{is\+At\+End@{is\+At\+End}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{is\+At\+End()}{isAtEnd()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::is\+At\+End (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Query if this object is at end. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if at end, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_b_t_itr_post_ae3578aa6f427291651f51ab5d7305dbd}{}\label{class_b_t_itr_post_ae3578aa6f427291651f51ab5d7305dbd} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!retrieve@{retrieve}}
+\index{retrieve@{retrieve}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{retrieve()}{retrieve()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T\& \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::retrieve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a reference to a T. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+A reference to a T. 
+\end{DoxyReturn}
+\hypertarget{class_b_t_itr_post_aeb538575d0d9e74c15e856d4ec7c2afc}{}\label{class_b_t_itr_post_aeb538575d0d9e74c15e856d4ec7c2afc} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!slide\+Down@{slide\+Down}}
+\index{slide\+Down@{slide\+Down}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{slide\+Down()}{slideDown()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::slide\+Down (\begin{DoxyParamCaption}\item[{\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Slide down. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & \mbox{[}in,out\mbox{]} If non-\/null, the binary tree node to process. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_b_t_itr_post_ae6749ceccbea8e413da53a0ab5b150c5}{}\label{class_b_t_itr_post_ae6749ceccbea8e413da53a0ab5b150c5} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!itr\+Stack@{itr\+Stack}}
+\index{itr\+Stack@{itr\+Stack}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{itr\+Stack}{itrStack}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+stack$<$\hyperlink{class_b_t_node}{B\+T\+Node}$<$T$>$ $\ast$$>$ \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::itr\+Stack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stack of itrs. 
+
+\hypertarget{class_b_t_itr_post_aa5f0b8f3427dcff09eda7a83fb0ba963}{}\label{class_b_t_itr_post_aa5f0b8f3427dcff09eda7a83fb0ba963} 
+\index{B\+T\+Itr\+Post@{B\+T\+Itr\+Post}!visit\+Stack@{visit\+Stack}}
+\index{visit\+Stack@{visit\+Stack}!B\+T\+Itr\+Post@{B\+T\+Itr\+Post}}
+\subsubsection{\texorpdfstring{visit\+Stack}{visitStack}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+stack$<$bool$>$ \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\+::visit\+Stack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stack of visits. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_b_s_t_8h}{B\+S\+T.\+h}\end{DoxyCompactItemize}
