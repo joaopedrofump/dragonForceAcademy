@@ -1,0 +1,357 @@
+\hypertarget{class_training}{}\section{Training Class Reference}
+\label{class_training}\index{Training@{Training}}
+
+
+A training.  
+
+
+
+
+{\ttfamily \#include $<$Training.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_training_a0c5ec811d510696b93c26665c0f2b479}{Training} (\hyperlink{class_date}{Date} \hyperlink{class_training_aff67daf3f133ce1dd1750ec53f91ec87}{training\+Date}, vector$<$ unsigned int $>$ players\+Ids, unsigned int \hyperlink{class_training_a104fdf8ff960559f1bb463ccc00ff211}{id}=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_training}{Training}\textquotesingle{}s constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_training_ad62503c864a26aea3a3aba439b93e362}{Training} (istream \&iss)
+\begin{DoxyCompactList}\small\item\em Constructor that creates a new training from reading from the club file using a stringstream. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_training_a4b7435f2cbf56ad8d3ca789f356e81d2}{get\+Training\+Date} () const
+\begin{DoxyCompactList}\small\item\em Gets training date. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_training_a23f6e6754eb9549965c31f411d70d682}{get\+Id} () const
+\begin{DoxyCompactList}\small\item\em Gets the training\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_training_a4a0c2ecd06f3d84c49fbf9b233896af4}{get\+Players} () const
+\begin{DoxyCompactList}\small\item\em Gets the players that attended the training. \end{DoxyCompactList}\item 
+bool \hyperlink{class_training_affc9813e6dca738b4a39fe88b1a8d256}{get\+Training\+Given} () const
+\begin{DoxyCompactList}\small\item\em Gets training given. \end{DoxyCompactList}\item 
+bool \hyperlink{class_training_ada0efc956f5401b104ddb747cd46c8a1}{is\+Registered} () const
+\begin{DoxyCompactList}\small\item\em Query if the training is registered. \end{DoxyCompactList}\item 
+void \hyperlink{class_training_a670ea58ff49013b1689a92f9aa568a9e}{set\+Players} (vector$<$ unsigned int $>$ \hyperlink{class_training_ab6095fdd4b700a854d7f238dafdf00c9}{players\+Trained})
+\begin{DoxyCompactList}\small\item\em Sets the players that attended the training. \end{DoxyCompactList}\item 
+void \hyperlink{class_training_a1ee553850c99f2751e34c3245625ca82}{set\+Date} (\hyperlink{class_date}{Date} new\+Date)
+\begin{DoxyCompactList}\small\item\em Sets a date. \end{DoxyCompactList}\item 
+void \hyperlink{class_training_abf8f9a41740356847db41810c817f512}{set\+Registered} ()
+\begin{DoxyCompactList}\small\item\em Sets the registered trainings. \end{DoxyCompactList}\item 
+void \hyperlink{class_training_afcbcc0684808ac14573fd1e7cc51bddb}{cancel\+Register} ()
+\begin{DoxyCompactList}\small\item\em Cancel training register . \end{DoxyCompactList}\item 
+vector$<$ vector$<$ string $>$ $>$ \hyperlink{class_training_af81556719ce3417690551de196adfacf}{show\+In\+Screen} (\hyperlink{class_club}{Club} $\ast$parent\+Club) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_training_a7d27bdc56aa16c3f8c9be28da29740ab}{reset\+ID} (unsigned int new\+Id)
+\begin{DoxyCompactList}\small\item\em Resets the training\textquotesingle{}s identifier and adds a training performed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_date}{Date} \hyperlink{class_training_aff67daf3f133ce1dd1750ec53f91ec87}{training\+Date}
+\begin{DoxyCompactList}\small\item\em The training date. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_training_a104fdf8ff960559f1bb463ccc00ff211}{id}
+\begin{DoxyCompactList}\small\item\em The identifier. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_training_ab6095fdd4b700a854d7f238dafdf00c9}{players\+Trained}
+\begin{DoxyCompactList}\small\item\em The players that attended the training. \end{DoxyCompactList}\item 
+bool \hyperlink{class_training_a07fd628d802637545b40ec42e368e509}{registed}
+\begin{DoxyCompactList}\small\item\em True if registed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \hyperlink{class_training_a0538bf7c5929e0dc851d62b4abec3ad6}{training\+Counter} = 0
+\begin{DoxyCompactList}\small\item\em The training counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_training_a22f4481803b2d771b403c0110938f589}{operator$<$$<$} (ostream \&out\+Stream, \hyperlink{class_training}{Training} \&training\+To\+Save)
+\begin{DoxyCompactList}\small\item\em Stream insertion operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A training. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_training_a0c5ec811d510696b93c26665c0f2b479}{}\label{class_training_a0c5ec811d510696b93c26665c0f2b479} 
+\index{Training@{Training}!Training@{Training}}
+\index{Training@{Training}!Training@{Training}}
+\subsubsection{\texorpdfstring{Training()}{Training()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Training\+::\+Training (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{training\+Date,  }\item[{vector$<$ unsigned int $>$}]{players\+Ids,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_training}{Training}\textquotesingle{}s constructor. 
+
+This is a constructor that creates a new training using the training date and a vector containing the ids of the player that attended the training. The training\textquotesingle{}s id is set automatically. 
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+Date} & The training date. \\
+\hline
+{\em players\+Ids} & List of identifiers for the players. \\
+\hline
+{\em id} & (Optional) The identifier. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_training_ad62503c864a26aea3a3aba439b93e362}{}\label{class_training_ad62503c864a26aea3a3aba439b93e362} 
+\index{Training@{Training}!Training@{Training}}
+\index{Training@{Training}!Training@{Training}}
+\subsubsection{\texorpdfstring{Training()}{Training()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Training\+::\+Training (\begin{DoxyParamCaption}\item[{istream \&}]{iss }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates a new training from reading from the club file using a stringstream. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iss} & \mbox{[}in,out\mbox{]} The stringstream. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_training_afcbcc0684808ac14573fd1e7cc51bddb}{}\label{class_training_afcbcc0684808ac14573fd1e7cc51bddb} 
+\index{Training@{Training}!cancel\+Register@{cancel\+Register}}
+\index{cancel\+Register@{cancel\+Register}!Training@{Training}}
+\subsubsection{\texorpdfstring{cancel\+Register()}{cancelRegister()}}
+{\footnotesize\ttfamily void Training\+::cancel\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancel training register . 
+
+Luís, 20/11/2016. \hypertarget{class_training_a23f6e6754eb9549965c31f411d70d682}{}\label{class_training_a23f6e6754eb9549965c31f411d70d682} 
+\index{Training@{Training}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Training@{Training}}
+\subsubsection{\texorpdfstring{get\+Id()}{getId()}}
+{\footnotesize\ttfamily unsigned int Training\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the training\textquotesingle{}s identifier. 
+
+This is a method that the training\textquotesingle{}s id
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The identifier. 
+\end{DoxyReturn}
+\hypertarget{class_training_a4a0c2ecd06f3d84c49fbf9b233896af4}{}\label{class_training_a4a0c2ecd06f3d84c49fbf9b233896af4} 
+\index{Training@{Training}!get\+Players@{get\+Players}}
+\index{get\+Players@{get\+Players}!Training@{Training}}
+\subsubsection{\texorpdfstring{get\+Players()}{getPlayers()}}
+{\footnotesize\ttfamily vector$<$ unsigned int $>$ Training\+::get\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the players that attended the training. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The players that attended the training. 
+\end{DoxyReturn}
+\hypertarget{class_training_a4b7435f2cbf56ad8d3ca789f356e81d2}{}\label{class_training_a4b7435f2cbf56ad8d3ca789f356e81d2} 
+\index{Training@{Training}!get\+Training\+Date@{get\+Training\+Date}}
+\index{get\+Training\+Date@{get\+Training\+Date}!Training@{Training}}
+\subsubsection{\texorpdfstring{get\+Training\+Date()}{getTrainingDate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Training\+::get\+Training\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets training date. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The training date. 
+\end{DoxyReturn}
+\hypertarget{class_training_affc9813e6dca738b4a39fe88b1a8d256}{}\label{class_training_affc9813e6dca738b4a39fe88b1a8d256} 
+\index{Training@{Training}!get\+Training\+Given@{get\+Training\+Given}}
+\index{get\+Training\+Given@{get\+Training\+Given}!Training@{Training}}
+\subsubsection{\texorpdfstring{get\+Training\+Given()}{getTrainingGiven()}}
+{\footnotesize\ttfamily bool Training\+::get\+Training\+Given (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets training given. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if it succeeds, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{class_training_ada0efc956f5401b104ddb747cd46c8a1}{}\label{class_training_ada0efc956f5401b104ddb747cd46c8a1} 
+\index{Training@{Training}!is\+Registered@{is\+Registered}}
+\index{is\+Registered@{is\+Registered}!Training@{Training}}
+\subsubsection{\texorpdfstring{is\+Registered()}{isRegistered()}}
+{\footnotesize\ttfamily bool Training\+::is\+Registered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Query if the training is registered. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if registered, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_training_a7d27bdc56aa16c3f8c9be28da29740ab}{}\label{class_training_a7d27bdc56aa16c3f8c9be28da29740ab} 
+\index{Training@{Training}!reset\+ID@{reset\+ID}}
+\index{reset\+ID@{reset\+ID}!Training@{Training}}
+\subsubsection{\texorpdfstring{reset\+I\+D()}{resetID()}}
+{\footnotesize\ttfamily void Training\+::reset\+ID (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Resets the training\textquotesingle{}s identifier and adds a training performed. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Id} & Identifier for the new training. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_training_a1ee553850c99f2751e34c3245625ca82}{}\label{class_training_a1ee553850c99f2751e34c3245625ca82} 
+\index{Training@{Training}!set\+Date@{set\+Date}}
+\index{set\+Date@{set\+Date}!Training@{Training}}
+\subsubsection{\texorpdfstring{set\+Date()}{setDate()}}
+{\footnotesize\ttfamily void Training\+::set\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{new\+Date }\end{DoxyParamCaption})}
+
+
+
+Sets a date. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Date} & The new date. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_training_a670ea58ff49013b1689a92f9aa568a9e}{}\label{class_training_a670ea58ff49013b1689a92f9aa568a9e} 
+\index{Training@{Training}!set\+Players@{set\+Players}}
+\index{set\+Players@{set\+Players}!Training@{Training}}
+\subsubsection{\texorpdfstring{set\+Players()}{setPlayers()}}
+{\footnotesize\ttfamily void Training\+::set\+Players (\begin{DoxyParamCaption}\item[{vector$<$ unsigned int $>$}]{players\+Trained }\end{DoxyParamCaption})}
+
+
+
+Sets the players that attended the training. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players\+Trained} & The players that attended the training. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_training_abf8f9a41740356847db41810c817f512}{}\label{class_training_abf8f9a41740356847db41810c817f512} 
+\index{Training@{Training}!set\+Registered@{set\+Registered}}
+\index{set\+Registered@{set\+Registered}!Training@{Training}}
+\subsubsection{\texorpdfstring{set\+Registered()}{setRegistered()}}
+{\footnotesize\ttfamily void Training\+::set\+Registered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the registered trainings. 
+
+Luís, 20/11/2016. \hypertarget{class_training_af81556719ce3417690551de196adfacf}{}\label{class_training_af81556719ce3417690551de196adfacf} 
+\index{Training@{Training}!show\+In\+Screen@{show\+In\+Screen}}
+\index{show\+In\+Screen@{show\+In\+Screen}!Training@{Training}}
+\subsubsection{\texorpdfstring{show\+In\+Screen()}{showInScreen()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ string $>$ $>$ Training\+::show\+In\+Screen (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} $\ast$}]{parent\+Club }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_training_a22f4481803b2d771b403c0110938f589}{}\label{class_training_a22f4481803b2d771b403c0110938f589} 
+\index{Training@{Training}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Training@{Training}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out\+Stream,  }\item[{\hyperlink{class_training}{Training} \&}]{training\+To\+Save }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream insertion operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+Stream} & \mbox{[}in,out\mbox{]} Stream to write data to. \\
+\hline
+{\em training\+To\+Save} & \mbox{[}in,out\mbox{]} The training to save. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The shifted result. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_training_a104fdf8ff960559f1bb463ccc00ff211}{}\label{class_training_a104fdf8ff960559f1bb463ccc00ff211} 
+\index{Training@{Training}!id@{id}}
+\index{id@{id}!Training@{Training}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily unsigned int Training\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The identifier. 
+
+\hypertarget{class_training_ab6095fdd4b700a854d7f238dafdf00c9}{}\label{class_training_ab6095fdd4b700a854d7f238dafdf00c9} 
+\index{Training@{Training}!players\+Trained@{players\+Trained}}
+\index{players\+Trained@{players\+Trained}!Training@{Training}}
+\subsubsection{\texorpdfstring{players\+Trained}{playersTrained}}
+{\footnotesize\ttfamily vector$<$unsigned int$>$ Training\+::players\+Trained\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The players that attended the training. 
+
+\hypertarget{class_training_a07fd628d802637545b40ec42e368e509}{}\label{class_training_a07fd628d802637545b40ec42e368e509} 
+\index{Training@{Training}!registed@{registed}}
+\index{registed@{registed}!Training@{Training}}
+\subsubsection{\texorpdfstring{registed}{registed}}
+{\footnotesize\ttfamily bool Training\+::registed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True if registed. 
+
+\hypertarget{class_training_a0538bf7c5929e0dc851d62b4abec3ad6}{}\label{class_training_a0538bf7c5929e0dc851d62b4abec3ad6} 
+\index{Training@{Training}!training\+Counter@{training\+Counter}}
+\index{training\+Counter@{training\+Counter}!Training@{Training}}
+\subsubsection{\texorpdfstring{training\+Counter}{trainingCounter}}
+{\footnotesize\ttfamily unsigned int Training\+::training\+Counter = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The training counter. 
+
+\hypertarget{class_training_aff67daf3f133ce1dd1750ec53f91ec87}{}\label{class_training_aff67daf3f133ce1dd1750ec53f91ec87} 
+\index{Training@{Training}!training\+Date@{training\+Date}}
+\index{training\+Date@{training\+Date}!Training@{Training}}
+\subsubsection{\texorpdfstring{training\+Date}{trainingDate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Training\+::training\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The training date. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_training_8hpp}{Training.\+hpp}\item 
+\hyperlink{_training_8cpp}{Training.\+cpp}\end{DoxyCompactItemize}

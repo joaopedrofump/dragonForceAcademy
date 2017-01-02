@@ -1,0 +1,443 @@
+\hypertarget{_utils_8hpp}{}\section{Utils.\+hpp File Reference}
+\label{_utils_8hpp}\index{Utils.\+hpp@{Utils.\+hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include \char`\"{}Exceptions.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}B\+S\+T.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_date}{Date}
+\item 
+class \hyperlink{class_table}{Table}
+\item 
+class \hyperlink{class_fraction}{Fraction}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_utils_8hpp_a16713295201c7b22328379e293ca2d0b}{Utils\+\_\+hpp}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} \{ \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada3daa920051b17100f8c9617ff2d5efab}{Head\+Coach} = 1, 
+\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada9e0ea2164e471d68f8bdb08db9610171}{Goalkeeper\+Coach} = 2, 
+\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada55634e87dff8c65da56a77c756744074}{Physical\+Trainer} = 3
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} \{ \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a45b8f189e491f4babb168883b2ae686f}{Goalkeeper\+Pos} = 1, 
+\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83ab4e5162c2a3d0e4fa7974946ab3f0be4}{Defender\+Pos} = 2, 
+\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83af1cb1bf7c311fff921f5276874f6d4bc}{Midfielder\+Pos} = 3, 
+\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a31b1c80c80b9bf3165dc4bd2af7f962f}{Forward\+Pos} = 4
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d}{Defender\+Position} \{ \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dacc7b7d7345511ce1e2178f337ecac463}{Center\+Back} = 1, 
+\hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dad692ab443c7f9e5afc4f93ef925cf931}{Left\+Back} = 2, 
+\hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4da4bd87de17806c0677ed897689a99ebe8}{Right\+Back} = 3
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217}{Midfielder\+Position} \{ \newline
+\hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ab5e328095d03589cf333024ac38e3260}{Centre\+Midfielder} = 1, 
+\hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a55087bd2bc79a87f093e20865904bda8}{Defensive\+Midfielder} = 2, 
+\hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a293dc71a8706eb9d5f4543db57fcea14}{Attacking\+Midfielder} = 3, 
+\hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac13521b92f9473eb01373cd682b7360f}{Left\+Midfield} = 4, 
+\newline
+\hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac7d4fa415c0cab9a1c34c773de4c19d1}{Right\+Midfield} = 5
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position} \{ \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620a7e9f30c03495f2f4e3541149f64d608f}{Striker} = 1, 
+\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ae5f9d2447a0a0f2253897b523b92f9a0}{Centre\+Forward} = 2, 
+\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac1b362b415000ed6568a9f263e0f7d97}{Rigth\+Winger} = 3, 
+\hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac510a2473ed1c58a2a21e88e27fb7584}{Left\+Winger} = 4
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} \{ \newline
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6af64a5bccdcd2787a36a46aed13e6e069}{U13} = 1, 
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6adef26a81b3801797aa22ed51f5e43753}{U15} = 2, 
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a7b49270308326ebb72b856255ad3a769}{U17} = 3, 
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a354b06864c89d2f5358783521e5b2209}{U19} = 4, 
+\newline
+\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a2a42f11356765d3b5c0cd86635ef99d0}{Seniors} = 5
+ \}
+\item 
+enum \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} \{ \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069da66d4d52fb0aec97add83801761cedeb1}{home}, 
+\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069daf9041944d03ddae555b4de516b5f4587}{away}, 
+\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069da411a6ae8b6775768a0c5386d2a1ad68d}{neutral}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_utils_8hpp_a76c3b6dd449893fa001791a607156ee9}{trim\+String} (string \&input\+String)
+\item 
+bool \hyperlink{_utils_8hpp_abdb7233442cfd0c8d4125472cbfc43db}{validate\+Name} (string \&nome)
+\item 
+string \hyperlink{_utils_8hpp_af88c4312f7ae914b33ee4e7f0a60fcc8}{trim\+Link} (string link)
+\item 
+void \hyperlink{_utils_8hpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{clear\+Screen} ()
+\item 
+void \hyperlink{_utils_8hpp_a7d905c3b893189bc2abe50f79b4a4c20}{Set\+Cursor} (int column, int line)
+\item 
+int \hyperlink{_utils_8hpp_a7c508c83150dcd127156d9c4e2436a8e}{Get\+CursorX} ()
+\item 
+int \hyperlink{_utils_8hpp_a4769e37502d12fbc431ace1a32749bc8}{Get\+CursorY} ()
+\item 
+void \hyperlink{_utils_8hpp_af2e10f4711549d12f0a1153785f94a8c}{ignore\+Line} (bool ignore\+Control=true, string message=\char`\"{}Press E\+N\+T\+ER to continue.\char`\"{})
+\item 
+bool \hyperlink{_utils_8hpp_a8bf22d7324a899ff9c4e4d75ca58a798}{read\+Unsigned\+Int} (unsigned int \&input, unsigned int min, unsigned int max, string error\+Message=\char`\"{}Invalid Input\char`\"{})
+\item 
+bool \hyperlink{_utils_8hpp_a84078122f9457a3f7bb42f43dadcee7d}{read\+Dates} (vector$<$ \hyperlink{class_date}{Date} $>$ \&result\+Vector, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8hpp_a08bdd1f203edd7936f1256e6e931e979}{read\+Date} (\hyperlink{class_date}{Date} \&result, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8hpp_aa2d200d1fbc5a914f855998bacc80a49}{read\+Date} (\hyperlink{class_date}{Date} \&result, \hyperlink{class_date}{Date} min, \hyperlink{class_date}{Date} max, string message, string error\+Message)
+\item 
+bool \hyperlink{_utils_8hpp_ab69bf0d112f660a98443802bce2f97ef}{empty\+String} (string string\+Test)
+\item 
+string \hyperlink{_utils_8hpp_a8625ab296ed94e5daa9e706f0092c02c}{path} ()
+\item 
+int \hyperlink{_utils_8hpp_a9bf46266629bc543ecdf949886fd73dd}{create\+Directory} (const char $\ast$\hyperlink{_utils_8hpp_a8625ab296ed94e5daa9e706f0092c02c}{path})
+\item 
+string \hyperlink{_utils_8hpp_a8530f12a89322bd0fb3f64e9a3399420}{string\+Path} (string original\+Str)
+\item 
+string \hyperlink{_utils_8hpp_a77e3a6811ac83614248b3ec327662346}{get\+Level\+From\+Age} (\hyperlink{class_date}{Date} birth\+Date)
+\item 
+string \hyperlink{_utils_8hpp_ab3099eb7c73632b13474563c471a1794}{read\+And\+Cut} (string \&string\+To\+Cut)
+\item 
+string \hyperlink{_utils_8hpp_a040b8bb81caab1486ee310ea2edd102c}{normalize\+Id} (unsigned int digits, unsigned int \hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5a280d7329079c73a4a5df3f35697b60b1}{id})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string const \hyperlink{_utils_8hpp_a0f3e31a7d2d1f2cdd64455c5345ca761}{F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR} = \char`\"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\char`\"{}
+\item 
+const map$<$ \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}, string $>$ \hyperlink{_utils_8hpp_ab9f222c0949ff718384d94d277a9dc28}{positions\+Map\+Pos\+String}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_utils_8hpp_a16713295201c7b22328379e293ca2d0b}{}\label{_utils_8hpp_a16713295201c7b22328379e293ca2d0b} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Utils\+\_\+hpp@{Utils\+\_\+hpp}}
+\index{Utils\+\_\+hpp@{Utils\+\_\+hpp}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Utils\+\_\+hpp}{Utils\_hpp}}
+{\footnotesize\ttfamily \#define Utils\+\_\+hpp}
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6} 
+\index{Utils.\+hpp@{Utils.\+hpp}!age\+Level@{age\+Level}}
+\index{age\+Level@{age\+Level}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{age\+Level}{ageLevel}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U13@{U13}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!U13@{U13}}}\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6af64a5bccdcd2787a36a46aed13e6e069}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6af64a5bccdcd2787a36a46aed13e6e069} 
+U13&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U15@{U15}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!U15@{U15}}}\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6adef26a81b3801797aa22ed51f5e43753}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6adef26a81b3801797aa22ed51f5e43753} 
+U15&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U17@{U17}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!U17@{U17}}}\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a7b49270308326ebb72b856255ad3a769}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a7b49270308326ebb72b856255ad3a769} 
+U17&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U19@{U19}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!U19@{U19}}}\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a354b06864c89d2f5358783521e5b2209}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a354b06864c89d2f5358783521e5b2209} 
+U19&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Seniors@{Seniors}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Seniors@{Seniors}}}\hypertarget{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a2a42f11356765d3b5c0cd86635ef99d0}{}\label{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6a2a42f11356765d3b5c0cd86635ef99d0} 
+Seniors&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{}\label{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Coach\+Type@{Coach\+Type}}
+\index{Coach\+Type@{Coach\+Type}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Coach\+Type}{CoachType}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Head\+Coach@{Head\+Coach}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Head\+Coach@{Head\+Coach}}}\hypertarget{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada3daa920051b17100f8c9617ff2d5efab}{}\label{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada3daa920051b17100f8c9617ff2d5efab} 
+Head\+Coach&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Goalkeeper\+Coach@{Goalkeeper\+Coach}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Goalkeeper\+Coach@{Goalkeeper\+Coach}}}\hypertarget{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada9e0ea2164e471d68f8bdb08db9610171}{}\label{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada9e0ea2164e471d68f8bdb08db9610171} 
+Goalkeeper\+Coach&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Physical\+Trainer@{Physical\+Trainer}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Physical\+Trainer@{Physical\+Trainer}}}\hypertarget{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada55634e87dff8c65da56a77c756744074}{}\label{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ada55634e87dff8c65da56a77c756744074} 
+Physical\+Trainer&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d}{}\label{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Defender\+Position@{Defender\+Position}}
+\index{Defender\+Position@{Defender\+Position}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Defender\+Position}{DefenderPosition}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4d}{Defender\+Position}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Center\+Back@{Center\+Back}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Center\+Back@{Center\+Back}}}\hypertarget{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dacc7b7d7345511ce1e2178f337ecac463}{}\label{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dacc7b7d7345511ce1e2178f337ecac463} 
+Center\+Back&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Left\+Back@{Left\+Back}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Left\+Back@{Left\+Back}}}\hypertarget{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dad692ab443c7f9e5afc4f93ef925cf931}{}\label{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4dad692ab443c7f9e5afc4f93ef925cf931} 
+Left\+Back&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Right\+Back@{Right\+Back}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Right\+Back@{Right\+Back}}}\hypertarget{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4da4bd87de17806c0677ed897689a99ebe8}{}\label{_utils_8hpp_a94ee089ecd5db12c81c7edbefaabff4da4bd87de17806c0677ed897689a99ebe8} 
+Right\+Back&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{}\label{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Forward\+Position@{Forward\+Position}}
+\index{Forward\+Position@{Forward\+Position}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Forward\+Position}{ForwardPosition}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620}{Forward\+Position}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Striker@{Striker}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Striker@{Striker}}}\hypertarget{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620a7e9f30c03495f2f4e3541149f64d608f}{}\label{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620a7e9f30c03495f2f4e3541149f64d608f} 
+Striker&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Centre\+Forward@{Centre\+Forward}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Centre\+Forward@{Centre\+Forward}}}\hypertarget{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ae5f9d2447a0a0f2253897b523b92f9a0}{}\label{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ae5f9d2447a0a0f2253897b523b92f9a0} 
+Centre\+Forward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Rigth\+Winger@{Rigth\+Winger}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Rigth\+Winger@{Rigth\+Winger}}}\hypertarget{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac1b362b415000ed6568a9f263e0f7d97}{}\label{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac1b362b415000ed6568a9f263e0f7d97} 
+Rigth\+Winger&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Left\+Winger@{Left\+Winger}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Left\+Winger@{Left\+Winger}}}\hypertarget{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac510a2473ed1c58a2a21e88e27fb7584}{}\label{_utils_8hpp_ae6ffae6f01bd3312aac4a44642f14620ac510a2473ed1c58a2a21e88e27fb7584} 
+Left\+Winger&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_a747637046be33d7273262104aad8069d}{}\label{_utils_8hpp_a747637046be33d7273262104aad8069d} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Match\+Type@{Match\+Type}}
+\index{Match\+Type@{Match\+Type}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Match\+Type}{MatchType}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{home@{home}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!home@{home}}}\hypertarget{_utils_8hpp_a747637046be33d7273262104aad8069da66d4d52fb0aec97add83801761cedeb1}{}\label{_utils_8hpp_a747637046be33d7273262104aad8069da66d4d52fb0aec97add83801761cedeb1} 
+home&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{away@{away}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!away@{away}}}\hypertarget{_utils_8hpp_a747637046be33d7273262104aad8069daf9041944d03ddae555b4de516b5f4587}{}\label{_utils_8hpp_a747637046be33d7273262104aad8069daf9041944d03ddae555b4de516b5f4587} 
+away&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{neutral@{neutral}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!neutral@{neutral}}}\hypertarget{_utils_8hpp_a747637046be33d7273262104aad8069da411a6ae8b6775768a0c5386d2a1ad68d}{}\label{_utils_8hpp_a747637046be33d7273262104aad8069da411a6ae8b6775768a0c5386d2a1ad68d} 
+neutral&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Midfielder\+Position@{Midfielder\+Position}}
+\index{Midfielder\+Position@{Midfielder\+Position}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Midfielder\+Position}{MidfielderPosition}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_a9f9328fe291d23e820ad594679abd217}{Midfielder\+Position}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Centre\+Midfielder@{Centre\+Midfielder}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Centre\+Midfielder@{Centre\+Midfielder}}}\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ab5e328095d03589cf333024ac38e3260}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ab5e328095d03589cf333024ac38e3260} 
+Centre\+Midfielder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Defensive\+Midfielder@{Defensive\+Midfielder}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Defensive\+Midfielder@{Defensive\+Midfielder}}}\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a55087bd2bc79a87f093e20865904bda8}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a55087bd2bc79a87f093e20865904bda8} 
+Defensive\+Midfielder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Attacking\+Midfielder@{Attacking\+Midfielder}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Attacking\+Midfielder@{Attacking\+Midfielder}}}\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a293dc71a8706eb9d5f4543db57fcea14}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217a293dc71a8706eb9d5f4543db57fcea14} 
+Attacking\+Midfielder&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Left\+Midfield@{Left\+Midfield}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Left\+Midfield@{Left\+Midfield}}}\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac13521b92f9473eb01373cd682b7360f}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac13521b92f9473eb01373cd682b7360f} 
+Left\+Midfield&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Right\+Midfield@{Right\+Midfield}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Right\+Midfield@{Right\+Midfield}}}\hypertarget{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac7d4fa415c0cab9a1c34c773de4c19d1}{}\label{_utils_8hpp_a9f9328fe291d23e820ad594679abd217ac7d4fa415c0cab9a1c34c773de4c19d1} 
+Right\+Midfield&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{}\label{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Position@{Position}}
+\index{Position@{Position}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Position}{Position}}
+{\footnotesize\ttfamily enum \hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Goalkeeper\+Pos@{Goalkeeper\+Pos}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Goalkeeper\+Pos@{Goalkeeper\+Pos}}}\hypertarget{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a45b8f189e491f4babb168883b2ae686f}{}\label{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a45b8f189e491f4babb168883b2ae686f} 
+Goalkeeper\+Pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Defender\+Pos@{Defender\+Pos}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Defender\+Pos@{Defender\+Pos}}}\hypertarget{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83ab4e5162c2a3d0e4fa7974946ab3f0be4}{}\label{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83ab4e5162c2a3d0e4fa7974946ab3f0be4} 
+Defender\+Pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Midfielder\+Pos@{Midfielder\+Pos}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Midfielder\+Pos@{Midfielder\+Pos}}}\hypertarget{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83af1cb1bf7c311fff921f5276874f6d4bc}{}\label{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83af1cb1bf7c311fff921f5276874f6d4bc} 
+Midfielder\+Pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Forward\+Pos@{Forward\+Pos}!Utils.\+hpp@{Utils.\+hpp}}\index{Utils.\+hpp@{Utils.\+hpp}!Forward\+Pos@{Forward\+Pos}}}\hypertarget{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a31b1c80c80b9bf3165dc4bd2af7f962f}{}\label{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a31b1c80c80b9bf3165dc4bd2af7f962f} 
+Forward\+Pos&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\hypertarget{_utils_8hpp_a9d7e8af417b6d543da691e9c0e2f6f9f}{}\label{_utils_8hpp_a9d7e8af417b6d543da691e9c0e2f6f9f} 
+\index{Utils.\+hpp@{Utils.\+hpp}!clear\+Screen@{clear\+Screen}}
+\index{clear\+Screen@{clear\+Screen}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{clear\+Screen()}{clearScreen()}}
+{\footnotesize\ttfamily void clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a9bf46266629bc543ecdf949886fd73dd}{}\label{_utils_8hpp_a9bf46266629bc543ecdf949886fd73dd} 
+\index{Utils.\+hpp@{Utils.\+hpp}!create\+Directory@{create\+Directory}}
+\index{create\+Directory@{create\+Directory}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{create\+Directory()}{createDirectory()}}
+{\footnotesize\ttfamily int create\+Directory (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_ab69bf0d112f660a98443802bce2f97ef}{}\label{_utils_8hpp_ab69bf0d112f660a98443802bce2f97ef} 
+\index{Utils.\+hpp@{Utils.\+hpp}!empty\+String@{empty\+String}}
+\index{empty\+String@{empty\+String}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{empty\+String()}{emptyString()}}
+{\footnotesize\ttfamily bool empty\+String (\begin{DoxyParamCaption}\item[{string}]{string\+Test }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a7c508c83150dcd127156d9c4e2436a8e}{}\label{_utils_8hpp_a7c508c83150dcd127156d9c4e2436a8e} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Get\+CursorX@{Get\+CursorX}}
+\index{Get\+CursorX@{Get\+CursorX}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Get\+Cursor\+X()}{GetCursorX()}}
+{\footnotesize\ttfamily int Get\+CursorX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a4769e37502d12fbc431ace1a32749bc8}{}\label{_utils_8hpp_a4769e37502d12fbc431ace1a32749bc8} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Get\+CursorY@{Get\+CursorY}}
+\index{Get\+CursorY@{Get\+CursorY}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Get\+Cursor\+Y()}{GetCursorY()}}
+{\footnotesize\ttfamily int Get\+CursorY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a77e3a6811ac83614248b3ec327662346}{}\label{_utils_8hpp_a77e3a6811ac83614248b3ec327662346} 
+\index{Utils.\+hpp@{Utils.\+hpp}!get\+Level\+From\+Age@{get\+Level\+From\+Age}}
+\index{get\+Level\+From\+Age@{get\+Level\+From\+Age}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{get\+Level\+From\+Age()}{getLevelFromAge()}}
+{\footnotesize\ttfamily string get\+Level\+From\+Age (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{birth\+Date }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_af2e10f4711549d12f0a1153785f94a8c}{}\label{_utils_8hpp_af2e10f4711549d12f0a1153785f94a8c} 
+\index{Utils.\+hpp@{Utils.\+hpp}!ignore\+Line@{ignore\+Line}}
+\index{ignore\+Line@{ignore\+Line}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{ignore\+Line()}{ignoreLine()}}
+{\footnotesize\ttfamily void ignore\+Line (\begin{DoxyParamCaption}\item[{bool}]{ignore\+Control = {\ttfamily true},  }\item[{string}]{message = {\ttfamily \char`\"{}Press~ENTER~to~continue.\char`\"{}} }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a040b8bb81caab1486ee310ea2edd102c}{}\label{_utils_8hpp_a040b8bb81caab1486ee310ea2edd102c} 
+\index{Utils.\+hpp@{Utils.\+hpp}!normalize\+Id@{normalize\+Id}}
+\index{normalize\+Id@{normalize\+Id}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{normalize\+Id()}{normalizeId()}}
+{\footnotesize\ttfamily string normalize\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{digits,  }\item[{unsigned int}]{id }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a8625ab296ed94e5daa9e706f0092c02c}{}\label{_utils_8hpp_a8625ab296ed94e5daa9e706f0092c02c} 
+\index{Utils.\+hpp@{Utils.\+hpp}!path@{path}}
+\index{path@{path}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{path()}{path()}}
+{\footnotesize\ttfamily string path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_ab3099eb7c73632b13474563c471a1794}{}\label{_utils_8hpp_ab3099eb7c73632b13474563c471a1794} 
+\index{Utils.\+hpp@{Utils.\+hpp}!read\+And\+Cut@{read\+And\+Cut}}
+\index{read\+And\+Cut@{read\+And\+Cut}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{read\+And\+Cut()}{readAndCut()}}
+{\footnotesize\ttfamily string read\+And\+Cut (\begin{DoxyParamCaption}\item[{string \&}]{string\+To\+Cut }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a08bdd1f203edd7936f1256e6e931e979}{}\label{_utils_8hpp_a08bdd1f203edd7936f1256e6e931e979} 
+\index{Utils.\+hpp@{Utils.\+hpp}!read\+Date@{read\+Date}}
+\index{read\+Date@{read\+Date}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{read\+Date()}{readDate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool read\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date} \&}]{result,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_aa2d200d1fbc5a914f855998bacc80a49}{}\label{_utils_8hpp_aa2d200d1fbc5a914f855998bacc80a49} 
+\index{Utils.\+hpp@{Utils.\+hpp}!read\+Date@{read\+Date}}
+\index{read\+Date@{read\+Date}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{read\+Date()}{readDate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool read\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date} \&}]{result,  }\item[{\hyperlink{class_date}{Date}}]{min,  }\item[{\hyperlink{class_date}{Date}}]{max,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a84078122f9457a3f7bb42f43dadcee7d}{}\label{_utils_8hpp_a84078122f9457a3f7bb42f43dadcee7d} 
+\index{Utils.\+hpp@{Utils.\+hpp}!read\+Dates@{read\+Dates}}
+\index{read\+Dates@{read\+Dates}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{read\+Dates()}{readDates()}}
+{\footnotesize\ttfamily bool read\+Dates (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_date}{Date} $>$ \&}]{result\+Vector,  }\item[{string}]{message,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a8bf22d7324a899ff9c4e4d75ca58a798}{}\label{_utils_8hpp_a8bf22d7324a899ff9c4e4d75ca58a798} 
+\index{Utils.\+hpp@{Utils.\+hpp}!read\+Unsigned\+Int@{read\+Unsigned\+Int}}
+\index{read\+Unsigned\+Int@{read\+Unsigned\+Int}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{read\+Unsigned\+Int()}{readUnsignedInt()}}
+{\footnotesize\ttfamily bool read\+Unsigned\+Int (\begin{DoxyParamCaption}\item[{unsigned int \&}]{input,  }\item[{unsigned int}]{min,  }\item[{unsigned int}]{max,  }\item[{string}]{error\+Message = {\ttfamily \char`\"{}Invalid~Input\char`\"{}} }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a7d905c3b893189bc2abe50f79b4a4c20}{}\label{_utils_8hpp_a7d905c3b893189bc2abe50f79b4a4c20} 
+\index{Utils.\+hpp@{Utils.\+hpp}!Set\+Cursor@{Set\+Cursor}}
+\index{Set\+Cursor@{Set\+Cursor}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{Set\+Cursor()}{SetCursor()}}
+{\footnotesize\ttfamily void Set\+Cursor (\begin{DoxyParamCaption}\item[{int}]{column,  }\item[{int}]{line }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a8530f12a89322bd0fb3f64e9a3399420}{}\label{_utils_8hpp_a8530f12a89322bd0fb3f64e9a3399420} 
+\index{Utils.\+hpp@{Utils.\+hpp}!string\+Path@{string\+Path}}
+\index{string\+Path@{string\+Path}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{string\+Path()}{stringPath()}}
+{\footnotesize\ttfamily string string\+Path (\begin{DoxyParamCaption}\item[{string}]{original\+Str }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_af88c4312f7ae914b33ee4e7f0a60fcc8}{}\label{_utils_8hpp_af88c4312f7ae914b33ee4e7f0a60fcc8} 
+\index{Utils.\+hpp@{Utils.\+hpp}!trim\+Link@{trim\+Link}}
+\index{trim\+Link@{trim\+Link}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{trim\+Link()}{trimLink()}}
+{\footnotesize\ttfamily string trim\+Link (\begin{DoxyParamCaption}\item[{string}]{link }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_a76c3b6dd449893fa001791a607156ee9}{}\label{_utils_8hpp_a76c3b6dd449893fa001791a607156ee9} 
+\index{Utils.\+hpp@{Utils.\+hpp}!trim\+String@{trim\+String}}
+\index{trim\+String@{trim\+String}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{trim\+String()}{trimString()}}
+{\footnotesize\ttfamily void trim\+String (\begin{DoxyParamCaption}\item[{string \&}]{input\+String }\end{DoxyParamCaption})}
+
+\hypertarget{_utils_8hpp_abdb7233442cfd0c8d4125472cbfc43db}{}\label{_utils_8hpp_abdb7233442cfd0c8d4125472cbfc43db} 
+\index{Utils.\+hpp@{Utils.\+hpp}!validate\+Name@{validate\+Name}}
+\index{validate\+Name@{validate\+Name}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{validate\+Name()}{validateName()}}
+{\footnotesize\ttfamily bool validate\+Name (\begin{DoxyParamCaption}\item[{string \&}]{nome }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{_utils_8hpp_a0f3e31a7d2d1f2cdd64455c5345ca761}{}\label{_utils_8hpp_a0f3e31a7d2d1f2cdd64455c5345ca761} 
+\index{Utils.\+hpp@{Utils.\+hpp}!F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR@{F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR}}
+\index{F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR@{F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR}{FILE\_SEPARATOR}}
+{\footnotesize\ttfamily string const F\+I\+L\+E\+\_\+\+S\+E\+P\+A\+R\+A\+T\+OR = \char`\"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\char`\"{}}
+
+\hypertarget{_utils_8hpp_ab9f222c0949ff718384d94d277a9dc28}{}\label{_utils_8hpp_ab9f222c0949ff718384d94d277a9dc28} 
+\index{Utils.\+hpp@{Utils.\+hpp}!positions\+Map\+Pos\+String@{positions\+Map\+Pos\+String}}
+\index{positions\+Map\+Pos\+String@{positions\+Map\+Pos\+String}!Utils.\+hpp@{Utils.\+hpp}}
+\subsubsection{\texorpdfstring{positions\+Map\+Pos\+String}{positionsMapPosString}}
+{\footnotesize\ttfamily const map$<$\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}, string$>$ positions\+Map\+Pos\+String}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    
+    \{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a45b8f189e491f4babb168883b2ae686f}{GoalkeeperPos}, \textcolor{stringliteral}{"GK"}\},
+    \{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83ab4e5162c2a3d0e4fa7974946ab3f0be4}{DefenderPos}, \textcolor{stringliteral}{"DF"}\},
+    \{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83af1cb1bf7c311fff921f5276874f6d4bc}{MidfielderPos}, \textcolor{stringliteral}{"MF"}\},
+    \{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83a31b1c80c80b9bf3165dc4bd2af7f962f}{ForwardPos}, \textcolor{stringliteral}{"FW"}\}
+    
+\}
+\end{DoxyCode}

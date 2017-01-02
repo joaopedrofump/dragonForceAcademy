@@ -249,7 +249,6 @@ Club::Club(string clubName, bool empty) {
             
         }
         
-        
     }
 }
 
@@ -1800,7 +1799,7 @@ vector<vector<string>> Club::getFormerPlayersPostals() const {
             
         
             string id = to_string((*formerWorkersIterator)->getID());
-            string message = "Dear " + (*formerWorkersIterator)->getName() + ", from " + this->clubName + ", we wish you a happy " +  transformNumberToOrder(Date() - (*formerWorkersIterator)->getBirthdate() + 1) + " birthday!";
+            string message = "Dear " + (*formerWorkersIterator)->getName() + ", from " + this->clubName + ", we wish you a happy " +  transformNumberToOrder(Date() - (*formerWorkersIterator)->getBirthdate() + 1) + " birthday on " + thisYearBD.str() + "!";
             eachPlayerGreeting.push_back(id);
             eachPlayerGreeting.push_back(message);
             result.push_back(eachPlayerGreeting);

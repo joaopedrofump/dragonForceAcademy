@@ -1,0 +1,686 @@
+\hypertarget{class_match}{}\section{Match Class Reference}
+\label{class_match}\index{Match@{Match}}
+
+
+A match.  
+
+
+
+
+{\ttfamily \#include $<$Match.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_match_ac5759910fa5b6cae24f1a7a1fb6c507b}{Match} (string \hyperlink{class_match_abdfcab5ee019eeedaa48e5ff10c90872}{id})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_match_a5d0c44bedaa94ef7cfd22006efa26618}{Match} (\hyperlink{class_date}{Date} \hyperlink{class_match_a17fb4e3c12a51e056228dafc0236565c}{match\+Day}, \hyperlink{class_club}{Club} $\ast$\hyperlink{class_match_a6bf19fbcf1de8012be76009b30b480a9}{home\+Team}, \hyperlink{class_club}{Club} $\ast$\hyperlink{class_match_a02e41142bde30f3080994ef50d972e0b}{away\+Team}, string \hyperlink{class_match_abdfcab5ee019eeedaa48e5ff10c90872}{id}, bool \hyperlink{class_match_a420ce68347932bda32c8085024922464}{played}=false)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_match_ae7b45a59eae93ecc3c82aad3732d6fd0}{Match} (istringstream \&iss)
+\begin{DoxyCompactList}\small\item\em Constructor that creates a new match by reading from the season file using a stringstream. \end{DoxyCompactList}\item 
+\hyperlink{class_match_a9757bb116b20eff20bc0f69cda65b006}{Match} (istringstream \&iss, \hyperlink{class_club}{Club} $\ast$program\+Club, \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} home\+Or\+Away)
+\begin{DoxyCompactList}\small\item\em Constructor that creates a new match by reading from the season file using a stringstream, checking either if the club used is the program club and if it is playing away or home. \end{DoxyCompactList}\item 
+\hyperlink{class_match_a017207d5e7c82f7d3c7d47d7e321dd3a}{Match} (\hyperlink{class_date}{Date} \hyperlink{class_match_a17fb4e3c12a51e056228dafc0236565c}{match\+Day})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_match_a4cbfcaff4f14e7411242423f19c28153}{$\sim$\+Match} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_match_aabff72bb943a68acc8f10c838c805f76}{get\+Match\+Day} () const
+\begin{DoxyCompactList}\small\item\em Gets match day. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_match_a4a0d6ae8d06f1f914ebc997e3623ec74}{get\+Home\+Team} () const
+\begin{DoxyCompactList}\small\item\em Gets home team. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_match_a92d14d26f36cc2e83f023753eb5023c1}{get\+Away\+Team} () const
+\begin{DoxyCompactList}\small\item\em Gets away team. \end{DoxyCompactList}\item 
+pair$<$ unsigned int, unsigned int $>$ \hyperlink{class_match_adba3118d8b5baace17ef9dd78b51f715}{get\+Score} () const
+\begin{DoxyCompactList}\small\item\em Gets the score. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_match_a47fa4a8009665728c73ca6c5db9fced8}{get\+Players} () const
+\begin{DoxyCompactList}\small\item\em Gets the players. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_match_a04240a27f656d70780a0d5b5653b1d41}{get\+Players\+Ids} () const
+\begin{DoxyCompactList}\small\item\em Gets players identifiers. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ \hyperlink{class_match_ac245e839af3dc7fc9996b9312a694f5d}{get\+Info\+Players} () const
+\begin{DoxyCompactList}\small\item\em Gets information players. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a364f30d2b599fcb69064d18c92d77151}{add\+Info\+Player} (pair$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$ new\+Player)
+\begin{DoxyCompactList}\small\item\em Adds an information player. \end{DoxyCompactList}\item 
+string \hyperlink{class_match_aaf337097928b3f99b2585ddd94408552}{get\+Id} () const
+\begin{DoxyCompactList}\small\item\em Gets the match\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+bool \hyperlink{class_match_a57e0656fbbcf2652fd453b78f4896826}{get\+Played} () const
+\begin{DoxyCompactList}\small\item\em Gets the played matches. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a6418c634096163a2ce11f052caae3fd8}{set\+Match\+Day} (\hyperlink{class_date}{Date} new\+Day)
+\begin{DoxyCompactList}\small\item\em Sets match day. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a286bc4e4a099e15c36217931640daedb}{set\+Home\+Team} (\hyperlink{class_club}{Club} $\ast$new\+Home\+Team)
+\begin{DoxyCompactList}\small\item\em Sets home team. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_aac4cc789daf510bd975ee5f2619b660d}{set\+Away\+Team} (\hyperlink{class_club}{Club} $\ast$new\+Away\+Team)
+\begin{DoxyCompactList}\small\item\em Sets away team. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a24d4d480ba85871d03bab9dba856549e}{set\+Home\+Team\+Score} (unsigned int new\+Home\+Team\+Score)
+\begin{DoxyCompactList}\small\item\em Sets home team score. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_ac1c097813dd9a45cfd7bae12738405f6}{set\+Away\+Team\+Score} (unsigned int new\+Away\+Team\+Score)
+\begin{DoxyCompactList}\small\item\em Sets away team score. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_abf318519910fe540bbcc9b8b6ea2ddb4}{set\+Id} (string new\+Id)
+\begin{DoxyCompactList}\small\item\em Sets the match\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a18bccd827166fe90d54e31d37cb0846e}{set\+Players} (vector$<$ unsigned int $>$ players\+Ids)
+\begin{DoxyCompactList}\small\item\em Sets the match players. \end{DoxyCompactList}\item 
+void \hyperlink{class_match_a64ba21c37209d0b9291df0e2e0aa72ab}{register\+Match} (unsigned int \hyperlink{class_match_a01fec4d4b214cb3cfb05a2fc885a8bee}{home\+Team\+Score}, unsigned int \hyperlink{class_match_ad8a56374e59ee71ba9d29ed5ad5d676f}{away\+Team\+Score}, map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$ info\+Players)
+\begin{DoxyCompactList}\small\item\em Registers the match. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \hyperlink{class_match_a6649a799822c9d5f08f38041c8e94d5e}{show\+In\+Screen} (unsigned int tmp\+ID) const
+\begin{DoxyCompactList}\small\item\em Shows match info on the screen. \end{DoxyCompactList}\item 
+bool \hyperlink{class_match_a2aa6b9742def1ef047287e971bd99d91}{operator==} (const \hyperlink{class_match}{Match} \&compare\+Match) const
+\begin{DoxyCompactList}\small\item\em Equality operator that compares two different matches in the smae day. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_match_abdfcab5ee019eeedaa48e5ff10c90872}{id}
+\begin{DoxyCompactList}\small\item\em The match\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_match_a17fb4e3c12a51e056228dafc0236565c}{match\+Day}
+\begin{DoxyCompactList}\small\item\em The match day. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_match_a6bf19fbcf1de8012be76009b30b480a9}{home\+Team}
+\begin{DoxyCompactList}\small\item\em The home team. \end{DoxyCompactList}\item 
+\hyperlink{class_club}{Club} $\ast$ \hyperlink{class_match_a02e41142bde30f3080994ef50d972e0b}{away\+Team}
+\begin{DoxyCompactList}\small\item\em The away team. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_match_a01fec4d4b214cb3cfb05a2fc885a8bee}{home\+Team\+Score}
+\begin{DoxyCompactList}\small\item\em The home team score. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_match_ad8a56374e59ee71ba9d29ed5ad5d676f}{away\+Team\+Score}
+\begin{DoxyCompactList}\small\item\em The away team score. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ \hyperlink{class_match_a90e96593f6f7cbec8dd8124e8ff4c88e}{map\+Info\+Players}
+\begin{DoxyCompactList}\small\item\em The map information players. \end{DoxyCompactList}\item 
+bool \hyperlink{class_match_a420ce68347932bda32c8085024922464}{played}
+\begin{DoxyCompactList}\small\item\em True if played. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_match_a515417e660af7b1028a457aedb8a6443}{operator$<$$<$} (ostream \&out, \hyperlink{class_match}{Match} \&match)
+\begin{DoxyCompactList}\small\item\em Stream insertion operator. \end{DoxyCompactList}\item 
+bool \hyperlink{class_match_ae305eda09716cd9934cff86f759c64c1}{operator$<$} (const \hyperlink{class_match}{Match} \&match1, const \hyperlink{class_match}{Match} \&match2)
+\begin{DoxyCompactList}\small\item\em Less-\/than comparison operator that compares the day of both matches. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A match. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_match_ac5759910fa5b6cae24f1a7a1fb6c507b}{}\label{class_match_ac5759910fa5b6cae24f1a7a1fb6c507b} 
+\index{Match@{Match}!Match@{Match}}
+\index{Match@{Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{Match()}{Match()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Match\+::\+Match (\begin{DoxyParamCaption}\item[{string}]{id }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The identifier. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a5d0c44bedaa94ef7cfd22006efa26618}{}\label{class_match_a5d0c44bedaa94ef7cfd22006efa26618} 
+\index{Match@{Match}!Match@{Match}}
+\index{Match@{Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{Match()}{Match()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Match\+::\+Match (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{match\+Day,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{home\+Team,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{away\+Team,  }\item[{string}]{id,  }\item[{bool}]{played = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+Day} & The match day. \\
+\hline
+{\em home\+Team} & \mbox{[}in,out\mbox{]} If non-\/null, the home team. \\
+\hline
+{\em away\+Team} & \mbox{[}in,out\mbox{]} If non-\/null, the away team. \\
+\hline
+{\em id} & The match\textquotesingle{}s identifier. \\
+\hline
+{\em played} & (Optional) True if played. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_ae7b45a59eae93ecc3c82aad3732d6fd0}{}\label{class_match_ae7b45a59eae93ecc3c82aad3732d6fd0} 
+\index{Match@{Match}!Match@{Match}}
+\index{Match@{Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{Match()}{Match()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Match\+::\+Match (\begin{DoxyParamCaption}\item[{istringstream \&}]{iss }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates a new match by reading from the season file using a stringstream. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iss} & \mbox{[}in,out\mbox{]} The stringstream. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a9757bb116b20eff20bc0f69cda65b006}{}\label{class_match_a9757bb116b20eff20bc0f69cda65b006} 
+\index{Match@{Match}!Match@{Match}}
+\index{Match@{Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{Match()}{Match()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Match\+::\+Match (\begin{DoxyParamCaption}\item[{istringstream \&}]{iss,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{program\+Club,  }\item[{\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}]{home\+Or\+Away }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates a new match by reading from the season file using a stringstream, checking either if the club used is the program club and if it is playing away or home. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iss} & \mbox{[}in,out\mbox{]} The stringstream. \\
+\hline
+{\em program\+Club} & \mbox{[}in,out\mbox{]} If non-\/null, the program club. \\
+\hline
+{\em home\+Or\+Away} & The home or away. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a017207d5e7c82f7d3c7d47d7e321dd3a}{}\label{class_match_a017207d5e7c82f7d3c7d47d7e321dd3a} 
+\index{Match@{Match}!Match@{Match}}
+\index{Match@{Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{Match()}{Match()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Match\+::\+Match (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{match\+Day }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+Day} & The match day. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a4cbfcaff4f14e7411242423f19c28153}{}\label{class_match_a4cbfcaff4f14e7411242423f19c28153} 
+\index{Match@{Match}!````~Match@{$\sim$\+Match}}
+\index{````~Match@{$\sim$\+Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{$\sim$\+Match()}{~Match()}}
+{\footnotesize\ttfamily Match\+::$\sim$\+Match (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_match_a364f30d2b599fcb69064d18c92d77151}{}\label{class_match_a364f30d2b599fcb69064d18c92d77151} 
+\index{Match@{Match}!add\+Info\+Player@{add\+Info\+Player}}
+\index{add\+Info\+Player@{add\+Info\+Player}!Match@{Match}}
+\subsubsection{\texorpdfstring{add\+Info\+Player()}{addInfoPlayer()}}
+{\footnotesize\ttfamily void Match\+::add\+Info\+Player (\begin{DoxyParamCaption}\item[{pair$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$}]{new\+Player }\end{DoxyParamCaption})}
+
+
+
+Adds an information player. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Player} & \mbox{[}in,out\mbox{]} If non-\/null, the new player. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a92d14d26f36cc2e83f023753eb5023c1}{}\label{class_match_a92d14d26f36cc2e83f023753eb5023c1} 
+\index{Match@{Match}!get\+Away\+Team@{get\+Away\+Team}}
+\index{get\+Away\+Team@{get\+Away\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Away\+Team()}{getAwayTeam()}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club} $\ast$ Match\+::get\+Away\+Team (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets away team. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the away team. 
+\end{DoxyReturn}
+\hypertarget{class_match_a4a0d6ae8d06f1f914ebc997e3623ec74}{}\label{class_match_a4a0d6ae8d06f1f914ebc997e3623ec74} 
+\index{Match@{Match}!get\+Home\+Team@{get\+Home\+Team}}
+\index{get\+Home\+Team@{get\+Home\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Home\+Team()}{getHomeTeam()}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club} $\ast$ Match\+::get\+Home\+Team (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets home team. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the home team. 
+\end{DoxyReturn}
+\hypertarget{class_match_aaf337097928b3f99b2585ddd94408552}{}\label{class_match_aaf337097928b3f99b2585ddd94408552} 
+\index{Match@{Match}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Id()}{getId()}}
+{\footnotesize\ttfamily string Match\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the match\textquotesingle{}s identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The match\textquotesingle{}s identifier. 
+\end{DoxyReturn}
+\hypertarget{class_match_ac245e839af3dc7fc9996b9312a694f5d}{}\label{class_match_ac245e839af3dc7fc9996b9312a694f5d} 
+\index{Match@{Match}!get\+Info\+Players@{get\+Info\+Players}}
+\index{get\+Info\+Players@{get\+Info\+Players}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Info\+Players()}{getInfoPlayers()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$ $>$ Match\+::get\+Info\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets information players. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the information players. 
+\end{DoxyReturn}
+\hypertarget{class_match_aabff72bb943a68acc8f10c838c805f76}{}\label{class_match_aabff72bb943a68acc8f10c838c805f76} 
+\index{Match@{Match}!get\+Match\+Day@{get\+Match\+Day}}
+\index{get\+Match\+Day@{get\+Match\+Day}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Match\+Day()}{getMatchDay()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Match\+::get\+Match\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets match day. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The match day. 
+\end{DoxyReturn}
+\hypertarget{class_match_a57e0656fbbcf2652fd453b78f4896826}{}\label{class_match_a57e0656fbbcf2652fd453b78f4896826} 
+\index{Match@{Match}!get\+Played@{get\+Played}}
+\index{get\+Played@{get\+Played}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Played()}{getPlayed()}}
+{\footnotesize\ttfamily bool Match\+::get\+Played (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the played matches. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if it succeeds, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{class_match_a47fa4a8009665728c73ca6c5db9fced8}{}\label{class_match_a47fa4a8009665728c73ca6c5db9fced8} 
+\index{Match@{Match}!get\+Players@{get\+Players}}
+\index{get\+Players@{get\+Players}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Players()}{getPlayers()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_worker}{Worker} $\ast$ $>$ Match\+::get\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the players. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the players. 
+\end{DoxyReturn}
+\hypertarget{class_match_a04240a27f656d70780a0d5b5653b1d41}{}\label{class_match_a04240a27f656d70780a0d5b5653b1d41} 
+\index{Match@{Match}!get\+Players\+Ids@{get\+Players\+Ids}}
+\index{get\+Players\+Ids@{get\+Players\+Ids}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Players\+Ids()}{getPlayersIds()}}
+{\footnotesize\ttfamily vector$<$ unsigned int $>$ Match\+::get\+Players\+Ids (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets players identifiers. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The players identifiers. 
+\end{DoxyReturn}
+\hypertarget{class_match_adba3118d8b5baace17ef9dd78b51f715}{}\label{class_match_adba3118d8b5baace17ef9dd78b51f715} 
+\index{Match@{Match}!get\+Score@{get\+Score}}
+\index{get\+Score@{get\+Score}!Match@{Match}}
+\subsubsection{\texorpdfstring{get\+Score()}{getScore()}}
+{\footnotesize\ttfamily pair$<$ unsigned int, unsigned int $>$ Match\+::get\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the score. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The score. 
+\end{DoxyReturn}
+\hypertarget{class_match_a2aa6b9742def1ef047287e971bd99d91}{}\label{class_match_a2aa6b9742def1ef047287e971bd99d91} 
+\index{Match@{Match}!operator==@{operator==}}
+\index{operator==@{operator==}!Match@{Match}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Match\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_match}{Match} \&}]{compare\+Match }\end{DoxyParamCaption}) const}
+
+
+
+Equality operator that compares two different matches in the smae day. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em compare\+Match} & A match specifying the compare. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if the parameters are considered equivalent. 
+\end{DoxyReturn}
+\hypertarget{class_match_a64ba21c37209d0b9291df0e2e0aa72ab}{}\label{class_match_a64ba21c37209d0b9291df0e2e0aa72ab} 
+\index{Match@{Match}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Match@{Match}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}}
+{\footnotesize\ttfamily void Match\+::register\+Match (\begin{DoxyParamCaption}\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$}]{info\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers the match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em home\+Team\+Score} & The home team score. \\
+\hline
+{\em away\+Team\+Score} & The away team score. \\
+\hline
+{\em info\+Players} & \mbox{[}in,out\mbox{]} If non-\/null, the information players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_aac4cc789daf510bd975ee5f2619b660d}{}\label{class_match_aac4cc789daf510bd975ee5f2619b660d} 
+\index{Match@{Match}!set\+Away\+Team@{set\+Away\+Team}}
+\index{set\+Away\+Team@{set\+Away\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Away\+Team()}{setAwayTeam()}}
+{\footnotesize\ttfamily void Match\+::set\+Away\+Team (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} $\ast$}]{new\+Away\+Team }\end{DoxyParamCaption})}
+
+
+
+Sets away team. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Away\+Team} & \mbox{[}in,out\mbox{]} If non-\/null, the new away team. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_ac1c097813dd9a45cfd7bae12738405f6}{}\label{class_match_ac1c097813dd9a45cfd7bae12738405f6} 
+\index{Match@{Match}!set\+Away\+Team\+Score@{set\+Away\+Team\+Score}}
+\index{set\+Away\+Team\+Score@{set\+Away\+Team\+Score}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Away\+Team\+Score()}{setAwayTeamScore()}}
+{\footnotesize\ttfamily void Match\+::set\+Away\+Team\+Score (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Away\+Team\+Score }\end{DoxyParamCaption})}
+
+
+
+Sets away team score. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Away\+Team\+Score} & The new away team score. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a286bc4e4a099e15c36217931640daedb}{}\label{class_match_a286bc4e4a099e15c36217931640daedb} 
+\index{Match@{Match}!set\+Home\+Team@{set\+Home\+Team}}
+\index{set\+Home\+Team@{set\+Home\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Home\+Team()}{setHomeTeam()}}
+{\footnotesize\ttfamily void Match\+::set\+Home\+Team (\begin{DoxyParamCaption}\item[{\hyperlink{class_club}{Club} $\ast$}]{new\+Home\+Team }\end{DoxyParamCaption})}
+
+
+
+Sets home team. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Home\+Team} & \mbox{[}in,out\mbox{]} If non-\/null, the new home team. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a24d4d480ba85871d03bab9dba856549e}{}\label{class_match_a24d4d480ba85871d03bab9dba856549e} 
+\index{Match@{Match}!set\+Home\+Team\+Score@{set\+Home\+Team\+Score}}
+\index{set\+Home\+Team\+Score@{set\+Home\+Team\+Score}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Home\+Team\+Score()}{setHomeTeamScore()}}
+{\footnotesize\ttfamily void Match\+::set\+Home\+Team\+Score (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Home\+Team\+Score }\end{DoxyParamCaption})}
+
+
+
+Sets home team score. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Home\+Team\+Score} & The new home team score. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_abf318519910fe540bbcc9b8b6ea2ddb4}{}\label{class_match_abf318519910fe540bbcc9b8b6ea2ddb4} 
+\index{Match@{Match}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Id()}{setId()}}
+{\footnotesize\ttfamily void Match\+::set\+Id (\begin{DoxyParamCaption}\item[{string}]{new\+Id }\end{DoxyParamCaption})}
+
+
+
+Sets the match\textquotesingle{}s identifier. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Id} & Identifier for the new. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a6418c634096163a2ce11f052caae3fd8}{}\label{class_match_a6418c634096163a2ce11f052caae3fd8} 
+\index{Match@{Match}!set\+Match\+Day@{set\+Match\+Day}}
+\index{set\+Match\+Day@{set\+Match\+Day}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Match\+Day()}{setMatchDay()}}
+{\footnotesize\ttfamily void Match\+::set\+Match\+Day (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{new\+Day }\end{DoxyParamCaption})}
+
+
+
+Sets match day. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Day} & The new day. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a18bccd827166fe90d54e31d37cb0846e}{}\label{class_match_a18bccd827166fe90d54e31d37cb0846e} 
+\index{Match@{Match}!set\+Players@{set\+Players}}
+\index{set\+Players@{set\+Players}!Match@{Match}}
+\subsubsection{\texorpdfstring{set\+Players()}{setPlayers()}}
+{\footnotesize\ttfamily void Match\+::set\+Players (\begin{DoxyParamCaption}\item[{vector$<$ unsigned int $>$}]{players\+Ids }\end{DoxyParamCaption})}
+
+
+
+Sets the match players. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players\+Ids} & List of identifiers for the match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_match_a6649a799822c9d5f08f38041c8e94d5e}{}\label{class_match_a6649a799822c9d5f08f38041c8e94d5e} 
+\index{Match@{Match}!show\+In\+Screen@{show\+In\+Screen}}
+\index{show\+In\+Screen@{show\+In\+Screen}!Match@{Match}}
+\subsubsection{\texorpdfstring{show\+In\+Screen()}{showInScreen()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Match\+::show\+In\+Screen (\begin{DoxyParamCaption}\item[{unsigned int}]{tmp\+ID }\end{DoxyParamCaption}) const}
+
+
+
+Shows match info on the screen. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tmp\+ID} & Identifier for the temporary. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+A vector$<$string$>$ 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_match_ae305eda09716cd9934cff86f759c64c1}{}\label{class_match_ae305eda09716cd9934cff86f759c64c1} 
+\index{Match@{Match}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Match@{Match}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_match}{Match} \&}]{match1,  }\item[{const \hyperlink{class_match}{Match} \&}]{match2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Less-\/than comparison operator that compares the day of both matches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match1} & The first match . \\
+\hline
+{\em match2} & The second match. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if the first match\textquotesingle{}s day is less than the second\textquotesingle{}s. 
+\end{DoxyReturn}
+\hypertarget{class_match_a515417e660af7b1028a457aedb8a6443}{}\label{class_match_a515417e660af7b1028a457aedb8a6443} 
+\index{Match@{Match}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Match@{Match}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{\hyperlink{class_match}{Match} \&}]{match }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream insertion operator. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}in,out\mbox{]} The outfile. \\
+\hline
+{\em match} & \mbox{[}in,out\mbox{]} Specifies the match. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The shifted result. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_match_a02e41142bde30f3080994ef50d972e0b}{}\label{class_match_a02e41142bde30f3080994ef50d972e0b} 
+\index{Match@{Match}!away\+Team@{away\+Team}}
+\index{away\+Team@{away\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{away\+Team}{awayTeam}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club}$\ast$ Match\+::away\+Team\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The away team. 
+
+\hypertarget{class_match_ad8a56374e59ee71ba9d29ed5ad5d676f}{}\label{class_match_ad8a56374e59ee71ba9d29ed5ad5d676f} 
+\index{Match@{Match}!away\+Team\+Score@{away\+Team\+Score}}
+\index{away\+Team\+Score@{away\+Team\+Score}!Match@{Match}}
+\subsubsection{\texorpdfstring{away\+Team\+Score}{awayTeamScore}}
+{\footnotesize\ttfamily unsigned int Match\+::away\+Team\+Score\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The away team score. 
+
+\hypertarget{class_match_a6bf19fbcf1de8012be76009b30b480a9}{}\label{class_match_a6bf19fbcf1de8012be76009b30b480a9} 
+\index{Match@{Match}!home\+Team@{home\+Team}}
+\index{home\+Team@{home\+Team}!Match@{Match}}
+\subsubsection{\texorpdfstring{home\+Team}{homeTeam}}
+{\footnotesize\ttfamily \hyperlink{class_club}{Club}$\ast$ Match\+::home\+Team\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The home team. 
+
+\hypertarget{class_match_a01fec4d4b214cb3cfb05a2fc885a8bee}{}\label{class_match_a01fec4d4b214cb3cfb05a2fc885a8bee} 
+\index{Match@{Match}!home\+Team\+Score@{home\+Team\+Score}}
+\index{home\+Team\+Score@{home\+Team\+Score}!Match@{Match}}
+\subsubsection{\texorpdfstring{home\+Team\+Score}{homeTeamScore}}
+{\footnotesize\ttfamily unsigned int Match\+::home\+Team\+Score\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The home team score. 
+
+\hypertarget{class_match_abdfcab5ee019eeedaa48e5ff10c90872}{}\label{class_match_abdfcab5ee019eeedaa48e5ff10c90872} 
+\index{Match@{Match}!id@{id}}
+\index{id@{id}!Match@{Match}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily string Match\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The match\textquotesingle{}s identifier. 
+
+\hypertarget{class_match_a90e96593f6f7cbec8dd8124e8ff4c88e}{}\label{class_match_a90e96593f6f7cbec8dd8124e8ff4c88e} 
+\index{Match@{Match}!map\+Info\+Players@{map\+Info\+Players}}
+\index{map\+Info\+Players@{map\+Info\+Players}!Match@{Match}}
+\subsubsection{\texorpdfstring{map\+Info\+Players}{mapInfoPlayers}}
+{\footnotesize\ttfamily map$<$unsigned int, \hyperlink{class_info}{Info}$\ast$$>$ Match\+::map\+Info\+Players\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The map information players. 
+
+\hypertarget{class_match_a17fb4e3c12a51e056228dafc0236565c}{}\label{class_match_a17fb4e3c12a51e056228dafc0236565c} 
+\index{Match@{Match}!match\+Day@{match\+Day}}
+\index{match\+Day@{match\+Day}!Match@{Match}}
+\subsubsection{\texorpdfstring{match\+Day}{matchDay}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Match\+::match\+Day\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The match day. 
+
+\hypertarget{class_match_a420ce68347932bda32c8085024922464}{}\label{class_match_a420ce68347932bda32c8085024922464} 
+\index{Match@{Match}!played@{played}}
+\index{played@{played}!Match@{Match}}
+\subsubsection{\texorpdfstring{played}{played}}
+{\footnotesize\ttfamily bool Match\+::played\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True if played. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_match_8hpp}{Match.\+hpp}\item 
+\hyperlink{_match_8cpp}{Match.\+cpp}\end{DoxyCompactItemize}
