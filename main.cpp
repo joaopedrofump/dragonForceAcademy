@@ -41,38 +41,6 @@ int main(int argc, const char * argv[]) {
         initialOptions(currentClubInProgram);
         currentClubInProgram.saveChanges();
         
-        
-        /*map<unsigned int, Worker*> test = currentClubInProgram.getAthletes();
-        vector<Worker*> athletes;
-        for (map<unsigned int, Worker*>::const_iterator i = test.begin() ; i != test.end(); i++) {
-            
-            Worker* curr = i->second;
-            athletes.push_back(curr);
-            
-        }
-        sort(athletes.begin(), athletes.end(), SortWorker(ecg, descending));
-        
-        for (size_t i = 0; i < test.size(); i++) {
-            
-            cout << *athletes.at(i)<< " ; ";
-            if(athletes.at(i)->getECG()) {
-                if (athletes.at(i)->getECG()->getResultado()) {
-                    cout << "VALID" << " ; " << athletes.at(i)->getECG()->getExpirationDate() << endl;
-                }
-                else {
-                    cout << "NOT VALID" << " ; " << endl;
-                }
-            }
-            else {
-                cout << "NO ECG" << endl;
-            }
-            
-            
-            
-        }
-        */
-
-        
     }
     
     catch(InvalidDate e) {
