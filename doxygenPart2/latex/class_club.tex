@@ -1,0 +1,966 @@
+\hypertarget{class_club}{}\section{Club Class Reference}
+\label{class_club}\index{Club@{Club}}
+
+
+A club.  
+
+
+
+
+{\ttfamily \#include $<$Club.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_club_a53bcd4e9c5b32098f2170d6800b4279a}{Club} (string \hyperlink{class_club_acd01c6183dc0747ad3c3ab8167bd860e}{club\+Name})
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_club}{Club}\textquotesingle{}s Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_club_a07cefb3e65bdcd9144abc29d3203bf4b}{Club} (string \hyperlink{class_club_acd01c6183dc0747ad3c3ab8167bd860e}{club\+Name}, bool empty=false)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_club}{Club}\textquotesingle{}s Constructor. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_a68e75a8eba166549cffc62f53b448ad7}{get\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets the club\textquotesingle{}s name. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_club_abbfc819640d18b6b19d0741865d37e37}{get\+Workers} () const
+\begin{DoxyCompactList}\small\item\em Gets the workers\textquotesingle{} vector. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_season}{Season} $\ast$ $>$ \hyperlink{class_club_ac150576208dbfa2a823003db3ae35601}{get\+Seasons} () const
+\begin{DoxyCompactList}\small\item\em Gets the seasons\textquotesingle{} vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a8d73696e267c2abfc8601b710a5c5202}{add\+Player} (\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} pos, string name, \hyperlink{class_date}{Date} birthdate, unsigned char height)
+\begin{DoxyCompactList}\small\item\em Adds a player. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a45e40e92c28330c08ea0739f6213056f}{add\+Player} (\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position} pos, string name, \hyperlink{class_date}{Date} birthdate, unsigned int civil\+ID, unsigned char height)
+\begin{DoxyCompactList}\small\item\em Adds a player to the club, putting the player in the respective season and level. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a0ba1e1dd655c3866111476aed700a7ac}{remove\+Athlete} (unsigned int athlete\+Id)
+\begin{DoxyCompactList}\small\item\em Removes the athlete by his id. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a2ecfd114e812c310d6155d111b500d6c}{reativate\+Athlete} (unsigned int athlete\+Id)
+\begin{DoxyCompactList}\small\item\em Reativates an athlete. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_adb3e6585bb13e96d4a9395f06f493170}{edit\+Player} (unsigned int athlete\+Id, string new\+Name, \hyperlink{class_date}{Date} new\+Birth\+Date, unsigned int new\+Height, unsigned int new\+Civil\+ID)
+\begin{DoxyCompactList}\small\item\em Edits the athlete\textquotesingle{}s atributes. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_club_a30cf5a5b67250ca9bc5f7aa5a7628f92}{get\+Athletes} (bool only\+Actives=false) const
+\begin{DoxyCompactList}\small\item\em Gets the athletes. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_club_a8daf0174b3d095cf6c8480f9bf3ab0e8}{get\+Inactives} (unsigned char workers\+Type=0) const
+\begin{DoxyCompactList}\small\item\em Gets the inactives from the coaches map. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_club_ad93b5a4d38cc3af7decf777a47a26880}{get\+Coaches} (bool only\+Actives=false) const
+\begin{DoxyCompactList}\small\item\em Gets the coaches. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_ab74a638a755a3d7b1239f418f8257c19}{show\+Athletes} (bool only\+Actives=false) const
+\begin{DoxyCompactList}\small\item\em Shows all the athletes. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a0a4b9097d0be7470b4a547c13a86adcb}{show\+Athlete} (unsigned int \hyperlink{_training_8hpp_aa44c715f606358e721f7911b15a1cfc5a280d7329079c73a4a5df3f35697b60b1}{id}) const
+\begin{DoxyCompactList}\small\item\em Shows the athlete by his id. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a55d6ed46c6d937143172a01ac8ddf7cc}{show\+Athletes\+Inactives} () const
+\begin{DoxyCompactList}\small\item\em Shows the inactive athletes. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_ab75ce29b014480adce6c4628c1dd8e0b}{add\+Coach} (\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} position, string name, \hyperlink{class_date}{Date} birthdate, unsigned int civil\+ID, \hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level} level, bool main\+Coach=false)
+\begin{DoxyCompactList}\small\item\em Adds a coach. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_adf82412445e01740989ee1956b13a556}{remove\+Coach} (unsigned int coach\+Id)
+\begin{DoxyCompactList}\small\item\em Removes the coach by coach\+Id. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a91ea60cae983d86c47e492aa77e59147}{reativate\+Coach} (unsigned int coach\+Id)
+\begin{DoxyCompactList}\small\item\em Reativates a coach. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a4a22977499beaf71a8bb369ac3c91ba1}{show\+Coaches} (bool only\+Actives=false) const
+\begin{DoxyCompactList}\small\item\em Shows the coaches. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a38615db317f0be62839fd65b3a827840}{show\+Coaches\+Inactives} () const
+\begin{DoxyCompactList}\small\item\em Shows the inactive coaches. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a8c659903f10d653b6ce946c0e9526209}{edit\+Coach} (unsigned int coach\+Id, string new\+Name, \hyperlink{class_date}{Date} new\+Birth\+Date, unsigned int new\+Civil\+ID, unsigned int new\+Coach\+Type)
+\begin{DoxyCompactList}\small\item\em Edits a coach. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a4c867a8b3743c99fa57131709be0172a}{is\+Program\+Club} () const
+\begin{DoxyCompactList}\small\item\em Query if this object is the program club. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_ad6b354484c2c621378e130388384df21}{save\+Changes} ()
+\begin{DoxyCompactList}\small\item\em Saves the changesmade by the user. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_ae3d6a0ff813da8740a801d3051105203}{get\+Path\+To\+Club\+Folder} () const
+\begin{DoxyCompactList}\small\item\em Gets path to the club\textquotesingle{}s folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_a08b6495dcd132fd4e7215af14f72234e}{get\+Path\+To\+Club\+Athletes\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to the club athletes file. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_a9da4d254d3ae0844edfd140d8750bb33}{get\+Path\+To\+Club\+Coaches\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to the club coaches file. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_abdac4c28ac139581c4745f08aff90c68}{get\+Path\+To\+Club\+Info\+File} () const
+\begin{DoxyCompactList}\small\item\em Gets path to the club information file. \end{DoxyCompactList}\item 
+int \hyperlink{class_club_ab308d426042797fc462b485204004eba}{find\+Worker\+By\+Civil\+ID} (unsigned int civil\+ID)
+\begin{DoxyCompactList}\small\item\em Searches for the worker by civil identifier. \end{DoxyCompactList}\item 
+bool \hyperlink{class_club_a0903daff929fe8647a7a5e97e789c748}{update\+E\+CG} (unsigned int athlete\+ID, bool result)
+\begin{DoxyCompactList}\small\item\em Updates the ecg. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a7296755ad0d242ed597d9520c6d79a45}{schedule\+Match} (string opponent\+Club, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} type)
+\begin{DoxyCompactList}\small\item\em Schedule match. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_ac7ab630922da1744b1a8223512ae4dc6}{call\+Up\+Players} (string match\+Id, vector$<$ unsigned int $>$ match\+Players, \hyperlink{class_level}{Level} $\ast$level)
+\begin{DoxyCompactList}\small\item\em Call up players for a scheduled match. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_ae330b70a246969ed36e76aedcc77fa0a}{call\+Up\+Players} (string opponent\+Club, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} type, vector$<$ unsigned int $>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Call up players for a non scheduled match. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a92bf3c683dc8fbb4ef73672d8a241e40}{register\+Match} (string match\+Id, \hyperlink{class_level}{Level} $\ast$level, unsigned int home\+Team\+Score, unsigned int away\+Team\+Score, map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Registers a scheduled match and the match players performance. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a64291b5f72e6864a9982195411bdb705}{register\+Match} (string opponent\+Club, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} type, unsigned int home\+Team\+Score, unsigned int away\+Team\+Score, map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Registers a non scheduled match and the match players performance. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a65e4343bba040f67bf27576eb68a7921}{register\+Match} (string match\+Id, \hyperlink{class_level}{Level} $\ast$level, unsigned int home\+Team\+Score, unsigned int away\+Team\+Score, vector$<$ unsigned int $>$ match\+Players)
+\begin{DoxyCompactList}\small\item\em Registers a sheduled match without the match players perforamnce. \end{DoxyCompactList}\item 
+void \hyperlink{class_club_a5bb1f9f0f9f3cbef1f77330482b7b297}{register\+Match} (string opponent\+Club, \hyperlink{class_date}{Date} match\+Date, \hyperlink{class_level}{Level} $\ast$level, \hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type} type, unsigned int home\+Team\+Score, unsigned int away\+Team\+Score, vector$<$ unsigned int $>$ match\+Players)
+\item 
+void \hyperlink{class_club_aaa8b24f7bbc9fc3cb114b9dd4ee65af3}{schedule\+Training} (\hyperlink{class_date}{Date} training\+Date, \hyperlink{class_level}{Level} $\ast$level)
+\item 
+void \hyperlink{class_club_ab980545f4b4236481268705d9d965f13}{register\+Training} (unsigned int training\+Id, \hyperlink{class_level}{Level} $\ast$level, vector$<$ unsigned int $>$ missing\+Players)
+\item 
+void \hyperlink{class_club_a0085b30f629ff1ca45090738ecaba5b7}{register\+Training} (\hyperlink{class_date}{Date} training\+Date, \hyperlink{class_level}{Level} $\ast$level, vector$<$ unsigned int $>$ missing\+Players)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_club_aff52eace9c0bf641cc73a55b5c062bc4}{program\+Club}
+\begin{DoxyCompactList}\small\item\em True to program club. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_acd01c6183dc0747ad3c3ab8167bd860e}{club\+Name}
+\begin{DoxyCompactList}\small\item\em club\textquotesingle{}s name. \end{DoxyCompactList}\item 
+map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ \hyperlink{class_club_acbdc0f19e2a14b6e3fe79c92081a0b6e}{all\+Workers}
+\begin{DoxyCompactList}\small\item\em workers\textquotesingle{} map. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_season}{Season} $\ast$ $>$ \hyperlink{class_club_af94fabc0c00f49220bd959b0ec2bda26}{seasons}
+\begin{DoxyCompactList}\small\item\em vector that includes all played season. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_club_a953a3ef4d0bde6a35ff94f481aba34cb}{number\+Of\+Seasons}
+\begin{DoxyCompactList}\small\item\em number of seasons played. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_a7c15547fa5dac447cd5a986ae3b4f7c3}{path\+To\+Club\+Folder}
+\begin{DoxyCompactList}\small\item\em path to the club\textquotesingle{}s folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_ad3865f52b2164f79107444b5959ee931}{path\+To\+Club\+Athletes\+File}
+\begin{DoxyCompactList}\small\item\em path to the athletes\textquotesingle{} file. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_adf720213158504d95078824fc769918e}{path\+To\+Club\+Coaches\+File}
+\begin{DoxyCompactList}\small\item\em path to the coaches\textquotesingle{} file. \end{DoxyCompactList}\item 
+string \hyperlink{class_club_a01f1d1dc26bca7dda9ceea7521d294eb}{path\+To\+Club\+Info\+File}
+\begin{DoxyCompactList}\small\item\em path to the club\textquotesingle{}s info file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A club. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_club_a53bcd4e9c5b32098f2170d6800b4279a}{}\label{class_club_a53bcd4e9c5b32098f2170d6800b4279a} 
+\index{Club@{Club}!Club@{Club}}
+\index{Club@{Club}!Club@{Club}}
+\subsubsection{\texorpdfstring{Club()}{Club()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Club\+::\+Club (\begin{DoxyParamCaption}\item[{string}]{club\+Name }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_club}{Club}\textquotesingle{}s Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em club\+Name} & Name of the club. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a07cefb3e65bdcd9144abc29d3203bf4b}{}\label{class_club_a07cefb3e65bdcd9144abc29d3203bf4b} 
+\index{Club@{Club}!Club@{Club}}
+\index{Club@{Club}!Club@{Club}}
+\subsubsection{\texorpdfstring{Club()}{Club()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Club\+::\+Club (\begin{DoxyParamCaption}\item[{string}]{club\+Name,  }\item[{bool}]{empty = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_club}{Club}\textquotesingle{}s Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em club\+Name} & Name of the club. \\
+\hline
+{\em empty} & (Optional) True to empty. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_club_ab75ce29b014480adce6c4628c1dd8e0b}{}\label{class_club_ab75ce29b014480adce6c4628c1dd8e0b} 
+\index{Club@{Club}!add\+Coach@{add\+Coach}}
+\index{add\+Coach@{add\+Coach}!Club@{Club}}
+\subsubsection{\texorpdfstring{add\+Coach()}{addCoach()}}
+{\footnotesize\ttfamily void Club\+::add\+Coach (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}}]{position,  }\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{\hyperlink{_utils_8hpp_a226b190c54f09ab6ba8ac83b28e3c4b6}{age\+Level}}]{level,  }\item[{bool}]{main\+Coach = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Adds a coach. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position. \\
+\hline
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Identifier for the civil. \\
+\hline
+{\em level} & The level. \\
+\hline
+{\em main\+Coach} & (Optional) True to main coach. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a8d73696e267c2abfc8601b710a5c5202}{}\label{class_club_a8d73696e267c2abfc8601b710a5c5202} 
+\index{Club@{Club}!add\+Player@{add\+Player}}
+\index{add\+Player@{add\+Player}!Club@{Club}}
+\subsubsection{\texorpdfstring{add\+Player()}{addPlayer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Club\+::add\+Player (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}}]{pos,  }\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned char}]{height }\end{DoxyParamCaption})}
+
+
+
+Adds a player. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position. \\
+\hline
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em height} & The height. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a45e40e92c28330c08ea0739f6213056f}{}\label{class_club_a45e40e92c28330c08ea0739f6213056f} 
+\index{Club@{Club}!add\+Player@{add\+Player}}
+\index{add\+Player@{add\+Player}!Club@{Club}}
+\subsubsection{\texorpdfstring{add\+Player()}{addPlayer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Club\+::add\+Player (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ab91b34ae619fcdfcba4522b4f335bf83}{Position}}]{pos,  }\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned char}]{height }\end{DoxyParamCaption})}
+
+
+
+Adds a player to the club, putting the player in the respective season and level. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position. \\
+\hline
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Identifier for the civil. \\
+\hline
+{\em height} & The height. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_ac7ab630922da1744b1a8223512ae4dc6}{}\label{class_club_ac7ab630922da1744b1a8223512ae4dc6} 
+\index{Club@{Club}!call\+Up\+Players@{call\+Up\+Players}}
+\index{call\+Up\+Players@{call\+Up\+Players}!Club@{Club}}
+\subsubsection{\texorpdfstring{call\+Up\+Players()}{callUpPlayers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Club\+::call\+Up\+Players (\begin{DoxyParamCaption}\item[{string}]{match\+Id,  }\item[{vector$<$ unsigned int $>$}]{match\+Players,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level }\end{DoxyParamCaption})}
+
+
+
+Call up players for a scheduled match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+Id} & Identifier for the match. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_ae330b70a246969ed36e76aedcc77fa0a}{}\label{class_club_ae330b70a246969ed36e76aedcc77fa0a} 
+\index{Club@{Club}!call\+Up\+Players@{call\+Up\+Players}}
+\index{call\+Up\+Players@{call\+Up\+Players}!Club@{Club}}
+\subsubsection{\texorpdfstring{call\+Up\+Players()}{callUpPlayers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Club\+::call\+Up\+Players (\begin{DoxyParamCaption}\item[{string}]{opponent\+Club,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}]{type,  }\item[{vector$<$ unsigned int $>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Call up players for a non scheduled match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opponent\+Club} & The opponent club. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em type} & The type. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a8c659903f10d653b6ce946c0e9526209}{}\label{class_club_a8c659903f10d653b6ce946c0e9526209} 
+\index{Club@{Club}!edit\+Coach@{edit\+Coach}}
+\index{edit\+Coach@{edit\+Coach}!Club@{Club}}
+\subsubsection{\texorpdfstring{edit\+Coach()}{editCoach()}}
+{\footnotesize\ttfamily void Club\+::edit\+Coach (\begin{DoxyParamCaption}\item[{unsigned int}]{coach\+Id,  }\item[{string}]{new\+Name,  }\item[{\hyperlink{class_date}{Date}}]{new\+Birth\+Date,  }\item[{unsigned int}]{new\+Civil\+ID,  }\item[{unsigned int}]{new\+Coach\+Type }\end{DoxyParamCaption})}
+
+
+
+Edits a coach. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coach\+Id} & Identifier for the coach. \\
+\hline
+{\em new\+Name} & Name of the new. \\
+\hline
+{\em new\+Birth\+Date} & The new birth date. \\
+\hline
+{\em new\+Civil\+ID} & Identifier for the new civil. \\
+\hline
+{\em new\+Coach\+Type} & Type of the new coach. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_adb3e6585bb13e96d4a9395f06f493170}{}\label{class_club_adb3e6585bb13e96d4a9395f06f493170} 
+\index{Club@{Club}!edit\+Player@{edit\+Player}}
+\index{edit\+Player@{edit\+Player}!Club@{Club}}
+\subsubsection{\texorpdfstring{edit\+Player()}{editPlayer()}}
+{\footnotesize\ttfamily void Club\+::edit\+Player (\begin{DoxyParamCaption}\item[{unsigned int}]{athlete\+Id,  }\item[{string}]{new\+Name,  }\item[{\hyperlink{class_date}{Date}}]{new\+Birth\+Date,  }\item[{unsigned int}]{new\+Height,  }\item[{unsigned int}]{new\+Civil\+ID }\end{DoxyParamCaption})}
+
+
+
+Edits the athlete\textquotesingle{}s atributes. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em athlete\+Id} & Identifier for the athlete. \\
+\hline
+{\em new\+Name} & Name of the new. \\
+\hline
+{\em new\+Birth\+Date} & The new birth date. \\
+\hline
+{\em new\+Height} & Height of the new. \\
+\hline
+{\em new\+Civil\+ID} & Identifier for the new civil. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_ab308d426042797fc462b485204004eba}{}\label{class_club_ab308d426042797fc462b485204004eba} 
+\index{Club@{Club}!find\+Worker\+By\+Civil\+ID@{find\+Worker\+By\+Civil\+ID}}
+\index{find\+Worker\+By\+Civil\+ID@{find\+Worker\+By\+Civil\+ID}!Club@{Club}}
+\subsubsection{\texorpdfstring{find\+Worker\+By\+Civil\+I\+D()}{findWorkerByCivilID()}}
+{\footnotesize\ttfamily int Club\+::find\+Worker\+By\+Civil\+ID (\begin{DoxyParamCaption}\item[{unsigned int}]{civil\+ID }\end{DoxyParamCaption})}
+
+
+
+Searches for the worker by civil identifier. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em civil\+ID} & Civil identifier. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+The found worker by civil identifier. 
+\end{DoxyReturn}
+\hypertarget{class_club_a30cf5a5b67250ca9bc5f7aa5a7628f92}{}\label{class_club_a30cf5a5b67250ca9bc5f7aa5a7628f92} 
+\index{Club@{Club}!get\+Athletes@{get\+Athletes}}
+\index{get\+Athletes@{get\+Athletes}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Athletes()}{getAthletes()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ Club\+::get\+Athletes (\begin{DoxyParamCaption}\item[{bool}]{only\+Actives = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Gets the athletes. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Actives} & (Optional) True to only actives. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else gets the athletes. 
+\end{DoxyReturn}
+\hypertarget{class_club_ad93b5a4d38cc3af7decf777a47a26880}{}\label{class_club_ad93b5a4d38cc3af7decf777a47a26880} 
+\index{Club@{Club}!get\+Coaches@{get\+Coaches}}
+\index{get\+Coaches@{get\+Coaches}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Coaches()}{getCoaches()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ Club\+::get\+Coaches (\begin{DoxyParamCaption}\item[{bool}]{only\+Actives = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Gets the coaches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Actives} & (Optional) True to only actives. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else gets the coaches. 
+\end{DoxyReturn}
+\hypertarget{class_club_a8daf0174b3d095cf6c8480f9bf3ab0e8}{}\label{class_club_a8daf0174b3d095cf6c8480f9bf3ab0e8} 
+\index{Club@{Club}!get\+Inactives@{get\+Inactives}}
+\index{get\+Inactives@{get\+Inactives}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Inactives()}{getInactives()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ Club\+::get\+Inactives (\begin{DoxyParamCaption}\item[{unsigned char}]{workers\+Type = {\ttfamily 0} }\end{DoxyParamCaption}) const}
+
+
+
+Gets the inactives from the coaches map. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em workers\+Type} & (Optional) Type of the workers. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else gets the inactives. 
+\end{DoxyReturn}
+\hypertarget{class_club_a68e75a8eba166549cffc62f53b448ad7}{}\label{class_club_a68e75a8eba166549cffc62f53b448ad7} 
+\index{Club@{Club}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string Club\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the club\textquotesingle{}s name. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The name. 
+\end{DoxyReturn}
+
+
+This is a method that gets the club\textquotesingle{}s name \hypertarget{class_club_a08b6495dcd132fd4e7215af14f72234e}{}\label{class_club_a08b6495dcd132fd4e7215af14f72234e} 
+\index{Club@{Club}!get\+Path\+To\+Club\+Athletes\+File@{get\+Path\+To\+Club\+Athletes\+File}}
+\index{get\+Path\+To\+Club\+Athletes\+File@{get\+Path\+To\+Club\+Athletes\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Club\+Athletes\+File()}{getPathToClubAthletesFile()}}
+{\footnotesize\ttfamily string Club\+::get\+Path\+To\+Club\+Athletes\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to the club athletes file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to the club athletes file. 
+\end{DoxyReturn}
+\hypertarget{class_club_a9da4d254d3ae0844edfd140d8750bb33}{}\label{class_club_a9da4d254d3ae0844edfd140d8750bb33} 
+\index{Club@{Club}!get\+Path\+To\+Club\+Coaches\+File@{get\+Path\+To\+Club\+Coaches\+File}}
+\index{get\+Path\+To\+Club\+Coaches\+File@{get\+Path\+To\+Club\+Coaches\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Club\+Coaches\+File()}{getPathToClubCoachesFile()}}
+{\footnotesize\ttfamily string Club\+::get\+Path\+To\+Club\+Coaches\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to the club coaches file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to the club coaches file. 
+\end{DoxyReturn}
+\hypertarget{class_club_ae3d6a0ff813da8740a801d3051105203}{}\label{class_club_ae3d6a0ff813da8740a801d3051105203} 
+\index{Club@{Club}!get\+Path\+To\+Club\+Folder@{get\+Path\+To\+Club\+Folder}}
+\index{get\+Path\+To\+Club\+Folder@{get\+Path\+To\+Club\+Folder}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Club\+Folder()}{getPathToClubFolder()}}
+{\footnotesize\ttfamily string Club\+::get\+Path\+To\+Club\+Folder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to the club\textquotesingle{}s folder. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to the club\textquotesingle{}s folder. 
+\end{DoxyReturn}
+\hypertarget{class_club_abdac4c28ac139581c4745f08aff90c68}{}\label{class_club_abdac4c28ac139581c4745f08aff90c68} 
+\index{Club@{Club}!get\+Path\+To\+Club\+Info\+File@{get\+Path\+To\+Club\+Info\+File}}
+\index{get\+Path\+To\+Club\+Info\+File@{get\+Path\+To\+Club\+Info\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Club\+Info\+File()}{getPathToClubInfoFile()}}
+{\footnotesize\ttfamily string Club\+::get\+Path\+To\+Club\+Info\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to the club information file. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to the club information file. 
+\end{DoxyReturn}
+\hypertarget{class_club_ac150576208dbfa2a823003db3ae35601}{}\label{class_club_ac150576208dbfa2a823003db3ae35601} 
+\index{Club@{Club}!get\+Seasons@{get\+Seasons}}
+\index{get\+Seasons@{get\+Seasons}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Seasons()}{getSeasons()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_season}{Season} $\ast$ $>$ Club\+::get\+Seasons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the seasons\textquotesingle{} vector. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else gets the seasons. 
+\end{DoxyReturn}
+\hypertarget{class_club_abbfc819640d18b6b19d0741865d37e37}{}\label{class_club_abbfc819640d18b6b19d0741865d37e37} 
+\index{Club@{Club}!get\+Workers@{get\+Workers}}
+\index{get\+Workers@{get\+Workers}!Club@{Club}}
+\subsubsection{\texorpdfstring{get\+Workers()}{getWorkers()}}
+{\footnotesize\ttfamily map$<$ unsigned int, \hyperlink{class_worker}{Worker} $\ast$ $>$ Club\+::get\+Workers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the workers\textquotesingle{} vector. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else gets the workers. 
+\end{DoxyReturn}
+\hypertarget{class_club_a4c867a8b3743c99fa57131709be0172a}{}\label{class_club_a4c867a8b3743c99fa57131709be0172a} 
+\index{Club@{Club}!is\+Program\+Club@{is\+Program\+Club}}
+\index{is\+Program\+Club@{is\+Program\+Club}!Club@{Club}}
+\subsubsection{\texorpdfstring{is\+Program\+Club()}{isProgramClub()}}
+{\footnotesize\ttfamily bool Club\+::is\+Program\+Club (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Query if this object is the program club. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if program club, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_club_a2ecfd114e812c310d6155d111b500d6c}{}\label{class_club_a2ecfd114e812c310d6155d111b500d6c} 
+\index{Club@{Club}!reativate\+Athlete@{reativate\+Athlete}}
+\index{reativate\+Athlete@{reativate\+Athlete}!Club@{Club}}
+\subsubsection{\texorpdfstring{reativate\+Athlete()}{reativateAthlete()}}
+{\footnotesize\ttfamily bool Club\+::reativate\+Athlete (\begin{DoxyParamCaption}\item[{unsigned int}]{athlete\+Id }\end{DoxyParamCaption})}
+
+
+
+Reativates an athlete. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em athlete\+Id} & Identifier for the athlete. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it finds the player and reativates him, false if it doesn\textquotesingle{}t find the player. 
+\end{DoxyReturn}
+\hypertarget{class_club_a91ea60cae983d86c47e492aa77e59147}{}\label{class_club_a91ea60cae983d86c47e492aa77e59147} 
+\index{Club@{Club}!reativate\+Coach@{reativate\+Coach}}
+\index{reativate\+Coach@{reativate\+Coach}!Club@{Club}}
+\subsubsection{\texorpdfstring{reativate\+Coach()}{reativateCoach()}}
+{\footnotesize\ttfamily bool Club\+::reativate\+Coach (\begin{DoxyParamCaption}\item[{unsigned int}]{coach\+Id }\end{DoxyParamCaption})}
+
+
+
+Reativates a coach. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coach\+Id} & Identifier for the coach. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it finds an inactive coach, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{class_club_a92bf3c683dc8fbb4ef73672d8a241e40}{}\label{class_club_a92bf3c683dc8fbb4ef73672d8a241e40} 
+\index{Club@{Club}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void Club\+::register\+Match (\begin{DoxyParamCaption}\item[{string}]{match\+Id,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers a scheduled match and the match players performance. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+Id} & Identifier for the match. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em home\+Team\+Score} & The home team score. \\
+\hline
+{\em away\+Team\+Score} & The away team score. \\
+\hline
+{\em match\+Players} & \mbox{[}in,out\mbox{]} If non-\/null, the match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a64291b5f72e6864a9982195411bdb705}{}\label{class_club_a64291b5f72e6864a9982195411bdb705} 
+\index{Club@{Club}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void Club\+::register\+Match (\begin{DoxyParamCaption}\item[{string}]{opponent\+Club,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}]{type,  }\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{map$<$ unsigned int, \hyperlink{class_info}{Info} $\ast$$>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers a non scheduled match and the match players performance. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opponent\+Club} & The opponent club. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em type} & The type. \\
+\hline
+{\em home\+Team\+Score} & The home team score. \\
+\hline
+{\em away\+Team\+Score} & The away team score. \\
+\hline
+{\em match\+Players} & \mbox{[}in,out\mbox{]} If non-\/null, the match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a65e4343bba040f67bf27576eb68a7921}{}\label{class_club_a65e4343bba040f67bf27576eb68a7921} 
+\index{Club@{Club}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void Club\+::register\+Match (\begin{DoxyParamCaption}\item[{string}]{match\+Id,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{vector$<$ unsigned int $>$}]{match\+Players }\end{DoxyParamCaption})}
+
+
+
+Registers a sheduled match without the match players perforamnce. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match\+Id} & Identifier for the match. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em home\+Team\+Score} & The home team score. \\
+\hline
+{\em away\+Team\+Score} & The away team score. \\
+\hline
+{\em match\+Players} & The match players. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a5bb1f9f0f9f3cbef1f77330482b7b297}{}\label{class_club_a5bb1f9f0f9f3cbef1f77330482b7b297} 
+\index{Club@{Club}!register\+Match@{register\+Match}}
+\index{register\+Match@{register\+Match}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Match()}{registerMatch()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void Club\+::register\+Match (\begin{DoxyParamCaption}\item[{string}]{opponent\+Club,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}]{type,  }\item[{unsigned int}]{home\+Team\+Score,  }\item[{unsigned int}]{away\+Team\+Score,  }\item[{vector$<$ unsigned int $>$}]{match\+Players }\end{DoxyParamCaption})}
+
+\hypertarget{class_club_ab980545f4b4236481268705d9d965f13}{}\label{class_club_ab980545f4b4236481268705d9d965f13} 
+\index{Club@{Club}!register\+Training@{register\+Training}}
+\index{register\+Training@{register\+Training}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Training()}{registerTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Club\+::register\+Training (\begin{DoxyParamCaption}\item[{unsigned int}]{training\+Id,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{vector$<$ unsigned int $>$}]{missing\+Players }\end{DoxyParamCaption})}
+
+\hypertarget{class_club_a0085b30f629ff1ca45090738ecaba5b7}{}\label{class_club_a0085b30f629ff1ca45090738ecaba5b7} 
+\index{Club@{Club}!register\+Training@{register\+Training}}
+\index{register\+Training@{register\+Training}!Club@{Club}}
+\subsubsection{\texorpdfstring{register\+Training()}{registerTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Club\+::register\+Training (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{training\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{vector$<$ unsigned int $>$}]{missing\+Players }\end{DoxyParamCaption})}
+
+\hypertarget{class_club_a0ba1e1dd655c3866111476aed700a7ac}{}\label{class_club_a0ba1e1dd655c3866111476aed700a7ac} 
+\index{Club@{Club}!remove\+Athlete@{remove\+Athlete}}
+\index{remove\+Athlete@{remove\+Athlete}!Club@{Club}}
+\subsubsection{\texorpdfstring{remove\+Athlete()}{removeAthlete()}}
+{\footnotesize\ttfamily bool Club\+::remove\+Athlete (\begin{DoxyParamCaption}\item[{unsigned int}]{athlete\+Id }\end{DoxyParamCaption})}
+
+
+
+Removes the athlete by his id. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em athlete\+Id} & Identifier for the athlete. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it finds the athlete and removes it, false if it doesn\textquotesingle{}t find the player. 
+\end{DoxyReturn}
+\hypertarget{class_club_adf82412445e01740989ee1956b13a556}{}\label{class_club_adf82412445e01740989ee1956b13a556} 
+\index{Club@{Club}!remove\+Coach@{remove\+Coach}}
+\index{remove\+Coach@{remove\+Coach}!Club@{Club}}
+\subsubsection{\texorpdfstring{remove\+Coach()}{removeCoach()}}
+{\footnotesize\ttfamily bool Club\+::remove\+Coach (\begin{DoxyParamCaption}\item[{unsigned int}]{coach\+Id }\end{DoxyParamCaption})}
+
+
+
+Removes the coach by coach\+Id. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coach\+Id} & Identifier for the coach. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it finds the coach, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{class_club_ad6b354484c2c621378e130388384df21}{}\label{class_club_ad6b354484c2c621378e130388384df21} 
+\index{Club@{Club}!save\+Changes@{save\+Changes}}
+\index{save\+Changes@{save\+Changes}!Club@{Club}}
+\subsubsection{\texorpdfstring{save\+Changes()}{saveChanges()}}
+{\footnotesize\ttfamily void Club\+::save\+Changes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves the changesmade by the user. 
+
+Luís, 20/11/2016. \hypertarget{class_club_a7296755ad0d242ed597d9520c6d79a45}{}\label{class_club_a7296755ad0d242ed597d9520c6d79a45} 
+\index{Club@{Club}!schedule\+Match@{schedule\+Match}}
+\index{schedule\+Match@{schedule\+Match}!Club@{Club}}
+\subsubsection{\texorpdfstring{schedule\+Match()}{scheduleMatch()}}
+{\footnotesize\ttfamily void Club\+::schedule\+Match (\begin{DoxyParamCaption}\item[{string}]{opponent\+Club,  }\item[{\hyperlink{class_date}{Date}}]{match\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level,  }\item[{\hyperlink{_utils_8hpp_a747637046be33d7273262104aad8069d}{Match\+Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+Schedule match. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opponent\+Club} & The opponent club. \\
+\hline
+{\em match\+Date} & The match date. \\
+\hline
+{\em level} & \mbox{[}in,out\mbox{]} If non-\/null, the level. \\
+\hline
+{\em type} & The match type. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_aaa8b24f7bbc9fc3cb114b9dd4ee65af3}{}\label{class_club_aaa8b24f7bbc9fc3cb114b9dd4ee65af3} 
+\index{Club@{Club}!schedule\+Training@{schedule\+Training}}
+\index{schedule\+Training@{schedule\+Training}!Club@{Club}}
+\subsubsection{\texorpdfstring{schedule\+Training()}{scheduleTraining()}}
+{\footnotesize\ttfamily void Club\+::schedule\+Training (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{training\+Date,  }\item[{\hyperlink{class_level}{Level} $\ast$}]{level }\end{DoxyParamCaption})}
+
+\hypertarget{class_club_a0a4b9097d0be7470b4a547c13a86adcb}{}\label{class_club_a0a4b9097d0be7470b4a547c13a86adcb} 
+\index{Club@{Club}!show\+Athlete@{show\+Athlete}}
+\index{show\+Athlete@{show\+Athlete}!Club@{Club}}
+\subsubsection{\texorpdfstring{show\+Athlete()}{showAthlete()}}
+{\footnotesize\ttfamily bool Club\+::show\+Athlete (\begin{DoxyParamCaption}\item[{unsigned int}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Shows the athlete by his id. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The identifier. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it finds the player, false if it fails. 
+\end{DoxyReturn}
+\hypertarget{class_club_ab74a638a755a3d7b1239f418f8257c19}{}\label{class_club_ab74a638a755a3d7b1239f418f8257c19} 
+\index{Club@{Club}!show\+Athletes@{show\+Athletes}}
+\index{show\+Athletes@{show\+Athletes}!Club@{Club}}
+\subsubsection{\texorpdfstring{show\+Athletes()}{showAthletes()}}
+{\footnotesize\ttfamily void Club\+::show\+Athletes (\begin{DoxyParamCaption}\item[{bool}]{only\+Actives = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Shows all the athletes. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Actives} & (Optional) True to only actives. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a55d6ed46c6d937143172a01ac8ddf7cc}{}\label{class_club_a55d6ed46c6d937143172a01ac8ddf7cc} 
+\index{Club@{Club}!show\+Athletes\+Inactives@{show\+Athletes\+Inactives}}
+\index{show\+Athletes\+Inactives@{show\+Athletes\+Inactives}!Club@{Club}}
+\subsubsection{\texorpdfstring{show\+Athletes\+Inactives()}{showAthletesInactives()}}
+{\footnotesize\ttfamily void Club\+::show\+Athletes\+Inactives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Shows the inactive athletes. 
+
+Luís, 20/11/2016. \hypertarget{class_club_a4a22977499beaf71a8bb369ac3c91ba1}{}\label{class_club_a4a22977499beaf71a8bb369ac3c91ba1} 
+\index{Club@{Club}!show\+Coaches@{show\+Coaches}}
+\index{show\+Coaches@{show\+Coaches}!Club@{Club}}
+\subsubsection{\texorpdfstring{show\+Coaches()}{showCoaches()}}
+{\footnotesize\ttfamily void Club\+::show\+Coaches (\begin{DoxyParamCaption}\item[{bool}]{only\+Actives = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Shows the coaches. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em only\+Actives} & (Optional) True to only actives. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_club_a38615db317f0be62839fd65b3a827840}{}\label{class_club_a38615db317f0be62839fd65b3a827840} 
+\index{Club@{Club}!show\+Coaches\+Inactives@{show\+Coaches\+Inactives}}
+\index{show\+Coaches\+Inactives@{show\+Coaches\+Inactives}!Club@{Club}}
+\subsubsection{\texorpdfstring{show\+Coaches\+Inactives()}{showCoachesInactives()}}
+{\footnotesize\ttfamily void Club\+::show\+Coaches\+Inactives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Shows the inactive coaches. 
+
+Luís, 20/11/2016. \hypertarget{class_club_a0903daff929fe8647a7a5e97e789c748}{}\label{class_club_a0903daff929fe8647a7a5e97e789c748} 
+\index{Club@{Club}!update\+E\+CG@{update\+E\+CG}}
+\index{update\+E\+CG@{update\+E\+CG}!Club@{Club}}
+\subsubsection{\texorpdfstring{update\+E\+C\+G()}{updateECG()}}
+{\footnotesize\ttfamily bool Club\+::update\+E\+CG (\begin{DoxyParamCaption}\item[{unsigned int}]{athlete\+ID,  }\item[{bool}]{result }\end{DoxyParamCaption})}
+
+
+
+Updates the ecg. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em athlete\+ID} & Identifier for the athlete. \\
+\hline
+{\em result} & True to result. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{DoxyReturn}{Returns}
+True if it succeeds, false if it fails. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_club_acbdc0f19e2a14b6e3fe79c92081a0b6e}{}\label{class_club_acbdc0f19e2a14b6e3fe79c92081a0b6e} 
+\index{Club@{Club}!all\+Workers@{all\+Workers}}
+\index{all\+Workers@{all\+Workers}!Club@{Club}}
+\subsubsection{\texorpdfstring{all\+Workers}{allWorkers}}
+{\footnotesize\ttfamily map$<$unsigned int, \hyperlink{class_worker}{Worker}$\ast$$>$ Club\+::all\+Workers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+workers\textquotesingle{} map. 
+
+\hypertarget{class_club_acd01c6183dc0747ad3c3ab8167bd860e}{}\label{class_club_acd01c6183dc0747ad3c3ab8167bd860e} 
+\index{Club@{Club}!club\+Name@{club\+Name}}
+\index{club\+Name@{club\+Name}!Club@{Club}}
+\subsubsection{\texorpdfstring{club\+Name}{clubName}}
+{\footnotesize\ttfamily string Club\+::club\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+club\textquotesingle{}s name. 
+
+\hypertarget{class_club_a953a3ef4d0bde6a35ff94f481aba34cb}{}\label{class_club_a953a3ef4d0bde6a35ff94f481aba34cb} 
+\index{Club@{Club}!number\+Of\+Seasons@{number\+Of\+Seasons}}
+\index{number\+Of\+Seasons@{number\+Of\+Seasons}!Club@{Club}}
+\subsubsection{\texorpdfstring{number\+Of\+Seasons}{numberOfSeasons}}
+{\footnotesize\ttfamily unsigned int Club\+::number\+Of\+Seasons\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of seasons played. 
+
+\hypertarget{class_club_ad3865f52b2164f79107444b5959ee931}{}\label{class_club_ad3865f52b2164f79107444b5959ee931} 
+\index{Club@{Club}!path\+To\+Club\+Athletes\+File@{path\+To\+Club\+Athletes\+File}}
+\index{path\+To\+Club\+Athletes\+File@{path\+To\+Club\+Athletes\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{path\+To\+Club\+Athletes\+File}{pathToClubAthletesFile}}
+{\footnotesize\ttfamily string Club\+::path\+To\+Club\+Athletes\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+path to the athletes\textquotesingle{} file. 
+
+\hypertarget{class_club_adf720213158504d95078824fc769918e}{}\label{class_club_adf720213158504d95078824fc769918e} 
+\index{Club@{Club}!path\+To\+Club\+Coaches\+File@{path\+To\+Club\+Coaches\+File}}
+\index{path\+To\+Club\+Coaches\+File@{path\+To\+Club\+Coaches\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{path\+To\+Club\+Coaches\+File}{pathToClubCoachesFile}}
+{\footnotesize\ttfamily string Club\+::path\+To\+Club\+Coaches\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+path to the coaches\textquotesingle{} file. 
+
+\hypertarget{class_club_a7c15547fa5dac447cd5a986ae3b4f7c3}{}\label{class_club_a7c15547fa5dac447cd5a986ae3b4f7c3} 
+\index{Club@{Club}!path\+To\+Club\+Folder@{path\+To\+Club\+Folder}}
+\index{path\+To\+Club\+Folder@{path\+To\+Club\+Folder}!Club@{Club}}
+\subsubsection{\texorpdfstring{path\+To\+Club\+Folder}{pathToClubFolder}}
+{\footnotesize\ttfamily string Club\+::path\+To\+Club\+Folder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+path to the club\textquotesingle{}s folder. 
+
+\hypertarget{class_club_a01f1d1dc26bca7dda9ceea7521d294eb}{}\label{class_club_a01f1d1dc26bca7dda9ceea7521d294eb} 
+\index{Club@{Club}!path\+To\+Club\+Info\+File@{path\+To\+Club\+Info\+File}}
+\index{path\+To\+Club\+Info\+File@{path\+To\+Club\+Info\+File}!Club@{Club}}
+\subsubsection{\texorpdfstring{path\+To\+Club\+Info\+File}{pathToClubInfoFile}}
+{\footnotesize\ttfamily string Club\+::path\+To\+Club\+Info\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+path to the club\textquotesingle{}s info file. 
+
+\hypertarget{class_club_aff52eace9c0bf641cc73a55b5c062bc4}{}\label{class_club_aff52eace9c0bf641cc73a55b5c062bc4} 
+\index{Club@{Club}!program\+Club@{program\+Club}}
+\index{program\+Club@{program\+Club}!Club@{Club}}
+\subsubsection{\texorpdfstring{program\+Club}{programClub}}
+{\footnotesize\ttfamily bool Club\+::program\+Club\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True to program club. 
+
+\hypertarget{class_club_af94fabc0c00f49220bd959b0ec2bda26}{}\label{class_club_af94fabc0c00f49220bd959b0ec2bda26} 
+\index{Club@{Club}!seasons@{seasons}}
+\index{seasons@{seasons}!Club@{Club}}
+\subsubsection{\texorpdfstring{seasons}{seasons}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_season}{Season}$\ast$$>$ Club\+::seasons\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+vector that includes all played season. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_club_8hpp}{Club.\+hpp}\item 
+\hyperlink{_club_8cpp}{Club.\+cpp}\end{DoxyCompactItemize}

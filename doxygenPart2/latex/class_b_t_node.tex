@@ -1,0 +1,202 @@
+\hypertarget{class_b_t_node}{}\section{B\+T\+Node$<$ T $>$ Class Template Reference}
+\label{class_b_t_node}\index{B\+T\+Node$<$ T $>$@{B\+T\+Node$<$ T $>$}}
+
+
+A binary tree node.  
+
+
+
+
+{\ttfamily \#include $<$B\+S\+T.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_b_t_node_ac661db17e2ca3d62ccb194e15d9129c8}{B\+T\+Node} (const T \&e, \hyperlink{class_b_t_node}{B\+T\+Node} $\ast$esq=0, \hyperlink{class_b_t_node}{B\+T\+Node} $\ast$dir=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+T \hyperlink{class_b_t_node_a8a170221bb5f3739315b1a2a0ba5b29d}{get\+Element} () const
+\begin{DoxyCompactList}\small\item\em Gets the element. \end{DoxyCompactList}\item 
+\hyperlink{class_b_t_node}{B\+T\+Node} $\ast$ \hyperlink{class_b_t_node_a41c4caa8fb704ab154691afc9c3ae16c}{get\+Left\+Node} () const
+\begin{DoxyCompactList}\small\item\em Gets left node. \end{DoxyCompactList}\item 
+\hyperlink{class_b_t_node}{B\+T\+Node} $\ast$ \hyperlink{class_b_t_node_ab1ac58ec32f9eef9e6fc7256eedf178f}{get\+Right\+Node} () const
+\begin{DoxyCompactList}\small\item\em Gets right node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \hyperlink{class_b_t_node_a5af80803940db6648650f82b195b0bfa}{element}
+\item 
+\hyperlink{class_b_t_node}{B\+T\+Node} $\ast$ \hyperlink{class_b_t_node_afef471ad1ee94338582f80711f95e117}{left}
+\item 
+\hyperlink{class_b_t_node}{B\+T\+Node} $\ast$ \hyperlink{class_b_t_node_a187cd1e3bf5999aee01799d56e36aec0}{right}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_b_t_node_a730de1b2d6b429de119b29edb7b6607b}{Binary\+Tree$<$ T $>$}
+\item 
+class \hyperlink{class_b_t_node_a803b4f6df7f3239e80af1600d26a7d30}{B\+T\+Itr\+In$<$ T $>$}
+\item 
+class \hyperlink{class_b_t_node_adfe4104666d42d9d6fb4b4ffc1c1fe51}{B\+T\+Itr\+Pre$<$ T $>$}
+\item 
+class \hyperlink{class_b_t_node_af3c09c804ca3ba21c07c7d7eb41fd606}{B\+T\+Itr\+Post$<$ T $>$}
+\item 
+class \hyperlink{class_b_t_node_aa111eea53d6a1abdc602ea0fc0740878}{B\+T\+Itr\+Level$<$ T $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class B\+T\+Node$<$ T $>$}
+
+A binary tree node. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Generic type parameter. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_b_t_node_ac661db17e2ca3d62ccb194e15d9129c8}{}\label{class_b_t_node_ac661db17e2ca3d62ccb194e15d9129c8} 
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Node@{B\+T\+Node}}
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{B\+T\+Node()}{BTNode()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::\hyperlink{class_b_t_node}{B\+T\+Node} (\begin{DoxyParamCaption}\item[{const T \&}]{e,  }\item[{\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{esq = {\ttfamily 0},  }\item[{\hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$ $\ast$}]{dir = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The T to process. \\
+\hline
+{\em esq} & \mbox{[}in,out\mbox{]} (Optional) If non-\/null, the left node. \\
+\hline
+{\em dir} & \mbox{[}in,out\mbox{]} (Optional) If non-\/null, the right node. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_b_t_node_a8a170221bb5f3739315b1a2a0ba5b29d}{}\label{class_b_t_node_a8a170221bb5f3739315b1a2a0ba5b29d} 
+\index{B\+T\+Node@{B\+T\+Node}!get\+Element@{get\+Element}}
+\index{get\+Element@{get\+Element}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{get\+Element()}{getElement()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::get\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the element. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The element. 
+\end{DoxyReturn}
+\hypertarget{class_b_t_node_a41c4caa8fb704ab154691afc9c3ae16c}{}\label{class_b_t_node_a41c4caa8fb704ab154691afc9c3ae16c} 
+\index{B\+T\+Node@{B\+T\+Node}!get\+Left\+Node@{get\+Left\+Node}}
+\index{get\+Left\+Node@{get\+Left\+Node}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{get\+Left\+Node()}{getLeftNode()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$\ast$ \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::get\+Left\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets left node. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the left node. 
+\end{DoxyReturn}
+\hypertarget{class_b_t_node_ab1ac58ec32f9eef9e6fc7256eedf178f}{}\label{class_b_t_node_ab1ac58ec32f9eef9e6fc7256eedf178f} 
+\index{B\+T\+Node@{B\+T\+Node}!get\+Right\+Node@{get\+Right\+Node}}
+\index{get\+Right\+Node@{get\+Right\+Node}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{get\+Right\+Node()}{getRightNode()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$\ast$ \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::get\+Right\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets right node. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the right node. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_b_t_node_a730de1b2d6b429de119b29edb7b6607b}{}\label{class_b_t_node_a730de1b2d6b429de119b29edb7b6607b} 
+\index{B\+T\+Node@{B\+T\+Node}!Binary\+Tree$<$ T $>$@{Binary\+Tree$<$ T $>$}}
+\index{Binary\+Tree$<$ T $>$@{Binary\+Tree$<$ T $>$}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{Binary\+Tree$<$ T $>$}{BinaryTree< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_binary_tree}{Binary\+Tree}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_b_t_node_a803b4f6df7f3239e80af1600d26a7d30}{}\label{class_b_t_node_a803b4f6df7f3239e80af1600d26a7d30} 
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Itr\+In$<$ T $>$@{B\+T\+Itr\+In$<$ T $>$}}
+\index{B\+T\+Itr\+In$<$ T $>$@{B\+T\+Itr\+In$<$ T $>$}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+In$<$ T $>$}{BTItrIn< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_in}{B\+T\+Itr\+In}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_b_t_node_aa111eea53d6a1abdc602ea0fc0740878}{}\label{class_b_t_node_aa111eea53d6a1abdc602ea0fc0740878} 
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Itr\+Level$<$ T $>$@{B\+T\+Itr\+Level$<$ T $>$}}
+\index{B\+T\+Itr\+Level$<$ T $>$@{B\+T\+Itr\+Level$<$ T $>$}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Level$<$ T $>$}{BTItrLevel< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_level}{B\+T\+Itr\+Level}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_b_t_node_af3c09c804ca3ba21c07c7d7eb41fd606}{}\label{class_b_t_node_af3c09c804ca3ba21c07c7d7eb41fd606} 
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Itr\+Post$<$ T $>$@{B\+T\+Itr\+Post$<$ T $>$}}
+\index{B\+T\+Itr\+Post$<$ T $>$@{B\+T\+Itr\+Post$<$ T $>$}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Post$<$ T $>$}{BTItrPost< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_post}{B\+T\+Itr\+Post}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_b_t_node_adfe4104666d42d9d6fb4b4ffc1c1fe51}{}\label{class_b_t_node_adfe4104666d42d9d6fb4b4ffc1c1fe51} 
+\index{B\+T\+Node@{B\+T\+Node}!B\+T\+Itr\+Pre$<$ T $>$@{B\+T\+Itr\+Pre$<$ T $>$}}
+\index{B\+T\+Itr\+Pre$<$ T $>$@{B\+T\+Itr\+Pre$<$ T $>$}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{B\+T\+Itr\+Pre$<$ T $>$}{BTItrPre< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{class_b_t_itr_pre}{B\+T\+Itr\+Pre}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_b_t_node_a5af80803940db6648650f82b195b0bfa}{}\label{class_b_t_node_a5af80803940db6648650f82b195b0bfa} 
+\index{B\+T\+Node@{B\+T\+Node}!element@{element}}
+\index{element@{element}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{element}{element}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::element\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_b_t_node_afef471ad1ee94338582f80711f95e117}{}\label{class_b_t_node_afef471ad1ee94338582f80711f95e117} 
+\index{B\+T\+Node@{B\+T\+Node}!left@{left}}
+\index{left@{left}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{left}{left}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node}$\ast$ \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::left\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_b_t_node_a187cd1e3bf5999aee01799d56e36aec0}{}\label{class_b_t_node_a187cd1e3bf5999aee01799d56e36aec0} 
+\index{B\+T\+Node@{B\+T\+Node}!right@{right}}
+\index{right@{right}!B\+T\+Node@{B\+T\+Node}}
+\subsubsection{\texorpdfstring{right}{right}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{class_b_t_node}{B\+T\+Node} $\ast$ \hyperlink{class_b_t_node}{B\+T\+Node}$<$ T $>$\+::right\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_b_s_t_8h}{B\+S\+T.\+h}\end{DoxyCompactItemize}

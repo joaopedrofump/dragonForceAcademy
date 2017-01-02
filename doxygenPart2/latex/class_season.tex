@@ -1,0 +1,268 @@
+\hypertarget{class_season}{}\section{Season Class Reference}
+\label{class_season}\index{Season@{Season}}
+
+
+A season.  
+
+
+
+
+{\ttfamily \#include $<$Season.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_season_aaafaba60ff94d4c85799fcf788ce8eb3}{Season} (unsigned int \hyperlink{class_season_a804663f60306c492542be36f23e20022}{year}, vector$<$ \hyperlink{class_level}{Level} $\ast$$>$ levels\+Vector)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_season_a2e189a58f91fa3718bf2c6234e3b56c3}{Season} (string \hyperlink{class_season_a41002efa6b5ed6a84cf321ca617668eb}{season\+Name}, \hyperlink{class_club}{Club} $\ast$parent\+Club)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_season_a437263c3d5536555227adc5b096aa1e1}{get\+Year} () const
+\begin{DoxyCompactList}\small\item\em Gets the year. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_level}{Level} $\ast$ $>$ \hyperlink{class_season_abedd416fd2c01eb45d1b6c18d3a7a8d0}{get\+Levels} () const
+\begin{DoxyCompactList}\small\item\em Gets the levels. \end{DoxyCompactList}\item 
+string \hyperlink{class_season_a6fea0a2e3e978a9793fd29e5d879547e}{get\+Path\+To\+Season\+Folder} () const
+\begin{DoxyCompactList}\small\item\em Gets path to season folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_season_a26e74348cf0105301a3f18edf2284c32}{get\+Season\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets season name. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_season_a0707e2e1c277e58f93936c6e211d6ddf}{get\+Initial\+Date} () const
+\begin{DoxyCompactList}\small\item\em Gets initial date. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_season_a4ed31ffa307d193ba972c6c81b388ba6}{get\+End\+Date} () const
+\begin{DoxyCompactList}\small\item\em Gets end date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_season_ada58c4b8942d26fd81624e709c8c93b7}{set\+Date\+Interval} ()
+\begin{DoxyCompactList}\small\item\em Sets date interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_season_a804663f60306c492542be36f23e20022}{year}
+\begin{DoxyCompactList}\small\item\em The year. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_season_a509b94f8c80eb1a5f77a72a28dd2561f}{initial\+Date}
+\begin{DoxyCompactList}\small\item\em The initial date. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_season_a1d00aa2551bb9cf2b55d2cd7c2978311}{end\+Date}
+\begin{DoxyCompactList}\small\item\em The end date. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_level}{Level} $\ast$ $>$ \hyperlink{class_season_a6a9827750bcc35501396c5a791574f08}{levels}
+\begin{DoxyCompactList}\small\item\em The levels. \end{DoxyCompactList}\item 
+string \hyperlink{class_season_a739e641c676a73d3d2a3f77867c9df71}{path\+To\+Season\+Folder}
+\begin{DoxyCompactList}\small\item\em Pathname of the path to season folder. \end{DoxyCompactList}\item 
+string \hyperlink{class_season_a41002efa6b5ed6a84cf321ca617668eb}{season\+Name}
+\begin{DoxyCompactList}\small\item\em Name of the season. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A season. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_season_aaafaba60ff94d4c85799fcf788ce8eb3}{}\label{class_season_aaafaba60ff94d4c85799fcf788ce8eb3} 
+\index{Season@{Season}!Season@{Season}}
+\index{Season@{Season}!Season@{Season}}
+\subsubsection{\texorpdfstring{Season()}{Season()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Season\+::\+Season (\begin{DoxyParamCaption}\item[{unsigned int}]{year,  }\item[{vector$<$ \hyperlink{class_level}{Level} $\ast$$>$}]{levels\+Vector }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & The year. \\
+\hline
+{\em levels\+Vector} & \mbox{[}in,out\mbox{]} If non-\/null, the levels vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_season_a2e189a58f91fa3718bf2c6234e3b56c3}{}\label{class_season_a2e189a58f91fa3718bf2c6234e3b56c3} 
+\index{Season@{Season}!Season@{Season}}
+\index{Season@{Season}!Season@{Season}}
+\subsubsection{\texorpdfstring{Season()}{Season()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Season\+::\+Season (\begin{DoxyParamCaption}\item[{string}]{season\+Name,  }\item[{\hyperlink{class_club}{Club} $\ast$}]{parent\+Club }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em season\+Name} & Name of the season. \\
+\hline
+{\em parent\+Club} & \mbox{[}in,out\mbox{]} If non-\/null, the parent club. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_season_a4ed31ffa307d193ba972c6c81b388ba6}{}\label{class_season_a4ed31ffa307d193ba972c6c81b388ba6} 
+\index{Season@{Season}!get\+End\+Date@{get\+End\+Date}}
+\index{get\+End\+Date@{get\+End\+Date}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+End\+Date()}{getEndDate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Season\+::get\+End\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets end date. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The end date. 
+\end{DoxyReturn}
+\hypertarget{class_season_a0707e2e1c277e58f93936c6e211d6ddf}{}\label{class_season_a0707e2e1c277e58f93936c6e211d6ddf} 
+\index{Season@{Season}!get\+Initial\+Date@{get\+Initial\+Date}}
+\index{get\+Initial\+Date@{get\+Initial\+Date}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+Initial\+Date()}{getInitialDate()}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Season\+::get\+Initial\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets initial date. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The initial date. 
+\end{DoxyReturn}
+\hypertarget{class_season_abedd416fd2c01eb45d1b6c18d3a7a8d0}{}\label{class_season_abedd416fd2c01eb45d1b6c18d3a7a8d0} 
+\index{Season@{Season}!get\+Levels@{get\+Levels}}
+\index{get\+Levels@{get\+Levels}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+Levels()}{getLevels()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{class_level}{Level} $\ast$ $>$ Season\+::get\+Levels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the levels. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the levels. 
+\end{DoxyReturn}
+\hypertarget{class_season_a6fea0a2e3e978a9793fd29e5d879547e}{}\label{class_season_a6fea0a2e3e978a9793fd29e5d879547e} 
+\index{Season@{Season}!get\+Path\+To\+Season\+Folder@{get\+Path\+To\+Season\+Folder}}
+\index{get\+Path\+To\+Season\+Folder@{get\+Path\+To\+Season\+Folder}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+Path\+To\+Season\+Folder()}{getPathToSeasonFolder()}}
+{\footnotesize\ttfamily string Season\+::get\+Path\+To\+Season\+Folder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets path to season folder. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The path to season folder. 
+\end{DoxyReturn}
+\hypertarget{class_season_a26e74348cf0105301a3f18edf2284c32}{}\label{class_season_a26e74348cf0105301a3f18edf2284c32} 
+\index{Season@{Season}!get\+Season\+Name@{get\+Season\+Name}}
+\index{get\+Season\+Name@{get\+Season\+Name}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+Season\+Name()}{getSeasonName()}}
+{\footnotesize\ttfamily string Season\+::get\+Season\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets season name. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The season name. 
+\end{DoxyReturn}
+\hypertarget{class_season_a437263c3d5536555227adc5b096aa1e1}{}\label{class_season_a437263c3d5536555227adc5b096aa1e1} 
+\index{Season@{Season}!get\+Year@{get\+Year}}
+\index{get\+Year@{get\+Year}!Season@{Season}}
+\subsubsection{\texorpdfstring{get\+Year()}{getYear()}}
+{\footnotesize\ttfamily unsigned int Season\+::get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the year. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The year. 
+\end{DoxyReturn}
+\hypertarget{class_season_ada58c4b8942d26fd81624e709c8c93b7}{}\label{class_season_ada58c4b8942d26fd81624e709c8c93b7} 
+\index{Season@{Season}!set\+Date\+Interval@{set\+Date\+Interval}}
+\index{set\+Date\+Interval@{set\+Date\+Interval}!Season@{Season}}
+\subsubsection{\texorpdfstring{set\+Date\+Interval()}{setDateInterval()}}
+{\footnotesize\ttfamily void Season\+::set\+Date\+Interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets date interval. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_season_a1d00aa2551bb9cf2b55d2cd7c2978311}{}\label{class_season_a1d00aa2551bb9cf2b55d2cd7c2978311} 
+\index{Season@{Season}!end\+Date@{end\+Date}}
+\index{end\+Date@{end\+Date}!Season@{Season}}
+\subsubsection{\texorpdfstring{end\+Date}{endDate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Season\+::end\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The end date. 
+
+\hypertarget{class_season_a509b94f8c80eb1a5f77a72a28dd2561f}{}\label{class_season_a509b94f8c80eb1a5f77a72a28dd2561f} 
+\index{Season@{Season}!initial\+Date@{initial\+Date}}
+\index{initial\+Date@{initial\+Date}!Season@{Season}}
+\subsubsection{\texorpdfstring{initial\+Date}{initialDate}}
+{\footnotesize\ttfamily \hyperlink{class_date}{Date} Season\+::initial\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The initial date. 
+
+\hypertarget{class_season_a6a9827750bcc35501396c5a791574f08}{}\label{class_season_a6a9827750bcc35501396c5a791574f08} 
+\index{Season@{Season}!levels@{levels}}
+\index{levels@{levels}!Season@{Season}}
+\subsubsection{\texorpdfstring{levels}{levels}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_level}{Level}$\ast$$>$ Season\+::levels\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The levels. 
+
+\hypertarget{class_season_a739e641c676a73d3d2a3f77867c9df71}{}\label{class_season_a739e641c676a73d3d2a3f77867c9df71} 
+\index{Season@{Season}!path\+To\+Season\+Folder@{path\+To\+Season\+Folder}}
+\index{path\+To\+Season\+Folder@{path\+To\+Season\+Folder}!Season@{Season}}
+\subsubsection{\texorpdfstring{path\+To\+Season\+Folder}{pathToSeasonFolder}}
+{\footnotesize\ttfamily string Season\+::path\+To\+Season\+Folder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pathname of the path to season folder. 
+
+\hypertarget{class_season_a41002efa6b5ed6a84cf321ca617668eb}{}\label{class_season_a41002efa6b5ed6a84cf321ca617668eb} 
+\index{Season@{Season}!season\+Name@{season\+Name}}
+\index{season\+Name@{season\+Name}!Season@{Season}}
+\subsubsection{\texorpdfstring{season\+Name}{seasonName}}
+{\footnotesize\ttfamily string Season\+::season\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name of the season. 
+
+\hypertarget{class_season_a804663f60306c492542be36f23e20022}{}\label{class_season_a804663f60306c492542be36f23e20022} 
+\index{Season@{Season}!year@{year}}
+\index{year@{year}!Season@{Season}}
+\subsubsection{\texorpdfstring{year}{year}}
+{\footnotesize\ttfamily unsigned int Season\+::year\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The year. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_season_8hpp}{Season.\+hpp}\item 
+\hyperlink{_season_8cpp}{Season.\+cpp}\end{DoxyCompactItemize}

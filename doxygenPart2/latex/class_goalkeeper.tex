@@ -1,0 +1,179 @@
+\hypertarget{class_goalkeeper}{}\section{Goalkeeper Class Reference}
+\label{class_goalkeeper}\index{Goalkeeper@{Goalkeeper}}
+
+
+{\ttfamily \#include $<$Goalkeeper.\+hpp$>$}
+
+Inheritance diagram for Goalkeeper\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_goalkeeper}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_goalkeeper_a41b559a66be23a792b36e7872dedc58e}{Goalkeeper} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, unsigned char \hyperlink{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{height}, unsigned int=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_goalkeeper}{Goalkeeper}\textquotesingle{}s constructors. \end{DoxyCompactList}\item 
+\hyperlink{class_goalkeeper_aa5bf0b37a67658a7d8424efda7038a2c}{Goalkeeper} (string \&new\+GK)
+\begin{DoxyCompactList}\small\item\em Constructor that creates a new goalkeeper by reading from the athletes file. \end{DoxyCompactList}\item 
+\hyperlink{class_goalkeeper_ad06f685ef71e1c5b787088d9a327282a}{$\sim$\+Goalkeeper} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_goalkeeper_a61cff0476146d2fc063d5ed7be82a123}{get\+ID} () const
+\begin{DoxyCompactList}\small\item\em Gets the goalkeeper\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_goalkeeper_a8636c061d81440070cf554d5a3923acb}{get\+Info} () const
+\begin{DoxyCompactList}\small\item\em Gets the goalkeeper\textquotesingle{}s performance information. \end{DoxyCompactList}\item 
+void \hyperlink{class_goalkeeper_a97fc43118c67d500d7d56abc9c0029fe}{add\+Info} (\hyperlink{class_info}{Info} $\ast$more\+Info)
+\begin{DoxyCompactList}\small\item\em Adds performance information to the goalkeeper. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_goalkeeper_a30367439b905583e7b5562d19ab531f3}{general\+Info}
+\begin{DoxyCompactList}\small\item\em goalkeeper\textquotesingle{}s general info. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_goalkeeper_a41b559a66be23a792b36e7872dedc58e}{}\label{class_goalkeeper_a41b559a66be23a792b36e7872dedc58e} 
+\index{Goalkeeper@{Goalkeeper}!Goalkeeper@{Goalkeeper}}
+\index{Goalkeeper@{Goalkeeper}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{Goalkeeper()}{Goalkeeper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Goalkeeper\+::\+Goalkeeper (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned char}]{height,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_goalkeeper}{Goalkeeper}\textquotesingle{}s constructors. 
+
+This is a constructor that creates a new goalkeeper using his name, birthdate, civil\+ID and height. The id is set automatically 
+
+Constructor. th id is set automatically 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Identifier for the civil. \\
+\hline
+{\em height} & The height. \\
+\hline
+{\em int} & (Optional) The int. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_goalkeeper_aa5bf0b37a67658a7d8424efda7038a2c}{}\label{class_goalkeeper_aa5bf0b37a67658a7d8424efda7038a2c} 
+\index{Goalkeeper@{Goalkeeper}!Goalkeeper@{Goalkeeper}}
+\index{Goalkeeper@{Goalkeeper}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{Goalkeeper()}{Goalkeeper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Goalkeeper\+::\+Goalkeeper (\begin{DoxyParamCaption}\item[{string \&}]{new\+GK }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates a new goalkeeper by reading from the athletes file. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+GK} & \mbox{[}in,out\mbox{]} The new goalkeeper. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_goalkeeper_ad06f685ef71e1c5b787088d9a327282a}{}\label{class_goalkeeper_ad06f685ef71e1c5b787088d9a327282a} 
+\index{Goalkeeper@{Goalkeeper}!````~Goalkeeper@{$\sim$\+Goalkeeper}}
+\index{````~Goalkeeper@{$\sim$\+Goalkeeper}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{$\sim$\+Goalkeeper()}{~Goalkeeper()}}
+{\footnotesize\ttfamily Goalkeeper\+::$\sim$\+Goalkeeper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_goalkeeper_a97fc43118c67d500d7d56abc9c0029fe}{}\label{class_goalkeeper_a97fc43118c67d500d7d56abc9c0029fe} 
+\index{Goalkeeper@{Goalkeeper}!add\+Info@{add\+Info}}
+\index{add\+Info@{add\+Info}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{add\+Info()}{addInfo()}}
+{\footnotesize\ttfamily void Goalkeeper\+::add\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{class_info}{Info} $\ast$}]{more\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Adds performance information to the goalkeeper. 
+
+This is a method that adds information to the goalkeeper
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em more\+Info} & \mbox{[}in,out\mbox{]} If non-\/null, goalkeeper\textquotesingle{}s performance information. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ad54db262f7473cc729c371dd54e292eb}{Worker}.
+
+\hypertarget{class_goalkeeper_a61cff0476146d2fc063d5ed7be82a123}{}\label{class_goalkeeper_a61cff0476146d2fc063d5ed7be82a123} 
+\index{Goalkeeper@{Goalkeeper}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Goalkeeper\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the goalkeeper\textquotesingle{}s identifier. 
+
+This is a method that gets the goalkeeper\textquotesingle{}s id
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The goalkeeper\textquotesingle{}s identifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{Worker}.
+
+\hypertarget{class_goalkeeper_a8636c061d81440070cf554d5a3923acb}{}\label{class_goalkeeper_a8636c061d81440070cf554d5a3923acb} 
+\index{Goalkeeper@{Goalkeeper}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{get\+Info()}{getInfo()}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info} $\ast$ Goalkeeper\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the goalkeeper\textquotesingle{}s performance information. 
+
+This is a method that gets the goalkeeper\textquotesingle{}s performance information
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the goalkeeper\textquotesingle{}s performance information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_a95a4f7c750644937859b8e14515a480e}{Worker}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_goalkeeper_a30367439b905583e7b5562d19ab531f3}{}\label{class_goalkeeper_a30367439b905583e7b5562d19ab531f3} 
+\index{Goalkeeper@{Goalkeeper}!general\+Info@{general\+Info}}
+\index{general\+Info@{general\+Info}!Goalkeeper@{Goalkeeper}}
+\subsubsection{\texorpdfstring{general\+Info}{generalInfo}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info}$\ast$ Goalkeeper\+::general\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+goalkeeper\textquotesingle{}s general info. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_goalkeeper_8hpp}{Goalkeeper.\+hpp}\item 
+\hyperlink{_goalkeeper_8cpp}{Goalkeeper.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,330 @@
+\hypertarget{class_coach}{}\section{Coach Class Reference}
+\label{class_coach}\index{Coach@{Coach}}
+
+
+A coach.  
+
+
+
+
+{\ttfamily \#include $<$Coach.\+hpp$>$}
+
+Inheritance diagram for Coach\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_coach}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_coach_af830e5ddd2f9e94118c98f953c0b2bde}{Coach} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} coach\+Role, unsigned int \hyperlink{class_worker_afc39287cd510977cfe7697ed2c86b2ca}{id}=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_coach}{Coach} constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_coach_af578863f8d3846803ce9cccd280d6ffe}{Coach} (string \&new\+Coach)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_coach}{Coach}\textquotesingle{}s Constructor that reads from the coaches\textquotesingle{} file. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_coach_a408361901fdbc11fd990b5fa26a94803}{get\+ID} () const
+\begin{DoxyCompactList}\small\item\em Gets the coach\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+bool \hyperlink{class_coach_a6329a96f3fea5b02b46b4e6caf519359}{is\+Athlete} () const
+\begin{DoxyCompactList}\small\item\em Query if this object is athlete. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_coach_aa248ee0fec4a5dfdddb8c235ad4ae4a8}{get\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the coach\textquotesingle{}s position. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_coach_af899da3e98bc326b9abdf3ef46cf5279}{get\+Height} () const
+\begin{DoxyCompactList}\small\item\em Gets the coach\textquotesingle{}s height. \end{DoxyCompactList}\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_coach_a527d675556892403695d70c438d76151}{get\+Info} () const
+\begin{DoxyCompactList}\small\item\em Gets the coach\textquotesingle{}s information. \end{DoxyCompactList}\item 
+void \hyperlink{class_coach_a989f8c8ec5ba95849503f79376fc68bb}{add\+Info} (\hyperlink{class_info}{Info} $\ast$more\+Info)
+\begin{DoxyCompactList}\small\item\em Adds an information. \end{DoxyCompactList}\item 
+string \hyperlink{class_coach_a95f841d14e6994708a7f230a5d3a8d23}{generate\+Info} () const
+\begin{DoxyCompactList}\small\item\em Generates the coach\textquotesingle{}s information. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \hyperlink{class_coach_a954ee94a35267f5992d1a84d25c15c7f}{show\+In\+Screen} () const
+\begin{DoxyCompactList}\small\item\em Shows all the coach\textquotesingle{}s information in the screen. \end{DoxyCompactList}\item 
+void \hyperlink{class_coach_aef508cef2680594ef837407790d00db6}{set\+Birth\+Date} (\hyperlink{class_date}{Date} new\+Birthdate)
+\begin{DoxyCompactList}\small\item\em Sets the coach\textquotesingle{}s birth date. \end{DoxyCompactList}\item 
+void \hyperlink{class_coach_a72de329d96f180eca4108c7103946ee3}{set\+Coach\+Type} (\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} new\+Type)
+\begin{DoxyCompactList}\small\item\em Sets coach\textquotesingle{}s type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} \hyperlink{class_coach_aac51e9d7398550135eb64a32e903002f}{trainer\+Position}
+\begin{DoxyCompactList}\small\item\em coach\textquotesingle{}s position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A coach. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_coach_af830e5ddd2f9e94118c98f953c0b2bde}{}\label{class_coach_af830e5ddd2f9e94118c98f953c0b2bde} 
+\index{Coach@{Coach}!Coach@{Coach}}
+\index{Coach@{Coach}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{Coach()}{Coach()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Coach\+::\+Coach (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}}]{coach\+Role,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_coach}{Coach} constructor. 
+
+This is a constructor that uses the name, birthdate, civil\+ID, coach\textquotesingle{}s role and id 
+
+\hyperlink{class_coach}{Coach}\textquotesingle{}s Constructor. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Civil identifier. \\
+\hline
+{\em coach\+Role} & The coach role. \\
+\hline
+{\em id} & (Optional) The identifier. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_coach_af578863f8d3846803ce9cccd280d6ffe}{}\label{class_coach_af578863f8d3846803ce9cccd280d6ffe} 
+\index{Coach@{Coach}!Coach@{Coach}}
+\index{Coach@{Coach}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{Coach()}{Coach()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Coach\+::\+Coach (\begin{DoxyParamCaption}\item[{string \&}]{new\+Coach }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_coach}{Coach}\textquotesingle{}s Constructor that reads from the coaches\textquotesingle{} file. 
+
+This is a constructor that uses the coach\textquotesingle{}s name
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Coach} & \mbox{[}in,out\mbox{]} The new coach. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_coach_a989f8c8ec5ba95849503f79376fc68bb}{}\label{class_coach_a989f8c8ec5ba95849503f79376fc68bb} 
+\index{Coach@{Coach}!add\+Info@{add\+Info}}
+\index{add\+Info@{add\+Info}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{add\+Info()}{addInfo()}}
+{\footnotesize\ttfamily void Coach\+::add\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{class_info}{Info} $\ast$}]{more\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Adds an information. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em more\+Info} & If non-\/null, all the coach\textquotesingle{}s information. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ad54db262f7473cc729c371dd54e292eb}{Worker}.
+
+\hypertarget{class_coach_a95f841d14e6994708a7f230a5d3a8d23}{}\label{class_coach_a95f841d14e6994708a7f230a5d3a8d23} 
+\index{Coach@{Coach}!generate\+Info@{generate\+Info}}
+\index{generate\+Info@{generate\+Info}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{generate\+Info()}{generateInfo()}}
+{\footnotesize\ttfamily string Coach\+::generate\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Generates the coach\textquotesingle{}s information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The coach\textquotesingle{}s information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_ac77905603b86c58cb0a87d6389dca744}{Worker}.
+
+\hypertarget{class_coach_af899da3e98bc326b9abdf3ef46cf5279}{}\label{class_coach_af899da3e98bc326b9abdf3ef46cf5279} 
+\index{Coach@{Coach}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{get\+Height()}{getHeight()}}
+{\footnotesize\ttfamily unsigned int Coach\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the coach\textquotesingle{}s height. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The coach\textquotesingle{}s height. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a1c5dcdc1c7dc5e498a44f678e964bbfd}{Worker}.
+
+\hypertarget{class_coach_a408361901fdbc11fd990b5fa26a94803}{}\label{class_coach_a408361901fdbc11fd990b5fa26a94803} 
+\index{Coach@{Coach}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Coach\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the coach\textquotesingle{}s identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The coach\textquotesingle{}s identifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{Worker}.
+
+\hypertarget{class_coach_a527d675556892403695d70c438d76151}{}\label{class_coach_a527d675556892403695d70c438d76151} 
+\index{Coach@{Coach}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{get\+Info()}{getInfo()}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info}$\ast$ Coach\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the coach\textquotesingle{}s information. 
+
+This is a method that gets the coach\textquotesingle{}s information
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the coach\textquotesingle{}s information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_a95a4f7c750644937859b8e14515a480e}{Worker}.
+
+\hypertarget{class_coach_aa248ee0fec4a5dfdddb8c235ad4ae4a8}{}\label{class_coach_aa248ee0fec4a5dfdddb8c235ad4ae4a8} 
+\index{Coach@{Coach}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily unsigned int Coach\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the coach\textquotesingle{}s position. 
+
+This is a method that gets the coach\textquotesingle{}s position
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The coah\textquotesingle{}s position. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a5fd37dea8c5e6579c1deecbfc1b22db9}{Worker}.
+
+\hypertarget{class_coach_a6329a96f3fea5b02b46b4e6caf519359}{}\label{class_coach_a6329a96f3fea5b02b46b4e6caf519359} 
+\index{Coach@{Coach}!is\+Athlete@{is\+Athlete}}
+\index{is\+Athlete@{is\+Athlete}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{is\+Athlete()}{isAthlete()}}
+{\footnotesize\ttfamily bool Coach\+::is\+Athlete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Query if this object is athlete. 
+
+This is a method that checks if the worker is an athlete
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+True if athlete, false if not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a0a2eb7505b3a734184be3dfdf3316cc3}{Worker}.
+
+\hypertarget{class_coach_aef508cef2680594ef837407790d00db6}{}\label{class_coach_aef508cef2680594ef837407790d00db6} 
+\index{Coach@{Coach}!set\+Birth\+Date@{set\+Birth\+Date}}
+\index{set\+Birth\+Date@{set\+Birth\+Date}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{set\+Birth\+Date()}{setBirthDate()}}
+{\footnotesize\ttfamily void Coach\+::set\+Birth\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{class_date}{Date}}]{new\+Birthdate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sets the coach\textquotesingle{}s birth date. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Birthdate} & The new birthdate. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ac48a8315ccdeb2913cd98ea223660f72}{Worker}.
+
+\hypertarget{class_coach_a72de329d96f180eca4108c7103946ee3}{}\label{class_coach_a72de329d96f180eca4108c7103946ee3} 
+\index{Coach@{Coach}!set\+Coach\+Type@{set\+Coach\+Type}}
+\index{set\+Coach\+Type@{set\+Coach\+Type}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{set\+Coach\+Type()}{setCoachType()}}
+{\footnotesize\ttfamily void Coach\+::set\+Coach\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type}}]{new\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sets coach\textquotesingle{}s type. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Type} & New coach\textquotesingle{}s type. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ae84b05468a6fdbadad9163bfc18e0569}{Worker}.
+
+\hypertarget{class_coach_a954ee94a35267f5992d1a84d25c15c7f}{}\label{class_coach_a954ee94a35267f5992d1a84d25c15c7f} 
+\index{Coach@{Coach}!show\+In\+Screen@{show\+In\+Screen}}
+\index{show\+In\+Screen@{show\+In\+Screen}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{show\+In\+Screen()}{showInScreen()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Coach\+::show\+In\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Shows all the coach\textquotesingle{}s information in the screen. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+A vector of strings; 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_aca1475c72f6e7c6b85114b0bba0da038}{Worker}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_coach_aac51e9d7398550135eb64a32e903002f}{}\label{class_coach_aac51e9d7398550135eb64a32e903002f} 
+\index{Coach@{Coach}!trainer\+Position@{trainer\+Position}}
+\index{trainer\+Position@{trainer\+Position}!Coach@{Coach}}
+\subsubsection{\texorpdfstring{trainer\+Position}{trainerPosition}}
+{\footnotesize\ttfamily \hyperlink{_utils_8hpp_ad6bce769911d709b802464c1ec12e7ad}{Coach\+Type} Coach\+::trainer\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+coach\textquotesingle{}s position. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_coach_8hpp}{Coach.\+hpp}\item 
+\hyperlink{_coach_8cpp}{Coach.\+cpp}\end{DoxyCompactItemize}

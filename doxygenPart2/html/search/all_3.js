@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['callupplayers',['callUpPlayers',['../class_club.html#ac7ab630922da1744b1a8223512ae4dc6',1,'Club::callUpPlayers(string matchId, vector&lt; unsigned int &gt; matchPlayers, Level *level)'],['../class_club.html#ae330b70a246969ed36e76aedcc77fa0a',1,'Club::callUpPlayers(string opponentClub, Date matchDate, Level *level, MatchType type, vector&lt; unsigned int &gt; matchPlayers)'],['../class_tournament.html#adbc7625a6fab79463241834d05fc5bfb',1,'Tournament::callUpPlayers(unsigned int tournamentMatchId, vector&lt; unsigned int &gt; matchPlayers)'],['../class_tournament.html#a15948a541a1675213e52381c6a67f51c',1,'Tournament::callUpPlayers(unsigned int tournamentMatchId, Date matchDate, Level *level, vector&lt; unsigned int &gt; matchPlayers, unsigned int homeTeamIndex=0, unsigned int awayTeamIndex=0)']]],
+  ['cancelregister',['cancelRegister',['../class_training.html#afcbcc0684808ac14573fd1e7cc51bddb',1,'Training']]],
+  ['centerback',['CenterBack',['../_utils_8hpp.html#a94ee089ecd5db12c81c7edbefaabff4dacc7b7d7345511ce1e2178f337ecac463',1,'Utils.hpp']]],
+  ['centreforward',['CentreForward',['../_utils_8hpp.html#ae6ffae6f01bd3312aac4a44642f14620ae5f9d2447a0a0f2253897b523b92f9a0',1,'Utils.hpp']]],
+  ['centremidfielder',['CentreMidfielder',['../_utils_8hpp.html#a9f9328fe291d23e820ad594679abd217ab5e328095d03589cf333024ac38e3260',1,'Utils.hpp']]],
+  ['civilid',['civilID',['../class_worker.html#adfafba55f967994f4595bd914bbba127',1,'Worker']]],
+  ['clearscreen',['clearScreen',['../_utils_8cpp.html#a9d7e8af417b6d543da691e9c0e2f6f9f',1,'clearScreen():&#160;Utils.cpp'],['../_utils_8hpp.html#a9d7e8af417b6d543da691e9c0e2f6f9f',1,'clearScreen():&#160;Utils.cpp']]],
+  ['club',['Club',['../class_club.html',1,'Club'],['../class_club.html#a53bcd4e9c5b32098f2170d6800b4279a',1,'Club::Club(string clubName)'],['../class_club.html#a07cefb3e65bdcd9144abc29d3203bf4b',1,'Club::Club(string clubName, bool empty=false)']]],
+  ['club_2ecpp',['Club.cpp',['../_club_8cpp.html',1,'']]],
+  ['club_2ehpp',['Club.hpp',['../_club_8hpp.html',1,'']]],
+  ['clubname',['clubName',['../class_club.html#acd01c6183dc0747ad3c3ab8167bd860e',1,'Club']]],
+  ['clubs',['clubs',['../class_tournament.html#a0bc3b92b52e1e0b13c466f5e14100a10',1,'Tournament']]],
+  ['clubsauxused',['clubsAuxUsed',['../class_tournament.html#a23735b59d67642c8e8e826b9638d588c',1,'Tournament']]],
+  ['coach',['Coach',['../class_coach.html',1,'Coach'],['../class_coach.html#af830e5ddd2f9e94118c98f953c0b2bde',1,'Coach::Coach(string name, Date birthdate, unsigned int civilID, CoachType coachRole, unsigned int id=0)'],['../class_coach.html#af578863f8d3846803ce9cccd280d6ffe',1,'Coach::Coach(string &amp;newCoach)']]],
+  ['coach_2ecpp',['Coach.cpp',['../_coach_8cpp.html',1,'']]],
+  ['coach_2ehpp',['Coach.hpp',['../_coach_8hpp.html',1,'']]],
+  ['coachesidsvector',['coachesIdsVector',['../class_level.html#a2244ded7cbc3e261c400042dcd1f765f',1,'Level']]],
+  ['coachtype',['CoachType',['../_utils_8hpp.html#ad6bce769911d709b802464c1ec12e7ad',1,'Utils.hpp']]],
+  ['coachtypemap',['coachTypeMap',['../_club_8hpp.html#abcccd5e447418046556559994cfc522d',1,'coachTypeMap():&#160;Club.hpp'],['../_info_athletes_8hpp.html#abcccd5e447418046556559994cfc522d',1,'coachTypeMap():&#160;InfoAthletes.hpp'],['../_utils_8cpp.html#abcccd5e447418046556559994cfc522d',1,'coachTypeMap():&#160;Utils.cpp']]],
+  ['columnswidth',['columnsWidth',['../class_table.html#a36e32fdefca7b32f938d0029496c4238',1,'Table']]],
+  ['confirm',['confirm',['../_club_8hpp.html#aba1d31da0cee422234dab65e959d075a',1,'confirm(const Table &amp;message):&#160;Menus.cpp'],['../_menus_8cpp.html#aba1d31da0cee422234dab65e959d075a',1,'confirm(const Table &amp;message):&#160;Menus.cpp'],['../_menus_8h.html#aba1d31da0cee422234dab65e959d075a',1,'confirm(const Table &amp;message):&#160;Menus.cpp']]],
+  ['copysubtree',['copySubtree',['../class_binary_tree.html#a014618e17cbd8ec616e95db4c028c60f',1,'BinaryTree']]],
+  ['createdirectory',['createDirectory',['../_utils_8cpp.html#a9bf46266629bc543ecdf949886fd73dd',1,'createDirectory(const char *path):&#160;Utils.cpp'],['../_utils_8hpp.html#a9bf46266629bc543ecdf949886fd73dd',1,'createDirectory(const char *path):&#160;Utils.cpp']]],
+  ['criteria',['criteria',['../class_sort_training.html#adad567b222d6d5c2799d58ce9fce4682',1,'SortTraining']]]
+];

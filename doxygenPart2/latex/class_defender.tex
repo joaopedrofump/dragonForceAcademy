@@ -1,0 +1,177 @@
+\hypertarget{class_defender}{}\section{Defender Class Reference}
+\label{class_defender}\index{Defender@{Defender}}
+
+
+A defender.  
+
+
+
+
+{\ttfamily \#include $<$Defender.\+hpp$>$}
+
+Inheritance diagram for Defender\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_defender}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_defender_aa09b1f02e3314aef1463528b3a0c70e2}{Defender} (string \hyperlink{class_worker_a66cf57341253a31e418cf8abad59ffb1}{name}, \hyperlink{class_date}{Date} \hyperlink{class_worker_a3c1845f40a084b471750a787a87614dd}{birthdate}, unsigned int \hyperlink{class_worker_adfafba55f967994f4595bd914bbba127}{civil\+ID}, unsigned char \hyperlink{class_athlete_a80a64bb1d5c943aaa7ca152d596d9914}{height}, unsigned int=0)
+\begin{DoxyCompactList}\small\item\em Constructor. The id is set automatically \end{DoxyCompactList}\item 
+\hyperlink{class_defender_a2ad862369c0babb9fc303d43bfa3321b}{Defender} (string \&new\+DF)
+\begin{DoxyCompactList}\small\item\em Constructor that reads from the athlete\textquotesingle{}s file. \end{DoxyCompactList}\item 
+\hyperlink{class_defender_ac0872f9e6cae6078b87cbcf9fa32f3ba}{$\sim$\+Defender} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_defender_ad2aadb1cb382bf08522bd858ecc69667}{get\+ID} () const
+\begin{DoxyCompactList}\small\item\em Gets the defender\textquotesingle{}s identifier. \end{DoxyCompactList}\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_defender_a54de21eac6353f8847ac109b8a08fcab}{get\+Info} () const
+\begin{DoxyCompactList}\small\item\em Gets the defender\textquotesingle{}s performance information. \end{DoxyCompactList}\item 
+void \hyperlink{class_defender_abcd887808491719d6e40d92d68862b4e}{add\+Info} (\hyperlink{class_info}{Info} $\ast$more\+Info)
+\begin{DoxyCompactList}\small\item\em Adds information to the defender. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_info}{Info} $\ast$ \hyperlink{class_defender_a849c8836a0dff2abd8df7a8d6434cc8c}{general\+Info}
+\begin{DoxyCompactList}\small\item\em defender\textquotesingle{}s general info. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A defender. 
+
+Luís, 20/11/2016. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_defender_aa09b1f02e3314aef1463528b3a0c70e2}{}\label{class_defender_aa09b1f02e3314aef1463528b3a0c70e2} 
+\index{Defender@{Defender}!Defender@{Defender}}
+\index{Defender@{Defender}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{Defender()}{Defender()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Defender\+::\+Defender (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\hyperlink{class_date}{Date}}]{birthdate,  }\item[{unsigned int}]{civil\+ID,  }\item[{unsigned char}]{height,  }\item[{unsigned int}]{id = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor. The id is set automatically 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name. \\
+\hline
+{\em birthdate} & The birthdate. \\
+\hline
+{\em civil\+ID} & Civil identifier. \\
+\hline
+{\em height} & The height. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_defender_a2ad862369c0babb9fc303d43bfa3321b}{}\label{class_defender_a2ad862369c0babb9fc303d43bfa3321b} 
+\index{Defender@{Defender}!Defender@{Defender}}
+\index{Defender@{Defender}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{Defender()}{Defender()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Defender\+::\+Defender (\begin{DoxyParamCaption}\item[{string \&}]{new\+DF }\end{DoxyParamCaption})}
+
+
+
+Constructor that reads from the athlete\textquotesingle{}s file. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+DF} & \mbox{[}in,out\mbox{]} The new df. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_defender_ac0872f9e6cae6078b87cbcf9fa32f3ba}{}\label{class_defender_ac0872f9e6cae6078b87cbcf9fa32f3ba} 
+\index{Defender@{Defender}!````~Defender@{$\sim$\+Defender}}
+\index{````~Defender@{$\sim$\+Defender}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{$\sim$\+Defender()}{~Defender()}}
+{\footnotesize\ttfamily Defender\+::$\sim$\+Defender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Luís, 20/11/2016. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_defender_abcd887808491719d6e40d92d68862b4e}{}\label{class_defender_abcd887808491719d6e40d92d68862b4e} 
+\index{Defender@{Defender}!add\+Info@{add\+Info}}
+\index{add\+Info@{add\+Info}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{add\+Info()}{addInfo()}}
+{\footnotesize\ttfamily void Defender\+::add\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{class_info}{Info} $\ast$}]{more\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Adds information to the defender. 
+
+Luís, 20/11/2016. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em more\+Info} & \mbox{[}in,out\mbox{]} If non-\/null, all the defender\textquotesingle{}s performance information. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_worker_ad54db262f7473cc729c371dd54e292eb}{Worker}.
+
+\hypertarget{class_defender_ad2aadb1cb382bf08522bd858ecc69667}{}\label{class_defender_ad2aadb1cb382bf08522bd858ecc69667} 
+\index{Defender@{Defender}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Defender\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the defender\textquotesingle{}s identifier. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+The defender\textquotesingle{}s identifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_worker_a8b3e221c4a1ebd12ade03ee9b9c86182}{Worker}.
+
+\hypertarget{class_defender_a54de21eac6353f8847ac109b8a08fcab}{}\label{class_defender_a54de21eac6353f8847ac109b8a08fcab} 
+\index{Defender@{Defender}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{get\+Info()}{getInfo()}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info} $\ast$ Defender\+::get\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the defender\textquotesingle{}s performance information. 
+
+Luís, 20/11/2016. 
+
+\begin{DoxyReturn}{Returns}
+Null if it fails, else the defender\textquotesingle{}s performance information. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_worker_a95a4f7c750644937859b8e14515a480e}{Worker}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_defender_a849c8836a0dff2abd8df7a8d6434cc8c}{}\label{class_defender_a849c8836a0dff2abd8df7a8d6434cc8c} 
+\index{Defender@{Defender}!general\+Info@{general\+Info}}
+\index{general\+Info@{general\+Info}!Defender@{Defender}}
+\subsubsection{\texorpdfstring{general\+Info}{generalInfo}}
+{\footnotesize\ttfamily \hyperlink{class_info}{Info}$\ast$ Defender\+::general\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+defender\textquotesingle{}s general info. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_defender_8hpp}{Defender.\+hpp}\item 
+\hyperlink{_defender_8cpp}{Defender.\+cpp}\end{DoxyCompactItemize}

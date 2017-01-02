@@ -1,0 +1,95 @@
+\hypertarget{_tournament_8hpp}{}\section{Tournament.\+hpp File Reference}
+\label{_tournament_8hpp}\index{Tournament.\+hpp@{Tournament.\+hpp}}
+{\ttfamily \#include \char`\"{}Match.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Club.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_tournament}{Tournament}
+\begin{DoxyCompactList}\small\item\em A tournament. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef pair$<$ pair$<$ unsigned int, unsigned int $>$, pair$<$ \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase}, \hyperlink{class_match}{Match} $\ast$ $>$ $>$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_tournament}{Tournament} binary tree; \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase} \{ \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a6850cd07c4b3b517167ed621db492114}{Eight\+Of\+Finals} = 4, 
+\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a20c1d6d646327cd6b07dd90300a5132c}{Quarter\+Finals} = 3, 
+\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ad82a319a544a22eeab7f28afae77e5fd}{Semi\+Finals} = 2, 
+\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ab068018251f551730c472862a3b2fca9}{Final} = 1
+ \}\begin{DoxyCompactList}\small\item\em Values that represent phases. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const map$<$ \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase}, string $>$ \hyperlink{_tournament_8hpp_a686d53174696e16e1663cdc33c0854ee}{phase\+String\+Map}
+\begin{DoxyCompactList}\small\item\em Gets the phase string map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{}\label{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4} 
+\index{Tournament.\+hpp@{Tournament.\+hpp}!node\+Match@{node\+Match}}
+\index{node\+Match@{node\+Match}!Tournament.\+hpp@{Tournament.\+hpp}}
+\subsubsection{\texorpdfstring{node\+Match}{nodeMatch}}
+{\footnotesize\ttfamily typedef pair$<$pair$<$unsigned int,unsigned int$>$, pair$<$\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase}, \hyperlink{class_match}{Match}$\ast$$>$ $>$ \hyperlink{_tournament_8hpp_a59a90f79e961bd9bc490adbf767f7cc4}{node\+Match}}
+
+
+
+\hyperlink{class_tournament}{Tournament} binary tree; 
+
+Luís, 20/11/2016. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{}\label{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84} 
+\index{Tournament.\+hpp@{Tournament.\+hpp}!Phase@{Phase}}
+\index{Phase@{Phase}!Tournament.\+hpp@{Tournament.\+hpp}}
+\subsubsection{\texorpdfstring{Phase}{Phase}}
+{\footnotesize\ttfamily enum \hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase}}
+
+
+
+Values that represent phases. 
+
+Luís, 20/11/2016. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Eight\+Of\+Finals@{Eight\+Of\+Finals}!Tournament.\+hpp@{Tournament.\+hpp}}\index{Tournament.\+hpp@{Tournament.\+hpp}!Eight\+Of\+Finals@{Eight\+Of\+Finals}}}\hypertarget{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a6850cd07c4b3b517167ed621db492114}{}\label{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a6850cd07c4b3b517167ed621db492114} 
+Eight\+Of\+Finals&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Quarter\+Finals@{Quarter\+Finals}!Tournament.\+hpp@{Tournament.\+hpp}}\index{Tournament.\+hpp@{Tournament.\+hpp}!Quarter\+Finals@{Quarter\+Finals}}}\hypertarget{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a20c1d6d646327cd6b07dd90300a5132c}{}\label{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a20c1d6d646327cd6b07dd90300a5132c} 
+Quarter\+Finals&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Semi\+Finals@{Semi\+Finals}!Tournament.\+hpp@{Tournament.\+hpp}}\index{Tournament.\+hpp@{Tournament.\+hpp}!Semi\+Finals@{Semi\+Finals}}}\hypertarget{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ad82a319a544a22eeab7f28afae77e5fd}{}\label{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ad82a319a544a22eeab7f28afae77e5fd} 
+Semi\+Finals&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Final@{Final}!Tournament.\+hpp@{Tournament.\+hpp}}\index{Tournament.\+hpp@{Tournament.\+hpp}!Final@{Final}}}\hypertarget{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ab068018251f551730c472862a3b2fca9}{}\label{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ab068018251f551730c472862a3b2fca9} 
+Final&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_tournament_8hpp_a686d53174696e16e1663cdc33c0854ee}{}\label{_tournament_8hpp_a686d53174696e16e1663cdc33c0854ee} 
+\index{Tournament.\+hpp@{Tournament.\+hpp}!phase\+String\+Map@{phase\+String\+Map}}
+\index{phase\+String\+Map@{phase\+String\+Map}!Tournament.\+hpp@{Tournament.\+hpp}}
+\subsubsection{\texorpdfstring{phase\+String\+Map}{phaseStringMap}}
+{\footnotesize\ttfamily const map$<$\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84}{Phase},string$>$ phase\+String\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+    \{\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a6850cd07c4b3b517167ed621db492114}{EightOfFinals}, \textcolor{stringliteral}{"EightOfFinals"}\},
+    \{\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84a20c1d6d646327cd6b07dd90300a5132c}{QuarterFinals}, \textcolor{stringliteral}{"QuarterFinals"}\},
+    \{\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ad82a319a544a22eeab7f28afae77e5fd}{SemiFinals}, \textcolor{stringliteral}{"SemiFinals"}\},
+    \{\hyperlink{_tournament_8hpp_ae1c5184dc404edf057ed537bcfddef84ab068018251f551730c472862a3b2fca9}{Final}, \textcolor{stringliteral}{"Final"}\}
+\}
+\end{DoxyCode}
+
+
+Gets the phase string map. 
+
+The phase string map. 
