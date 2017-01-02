@@ -197,7 +197,7 @@ void initialOptions(Club &mainClub) {
 
 	vector<Season*> tmpVector = mainClub.getSeasons();
 	for (vector<Season*>::iterator i = tmpVector.begin(); i != tmpVector.end(); i++) {
-		if ((*i)->getYear() == Date().getYear()) {
+		if (!(Date() < (*i)->getInitialDate()) && !((*i)->getEndDate() < Date() )) {
 			currentSeason = *i;
 			break;
 		}
@@ -306,7 +306,7 @@ void printAthletesMenu(string seasonName) {
 	menuAthletes.addNewLine({ "6 - Update ECG of Athlete" });
 	menuAthletes.addNewLine({ "7 - Notify Athletes - ECG" });
 	menuAthletes.addNewLine({ "8 - Diploma Delivey" });
-	menuAthletes.addNewLine({ "9 - Congrat ex-Athletes and ex-Coaches" });
+	menuAthletes.addNewLine({ "9 - Birthday Postals" });
 	menuAthletes.addNewLine({ "0 - Back to Main Menu" });
 	cout << menuAthletes;
 }
