@@ -1537,7 +1537,7 @@ void printFriendlysMenu(ageLevel level) {
 	menuFriendlys2.addNewLine({ "2 - Schedule Friendly Match" });
 	menuFriendlys2.addNewLine({ "3 - Call-up Players" });
 	menuFriendlys2.addNewLine({ "4 - Register Scheduled Match" });
-	menuFriendlys2.addNewLine({ "5 - Register UnScheduled Match" });
+	menuFriendlys2.addNewLine({ "5 - Register Unscheduled Match" });
 
 	Table menuFriendlys3({ "2 - Trainings" }, 33 + 12 * (level - 1));
 	menuFriendlys3.addNewLine({ "3 - Tournaments" });
@@ -2353,7 +2353,7 @@ void printTrainingsMenu(ageLevel level) {
 	Table menuTraining2({ "1 - Training Calendar" }, 33 + 12 * (level - 1) + 9);
 	menuTraining2.addNewLine({ "2 - Schedule Training" });
 	menuTraining2.addNewLine({ "3 - Register Scheduled Training" });
-	menuTraining2.addNewLine({ "4 - Register Not Scheduled Training" });
+	menuTraining2.addNewLine({ "4 - Register Unscheduled Training" });
 
 	
 	Table menuTraining3({ "3 - Tournaments" }, 33 + 12 * (level - 1));
@@ -2720,7 +2720,7 @@ void printOneTournamentMenu(Level* currentLevel, unsigned int tournamentChosen) 
 	//showMainMenu(0, seasonName);
 	
 	cout << Table({ currentLevel->getTournaments().at(tournamentChosen)->getName() });;
-	cout << Table({ "1 - Table", "2 - Schedule Match", "3 - Call-Up Players", "4 - Register Scheduled Match", "5 - Register Not Scheduled Match", "0 - Back" });
+	cout << Table({ "1 - Table", "2 - Schedule Match", "3 - Call-Up Players", "4 - Register Scheduled Match", "5 - Register Unscheduled Match", "0 - Back" });
 
 }
 

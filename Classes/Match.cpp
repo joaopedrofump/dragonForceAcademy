@@ -5,24 +5,18 @@ Match::Match(string id):id(id){}
 Match::Match(Date matchDay, Club* homeTeam, Club* awayTeam, string id, bool played)
 	: matchDay(matchDay), homeTeam(homeTeam), awayTeam(awayTeam), id(id){
     
-        if (!played && matchDay < Date()) {
+    if (played && Date() < matchDay) {
             
-            throw string("Erro ao criar jogo, se o jogo não foi realizado, a data tem de ser futura.");
+        throw string("Erro ao criar jogo, se o jogo já foi realizado, a data tem de ser passada.");
             
-        }
-        
-        else if (played && Date() < matchDay) {
-            
-            throw string("Erro ao criar jogo, se o jogo já foi realizado, a data tem de ser passada.");
-            
-        }
-        
-        if(!played) {
-            this->homeTeamScore = 0;
-            this->awayTeamScore = 0;
-        }
-    
     }
+        
+    if(!played) {
+        this->homeTeamScore = 0;
+        this->awayTeamScore = 0;
+    }
+    
+}
 
 Match::~Match() {
 
