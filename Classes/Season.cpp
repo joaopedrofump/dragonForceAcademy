@@ -31,7 +31,7 @@ Season::Season(string seasonName, Club* parentClub) {
 
 void Season::setDateInterval() {
     
-    this->initialDate = Date(1,1,this->year);
+    this->initialDate = Date(1,7,this->year);
     this->endDate = Date(31,5,this->year + 1);
     
 }
