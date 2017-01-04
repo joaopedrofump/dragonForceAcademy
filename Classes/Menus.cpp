@@ -197,7 +197,7 @@ void initialOptions(Club &mainClub) {
 
 	vector<Season*> tmpVector = mainClub.getSeasons();
 	for (vector<Season*>::iterator i = tmpVector.begin(); i != tmpVector.end(); i++) {
-		if (!(Date() < (*i)->getInitialDate()) && !((*i)->getEndDate() < Date() )) {
+		if ((Date() >= (*i)->getInitialDate()) && ((*i)->getEndDate() >= Date() )) {
 			currentSeason = *i;
 			break;
 		}

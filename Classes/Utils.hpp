@@ -175,6 +175,7 @@ public:
 	void save(ofstream &out) const;
 	friend bool operator>=(const Date &date1, const Date date2);
     friend bool operator<(const Date &date1, const Date &date2);
+    friend bool operator<=(const Date &date1, const Date &date2);
 	friend bool operator==(const Date &date1, const Date &date2);
 	friend ostream& operator<<(ostream& out, const Date & data);
 	friend int operator-(const Date &date1, const Date &date2);
