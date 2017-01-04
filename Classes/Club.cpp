@@ -427,7 +427,7 @@ void Club::addPlayer(Position pos, string name, Date birthdate, unsigned int civ
 
 		for (unsigned int i = 0; i < seasons.size(); i++)
 		{
-			if (currentDate.getYear() == seasons.at(i)->getYear())
+			if ((seasons.at(i)->getInitialDate() <= currentDate) && (currentDate <= seasons.at(i)->getEndDate()))
 			{
 				currentSeason = seasons.at(i);
 				break;
@@ -754,7 +754,7 @@ void Club::addCoach(CoachType position, string name, Date birthdate, unsigned in
 		// Find current season
 		for (unsigned int i = 0; i < seasons.size(); i++)
 		{
-			if (currentDate.getYear() == seasons.at(i)->getYear())
+			if (seasons.at(i)->getInitialDate() <= currentDate && currentDate <= seasons.at(i)->getEndDate())
 			{
 				currentSeason = seasons.at(i);
 				break;
@@ -873,6 +873,7 @@ bool Club::removeCoach(unsigned int coachId) {
 		ignoreLine(false, "Coach removed correctly");
 
 		this->allWorkers.at(coachId)->setStatus(false);
+        this->formerPlayers.insert(this->allWorkers.at(coachId));
 
 	}
 	else {
@@ -925,8 +926,8 @@ bool Club::reativateCoach(unsigned int coachId) {
 
 		ignoreLine(false, "Coach reativated correctly");
 
-
 		this->allWorkers.at(coachId)->setStatus(true);
+        this->formerPlayers.erase(this->allWorkers.at(coachId));
 	}
 	else {
 
